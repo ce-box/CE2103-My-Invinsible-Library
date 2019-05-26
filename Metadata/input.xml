@@ -1,0 +1,26 @@
+<?xml version = "1.0"?>
+<class>
+   <image>
+      <name>Yolo</name>
+      <autor>Yo</autor>
+      <date>2019</date>
+      <size>45.6</size>
+      <description>Asombroso</description>
+   </image>
+
+   <image>
+      <name>Yolo</name>
+      <autor>No Yo</autor>
+      <date>2000</date>
+      <size>466</size>
+      <description>Asombrosox2</description>
+   </image>
+   
+   <image>
+      <name>Luca</name>
+      <autor>Yop</autor>
+      <date>2020</date>
+      <size>777</size>
+      <description>Sin palabras</description>
+   </image>
+</class>

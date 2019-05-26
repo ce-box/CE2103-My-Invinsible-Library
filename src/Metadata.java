@@ -1,3 +1,14 @@
+import org.jdom2.Attribute;
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.JDOMException;
+import org.jdom2.input.SAXBuilder;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Metadata {
     private String Nombre;
     private String Autor;
@@ -14,6 +25,92 @@ public class Metadata {
         this.Descripcion=Descripcion;
     }
 
+    public static void Select(ArrayList<String> Slots){
+        File inputFile = new File("Metadata/input.xml");
+        SAXBuilder saxBuilder = new SAXBuilder();
+        Document document = null;
+        try {
+            document = saxBuilder.build(inputFile);
+        } catch (JDOMException | IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Root element :" + document.getRootElement().getName());
+        Element classElement = document.getRootElement();
+
+        List<Element> studentList = classElement.getChildren();
+        System.out.println("----------------------------");
+
+        if (Slots==null){
+            Slots=new ArrayList<String>();
+            Slots.add("name");
+            Slots.add("autor");
+            Slots.add("date");
+            Slots.add("size");
+            Slots.add("description");
+        }
+
+        for (String slot: Slots) {
+            System.out.format("%-15s", slot);
+        }
+        System.out.println();
+
+        for (Element student : studentList) {
+            for (String slot : Slots) {
+                System.out.format("%-15s", student.getChild(slot).getText());
+            }
+            System.out.println();
+        }
+    }
+
+    public static void Select(ArrayList<String> Slots,ArrayList<String> SlotsWhere,ArrayList<String> SlotsValues){
+        File inputFile = new File("Metadata/input.xml");
+        SAXBuilder saxBuilder = new SAXBuilder();
+        Document document = null;
+        try {
+            document = saxBuilder.build(inputFile);
+        } catch (JDOMException | IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Root element :" + document.getRootElement().getName());
+        Element classElement = document.getRootElement();
+
+        List<Element> studentList = classElement.getChildren();
+        System.out.println("----------------------------");
+
+        if (Slots==null){
+            Slots=new ArrayList<String>();
+            Slots.add("name");
+            Slots.add("autor");
+            Slots.add("date");
+            Slots.add("size");
+            Slots.add("description");
+        }
+
+        for (String slot: Slots) {
+            System.out.format("%-15s", slot);
+        }
+        System.out.println();
+
+        for (Element student : studentList) {
+            boolean Where=true;
+
+            for (int i=0; i<SlotsWhere.size(); i++){
+                if (!student.getChild(SlotsWhere.get(i)).getText().equals(SlotsValues.get(i))){
+                    Where=false;
+                    break;
+                }
+            }
+
+            if (!Where) continue;
+            for (String slot : Slots) {
+                System.out.format("%-15s", student.getChild(slot).getText());
+            }
+
+            System.out.println();
+        }
+    }
+
+
     public void print(){
         String out="Nombre de la imagen: %s\n" +
                 "Autor: %s\n" +
@@ -24,47 +121,4 @@ public class Metadata {
         out=String.format(out,Nombre, Autor, AnoCreacion, Tamano, Descripcion);
         System.out.println(out);
     }
-
-
-    public String getNombre() {
-        return Nombre;
-    }
-
-    public void setNombre(String nombre) {
-        Nombre = nombre;
-    }
-
-    public String getAutor() {
-        return Autor;
-    }
-
-    public void setAutor(String autor) {
-        Autor = autor;
-    }
-
-    public int getAnoCreacion() {
-        return AnoCreacion;
-    }
-
-    public void setAnoCreacion(int anoCreacion) {
-        AnoCreacion = anoCreacion;
-    }
-
-    public float getTamano() {
-        return Tamano;
-    }
-
-    public void setTamano(int tamano) {
-        Tamano = tamano;
-    }
-
-    public String getDescripcion() {
-        return Descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        Descripcion = descripcion;
-    }
-
-
 }
