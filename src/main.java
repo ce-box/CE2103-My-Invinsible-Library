@@ -1,8 +1,8 @@
 public class main {
 
     public static void main(String[] args) {
-        // Prints "Hello, World" to the terminal window.
-        System.out.println("Hello, World");
+        Metadata M=new Metadata("yo", "John", 2019, 400,"Un crack");
+        M.print();
     }
 
 }
