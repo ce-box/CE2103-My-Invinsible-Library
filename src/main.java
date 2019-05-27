@@ -7,10 +7,10 @@ public class main {
         L.add("name");
         L.add("date");
         ArrayList<String> L2= new ArrayList<String>();
-        L2.add("name");
+        L2.add("date");
         ArrayList<String> L3= new ArrayList<String>();
-        L3.add("Yolo");
-        Metadata.Select(null,L2,L3);
+        L3.add("2019");
+        Metadata.Delete(L2,L3);
     }
 
 

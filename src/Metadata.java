@@ -3,8 +3,11 @@ import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
+import org.jdom2.output.Format;
+import org.jdom2.output.XMLOutputter;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +26,43 @@ public class Metadata {
         this.AnoCreacion=AnoCreacion;
         this.Tamano=Tamano;
         this.Descripcion=Descripcion;
+    }
+
+    public static void Delete(ArrayList<String> SlotsWhere,ArrayList<String> SlotsValues){
+        File inputFile = new File("Metadata/input.xml");
+        SAXBuilder saxBuilder = new SAXBuilder();
+        Document document = null;
+        try {
+            document = saxBuilder.build(inputFile);
+        } catch (JDOMException | IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Root element :" + document.getRootElement().getName());
+        Element classElement = document.getRootElement();
+
+        List<Element> studentList = classElement.getChildren();
+        System.out.println("----------------------------");
+
+
+        for (int i=0;i<studentList.size();i++) {
+            Element student=studentList.get(i);
+            for (int j=0; j<SlotsWhere.size(); j++){
+                //System.out.println("$$$"+student.getChild(SlotsWhere.get(j)).getText()+"$$$"+SlotsValues.get(j));
+                if (student.getChild(SlotsWhere.get(j)).getText().equals(SlotsValues.get(j))){
+                    classElement.removeChild(student.getName());
+                    i--;
+                }
+            }
+        }
+
+        XMLOutputter xmlOutput = new XMLOutputter();
+        xmlOutput.setFormat(Format.getPrettyFormat());
+        try {
+            //xmlOutput.output(document, System.out);
+            xmlOutput.output(document, new FileWriter("Metadata/input.xml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void Select(ArrayList<String> Slots){
