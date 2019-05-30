@@ -1,4 +1,4 @@
-import org.jdom2.Attribute;
+import com.sun.org.apache.xerces.internal.dom.ElementNSImpl;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
@@ -13,20 +13,115 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Metadata {
-    private String Nombre;
+    private String Name;
     private String Autor;
-    private int AnoCreacion;
-    private float Tamano;
+    private int Date;
+    private float Size;
     private String Descripcion;
+    private int ID;
+    private static int IDGlobal=0;
 
 
     public Metadata( String Nombre,String Autor,int AnoCreacion,int Tamano, String Descripcion){
-        this.Nombre=Nombre;
+        this.Name=Nombre;
         this.Autor=Autor;
-        this.AnoCreacion=AnoCreacion;
-        this.Tamano=Tamano;
+        this.Date =AnoCreacion;
+        this.Size=Tamano;
         this.Descripcion=Descripcion;
+        this.ID=IDGlobal++;
     }
+
+    public static void Start(){
+        File inputFile = new File("Metadata/input.xml");
+        SAXBuilder saxBuilder = new SAXBuilder();
+        Document document = null;
+        try {
+            document = saxBuilder.build(inputFile);
+        } catch (JDOMException | IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Root element :" + document.getRootElement().getName());
+        Element classElement = document.getRootElement();
+
+        IDGlobal=Integer.parseInt(classElement.getAttributeValue("ID"));
+    }
+
+    public static void Close(){
+        File inputFile = new File("Metadata/input.xml");
+        SAXBuilder saxBuilder = new SAXBuilder();
+        Document document = null;
+        try {
+            document = saxBuilder.build(inputFile);
+        } catch (JDOMException | IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Root element :" + document.getRootElement().getName());
+        Element classElement = document.getRootElement();
+
+        System.out.println("###"+IDGlobal);
+
+        classElement.setAttribute("ID",IDGlobal+"");
+
+        XMLOutputter xmlOutput = new XMLOutputter();
+        xmlOutput.setFormat(Format.getPrettyFormat());
+        try {
+            //xmlOutput.output(document, System.out);
+            xmlOutput.output(document, new FileWriter("Metadata/input.xml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void Insert(ArrayList<String> Slots, ArrayList<String> SlotsValues){
+        File inputFile = new File("Metadata/input.xml");
+        SAXBuilder saxBuilder = new SAXBuilder();
+        Document document = null;
+        try {
+            document = saxBuilder.build(inputFile);
+        } catch (JDOMException | IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Root element :" + document.getRootElement().getName());
+        Element classElement = document.getRootElement();
+
+        ArrayList<String> Aux;
+        Aux=new ArrayList<>();
+        Aux.add("ID");
+        Aux.add("name");
+        Aux.add("autor");
+        Aux.add("date");
+        Aux.add("size");
+        Aux.add("description");
+
+
+        Element Nuevo=new Element("image"+IDGlobal);
+
+        Element tmp;
+        for (int j=0; j<Aux.size(); j++){
+            tmp=new Element(Aux.get(j));
+            tmp.setText("null");
+            Nuevo.addContent(tmp);
+        }
+
+        tmp=Nuevo.getChild("ID");
+        tmp.setText(""+IDGlobal++);
+
+        for (int j=0; j<Slots.size(); j++){
+            tmp=Nuevo.getChild(Slots.get(j));
+            tmp.setText(SlotsValues.get(j));
+        }
+
+        classElement.addContent(Nuevo);
+
+        XMLOutputter xmlOutput = new XMLOutputter();
+        xmlOutput.setFormat(Format.getPrettyFormat());
+        try {
+            //xmlOutput.output(document, System.out);
+            xmlOutput.output(document, new FileWriter("Metadata/input.xml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    };
 
     public static void Delete(ArrayList<String> SlotsWhere,ArrayList<String> SlotsValues){
         File inputFile = new File("Metadata/input.xml");
@@ -82,6 +177,7 @@ public class Metadata {
 
         if (Slots==null){
             Slots=new ArrayList<String>();
+            Slots.add("ID");
             Slots.add("name");
             Slots.add("autor");
             Slots.add("date");
@@ -119,6 +215,7 @@ public class Metadata {
 
         if (Slots==null){
             Slots=new ArrayList<String>();
+            Slots.add("ID");
             Slots.add("name");
             Slots.add("autor");
             Slots.add("date");
@@ -152,13 +249,14 @@ public class Metadata {
 
 
     public void print(){
-        String out="Nombre de la imagen: %s\n" +
+        String out="ID de la imagen: %s\n" +
+                "Nombre de la imagen: %s\n" +
                 "Autor: %s\n" +
                 "Año de creación: %d\n" +
                 "Tamaño (KB): %f\n" +
                 "Descripción: %s\n" +
                 "============================\n";
-        out=String.format(out,Nombre, Autor, AnoCreacion, Tamano, Descripcion);
+        out=String.format(out,ID,Name, Autor, Date, Size, Descripcion);
         System.out.println(out);
     }
 }

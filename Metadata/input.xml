@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class>
-    <image1>
-      <name>Yolo</name>
-      <autor>Yo</autor>
-      <date>2019</date>
-      <size>45.6</size>
-      <description>Asombroso</description>
-   </image1>
+<class ID="7">
   <image2>
+    <ID>1</ID>
     <name>Yolo</name>
     <autor>No Yo</autor>
     <date>2000</date>
@@ -15,10 +9,19 @@
     <description>Asombrosox2</description>
   </image2>
   <image3>
+    <ID>2</ID>
     <name>Luca</name>
     <autor>Yop</autor>
     <date>2020</date>
     <size>777</size>
     <description>Sin palabras</description>
   </image3>
+  <image6>
+    <ID>6</ID>
+    <name>Sahid</name>
+    <autor>null</autor>
+    <date>2019</date>
+    <size>null</size>
+    <description>null</description>
+  </image6>
 </class>
