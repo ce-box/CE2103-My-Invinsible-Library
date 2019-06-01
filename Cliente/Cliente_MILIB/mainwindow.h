@@ -2,6 +2,11 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <string>
+#include <QString>
+#include <QColor>
+#include <QColorDialog>
+#include <QTextEdit>
 
 namespace Ui {
 class MainWindow;
@@ -13,6 +18,7 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = 0);
+    void colorearWidget(QWidget* textEdit, QString colorFondo);
     ~MainWindow();
 
 private:
