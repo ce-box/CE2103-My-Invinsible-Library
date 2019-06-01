@@ -34,6 +34,7 @@ public:
     QTextEdit *appOutputTextEdit;
     QLabel *AppOutputLabel;
     QTableWidget *metadataTable;
+    QPushButton *subirImagenPushButton;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -63,6 +64,9 @@ public:
         metadataTable = new QTableWidget(mainFrame);
         metadataTable->setObjectName(QStringLiteral("metadataTable"));
         metadataTable->setGeometry(QRect(10, 10, 510, 240));
+        subirImagenPushButton = new QPushButton(mainFrame);
+        subirImagenPushButton->setObjectName(QStringLiteral("subirImagenPushButton"));
+        subirImagenPushButton->setGeometry(QRect(40, 640, 131, 41));
         MainWindow->setCentralWidget(centralWidget);
 
         retranslateUi(MainWindow);
@@ -75,6 +79,7 @@ public:
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", Q_NULLPTR));
         runPushButton->setText(QApplication::translate("MainWindow", "Run", Q_NULLPTR));
         AppOutputLabel->setText(QApplication::translate("MainWindow", "Application Output", Q_NULLPTR));
+        subirImagenPushButton->setText(QApplication::translate("MainWindow", "Subir Imagen/Galer\303\255a", Q_NULLPTR));
     } // retranslateUi
 
 };

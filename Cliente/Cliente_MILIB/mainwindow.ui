@@ -88,6 +88,19 @@
       </rect>
      </property>
     </widget>
+    <widget class="QPushButton" name="subirImagenPushButton">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>640</y>
+       <width>131</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Subir Imagen/Galería</string>
+     </property>
+    </widget>
    </widget>
   </widget>
  </widget>
