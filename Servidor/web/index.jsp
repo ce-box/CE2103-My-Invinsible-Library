@@ -11,6 +11,7 @@
     <title>My Invencible Library [MILIB]</title>
   </head>
   <body>
-    <p><a href="rest/myresource">Jersey resource</a>< /p>
-  </body>
+  <p><a href="MILIB/serverSource">Jersey resource</a>
+
+</body>
 </html>

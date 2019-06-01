@@ -15,7 +15,7 @@ import org.json.JSONObject;
  * version 1.0
  * last Update: 30/05/2019
  */
-@Path("myresource")
+@Path("serverSource")
 public class MILIB_Resource {
 
     @GET
@@ -23,6 +23,7 @@ public class MILIB_Resource {
     public String getIt(){
 
         JSONObject jsonObject = new JSONObject();
+        
         return "Got it!";
     }
 }
