@@ -2,6 +2,9 @@ package com.tec.MILIB.Resources;
 
 // Libraries
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -18,13 +21,42 @@ import org.json.JSONObject;
 @Path("serverSource")
 public class MILIB_Resource {
 
+    // SELECT
     @GET
     @Produces(MediaType.TEXT_PLAIN)
-    public String getIt(){
+    public String select(){
 
         JSONObject jsonObject = new JSONObject();
         
-        return "Got it!";
+        return "SELECT";
+    }
+
+    // CREATE / INSERT
+
+    @POST
+    public String insert(){
+
+        JSONObject jsonObject = new JSONObject();
+
+        return "INSERT";
+    }
+
+    // UPDATE
+    @PUT
+    public String update(){
+
+        JSONObject jsonObject = new JSONObject();
+
+        return "UPDATE";
+    }
+
+    // DELETE
+    @DELETE
+    public String delete(){
+
+        JSONObject jsonObject = new JSONObject();
+
+        return "DELETE";
     }
 }
 
