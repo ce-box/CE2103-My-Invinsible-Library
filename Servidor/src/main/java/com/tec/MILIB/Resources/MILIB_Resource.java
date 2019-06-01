@@ -12,6 +12,8 @@ import javax.ws.rs.core.Response;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 
 /**
  * Created by @estalvgs1999 on 27/05/2019
@@ -23,12 +25,20 @@ public class MILIB_Resource {
 
     // SELECT
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
     public String select(){
 
         JSONObject jsonObject = new JSONObject();
-        
-        return "SELECT";
+        jsonObject.put("name","Esteban");
+
+        ArrayList<String> myList = new ArrayList<String>();
+        myList.add("a");
+        myList.add("b");
+        myList.add("c");
+
+        jsonObject.put("list",myList);
+
+        return jsonObject.toString();
     }
 
     // CREATE / INSERT
