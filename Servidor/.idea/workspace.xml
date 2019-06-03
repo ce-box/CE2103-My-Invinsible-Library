@@ -7,18 +7,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1d1283f6-dda4-481f-9f7e-60ab1a09f920" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../Servidor 2.0/.idea/artifacts/MILIB_Servidor_war.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Servidor 2.0/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Servidor 2.0/.idea/libraries/Maven__asm_asm_all_3_3_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Servidor 2.0/.idea/libraries/Maven__com_sun_jersey_jersey_bundle_1_14.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Servidor 2.0/.idea/libraries/Maven__javax_ws_rs_jsr311_api_1_1_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Servidor 2.0/.idea/libraries/Maven__org_json_json_20090211.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Servidor 2.0/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Servidor 2.0/MILIB_Servidor.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Servidor 2.0/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Servidor 2.0/src/main/com/tec/MILIB/Consumer/MilibServiceClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Servidor 2.0/src/main/com/tec/MILIB/Resources/MilibRestService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor 2.0/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Servidor 2.0/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor 2.0/src/main/com/tec/MILIB/Consumer/MilibServiceClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Servidor 2.0/src/main/com/tec/MILIB/Consumer/MilibServiceClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor 2.0/src/main/com/tec/MILIB/Resources/MilibRestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Servidor 2.0/src/main/com/tec/MILIB/Resources/MilibRestService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor 2.0/target/MILIB_Server-1.0-SNAPSHOT/WEB-INF/classes/main/com/tec/MILIB/Resources/MilibRestService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Servidor 2.0/target/MILIB_Server-1.0-SNAPSHOT/WEB-INF/classes/main/com/tec/MILIB/Resources/MilibRestService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor 2.0/target/classes/main/com/tec/MILIB/Resources/MilibRestService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Servidor 2.0/target/classes/main/com/tec/MILIB/Resources/MilibRestService.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -307,6 +300,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.3120438" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />

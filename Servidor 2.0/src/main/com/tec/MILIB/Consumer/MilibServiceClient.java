@@ -16,6 +16,12 @@ public class MilibServiceClient {
 
     public static void main(String[] args) {
 
+        MilibServiceClient client = new MilibServiceClient();
+
+        client.select();
+    }
+
+    private void select(){
         try {
 
             // Step1: Create a JSON File to send
@@ -40,12 +46,19 @@ public class MilibServiceClient {
                 out.write(jsonObject.toString());
                 out.close();
 
+                // Step 3: Receive the Data sent from Server
                 BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder builder = new StringBuilder();
+                String line = null;
 
-                while (in.readLine() != null) {
+                while ((line = in.readLine()) != null) {
+                    builder.append(line);
                 }
                 System.out.println("\nMILIB REST Service Invoked Successfully..");
+                System.out.println("\nData recieved: " + builder.toString());
                 in.close();
+
+
             } catch (Exception e) {
                 System.out.println("\nError while calling Crunchify REST Service");
                 System.out.println(e);

@@ -1,5 +1,8 @@
 package main.com.tec.MILIB.Resources;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -24,7 +27,8 @@ public class MilibRestService {
     @POST
     @Path("/insert")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response insert(InputStream incomingData){
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response insert(InputStream incomingData) throws JSONException {
 
         // Setting an String Builder
         StringBuilder inputBuilder = new StringBuilder();
@@ -43,8 +47,14 @@ public class MilibRestService {
         // Show in console the received data
         System.out.println("Data Received: "+ inputBuilder.toString());
 
+        JSONObject json = new JSONObject();
+        json.put("valueA",1);
+        json.put("valueB",2);
+        
+        System.out.println("Data sent: "+ json.toString());
+
         // Return HTTP response 200 in case of success
-        return Response.status(200).entity(inputBuilder.toString()).build();
+        return Response.status(200).entity(json.toString()).build();
     }
 
     /**
