@@ -54,6 +54,6 @@ El sistema desarrollado cuenta con: **ServerLibrary**: Permite a múltiples clie
      Prof.Lic.Luis Diego Noguera
 
 <p align="center">
- imagen 2
+<img src="https://www-cdn-2.winshuttle.com/wp-content/uploads/2017/01/data-validation-circle.png" width="80" heigth="80"/>
 </p>
-
+***
