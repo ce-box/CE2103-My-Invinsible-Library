@@ -19,7 +19,8 @@ public class Metadata {
     private float Size;
     private String Descripcion;
     private int ID;
-    private static int IDGlobal=0;
+    private static int IDGlobal;
+    private static Document document;
 
 
     public Metadata( String Nombre,String Autor,int AnoCreacion,int Tamano, String Descripcion){
@@ -34,7 +35,7 @@ public class Metadata {
     public static void Start(){
         File inputFile = new File("Metadata/input.xml");
         SAXBuilder saxBuilder = new SAXBuilder();
-        Document document = null;
+        document = null;
         try {
             document = saxBuilder.build(inputFile);
         } catch (JDOMException | IOException e) {
@@ -47,15 +48,6 @@ public class Metadata {
     }
 
     public static void Close(){
-        File inputFile = new File("Metadata/input.xml");
-        SAXBuilder saxBuilder = new SAXBuilder();
-        Document document = null;
-        try {
-            document = saxBuilder.build(inputFile);
-        } catch (JDOMException | IOException e) {
-            e.printStackTrace();
-        }
-        System.out.println("Root element :" + document.getRootElement().getName());
         Element classElement = document.getRootElement();
 
         System.out.println("###"+IDGlobal);
@@ -72,16 +64,28 @@ public class Metadata {
         }
     }
 
-    public static void Insert(ArrayList<String> Slots, ArrayList<String> SlotsValues){
-        File inputFile = new File("Metadata/input.xml");
-        SAXBuilder saxBuilder = new SAXBuilder();
-        Document document = null;
-        try {
-            document = saxBuilder.build(inputFile);
-        } catch (JDOMException | IOException e) {
-            e.printStackTrace();
+    public static void Update(ArrayList<String> Slots,ArrayList<String> SlotsValues ,ArrayList<String> SlotsWhere,ArrayList<String> SlotsWhereValues){
+        Element classElement = document.getRootElement();
+        List<Element> studentList = classElement.getChildren();
+        System.out.println("----------------------------");
+
+
+        for (Element student : studentList) {
+            Element SlotActual;
+            for (int i=0; i<SlotsWhere.size(); i++){
+                if (student.getChild(SlotsWhere.get(i)).getText().equals(SlotsWhereValues.get(i))){
+                    System.out.println("$$$"+student.getChild(SlotsWhere.get(i)).getText());
+                    for (int j=0; j<Slots.size(); j++){
+                        SlotActual=student.getChild(Slots.get(j));
+                        SlotActual.setText(SlotsValues.get(j));
+                    }
+                    break;
+                }
+            }
         }
-        System.out.println("Root element :" + document.getRootElement().getName());
+    }
+
+    public static void Insert(ArrayList<String> Slots, ArrayList<String> SlotsValues){
         Element classElement = document.getRootElement();
 
         ArrayList<String> Aux;
@@ -112,27 +116,9 @@ public class Metadata {
         }
 
         classElement.addContent(Nuevo);
-
-        XMLOutputter xmlOutput = new XMLOutputter();
-        xmlOutput.setFormat(Format.getPrettyFormat());
-        try {
-            //xmlOutput.output(document, System.out);
-            xmlOutput.output(document, new FileWriter("Metadata/input.xml"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     };
 
     public static void Delete(ArrayList<String> SlotsWhere,ArrayList<String> SlotsValues){
-        File inputFile = new File("Metadata/input.xml");
-        SAXBuilder saxBuilder = new SAXBuilder();
-        Document document = null;
-        try {
-            document = saxBuilder.build(inputFile);
-        } catch (JDOMException | IOException e) {
-            e.printStackTrace();
-        }
-        System.out.println("Root element :" + document.getRootElement().getName());
         Element classElement = document.getRootElement();
 
         List<Element> studentList = classElement.getChildren();
@@ -150,40 +136,41 @@ public class Metadata {
             }
         }
 
-        XMLOutputter xmlOutput = new XMLOutputter();
-        xmlOutput.setFormat(Format.getPrettyFormat());
-        try {
-            //xmlOutput.output(document, System.out);
-            xmlOutput.output(document, new FileWriter("Metadata/input.xml"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
-    public static void Select(ArrayList<String> Slots){
-        File inputFile = new File("Metadata/input.xml");
-        SAXBuilder saxBuilder = new SAXBuilder();
-        Document document = null;
-        try {
-            document = saxBuilder.build(inputFile);
-        } catch (JDOMException | IOException e) {
-            e.printStackTrace();
-        }
-        System.out.println("Root element :" + document.getRootElement().getName());
+    public static void Select(){
         Element classElement = document.getRootElement();
 
         List<Element> studentList = classElement.getChildren();
         System.out.println("----------------------------");
 
-        if (Slots==null){
-            Slots=new ArrayList<String>();
-            Slots.add("ID");
-            Slots.add("name");
-            Slots.add("autor");
-            Slots.add("date");
-            Slots.add("size");
-            Slots.add("description");
+        ArrayList<String> Slots=new ArrayList<String>();
+        Slots.add("ID");
+        Slots.add("name");
+        Slots.add("autor");
+        Slots.add("date");
+        Slots.add("size");
+        Slots.add("description");
+
+        for (String slot: Slots) {
+            System.out.format("%-15s", slot);
         }
+        System.out.println();
+
+        for (Element student : studentList) {
+            for (String slot : Slots) {
+                System.out.format("%-15s", student.getChild(slot).getText());
+            }
+            System.out.println();
+        }
+    }
+
+    public static void Select(ArrayList<String> Slots){
+        Element classElement = document.getRootElement();
+
+        List<Element> studentList = classElement.getChildren();
+        System.out.println("----------------------------");
+
 
         for (String slot: Slots) {
             System.out.format("%-15s", slot);
@@ -199,15 +186,6 @@ public class Metadata {
     }
 
     public static void Select(ArrayList<String> Slots,ArrayList<String> SlotsWhere,ArrayList<String> SlotsValues){
-        File inputFile = new File("Metadata/input.xml");
-        SAXBuilder saxBuilder = new SAXBuilder();
-        Document document = null;
-        try {
-            document = saxBuilder.build(inputFile);
-        } catch (JDOMException | IOException e) {
-            e.printStackTrace();
-        }
-        System.out.println("Root element :" + document.getRootElement().getName());
         Element classElement = document.getRootElement();
 
         List<Element> studentList = classElement.getChildren();

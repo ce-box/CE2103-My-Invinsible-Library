@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class ID="9">
+<class ID="19">
   <image2>
     <ID>1</ID>
     <name>Yolo</name>
@@ -16,20 +16,36 @@
     <size>777</size>
     <description>Sin palabras</description>
   </image3>
-  <image7>
-    <ID>7</ID>
-    <name>Wajo</name>
+  <image14>
+    <ID>14</ID>
+    <name>Sahid1</name>
     <autor>null</autor>
-    <date>null</date>
-    <size>200.0</size>
+    <date>2012</date>
+    <size>null</size>
     <description>null</description>
-  </image7>
-  <image8>
-    <ID>8</ID>
-    <name>Wajo</name>
+  </image14>
+  <image15>
+    <ID>15</ID>
+    <name>Sahid1</name>
     <autor>null</autor>
-    <date>null</date>
-    <size>200.0</size>
+    <date>2012</date>
+    <size>null</size>
     <description>null</description>
-  </image8>
+  </image15>
+  <image17>
+    <ID>17</ID>
+    <name>Sahid1</name>
+    <autor>null</autor>
+    <date>2012</date>
+    <size>null</size>
+    <description>null</description>
+  </image17>
+  <image18>
+    <ID>18</ID>
+    <name>Sahid</name>
+    <autor>null</autor>
+    <date>2009</date>
+    <size>null</size>
+    <description>null</description>
+  </image18>
 </class>

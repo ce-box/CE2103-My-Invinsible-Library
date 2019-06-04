@@ -7,16 +7,16 @@ public class main {
 
         ArrayList<String> L = new ArrayList<String>();
         L.add("name");
-        L.add("size");
-//        ArrayList<String> L2= new ArrayList<String>();
-//        L2.add("date");
-//        ArrayList<String> L3= new ArrayList<String>();
-//        L3.add("2019");
+        L.add("date");
+        ArrayList<String> L2= new ArrayList<String>();
+        L2.add("Sahid1");
+        L2.add("2012");
+        ArrayList<String> L3= new ArrayList<String>();
+        L3.add("name");
         ArrayList<String> L4= new ArrayList<String>();
-        L4.add("Wajo");
-        L4.add("200.0");
-        Metadata.Insert(L,L4);
-        Metadata.Select(null);
+        L4.add("Lucardiño");
+        Metadata.Update(L,L2,L3,L4);
+        Metadata.Select();
 
         Metadata.Close();
     }
