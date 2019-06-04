@@ -50,7 +50,7 @@ public class MilibRestService {
         JSONObject json = new JSONObject();
         json.put("valueA",1);
         json.put("valueB",2);
-        
+
         System.out.println("Data sent: "+ json.toString());
 
         // Return HTTP response 200 in case of success

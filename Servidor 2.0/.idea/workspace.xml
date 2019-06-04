@@ -7,9 +7,71 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="02284dce-3526-487a-b240-7662be33298d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/com/tec/MILIB/Consumer/MilibServiceClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/com/tec/MILIB/Consumer/MilibServiceClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Cliente/Cliente-Debug/Cliente_MILIB" beforeDir="false" afterPath="$PROJECT_DIR$/../Cliente/Cliente-Debug/Cliente_MILIB" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Cliente/Cliente-Debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/../Cliente/Cliente-Debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Cliente/Cliente-Debug/main.o" beforeDir="false" afterPath="$PROJECT_DIR$/../Cliente/Cliente-Debug/main.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Cliente/Cliente-Debug/moc_mainwindow.o" beforeDir="false" afterPath="$PROJECT_DIR$/../Cliente/Cliente-Debug/moc_mainwindow.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Cliente/Cliente_MILIB/Cliente_MILIB.pro" beforeDir="false" afterPath="$PROJECT_DIR$/../Cliente/Cliente_MILIB/Cliente_MILIB.pro" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/com/tec/MILIB/Resources/MilibRestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/com/tec/MILIB/Resources/MilibRestService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Servidor/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Servidor/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/MILIB_Server-1.0-SNAPSHOT/WEB-INF/classes/main/com/tec/MILIB/Resources/MilibRestService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/MILIB_Server-1.0-SNAPSHOT/WEB-INF/classes/main/com/tec/MILIB/Resources/MilibRestService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/com/tec/MILIB/Consumer/MilibServiceClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/com/tec/MILIB/Consumer/MilibServiceClient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/com/tec/MILIB/Resources/MilibRestService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/com/tec/MILIB/Resources/MilibRestService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/.idea/artifacts/Servidor_MILIB_war_exploded.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/.idea/libraries/Maven__javax_annotation_javax_annotation_api_1_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/.idea/libraries/Maven__javax_validation_validation_api_1_1_0_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/.idea/libraries/Maven__javax_ws_rs_javax_ws_rs_api_2_0_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/.idea/libraries/Maven__org_glassfish_hk2_external_aopalliance_repackaged_2_5_0_b05.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/.idea/libraries/Maven__org_glassfish_hk2_external_javax_inject_2_5_0_b05.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/.idea/libraries/Maven__org_glassfish_hk2_hk2_api_2_5_0_b05.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/.idea/libraries/Maven__org_glassfish_hk2_hk2_locator_2_5_0_b05.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/.idea/libraries/Maven__org_glassfish_hk2_hk2_utils_2_5_0_b05.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/.idea/libraries/Maven__org_glassfish_hk2_osgi_resource_locator_1_0_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/.idea/libraries/Maven__org_glassfish_jersey_bundles_repackaged_jersey_guava_2_23_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/.idea/libraries/Maven__org_glassfish_jersey_containers_jersey_container_servlet_core_2_23_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/.idea/libraries/Maven__org_glassfish_jersey_core_jersey_client_2_23_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/.idea/libraries/Maven__org_glassfish_jersey_core_jersey_common_2_23_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/.idea/libraries/Maven__org_glassfish_jersey_core_jersey_server_2_23_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/.idea/libraries/Maven__org_glassfish_jersey_media_jersey_media_jaxb_2_23_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/.idea/libraries/Maven__org_javassist_javassist_3_20_0_GA.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/.idea/libraries/Maven__org_json_json_20170516.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/Servidor_MILIB.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/out/artifacts/Servidor_MILIB_war_exploded/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/out/artifacts/Servidor_MILIB_war_exploded/WEB-INF/classes/META-INF/Servidor_MILIB.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/out/artifacts/Servidor_MILIB_war_exploded/WEB-INF/classes/com/tec/MILIB/Resources/MILIB_Resource.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/out/artifacts/Servidor_MILIB_war_exploded/WEB-INF/lib/aopalliance-repackaged-2.5.0-b05.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/out/artifacts/Servidor_MILIB_war_exploded/WEB-INF/lib/hk2-api-2.5.0-b05.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/out/artifacts/Servidor_MILIB_war_exploded/WEB-INF/lib/hk2-locator-2.5.0-b05.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/out/artifacts/Servidor_MILIB_war_exploded/WEB-INF/lib/hk2-utils-2.5.0-b05.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/out/artifacts/Servidor_MILIB_war_exploded/WEB-INF/lib/javassist-3.20.0-GA.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/out/artifacts/Servidor_MILIB_war_exploded/WEB-INF/lib/javax.annotation-api-1.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/out/artifacts/Servidor_MILIB_war_exploded/WEB-INF/lib/javax.inject-2.5.0-b05.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/out/artifacts/Servidor_MILIB_war_exploded/WEB-INF/lib/javax.ws.rs-api-2.0.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/out/artifacts/Servidor_MILIB_war_exploded/WEB-INF/lib/jersey-client-2.23.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/out/artifacts/Servidor_MILIB_war_exploded/WEB-INF/lib/jersey-common-2.23.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/out/artifacts/Servidor_MILIB_war_exploded/WEB-INF/lib/jersey-container-servlet-core-2.23.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/out/artifacts/Servidor_MILIB_war_exploded/WEB-INF/lib/jersey-guava-2.23.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/out/artifacts/Servidor_MILIB_war_exploded/WEB-INF/lib/jersey-media-jaxb-2.23.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/out/artifacts/Servidor_MILIB_war_exploded/WEB-INF/lib/jersey-server-2.23.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/out/artifacts/Servidor_MILIB_war_exploded/WEB-INF/lib/json-20170516.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/out/artifacts/Servidor_MILIB_war_exploded/WEB-INF/lib/osgi-resource-locator-1.0.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/out/artifacts/Servidor_MILIB_war_exploded/WEB-INF/lib/validation-api-1.1.0.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/out/artifacts/Servidor_MILIB_war_exploded/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/out/artifacts/Servidor_MILIB_war_exploded/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/src/main/java/com/tec/MILIB/Resources/MILIB_Resource.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/target/classes/META-INF/Servidor_MILIB.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/target/classes/com/tec/MILIB/Resources/MILIB_Resource.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/web/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor/web/index.jsp" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -20,11 +82,10 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DefaultGradleProjectSettings">
-    <option name="testRunner" value="GRADLE" />
-    <option name="delegatedBuild" value="true" />
+    <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="225">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/WEB-INF/web.xml">
           <provider selected="true" editor-type-id="text-editor">
@@ -46,17 +107,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="416">
+            <state relative-caret-position="656">
               <caret line="41" column="38" selection-start-line="41" selection-start-column="38" selection-end-line="41" selection-end-column="38" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/com/tec/MILIB/Resources/MilibRestService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="52" column="8" selection-start-line="52" selection-start-column="8" selection-end-line="52" selection-end-column="8" />
+            <state relative-caret-position="304">
+              <caret line="19" column="30" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -64,11 +125,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/com/tec/MILIB/Consumer/MilibServiceClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="277">
-              <caret line="32" column="46" selection-start-line="32" selection-start-column="46" selection-end-line="32" selection-end-column="46" />
+            <state relative-caret-position="570">
+              <caret line="38" column="89" selection-start-line="38" selection-start-column="34" selection-end-line="38" selection-end-column="89" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -117,8 +178,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -143,14 +204,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="MILIB" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MILIB_Servidor" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Servidor 2.0" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="MILIB" type="462c0819:PsiDirectoryNode" />
-              <item name="Consumer" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="MILIB_Servidor" type="b2602c69:ProjectViewProjectNode" />
@@ -296,50 +349,51 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1559511095441</updated>
-      <workItem from="1559511100043" duration="6750000" />
+      <workItem from="1559511100043" duration="9156000" />
+      <workItem from="1559597480940" duration="4278000" />
+      <workItem from="1559614067699" duration="1741000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6750000" />
+    <option name="totallyTimeSpent" value="15175000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1680" height="1050" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="30" width="1366" height="738" extended-state="6" />
     <layout>
-      <window_info id="Designer" />
-      <window_info id="Image Layers" />
-      <window_info id="UI Designer" />
-      <window_info id="Favorites" side_tool="true" />
-      <window_info id="Capture Tool" />
-      <window_info id="Learn" />
-      <window_info id="Web" sideWeight="0.5007899" side_tool="true" visible="true" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49921012" visible="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.495283" visible="true" weight="0.256391" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Application Servers" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" weight="0.32944915" />
-      <window_info anchor="bottom" id="Java Enterprise" />
-      <window_info anchor="bottom" id="Database Changes" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Capture Tool" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info id="Learn" order="7" />
+      <window_info id="Web" order="8" sideWeight="0.504717" side_tool="true" visible="true" weight="0.256391" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32944915" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32911393" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Maven" />
-      <window_info anchor="right" id="Palette" />
-      <window_info anchor="right" id="Capture Analysis" />
-      <window_info anchor="right" id="Database" />
-      <window_info anchor="right" id="Palette&#9;" />
-      <window_info anchor="right" id="Theme Preview" />
+      <window_info anchor="bottom" id="Application Servers" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.32944915" />
+      <window_info anchor="bottom" id="Java Enterprise" order="12" />
+      <window_info anchor="bottom" id="Database Changes" order="13" />
+      <window_info anchor="bottom" id="Version Control" order="14" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Maven" order="3" />
+      <window_info anchor="right" id="Palette" order="4" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="right" id="Database" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Theme Preview" order="8" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -369,25 +423,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
+        <state relative-caret-position="656">
           <caret line="41" column="38" selection-start-line="41" selection-start-column="38" selection-end-line="41" selection-end-column="38" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/tec/MILIB/Consumer/MilibServiceClient.java">
+    <entry file="file://$PROJECT_DIR$/src/main/com/tec/MILIB/Resources/MilibRestService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="32" column="46" selection-start-line="32" selection-start-column="46" selection-end-line="32" selection-end-column="46" />
+        <state relative-caret-position="304">
+          <caret line="19" column="30" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/tec/MILIB/Resources/MilibRestService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/com/tec/MILIB/Consumer/MilibServiceClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="52" column="8" selection-start-line="52" selection-start-column="8" selection-end-line="52" selection-end-column="8" />
+        <state relative-caret-position="570">
+          <caret line="38" column="89" selection-start-line="38" selection-start-column="34" selection-end-line="38" selection-end-column="89" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
