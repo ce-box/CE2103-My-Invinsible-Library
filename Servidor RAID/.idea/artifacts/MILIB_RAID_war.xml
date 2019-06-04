@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="MILIB_RAID:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>MILIB_RAID</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="MILIB_RAID-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="MILIB_RAID:war exploded" />
+    </root>
+  </artifact>
+</component>

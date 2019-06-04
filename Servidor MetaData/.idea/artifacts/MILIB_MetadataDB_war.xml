@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="MILIB_MetadataDB:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>MILIB_MetadataDB</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="MILIB_Metadata_DB-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="MILIB_MetadataDB:war exploded" />
+    </root>
+  </artifact>
+</component>
