@@ -1,51 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class ID="19">
-  <image2>
+<class ID="6">
+  <image1>
     <ID>1</ID>
     <name>Yolo</name>
     <autor>No Yo</autor>
     <date>2000</date>
     <size>466</size>
     <description>Asombrosox2</description>
+  </image1>
+  <image2>
+    <ID>2</ID>
+    <name>Lucardiño</name>
+    <autor>null</autor>
+    <date>null</date>
+    <size>null</size>
+    <description>null</description>
   </image2>
   <image3>
-    <ID>2</ID>
-    <name>Luca</name>
-    <autor>Yop</autor>
-    <date>2020</date>
-    <size>777</size>
-    <description>Sin palabras</description>
+    <ID>3</ID>
+    <name>Lucardiño</name>
+    <autor>null</autor>
+    <date>null</date>
+    <size>null</size>
+    <description>null</description>
   </image3>
-  <image14>
-    <ID>14</ID>
-    <name>Sahid1</name>
+  <image4>
+    <ID>4</ID>
+    <name>Lucardiño</name>
     <autor>null</autor>
-    <date>2012</date>
+    <date>null</date>
     <size>null</size>
     <description>null</description>
-  </image14>
-  <image15>
-    <ID>15</ID>
-    <name>Sahid1</name>
+  </image4>
+  <image5>
+    <ID>5</ID>
+    <name>Lucardiño</name>
     <autor>null</autor>
-    <date>2012</date>
+    <date>null</date>
     <size>null</size>
     <description>null</description>
-  </image15>
-  <image17>
-    <ID>17</ID>
-    <name>Sahid1</name>
-    <autor>null</autor>
-    <date>2012</date>
-    <size>null</size>
-    <description>null</description>
-  </image17>
-  <image18>
-    <ID>18</ID>
-    <name>Sahid</name>
-    <autor>null</autor>
-    <date>2009</date>
-    <size>null</size>
-    <description>null</description>
-  </image18>
+  </image5>
 </class>

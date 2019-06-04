@@ -1,4 +1,3 @@
-import com.sun.org.apache.xerces.internal.dom.ElementNSImpl;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
@@ -32,7 +31,10 @@ public class Metadata {
         this.ID=IDGlobal++;
     }
 
-    public static void Start(){
+    /**
+     * Carga el ID global guardado
+     */
+    static void Start(){
         File inputFile = new File("Metadata/input.xml");
         SAXBuilder saxBuilder = new SAXBuilder();
         document = null;
@@ -47,7 +49,10 @@ public class Metadata {
         IDGlobal=Integer.parseInt(classElement.getAttributeValue("ID"));
     }
 
-    public static void Close(){
+    /**
+     * Guarda el ID global
+     */
+    static void Close(){
         Element classElement = document.getRootElement();
 
         System.out.println("###"+IDGlobal);
@@ -64,7 +69,14 @@ public class Metadata {
         }
     }
 
-    public static void Update(ArrayList<String> Slots,ArrayList<String> SlotsValues ,ArrayList<String> SlotsWhere,ArrayList<String> SlotsWhereValues){
+    /**
+     * Update de SQL
+     * @param Slots Espacios a modificar
+     * @param SlotsValues Valores a colocar
+     * @param SlotsWhere Espacios para evaluar el where
+     * @param SlotsWhereValues Valores para evaluar el where
+     */
+    static void Update(ArrayList<String> Slots,ArrayList<String> SlotsValues ,ArrayList<String> SlotsWhere,ArrayList<String> SlotsWhereValues){
         Element classElement = document.getRootElement();
         List<Element> studentList = classElement.getChildren();
         System.out.println("----------------------------");
@@ -85,7 +97,12 @@ public class Metadata {
         }
     }
 
-    public static void Insert(ArrayList<String> Slots, ArrayList<String> SlotsValues){
+    /**
+     * Insert de SQL
+     * @param Slots Espacios a colocar
+     * @param SlotsValues Valores a colocar
+     */
+    static void Insert(ArrayList<String> Slots, ArrayList<String> SlotsValues){
         Element classElement = document.getRootElement();
 
         ArrayList<String> Aux;
@@ -118,7 +135,12 @@ public class Metadata {
         classElement.addContent(Nuevo);
     };
 
-    public static void Delete(ArrayList<String> SlotsWhere,ArrayList<String> SlotsValues){
+    /**
+     * Delete de SQL
+     * @param SlotsWhere Espacios para evaluar el where
+     * @param SlotsWhereValues Valores para evaluar el where
+     */
+    static void Delete(ArrayList<String> SlotsWhere,ArrayList<String> SlotsWhereValues){
         Element classElement = document.getRootElement();
 
         List<Element> studentList = classElement.getChildren();
@@ -129,7 +151,7 @@ public class Metadata {
             Element student=studentList.get(i);
             for (int j=0; j<SlotsWhere.size(); j++){
                 //System.out.println("$$$"+student.getChild(SlotsWhere.get(j)).getText()+"$$$"+SlotsValues.get(j));
-                if (student.getChild(SlotsWhere.get(j)).getText().equals(SlotsValues.get(j))){
+                if (student.getChild(SlotsWhere.get(j)).getText().equals(SlotsWhereValues.get(j))){
                     classElement.removeChild(student.getName());
                     i--;
                 }
@@ -138,7 +160,10 @@ public class Metadata {
 
     }
 
-    public static void Select(){
+    /**
+     * Select de SQL con ALL
+     */
+    static void Select(){
         Element classElement = document.getRootElement();
 
         List<Element> studentList = classElement.getChildren();
@@ -165,7 +190,11 @@ public class Metadata {
         }
     }
 
-    public static void Select(ArrayList<String> Slots){
+    /**
+     * Update de SQL
+     * @param Slots Espacios a ver
+     */
+    static void Select(ArrayList<String> Slots){
         Element classElement = document.getRootElement();
 
         List<Element> studentList = classElement.getChildren();
@@ -185,7 +214,13 @@ public class Metadata {
         }
     }
 
-    public static void Select(ArrayList<String> Slots,ArrayList<String> SlotsWhere,ArrayList<String> SlotsValues){
+    /**
+     * Update de SQL
+     * @param Slots Espacios a ver
+     * @param SlotsWhere Espacios para evaluar el where
+     * @param SlotsWhereValues Valores para evaluar el where
+     */
+    static void Select(ArrayList<String> Slots,ArrayList<String> SlotsWhere,ArrayList<String> SlotsWhereValues){
         Element classElement = document.getRootElement();
 
         List<Element> studentList = classElement.getChildren();
@@ -210,7 +245,7 @@ public class Metadata {
             boolean Where=true;
 
             for (int i=0; i<SlotsWhere.size(); i++){
-                if (!student.getChild(SlotsWhere.get(i)).getText().equals(SlotsValues.get(i))){
+                if (!student.getChild(SlotsWhere.get(i)).getText().equals(SlotsWhereValues.get(i))){
                     Where=false;
                     break;
                 }

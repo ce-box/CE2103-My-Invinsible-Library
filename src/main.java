@@ -15,7 +15,7 @@ public class main {
         L3.add("name");
         ArrayList<String> L4= new ArrayList<String>();
         L4.add("Lucardiño");
-        Metadata.Update(L,L2,L3,L4);
+        Metadata.Insert(L3,L4);
         Metadata.Select();
 
         Metadata.Close();
