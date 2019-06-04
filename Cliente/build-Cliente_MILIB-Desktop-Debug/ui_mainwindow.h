@@ -35,6 +35,7 @@ public:
     QLabel *AppOutputLabel;
     QTableWidget *metadataTable;
     QPushButton *subirImagenPushButton;
+    QPushButton *visualizarImagenPushButton;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -45,7 +46,7 @@ public:
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         mainFrame = new QFrame(centralWidget);
         mainFrame->setObjectName(QStringLiteral("mainFrame"));
-        mainFrame->setGeometry(QRect(0, 0, 1200, 701));
+        mainFrame->setGeometry(QRect(0, 0, 1200, 700));
         mainFrame->setFrameShape(QFrame::Panel);
         mainFrame->setFrameShadow(QFrame::Plain);
         mainFrame->setLineWidth(0);
@@ -67,6 +68,9 @@ public:
         subirImagenPushButton = new QPushButton(mainFrame);
         subirImagenPushButton->setObjectName(QStringLiteral("subirImagenPushButton"));
         subirImagenPushButton->setGeometry(QRect(40, 640, 131, 41));
+        visualizarImagenPushButton = new QPushButton(mainFrame);
+        visualizarImagenPushButton->setObjectName(QStringLiteral("visualizarImagenPushButton"));
+        visualizarImagenPushButton->setGeometry(QRect(40, 260, 191, 41));
         MainWindow->setCentralWidget(centralWidget);
 
         retranslateUi(MainWindow);
@@ -80,6 +84,7 @@ public:
         runPushButton->setText(QApplication::translate("MainWindow", "Run", Q_NULLPTR));
         AppOutputLabel->setText(QApplication::translate("MainWindow", "Application Output", Q_NULLPTR));
         subirImagenPushButton->setText(QApplication::translate("MainWindow", "Subir Imagen/Galer\303\255a", Q_NULLPTR));
+        visualizarImagenPushButton->setText(QApplication::translate("MainWindow", "Visualizar imagen seleccionada", Q_NULLPTR));
     } // retranslateUi
 
 };

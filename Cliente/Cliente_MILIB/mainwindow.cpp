@@ -13,8 +13,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->mainFrame->setStyleSheet(".QFrame { background-color : #464646 } ");
     ui->AppOutputLabel->setStyleSheet("QLabel { color : white }");
 
-    connect(ui->subirImagenPushButton, SIGNAL (clicked()),this, SLOT (abrirExploradorArchivos()));
-    connect(ui->runPushButton, SIGNAL (clicked()),this, SLOT (obtenerInputIDE()));
+    connect(ui->subirImagenPushButton, SIGNAL (clicked()), this, SLOT (abrirExploradorArchivos()));
+    connect(ui->runPushButton, SIGNAL (clicked()), this, SLOT (obtenerInputIDE()));
 
 
     //EJEMPLO TABLA
@@ -45,8 +45,30 @@ void MainWindow::colorearWidget(QWidget* widget, QString colorFondo){
 }
 
 void MainWindow::abrirExploradorArchivos(){
+    //TODO: Decidir si solo insertar imagenes una por una o seleccionar varias imagenes.
     QStringList direccionImagenes = QFileDialog::getOpenFileNames(this, tr("Abrir Imagen/Galería"),"/home",tr("Imágenes PNG (*.png)"));
-    qDebug()<<direccionImagenes;
+    QString imgDireccion = direccionImagenes[0];
+    QImage imagen;
+    imagen.load(imgDireccion, "PNG");
+    QByteArray byteArray;
+    QBuffer buffer(&byteArray);
+    imagen.save(&buffer, "PNG");
+    QByteArray byteArray64 = byteArray.toBase64();
+    string data = byteArray64.toStdString();
+
+    visualizarImagen(data);
+}
+
+void MainWindow::visualizarImagen(string data64){
+    QString QTdata = QString::fromStdString(data64);
+    QByteArray dataRecibida(QTdata.toUtf8());
+    QPixmap imagen;
+    imagen.loadFromData(QByteArray::fromBase64(dataRecibida));
+
+    VentanaImagen ventImagen;
+    ventImagen.setModal(true);
+    ventImagen.setImagen(imagen);
+    ventImagen.exec();
 }
 
 void MainWindow::obtenerInputIDE(){

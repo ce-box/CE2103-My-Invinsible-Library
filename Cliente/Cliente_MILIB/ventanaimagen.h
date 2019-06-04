@@ -2,6 +2,9 @@
 #define VENTANAIMAGEN_H
 
 #include <QDialog>
+#include <QImage>
+#include <QPixmap>
+#include <qdebug.h>
 
 namespace Ui {
 class VentanaImagen;
@@ -13,6 +16,7 @@ class VentanaImagen : public QDialog
 
 public:
     explicit VentanaImagen(QWidget *parent = 0);
+    void setImagen(QPixmap imagen);
     ~VentanaImagen();
 
 private:

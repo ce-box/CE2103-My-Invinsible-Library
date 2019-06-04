@@ -20,7 +20,7 @@
       <x>0</x>
       <y>0</y>
       <width>1200</width>
-      <height>701</height>
+      <height>700</height>
      </rect>
     </property>
     <property name="frameShape">
@@ -99,6 +99,19 @@
      </property>
      <property name="text">
       <string>Subir Imagen/Galería</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="visualizarImagenPushButton">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>260</y>
+       <width>191</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Visualizar imagen seleccionada</string>
      </property>
     </widget>
    </widget>
