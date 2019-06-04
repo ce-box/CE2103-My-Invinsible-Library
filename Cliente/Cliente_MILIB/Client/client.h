@@ -14,9 +14,12 @@ class Client
 
 public:
 
-    Client();
+    Client(QString ip,QString port);
 
     QString POST(const QString &path, const QString &jsonDoc);
+    QString GET(const QString &path, const QString &jsonDoc);
+    void PUT(const QString &path, const QString &jsonDoc);
+    QString DELETE(const QString &path, const QString &jsonDoc);
 
 private:
 

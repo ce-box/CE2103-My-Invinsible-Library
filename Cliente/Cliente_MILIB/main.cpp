@@ -19,8 +19,11 @@ int main(int argc, char *argv[])
     QByteArray jsonB = jsonDoc.toJson();
     QString jsonStr = QString(jsonB);
 
-    Client* client = new Client();
-    client->POST("/insert",jsonStr);
+    Client* client = new Client("localhost","8080");
+    client->POST("/insert",jsonB);
+    client->GET("/select",jsonB);
+    client->PUT("/update",jsonB);
+    client->DELETE("/delete",jsonB);
 
     return a.exec();
 }
