@@ -9,7 +9,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType; 
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 /**
@@ -52,7 +52,7 @@ public class RAIDRestService {
     /**
      * It is responsible for inserting new images in the RAID and in the
      * metadata Database
-     * url: http://ip_addr:port/MILIB_Servidor_war_exploded/api/database/insert
+     * url: http://ip_addr:port/MILIB_RAID_war_exploded/api/raid/insert
      *
      * @param incomingData Receive a JSON that contains the metadata of the image
      * @return Respond with the status of the request
@@ -84,7 +84,7 @@ public class RAIDRestService {
     /**
      * Method in charge of returning a JSON with the requested image from the client, under the
      * criterion of the parameters of the metadata
-     * url: http://ip_addr:port/MILIB_RAID_war_exploded//api/database/select
+     * url: http://ip_addr:port/MILIB_RAID_war_exploded/api/raid/select
      * @param incomingData  Receive a json with the information of the requested image
      * @return Returns the requested image and metadata in JSON format
      * @throws JSONException
@@ -114,7 +114,7 @@ public class RAIDRestService {
 
     /**
      * Method responsible for removing an image from the disk given its metadata
-     * url: http://ip_addr:port/MILIB_RAID_war_exploded/api/database/delete
+     * url: http://ip_addr:port/MILIB_RAID_war_exploded/api/raid/delete
      * @param incomingData Receive a json with the information of the image to delete
      * @return Indicates whether the image could be deleted
      * @throws JSONException
@@ -143,12 +143,12 @@ public class RAIDRestService {
     }
 
     /* -----------------------------------------------------------------------------------
-                          COMMIT & ROLLBACK - METADATA DATA BASE
+                          COMMIT & ROLLBACK - RAID 5
         ----------------------------------------------------------------------------------*/
 
     /**
      * Make commit of all changes made to the database
-     * url: http://ip_addr:port/MILIB_RAID_war_exploded/api/database/commit
+     * url: http://ip_addr:port/MILIB_RAID_war_exploded/api/raid/commit
      * @return Returns a text indicating if the commit was successful
      */
     @PUT
@@ -166,7 +166,7 @@ public class RAIDRestService {
 
     /**
      * Make rollback of all changes made to the database
-     * url: http://ip_addr:port/MILIB_RAID_war_exploded/api/database/back
+     * url: http://ip_addr:port/MILIB_RAID_war_exploded/api/raid/back
      * @return Returns a text indicating if the rollback was successful
      */
     @PUT

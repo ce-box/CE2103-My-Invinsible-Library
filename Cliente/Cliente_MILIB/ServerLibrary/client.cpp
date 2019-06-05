@@ -103,6 +103,12 @@ QString Client::DELETE(const QString &path, const QString &jsonDoc){
 
 
 // Constructor
+void Client::updateInfo(QString ip,QString port,QString path){
+    this->ip = ip;
+    this->port = port;
+    this->path = path;
+    defaultPath = "http://"+ip+":"+port+path;
+}
 
 Client::Client(QString ip,QString port,QString path){
     this->ip = ip;
