@@ -3,7 +3,7 @@
     <img src="https://res.cloudinary.com/estalvgs1999/image/upload/v1559695781/CE2103/MILIB_logo_jd6toi.png" heigth="100"/>
 </p>
 
-# My-Invensible-Library [MILIB]
+# My-Invinsible-Library [MILIB]
 ***
 <p align="left"> 
   <img src="https://camo.githubusercontent.com/3889293d486af33499741bd12a3a1ce11deb4c93/68747470733a2f2f6170692e7472617669732d63692e6f72672f676f6f676c652f676f6f676c65746573742e7376673f6272616e63683d6d6173746572">
