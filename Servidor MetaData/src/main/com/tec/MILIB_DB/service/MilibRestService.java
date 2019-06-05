@@ -13,10 +13,13 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import main.com.tec.MILIB_DB.util.jsonParser;
+import main.com.tec.MILIB_DB.domain.Metadata;
 
 /**
  * Class that implements the Web Service for the MILIB project for the DATABASE
  * This Web Service run on Port 8080
+ * @author Esteban Alvarado Vargas
+ * @version alpha 2.3
  */
 @Path("/database")
 public class MilibRestService {
@@ -45,6 +48,15 @@ public class MilibRestService {
 
         // Returns the Data in String format
         return inputBuilder.toString();
+    }
+
+    @POST
+    @Path("/start")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response START(InputStream incomingData){
+
+        //Metadata.Start();
+        return Response.status(200).build();
     }
 
     /* -----------------------------------------------------------------------------------
@@ -106,6 +118,8 @@ public class MilibRestService {
         System.out.println("[SELECT] Data Received: "+ recvData);
 
         // In this part the select actions are performed
+        jsonParser.jsonSelectParser(recvData);
+
         JSONObject json = new JSONObject();
         json.put("valueC","a");
         json.put("valueD","b");
@@ -126,7 +140,7 @@ public class MilibRestService {
     @Path("/update")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response UPDATE(InputStream incomingData){
+    public Response UPDATE(InputStream incomingData) throws JSONException{
 
         // Convert the input in String
         String recvData = inputToString(incomingData);
@@ -135,6 +149,7 @@ public class MilibRestService {
         System.out.println("[UPDATE] Data Received: "+ recvData);
 
         // In this part the update actions are performed
+        jsonParser.jsonUpdateParser(recvData);
 
         return Response.status(200).build();
     }
@@ -158,6 +173,7 @@ public class MilibRestService {
         System.out.println("[DELETE] Data Received: "+ recvData);
 
         // In this part the deletion is effected
+        jsonParser.jsonDeleteParser(recvData);
 
         // If deletion done, the send Status: OK else Status: FAIL
         JSONObject json = new JSONObject();

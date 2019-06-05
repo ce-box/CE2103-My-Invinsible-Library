@@ -63,6 +63,9 @@ void ServerLibrary::getRaidInfo(){
     qDebug()<< "--------------------------\n";
 }
 
+
+
+
 //----------------------------------------------------------------------
 //                      CONNECTION METHODS
 //----------------------------------------------------------------------
@@ -80,6 +83,13 @@ void ServerLibrary::getRaidInfo(){
     #4. The RAID request is made.
     #5. The created Client instance is deleted.
  */
+
+// START
+void ServerLibrary::START(){
+    Client* client = new Client(this->MilibIP,this->MilibPort,this->MilibUrl);
+    client->POST("/start");
+    delete(client);
+}
 
 // INSERT
 void ServerLibrary::INSERT(QString MetaJson){

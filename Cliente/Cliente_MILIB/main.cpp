@@ -44,7 +44,8 @@ int main(int argc, char *argv[])
     server->getMilibInfo();
     server->getRaidInfo();
 
-    server->INSERT(jsonQStr);
+    server->START();
+    //server->INSERT(jsonQStr);
 
     /*QJsonObject jsonObj;
     jsonObj.insert("request",2);

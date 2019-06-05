@@ -26,7 +26,9 @@ public class Metadata {
     /**
      * Carga el ID global guardado [BACK]
      */
-    static void Start(){
+    public static void Start(){
+
+        System.out.println("Start");
         File inputFile = new File("Metadata/input.xml");
         SAXBuilder saxBuilder = new SAXBuilder();
         document = null;
@@ -44,7 +46,7 @@ public class Metadata {
     /**
      * Guarda el ID global [COMMIT]
      */
-    static void Close(){
+    public static void Close(){
         Element classElement = document.getRootElement();
 
         System.out.println("###"+IDGlobal);
@@ -68,7 +70,7 @@ public class Metadata {
      * @param SlotsWhere Espacios para evaluar el where
      * @param SlotsWhereValues Valores para evaluar el where
      */
-    static void Update(ArrayList<String> Slots,ArrayList<String> SlotsValues ,ArrayList<String> SlotsWhere,ArrayList<String> SlotsWhereValues){
+    public static void Update(ArrayList<String> Slots,ArrayList<String> SlotsValues ,ArrayList<String> SlotsWhere,ArrayList<String> SlotsWhereValues){
         Element classElement = document.getRootElement();
         List<Element> studentList = classElement.getChildren();
         System.out.println("----------------------------");
@@ -94,7 +96,7 @@ public class Metadata {
      * @param Slots Espacios a colocar
      * @param SlotsValues Valores a colocar
      */
-    static void Insert(ArrayList<String> Slots, ArrayList<String> SlotsValues){
+    public static void Insert(ArrayList<String> Slots, ArrayList<String> SlotsValues){
         Element classElement = document.getRootElement();
 
         ArrayList<String> Aux;
@@ -132,7 +134,7 @@ public class Metadata {
      * @param SlotsWhere Espacios para evaluar el where
      * @param SlotsWhereValues Valores para evaluar el where
      */
-    static void Delete(ArrayList<String> SlotsWhere,ArrayList<String> SlotsWhereValues){
+    public static void Delete(ArrayList<String> SlotsWhere,ArrayList<String> SlotsWhereValues){
         Element classElement = document.getRootElement();
 
         List<Element> studentList = classElement.getChildren();
@@ -155,7 +157,7 @@ public class Metadata {
     /**
      * Select de SQL con ALL
      */
-    static void Select(){
+    public static void Select(){
         Element classElement = document.getRootElement();
 
         List<Element> studentList = classElement.getChildren();
@@ -186,7 +188,7 @@ public class Metadata {
      * Update de SQL
      * @param Slots Espacios a ver
      */
-    static void Select(ArrayList<String> Slots){
+    public static void Select(ArrayList<String> Slots){
         Element classElement = document.getRootElement();
 
         List<Element> studentList = classElement.getChildren();
@@ -212,7 +214,7 @@ public class Metadata {
      * @param SlotsWhere Espacios para evaluar el where
      * @param SlotsWhereValues Valores para evaluar el where
      */
-    static void Select(ArrayList<String> Slots,ArrayList<String> SlotsWhere,ArrayList<String> SlotsWhereValues){
+    public static void Select(ArrayList<String> Slots,ArrayList<String> SlotsWhere,ArrayList<String> SlotsWhereValues){
         Element classElement = document.getRootElement();
 
         List<Element> studentList = classElement.getChildren();

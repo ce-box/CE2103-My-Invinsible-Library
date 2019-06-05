@@ -25,6 +25,7 @@ public:
 
     // Interface that connects GUI with RAID and METADATA DATABASE
 
+    void START();
     /**
      * @brief It is responsible for inserting new images in the RAID and in the
      * metadata Database
