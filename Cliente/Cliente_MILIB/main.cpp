@@ -3,6 +3,7 @@
 #include <QtCore/QJsonDocument>
 #include <QtCore/QJsonObject>
 #include "ServerLibrary/client.h"
+#include "ServerLibrary/serverlibrary.h"
 
 int main(int argc, char *argv[])
 {
@@ -19,26 +20,21 @@ int main(int argc, char *argv[])
     QByteArray jsonB = jsonDoc.toJson();
     QString jsonStr = QString(jsonB);
 
-    // Con la librería se crean los clientes y se liberan con cada request
-    qDebug()<< "METADATA ------------------------------";
+    ServerLibrary* server = ServerLibrary::getServer();
 
-    Client* client = new Client("localhost","8080","/MILIB_Servidor_war_exploded/api/database");
-    client->POST("/insert",jsonStr);
-    client->GET("/select",jsonStr);
-    client->PUT("/update",jsonStr);
-    client->DELETE("/delete",jsonStr);
-    client->PUT("/commit","");
-    client->PUT("/back","");
-    delete(client);
+    // Here i'm using the default ports
+    server->setMilib("/MILIB_Servidor_war_exploded/api/database","192.168.0.21");
+    server->setRaid("/MILIB_RAID_war_exploded/api/raid","192.168.0.21");
 
-    qDebug()<< "RAID------------------------------";
-    Client* client2 = new Client("localhost","9080","/MILIB_RAID_war_exploded/api/raid");
-    client2->POST("/insert",jsonStr);
-    client2->GET("/select",jsonStr);
-    client2->DELETE("/delete",jsonStr);
-    client2->PUT("/commit","");
-    client2->PUT("/back","");
-    delete(client2);
+    server->getMilibInfo();
+    server->getRaidInfo();
+
+    server->INSERT(jsonStr);
+    server->SELECT(jsonStr);
+    server->UPDATE(jsonStr);
+    server->DELETE(jsonStr);
+    server->COMMIT();
+    server->BACK();
 
     return a.exec();
 }
