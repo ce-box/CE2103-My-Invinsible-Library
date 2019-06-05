@@ -71,7 +71,7 @@ Prerequisitos: Debe tener instalado Git en su consola.
 ## Licencia.
 
 Este proyecto está bajo la Licencia (GNU GENERAL PUBLIC LICENSE) - mira el archivo 
-[LICENSE](https://github.com/ce-itcr/MyInvincibleLibrary/blob/master/LICENSE) para detalles.
+[LICENSE](https://github.com/estalvgs1999/MyInvinsibleLibrary/blob/master/LICENSE) para detalles.
 
 ***
 
