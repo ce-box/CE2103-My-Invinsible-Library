@@ -12,6 +12,8 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import main.com.tec.MILIB_DB.util.jsonParser;
+
 /**
  * Class that implements the Web Service for the MILIB project for the DATABASE
  * This Web Service run on Port 8080
@@ -71,6 +73,7 @@ public class MilibRestService {
         System.out.println("[INSERT] Data Received: "+ recvData);
 
         // In this part the insert actions are performed
+        jsonParser.jsonInsertParser(recvData);
 
         JSONObject json = new JSONObject();
         json.put("Status","OK");

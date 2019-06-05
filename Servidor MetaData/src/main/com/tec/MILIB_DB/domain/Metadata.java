@@ -15,31 +15,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 
+ *
  */
 public class Metadata {
 
-    private String Name;
-    private String Autor;
-    private int Date;
-    private float Size;
-    private String Descripcion;
-    private int ID;
     private static int IDGlobal;
     private static Document document;
 
 
-    public Metadata( String Nombre,String Autor,int AnoCreacion,int Tamano, String Descripcion){
-        this.Name=Nombre;
-        this.Autor=Autor;
-        this.Date =AnoCreacion;
-        this.Size=Tamano;
-        this.Descripcion=Descripcion;
-        this.ID=IDGlobal++;
-    }
-
     /**
-     * Carga el ID global guardado
+     * Carga el ID global guardado [BACK]
      */
     static void Start(){
         File inputFile = new File("Metadata/input.xml");
@@ -57,7 +42,7 @@ public class Metadata {
     }
 
     /**
-     * Guarda el ID global
+     * Guarda el ID global [COMMIT]
      */
     static void Close(){
         Element classElement = document.getRootElement();
@@ -114,12 +99,12 @@ public class Metadata {
 
         ArrayList<String> Aux;
         Aux=new ArrayList<>();
-        Aux.add("ID");
-        Aux.add("name");
-        Aux.add("autor");
-        Aux.add("date");
-        Aux.add("size");
-        Aux.add("description");
+        Aux.add("ID"); // ID
+        Aux.add("name"); // name
+        Aux.add("author"); // author
+        Aux.add("date");// date
+        Aux.add("size"); // size
+        Aux.add("description");// description
 
 
         Element Nuevo=new Element("image"+IDGlobal);
@@ -267,16 +252,4 @@ public class Metadata {
         }
     }
 
-
-    public void print(){
-        String out="ID de la imagen: %s\n" +
-                "Nombre de la imagen: %s\n" +
-                "Autor: %s\n" +
-                "Año de creación: %d\n" +
-                "Tamaño (KB): %f\n" +
-                "Descripción: %s\n" +
-                "============================\n";
-        out=String.format(out,ID,Name, Autor, Date, Size, Descripcion);
-        System.out.println(out);
-    }
 }
