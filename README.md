@@ -24,15 +24,42 @@ El sistema desarrollado cuenta con: **ServerLibrary**: Permite a múltiples clie
 ```
 ```
 
-## Pre Requisitos.
+## Requisitos.
+[MILIB] MyIDE y Server Library trabajan en:
+* Linux (32-bit/64-bit)
 
+[MILIB] RAID Library y MetaData DataBase trabajan en:
+* macOS
+* Windows (32-bit/64-bit, Windows 10 recomendado)
+* Linux (32-bit/64-bit)
+
+**Nota:** La aplicación de escritorio es exclusiva del SO Linux en sus distintas distribuciones, pero los servidores al ser desarrollados en Java pueden correr en cualquier sistema operativa con el sdk Java 1.8 y Java EE7.
 ```
+Qt5::Widgets Qt5::Core Qt5::Network
+Apache Tomcat 9.0.2 Java EE7
 ```
 
 ## Instalación.
+Prerequisitos: Debe tener instalado Git en su consola.
 
+1. En GitHub, vaya a la página principal del repositorio del Proyecto.
+
+2. Debajo del nombre del repositorio, haga clic en Clonar o descargar.
+
+3. En la sección Clonar con HTTPs, haga clic para copiar la URL de clonación del repositorio.
+
+4. Abre Git Bash.
+
+5. Cambie el directorio de trabajo actual a la ubicación donde desea que se realice el directorio clonado.
+
+6. Escriba 'git clone', y luego pegue la URL que copió en el Paso 2.
 ```
+    $ git clone https://github.com/estalvgs1999/MyInvensibleLibrary.git
 ```
+7. Presione Enter. Se creará su clon local para Gladiator-GBP.
+
+8. Seleccione el branch 'master' para obtener el código del [MILIB] MyIDE, y 'ServerRAID' o 'ServerMILIB' para obtener el código de los servidores.
+
 
 ## Autores.
 
@@ -42,19 +69,12 @@ El sistema desarrollado cuenta con: **ServerLibrary**: Permite a múltiples clie
 * **Sahid Rojas** - *Desarrollador* - @reds98
 
 ## Licencia.
-     GNU GENERAL PUBLIC LICENSE
-     Version 3, 29 June 2007
-     
-     Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
-     Everyone is permitted to copy and distribute verbatim copies
-     of this license document, but changing it is not allowed.
- 
-     MILIB -- SOLVED BY CE2103
-     Course: Algorithms & Data structures [TEC CR] 2019
-     Prof.Lic.Luis Diego Noguera
 
-<p align="center">
-<img src="https://www-cdn-2.winshuttle.com/wp-content/uploads/2017/01/data-validation-circle.png" width="80" heigth="80"/>
-</p>
+Este proyecto está bajo la Licencia (GNU GENERAL PUBLIC LICENSE) - mira el archivo 
+[LICENSE](https://github.com/ce-itcr/MyInvincibleLibrary/blob/master/LICENSE) para detalles.
 
 ***
+
+<p align="center">
+<img src="https://res.cloudinary.com/dfionqbqe/image/upload/v1554439121/Tec%20logo.png" width="200"/>
+</p>
