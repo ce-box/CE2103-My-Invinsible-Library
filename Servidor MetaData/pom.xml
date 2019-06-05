@@ -63,5 +63,12 @@
             <version>20090211</version>
         </dependency>
 
+        <!-- XML Lib-->
+        <dependency>
+            <groupId>org.jdom</groupId>
+            <artifactId>jdom2</artifactId>
+            <version>2.0.6</version>
+        </dependency>
+
     </dependencies>
 </project>

@@ -1,4 +1,4 @@
-package main.com.tec.MILIB_DB.Resources;
+package main.com.tec.MILIB_DB.service;
 
 // Libraries
 import org.json.JSONException;

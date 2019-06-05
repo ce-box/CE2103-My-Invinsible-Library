@@ -1,4 +1,4 @@
-package main.com.tec.MILIB_DB.Consumer;
+package main.com.tec.MILIB_DB.consumer;
 
 // Libraries
 import java.io.BufferedReader;
