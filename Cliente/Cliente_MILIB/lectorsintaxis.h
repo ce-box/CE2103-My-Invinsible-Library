@@ -22,6 +22,10 @@ public:
     std::string obtenerContenidoTupla();
     std::string obtenerColumnasInsert();
     std::string obtenerValoresInsert();
+    std::string manejarInstruccionSelect();
+    std::string obtenerColumnasSelect();
+    std::string obtenerCondicionalSelect();
+
 };
 
 #endif // LECTORSINTAXIS_H

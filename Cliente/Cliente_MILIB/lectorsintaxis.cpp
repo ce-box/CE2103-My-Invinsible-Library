@@ -11,7 +11,11 @@ string LectorSintaxis::manejarInputIDE(){
     string instruccion = obtenerInstruccion();
     if(instruccion == "INSERT"){
         instruccion = manejarInstruccionInsert();
-        //qDebug()<<instruccion.c_str();
+        qDebug()<<instruccion.c_str();
+        return instruccion;
+    }else if(instruccion == "SELECT"){
+        instruccion = manejarInstruccionSelect();
+        qDebug()<<instruccion.c_str();
         return instruccion;
     }
 }
@@ -43,8 +47,6 @@ string LectorSintaxis::manejarInstruccionInsert(){
     inputSize = inputIDE.size();
     string columnas = obtenerColumnasInsert();
     string valores = obtenerValoresInsert();
-    qDebug()<<"COLUMNAS: "<<columnas.c_str();
-    qDebug()<<"VALORES: "<<valores.c_str();
     return columnas + "-" + valores;
 }
 
@@ -103,16 +105,74 @@ string LectorSintaxis::obtenerValoresInsert(){
                 verificarSintaxis += caracterActual;
         }
     }
+
     if(verificarSintaxis != "VALUES"){
         idError = 5;
         return "ERROR";
     }
 
     string valores = obtenerContenidoTupla();
+    string finInstruccion;
+    finInstruccion = inputIDE[0];
     if(valores == "ERROR")
-        idError = 5;
+        idError = 6;
+    else if(finInstruccion != ";"){
+        idError = 7;
+        valores = "ERROR";
+    }
     return valores;
 }
 
+string LectorSintaxis::manejarInstruccionSelect(){
+    string columnas = obtenerColumnasSelect();
+    if(idError == 0){
+        if(inputIDE.substr(0, 13) != "FROM METADATA"){
+            idError = 9;
+            return "ERROR";
+        }
+        inputIDE = inputIDE.substr(13, inputSize-13);
+        inputSize = inputIDE.size();
+        if(inputIDE == ";")
+            return columnas;
+        else if(inputIDE.substr(1, 6) == "WHERE "){
+            string condicional = obtenerCondicionalSelect();
+            return columnas + "-" + condicional;
+        }else{
+            idError = 10;
+            return "ERROR";
+        }
+    }return "ERROR";
+}
+
+string LectorSintaxis::obtenerColumnasSelect(){
+    string columnas;
+    string caracterActual;
+    for(int posicion = 0; posicion < inputSize; posicion++){
+        caracterActual = inputIDE[posicion];
+        if(caracterActual != " ")
+            columnas += caracterActual;
+        else if(columnas.substr(posicion-1, 1) != ","){
+            inputIDE = inputIDE.substr(posicion+1, inputSize-posicion);
+            inputSize = inputIDE.size();
+            return columnas;
+        }
+    }
+    idError = 8;
+    return "ERROR";
+}
+
+string LectorSintaxis::obtenerCondicionalSelect(){
+    inputIDE = inputIDE.substr(7, inputSize-7);
+    inputSize = inputIDE.size();
+    if(inputIDE.substr(inputSize-1, 1) != ";"){
+        idError = 7;
+        return "ERROR";
+    }
+    return inputIDE;
+}
+
 //INSERT INTO METADATA (NOMBRE, ARTISTA, DURACION, ALBUM)
-//VALUES ("Karma Police", "Radiohead", "4:27", "OK Computer")
+//VALUES ("Karma Police", "Radiohead", "4:27", "OK Computer");
+
+//SELECT NOMBRE, ALBUM FROM METADATA
+//WHERE ejemplo = "ejemplo";
