@@ -42,8 +42,7 @@ QString Client::GET(const QString &path, const QString &jsonDoc){
     qDebug() << "[GET] Client GET request to: " << url.toString();
     qDebug() << "[GET] Data sent: " <<jsonDoc;
 
-    QNetworkReply *reply = manager->sendCustomRequest(
-                request,"GET",jsonDoc.toUtf8());
+    QNetworkReply *reply = manager->sendCustomRequest(request,"GET",jsonDoc.toUtf8());
 
     // Esto es necesario para leer la entrada
     QEventLoop loop;

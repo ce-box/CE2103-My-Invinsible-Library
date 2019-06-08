@@ -21,6 +21,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ejmTabla.push_back("Karma Police,Radiohead,4:27,OK Computer");
     ejmTabla.push_back("De Musica Ligera,Soda Estereo,4:27,De Musica Ligera");
     insertarEnTabla(ejmTabla);
+
+    ServerLibrary* server = ServerLibrary::getServer();
+    server->setMilib("/MILIB_Servidor_war_exploded/api/database", "192.168.100.20");
+    server->setRaid("/MILIB_RAID_war_exploded/api/raid", "192.168.100.20");
+    server->START();
 }
 
 void MainWindow::colorearWidget(QWidget* widget, QString colorFondo){
@@ -64,6 +69,23 @@ void MainWindow::obtenerInputIDE(){
     string inputIDE = ui->ideTextEdit->toPlainText().toStdString();
     LectorSintaxis* lector = new LectorSintaxis(inputIDE);
     string instruccion = lector->manejarInputIDE();
+    //if(INSERT)
+    vector<string> vectorInsert;
+    boost::split(vectorInsert, instruccion, boost::is_any_of("-"));
+    vector<string> vectorSlots;
+    boost::split(vectorSlots, vectorInsert[0], boost::is_any_of(","));
+    vector<string> vectorValues;
+    boost::split(vectorValues, vectorInsert[1], boost::is_any_of(","));
+    Lista<QString>* listaSlots = new Lista<QString>;
+    Lista<QString>* listaValues = new Lista<QString>;
+    for(int i = 0; i < vectorSlots.size(); i++){
+        listaSlots->push_back(QString::fromStdString(vectorSlots[i]));
+        listaValues->push_back(QString::fromStdString(vectorValues[i]));
+    }
+    QString json = JsonSerializer::insertJSON(listaSlots, listaValues);
+    ServerLibrary* server = ServerLibrary::getServer();
+    server->INSERT(json);
+    server->COMMIT();
 }
 
 void MainWindow::insertarEnTabla(vector<string> elementos){
@@ -103,3 +125,6 @@ void MainWindow::insertarFilas(vector<string> elementos){
 MainWindow::~MainWindow(){
     delete ui;
 }
+
+//INSERT INTO METADATA(name,author,date,size)
+//VALUES("pikachuBailando.png", "Ash Ketchup", "2019", "2KB");

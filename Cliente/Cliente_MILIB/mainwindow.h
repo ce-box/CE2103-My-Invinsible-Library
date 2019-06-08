@@ -7,6 +7,9 @@
 #include <iostream>
 #include <ventanaimagen.h>
 #include <lectorsintaxis.h>
+#include <ServerLibrary/serverlibrary.h>
+#include <Data_Structures/lista.hpp>
+#include <json/jsonserializer.h>
 #include <QMainWindow>
 #include <QString>
 #include <QImage>
