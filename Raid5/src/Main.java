@@ -16,8 +16,9 @@ public class Main {
         System.out.println("el valor de is found es "+isFound);
         String data[]={"Hola","como","Estas","Paridad"};
        // test.GuardarInfromacion(data,"perrito");
-//      test.GuardarInfromacion(data,"pajarito");
+      //test.GuardarInfromacion(data,"pajarito");
       test.borrar("pajarito");
+        System.out.println("El valor es "+ test.buscar("pajaritsoao"));
         File[] contents = test.Disco1.listFiles();
        // System.out.println(contents[1]);
         String container = "aBcDeFg";

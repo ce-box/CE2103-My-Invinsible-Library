@@ -14,12 +14,17 @@ public class Raid5 {
     public File Disco3 = new File(s+"/src"+"/Disco3");
     public File Disco4 = new File(s+"/src"+"/Disco4");
     private File[] Discos={Disco1,Disco2,Disco3,Disco4};
+    //######################################################################################################
     //ESTE METODO SIRVE PARA CREAR UN ARCHIVO  TXT EN UNA RESPECTIVA DIRRECCION CON UN CIERTO NOMBRE
+    //######################################################################################################
     public void crearArchivo(String ruta,String informacionAmeter,String nombre) throws IOException {
         FileOutputStream out = new FileOutputStream(ruta+"/"+nombre+".txt");
         out.write(informacionAmeter.getBytes());
         out.close();
     }
+    //######################################################################################################
+    //ESTE METODO LO QUE HACE ES   BUSCAR ARCHIVOS  QUE CONTENGAN EL ID INGRESADO Y ELIMINARLOS DE LOS DISCOS
+    //#######################################################################################################
     public void borrar(String id){
         //String input = "Android gave new life to Java";
        // boolean isFound = input.indexOf("id") !=-1? true: false;
@@ -32,23 +37,40 @@ public class Raid5 {
                     File file = new File(archivo);
                     if(file.delete())
                     {
-                        System.out.println("File deleted successfully");
+                        System.out.println("EL ARCHIVO SE ELIMINO CORRECTAMENTE");
                     }
                     else
                     {
-                        System.out.println("Failed to delete the file");
+                        System.out.println("EL ARCHIVO NO SE LOGRO ELIMINAR CORRECTAMENTE");
                     }
-
                 }
             }
-
         }
-
-
-
     }
+    //######################################################################################################
+    //ESTE METODO LO QUE HACE ES   BUSCAR ARCHIVOS  QUE CONTENGAN EL ID INGRESADO
+    //#######################################################################################################
+    public boolean buscar(String id){
+        int cuantasVecesLoEcontre=0;
+        for (int i = 0; i <Discos.length ; i++) {
+            File[] contents = this.Discos[i].listFiles();
+            for (int j = 0; j < contents.length ; j++) {
+                String archivo=contents[j].toString();
+                boolean isFound = archivo.indexOf(id) !=-1? true: false;
+                if(isFound){
+                   cuantasVecesLoEcontre++;
+                }
+                if(cuantasVecesLoEcontre==4){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    //#################################################################################################################
     //ESTE METODO LO QUE HACE ES GUARDAR LA INFORMACION CONTENIDA EN EL ARRAY DE STRING Y LO DISTRIBUYE ENTRE LOS DISCOS
     // DE MMANERA QUE LA PARIDAD QUEDE  DISTRIBUIDA EN MEDIO DE TODOS LOS DISCOS
+    //#################################################################################################################
     public void GuardarInfromacion(String[] data,String id) throws IOException {
         int parte=1;
 int temporal=turno;
