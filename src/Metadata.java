@@ -81,7 +81,6 @@ public class Metadata {
         List<Element> studentList = classElement.getChildren();
         System.out.println("----------------------------");
 
-
         for (Element student : studentList) {
             Element SlotActual;
             for (int i=0; i<SlotsWhere.size(); i++){
@@ -113,7 +112,6 @@ public class Metadata {
         Aux.add("date");
         Aux.add("size");
         Aux.add("description");
-
 
         Element Nuevo=new Element("image"+IDGlobal);
 
@@ -191,7 +189,7 @@ public class Metadata {
     }
 
     /**
-     * Update de SQL
+     * Select de SQL
      * @param Slots Espacios a ver
      */
     static void Select(ArrayList<String> Slots){
@@ -215,7 +213,7 @@ public class Metadata {
     }
 
     /**
-     * Update de SQL
+     * Select de SQL
      * @param Slots Espacios a ver
      * @param SlotsWhere Espacios para evaluar el where
      * @param SlotsWhereValues Valores para evaluar el where
@@ -246,6 +244,58 @@ public class Metadata {
 
             for (int i=0; i<SlotsWhere.size(); i++){
                 if (!student.getChild(SlotsWhere.get(i)).getText().equals(SlotsWhereValues.get(i))){
+                    Where=false;
+                    break;
+                }
+            }
+
+            if (!Where) continue;
+            for (String slot : Slots) {
+                System.out.format("%-15s", student.getChild(slot).getText());
+            }
+            System.out.println();
+        }
+    }
+
+    /**
+     * Select de SQL
+     * @param Slots Espacios a ver
+     * @param SlotsWhere Espacios para evaluar el where
+     * @param SlotsWhereValuesA Valores para evaluar mínimo en el where
+     * @param SlotsWhereValuesB Valores para evaluar máximo en el where
+     */
+    static void Select(ArrayList<String> Slots,ArrayList<String> SlotsWhere,ArrayList<String> SlotsWhereValuesA,ArrayList<String> SlotsWhereValuesB){
+        Element classElement = document.getRootElement();
+
+        List<Element> studentList = classElement.getChildren();
+        System.out.println("----------------------------");
+
+        if (Slots==null){
+            Slots=new ArrayList<String>();
+            Slots.add("ID");
+            Slots.add("name");
+            Slots.add("autor");
+            Slots.add("date");
+            Slots.add("size");
+            Slots.add("description");
+        }
+
+        for (String slot: Slots) {
+            System.out.format("%-15s", slot);
+        }
+        System.out.println();
+
+        for (Element student : studentList) {
+            boolean Where=true;
+            float value;
+            float valueA;
+            float valueB;
+
+            for (int i=0; i<SlotsWhere.size(); i++){
+                value=Float.parseFloat(student.getChild(SlotsWhere.get(i)).getText());
+                valueA=Float.parseFloat(SlotsWhereValuesA.get(i));
+                valueB=Float.parseFloat(SlotsWhereValuesB.get(i));
+                if (valueA>value || value>valueB){
                     Where=false;
                     break;
                 }
