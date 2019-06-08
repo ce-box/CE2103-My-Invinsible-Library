@@ -20,6 +20,35 @@ public class Raid5 {
         out.write(informacionAmeter.getBytes());
         out.close();
     }
+    public void borrar(String id){
+        //String input = "Android gave new life to Java";
+       // boolean isFound = input.indexOf("id") !=-1? true: false;
+        for (int i = 0; i <Discos.length ; i++) {
+            File[] contents = this.Discos[i].listFiles();
+            for (int j = 0; j < contents.length ; j++) {
+                String archivo=contents[j].toString();
+                boolean isFound = archivo.indexOf(id) !=-1? true: false;
+                if(isFound){
+                    File file = new File(archivo);
+                    if(file.delete())
+                    {
+                        System.out.println("File deleted successfully");
+                    }
+                    else
+                    {
+                        System.out.println("Failed to delete the file");
+                    }
+
+                }
+            }
+
+        }
+
+
+
+    }
+    //ESTE METODO LO QUE HACE ES GUARDAR LA INFORMACION CONTENIDA EN EL ARRAY DE STRING Y LO DISTRIBUYE ENTRE LOS DISCOS
+    // DE MMANERA QUE LA PARIDAD QUEDE  DISTRIBUIDA EN MEDIO DE TODOS LOS DISCOS
     public void GuardarInfromacion(String[] data,String id) throws IOException {
         int parte=1;
 int temporal=turno;
@@ -39,8 +68,6 @@ int temporal=turno;
         }
         turno=temporal;
         turno=turno+1;
-
-
     }
 
 }
