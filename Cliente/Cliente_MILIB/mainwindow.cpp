@@ -16,25 +16,11 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->subirImagenPushButton, SIGNAL (clicked()), this, SLOT (abrirExploradorArchivos()));
     connect(ui->runPushButton, SIGNAL (clicked()), this, SLOT (obtenerInputIDE()));
 
-
-    //EJEMPLO TABLA
-    ui->metadataTable->setColumnCount(4);
-    ui->metadataTable->setHorizontalHeaderLabels(QStringList() << tr("NOMBRE")
-                                                               << tr("ARTISTA")
-                                                               << tr("DURACION")
-                                                               << tr("ALBUM"));
-    int tamanioCol = (510-11)/4;
-    ui->metadataTable->horizontalHeader()->resizeSection(0, tamanioCol);
-    ui->metadataTable->horizontalHeader()->resizeSection(1, tamanioCol);
-    ui->metadataTable->horizontalHeader()->resizeSection(2, tamanioCol);
-    ui->metadataTable->horizontalHeader()->resizeSection(3, tamanioCol);
-
-    ui->metadataTable->setRowCount(1);
-
-    ui->metadataTable->setItem(0, 0, new QTableWidgetItem("Karma Police"));
-    ui->metadataTable->setItem(0, 1, new QTableWidgetItem("Radiohead"));
-    ui->metadataTable->setItem(0, 2, new QTableWidgetItem("4:27"));
-    ui->metadataTable->setItem(0, 3, new QTableWidgetItem("OK Computer"));
+    vector<string> ejmTabla;
+    ejmTabla.push_back("NOMBRE,ARTISTA,DURACION,ALBUM");
+    ejmTabla.push_back("Karma Police,Radiohead,4:27,OK Computer");
+    ejmTabla.push_back("De Musica Ligera,Soda Estereo,4:27,De Musica Ligera");
+    insertarEnTabla(ejmTabla);
 }
 
 void MainWindow::colorearWidget(QWidget* widget, QString colorFondo){
@@ -74,6 +60,39 @@ void MainWindow::visualizarImagen(string data64){
 void MainWindow::obtenerInputIDE(){
     QString inputIDE = ui->ideTextEdit->toPlainText();
     qDebug()<<inputIDE;
+}
+
+void MainWindow::insertarEnTabla(vector<string> elementos){
+    if(elementos.size() == 0) return;
+    configurarNombreColumnas(elementos);
+    elementos.erase(elementos.begin());
+    insertarFilas(elementos);
+}
+
+void MainWindow::configurarNombreColumnas(vector<string> elementos){
+    vector<string> headers;
+    boost::split(headers, elementos[0], boost::is_any_of(","));
+    int cantColumnas = headers.size();
+    ui->metadataTable->setColumnCount(cantColumnas);
+    QStringList nombreColumnas;
+    int tamanioCol = 499/cantColumnas;
+    for(int i = 0; i < cantColumnas; i++){
+        nombreColumnas.append(QString::fromStdString(headers[i]));
+        ui->metadataTable->horizontalHeader()->resizeSection(i, tamanioCol);
+    }
+    ui->metadataTable->setHorizontalHeaderLabels(nombreColumnas);
+}
+
+void MainWindow::insertarFilas(vector<string> elementos){
+    int cantFilas = elementos.size();
+    ui->metadataTable->setRowCount(cantFilas);
+    vector<string> fila;
+    for(int i = 0; i < cantFilas; i++){
+        boost::split(fila, elementos[i], boost::is_any_of(","));
+        for(int j = 0; j < fila.size(); j++)
+            ui->metadataTable->setItem(i, j, new QTableWidgetItem(QString::fromStdString(fila[j])));
+        fila.clear();
+    }
 }
 
 
