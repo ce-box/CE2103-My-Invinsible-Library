@@ -176,9 +176,16 @@ string LectorSintaxis::obtenerCondicionalSelect(){
 }
 
 string LectorSintaxis::manejarInstruccionDelete(){
-    qDebug()<<inputIDE.substr(0, 20).c_str();
+    if(inputIDE.substr(0, 20) != "FROM METADATA WHERE "){
+        idError = 11;
+        return "ERROR";
+    }
     inputIDE = inputIDE.substr(20, inputSize-20);
     inputSize = inputIDE.size();
+    if(inputIDE.substr(inputSize-1, 1) != ";"){
+        idError = 7;
+        return "ERROR";
+    }
     return inputIDE;
 }
 
