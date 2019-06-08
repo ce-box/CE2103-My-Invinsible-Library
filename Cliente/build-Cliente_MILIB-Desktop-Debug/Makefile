@@ -50,11 +50,13 @@ OBJECTS_DIR   = ./
 
 SOURCES       = ../Cliente_MILIB/main.cpp \
 		../Cliente_MILIB/mainwindow.cpp \
-		../Cliente_MILIB/ventanaimagen.cpp moc_mainwindow.cpp \
+		../Cliente_MILIB/ventanaimagen.cpp \
+		../Cliente_MILIB/lectorsintaxis.cpp moc_mainwindow.cpp \
 		moc_ventanaimagen.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		ventanaimagen.o \
+		lectorsintaxis.o \
 		moc_mainwindow.o \
 		moc_ventanaimagen.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
@@ -119,9 +121,11 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
 		../Cliente_MILIB/Cliente_MILIB.pro ../Cliente_MILIB/mainwindow.h \
-		../Cliente_MILIB/ventanaimagen.h ../Cliente_MILIB/main.cpp \
+		../Cliente_MILIB/ventanaimagen.h \
+		../Cliente_MILIB/lectorsintaxis.h ../Cliente_MILIB/main.cpp \
 		../Cliente_MILIB/mainwindow.cpp \
-		../Cliente_MILIB/ventanaimagen.cpp
+		../Cliente_MILIB/ventanaimagen.cpp \
+		../Cliente_MILIB/lectorsintaxis.cpp
 QMAKE_TARGET  = Cliente_MILIB
 DESTDIR       = 
 TARGET        = Cliente_MILIB
@@ -278,8 +282,8 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../Cliente_MILIB/mainwindow.h ../Cliente_MILIB/ventanaimagen.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../Cliente_MILIB/main.cpp ../Cliente_MILIB/mainwindow.cpp ../Cliente_MILIB/ventanaimagen.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../Cliente_MILIB/mainwindow.h ../Cliente_MILIB/ventanaimagen.h ../Cliente_MILIB/lectorsintaxis.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../Cliente_MILIB/main.cpp ../Cliente_MILIB/mainwindow.cpp ../Cliente_MILIB/ventanaimagen.cpp ../Cliente_MILIB/lectorsintaxis.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../Cliente_MILIB/mainwindow.ui ../Cliente_MILIB/ventanaimagen.ui $(DISTDIR)/
 
 
@@ -310,6 +314,7 @@ compiler_moc_header_make_all: moc_mainwindow.cpp moc_ventanaimagen.cpp
 compiler_moc_header_clean:
 	-$(DEL_FILE) moc_mainwindow.cpp moc_ventanaimagen.cpp
 moc_mainwindow.cpp: ../Cliente_MILIB/ventanaimagen.h \
+		../Cliente_MILIB/lectorsintaxis.h \
 		../Cliente_MILIB/mainwindow.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/erickcr12/Documents/AyEDII/Proyectos/MyInvensibleLibrary/Cliente/Cliente_MILIB -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/6 -I/usr/include/x86_64-linux-gnu/c++/6 -I/usr/include/c++/6/backward -I/usr/lib/gcc/x86_64-linux-gnu/6/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../Cliente_MILIB/mainwindow.h -o moc_mainwindow.cpp
@@ -342,17 +347,22 @@ compiler_clean: compiler_moc_header_clean compiler_uic_clean
 ####### Compile
 
 main.o: ../Cliente_MILIB/main.cpp ../Cliente_MILIB/mainwindow.h \
-		../Cliente_MILIB/ventanaimagen.h
+		../Cliente_MILIB/ventanaimagen.h \
+		../Cliente_MILIB/lectorsintaxis.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../Cliente_MILIB/main.cpp
 
 mainwindow.o: ../Cliente_MILIB/mainwindow.cpp ../Cliente_MILIB/mainwindow.h \
 		../Cliente_MILIB/ventanaimagen.h \
+		../Cliente_MILIB/lectorsintaxis.h \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../Cliente_MILIB/mainwindow.cpp
 
 ventanaimagen.o: ../Cliente_MILIB/ventanaimagen.cpp ../Cliente_MILIB/ventanaimagen.h \
 		ui_ventanaimagen.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ventanaimagen.o ../Cliente_MILIB/ventanaimagen.cpp
+
+lectorsintaxis.o: ../Cliente_MILIB/lectorsintaxis.cpp ../Cliente_MILIB/lectorsintaxis.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o lectorsintaxis.o ../Cliente_MILIB/lectorsintaxis.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

@@ -26,11 +26,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    ventanaimagen.cpp
+    ventanaimagen.cpp \
+    lectorsintaxis.cpp
 
 HEADERS += \
         mainwindow.h \
-    ventanaimagen.h
+    ventanaimagen.h \
+    lectorsintaxis.h
 
 FORMS += \
         mainwindow.ui \

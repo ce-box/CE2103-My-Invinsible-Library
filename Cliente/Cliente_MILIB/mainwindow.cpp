@@ -34,11 +34,14 @@ void MainWindow::abrirExploradorArchivos(){
     //TODO: Decidir si solo insertar imagenes una por una o seleccionar varias imagenes.
     QStringList direccionImagenes = QFileDialog::getOpenFileNames(this, tr("Abrir Imagen/Galería"),"/home",tr("Imágenes PNG (*.png)"));
     QString imgDireccion = direccionImagenes[0];
+
     QImage imagen;
     imagen.load(imgDireccion, "PNG");
+
     QByteArray byteArray;
     QBuffer buffer(&byteArray);
     imagen.save(&buffer, "PNG");
+
     QByteArray byteArray64 = byteArray.toBase64();
     string data = byteArray64.toStdString();
 
@@ -58,8 +61,9 @@ void MainWindow::visualizarImagen(string data64){
 }
 
 void MainWindow::obtenerInputIDE(){
-    QString inputIDE = ui->ideTextEdit->toPlainText();
-    qDebug()<<inputIDE;
+    string inputIDE = ui->ideTextEdit->toPlainText().toStdString();
+    LectorSintaxis* lector = new LectorSintaxis(inputIDE);
+    string instruccion = lector->manejarInputIDE();
 }
 
 void MainWindow::insertarEnTabla(vector<string> elementos){

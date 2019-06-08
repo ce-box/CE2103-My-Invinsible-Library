@@ -4,6 +4,9 @@
 #include <string>
 #include <vector>
 #include <boost/algorithm/string.hpp>
+#include <iostream>
+#include <ventanaimagen.h>
+#include <lectorsintaxis.h>
 #include <QMainWindow>
 #include <QString>
 #include <QImage>
@@ -15,8 +18,6 @@
 #include <QByteArray>
 #include <QBuffer>
 #include <QFile>
-#include <iostream>
-#include <ventanaimagen.h>
 
 namespace Ui {
 class MainWindow;
