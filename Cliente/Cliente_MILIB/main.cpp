@@ -163,8 +163,8 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
 
     ServerLibrary* server = ServerLibrary::getServer();
-    server->setMilib("/MILIB_Servidor_war_exploded/api/database","192.168.100.20");
-    server->setRaid("/MILIB_RAID_war_exploded/api/raid","192.168.100.20");
+    server->setMilib("/MILIB_Servidor_war_exploded/api/database","192.168.100.4");
+    server->setRaid("/MILIB_RAID_war_exploded/api/raid","192.168.100.4");
     server->getMilibInfo();
     server->getRaidInfo();
 

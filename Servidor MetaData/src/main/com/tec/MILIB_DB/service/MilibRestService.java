@@ -17,7 +17,6 @@ import javax.ws.rs.core.Response;
 import main.com.tec.MILIB_DB.util.jsonParser;
 import main.com.tec.MILIB_DB.domain.Metadata;
 
-
 /**
  * Class that implements the Web Service for the MILIB project for the DATABASE
  * This Web Service run on Port 8080
@@ -26,6 +25,9 @@ import main.com.tec.MILIB_DB.domain.Metadata;
  */
 @Path("/database")
 public class MilibRestService {
+
+    String XMLPath = "/home/esteban/Documentos/TEC/1S 2019/Algoritmos y estructuras de datos II/4. Proyectos/" +
+            "Proyecto #3/Source/MyInvensibleLibrary/Servidor MetaData/XML_Metadata/input.xml";
 
     /**
      * Converts the received inputStream to a String for handling the
@@ -59,8 +61,7 @@ public class MilibRestService {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response START(InputStream incomingData){
 
-        Metadata.setFile_path("/home/esteban/Documentos/TEC/1S 2019/Algoritmos y estructuras de datos II/4. Proyectos/" +
-                "Proyecto #3/Source/MyInvensibleLibrary/Servidor MetaData/XML_Metadata/input.xml");
+        Metadata.setFile_path(XMLPath);
         Metadata.Start();
         return Response.status(200).build();
     }
@@ -282,8 +283,7 @@ public class MilibRestService {
     public Response COMMIT(){
 
         //Commit stuff here
-        Metadata.setFile_path("/home/esteban/Documentos/TEC/1S 2019/Algoritmos y estructuras de datos II/4. Proyectos/" +
-                "Proyecto #3/Source/MyInvensibleLibrary/Servidor MetaData/XML_Metadata/input.xml");
+        Metadata.setFile_path(XMLPath);
         Metadata.Close();
 
         System.out.println("[COMMIT] Commit Request");
@@ -305,8 +305,7 @@ public class MilibRestService {
         //Rollback stuff here
         System.out.println("[BACK] Rollback Request");
 
-        Metadata.setFile_path("/home/esteban/Documentos/TEC/1S 2019/Algoritmos y estructuras de datos II/4. Proyectos/" +
-                "Proyecto #3/Source/MyInvensibleLibrary/Servidor MetaData/XML_Metadata/input.xml");
+        Metadata.setFile_path(XMLPath);
         Metadata.Start();
 
         String ans = "Rollback Success!";
