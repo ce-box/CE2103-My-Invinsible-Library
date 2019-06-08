@@ -21,11 +21,12 @@ public class Metadata {
 
     private static int IDGlobal;
     private static Document document;
-    private static String file_path;
+    private static String file_path="/home/juan/Documentos/Proyecto3/Servidor MetaData/XML_Metadata/input.xml";
 
     public static ArrayList<ArrayList<String>> getSelectList() {
         return SelectList;
     }
+
 
     private static ArrayList<ArrayList<String>> SelectList;
 
@@ -212,7 +213,7 @@ public class Metadata {
         for (Element student : studentList) {
             tmp= new ArrayList<>();
             for (String slot : Slots) {
-                tmp.add(slot);
+                tmp.add(student.getChild(slot).getText());
                 System.out.format("%-15s", student.getChild(slot).getText());
             }
             SelectList.add(tmp);
@@ -244,7 +245,7 @@ public class Metadata {
         for (Element student : studentList) {
             tmp= new ArrayList<>();
             for (String slot : Slots) {
-                tmp.add(slot);
+                tmp.add(student.getChild(slot).getText());
                 System.out.format("%-15s", student.getChild(slot).getText());
             }
             SelectList.add(tmp);
@@ -298,7 +299,7 @@ public class Metadata {
 
             if (!Where) continue;
             for (String slot : Slots) {
-                tmp.add(slot);
+                tmp.add(student.getChild(slot).getText());
                 System.out.format("%-15s", student.getChild(slot).getText());
             }
             SelectList.add(tmp);
@@ -359,7 +360,7 @@ public class Metadata {
 
             if (!Where) continue;
             for (String slot : Slots) {
-                tmp.add(slot);
+                tmp.add(student.getChild(slot).getText());
                 System.out.format("%-15s", student.getChild(slot).getText());
             }
             SelectList.add(tmp);
