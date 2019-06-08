@@ -27,12 +27,18 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
         ServerLibrary/client.cpp \
-        ServerLibrary/serverlibrary.cpp
+        ServerLibrary/serverlibrary.cpp \
+        json/jsonserializer.cpp
 
 HEADERS += \
         mainwindow.h \
         ServerLibrary/client.h \
-        ServerLibrary/serverlibrary.h
+        ServerLibrary/serverlibrary.h \
+        json/jsonserializer.h \
+        Data_Structures/nodo.hpp \
+        Data_Structures/nodo_def.h \
+        Data_Structures/lista_def.h \
+        Data_Structures/lista.hpp
 
 FORMS += \
         mainwindow.ui

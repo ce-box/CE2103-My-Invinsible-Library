@@ -44,13 +44,13 @@ public class jsonParser {
      * @param json Json file to parse
      * @param slotsList List that will store the Slots to return
      * @param whereList List that will store the Where slots
-     * @param valuesList List that will store the Where values
+     * @param whereValuesList List that will store the Where values
      * @throws JSONException If an error is detected when the JSON in parsed
      */
     public static void jsonSelectParser(String json,
                                         ArrayList<String> slotsList,
                                         ArrayList<String> whereList,
-                                        ArrayList<String> valuesList) throws JSONException{
+                                        ArrayList<String> whereValuesList) throws JSONException{
 
         // Step 1: First a JSONObject is created and the JSONArray is extracted from it
         JSONObject jsonObject = new JSONObject(json);
@@ -66,7 +66,7 @@ public class jsonParser {
 
         for(int i = 0; i < where.length(); i++){
             whereList.add((String)where.get(i));
-            valuesList.add((String)whereValues.get(i));
+            whereValuesList.add((String)whereValues.get(i));
         }
     }
 

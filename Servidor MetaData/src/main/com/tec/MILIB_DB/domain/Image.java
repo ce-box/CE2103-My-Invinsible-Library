@@ -1,7 +1,5 @@
 package main.com.tec.MILIB_DB.domain;
 
-import main.com.tec.MILIB_DB.service.Metadata;
-
 /**
  * The kind of image is the implementation of an image.
  * Receive metadata and create; It also allows you to modify it.

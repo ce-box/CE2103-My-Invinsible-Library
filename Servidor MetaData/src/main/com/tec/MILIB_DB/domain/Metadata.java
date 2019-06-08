@@ -1,4 +1,4 @@
-package main.com.tec.MILIB_DB.service;
+package main.com.tec.MILIB_DB.domain;
 
 // Libraries
 import org.jdom2.Document;
@@ -32,8 +32,6 @@ public class Metadata {
      */
     public static void Start(){
 
-
-        System.out.println("El man entra en la funcion!");
         // Se debe colocar el path completo segun la maquina
         File inputFile = new File(file_path);
         SAXBuilder saxBuilder = new SAXBuilder();
@@ -188,7 +186,7 @@ public class Metadata {
         ArrayList<String> Slots=new ArrayList<String>();
         Slots.add("ID");
         Slots.add("name");
-        Slots.add("autor");
+        Slots.add("author");
         Slots.add("date");
         Slots.add("size");
         Slots.add("description");
@@ -242,11 +240,11 @@ public class Metadata {
         List<Element> studentList = classElement.getChildren();
         System.out.println("----------------------------");
 
-        if (Slots==null){
+        if (Slots.isEmpty()){
             Slots=new ArrayList<String>();
             Slots.add("ID");
             Slots.add("name");
-            Slots.add("autor");
+            Slots.add("author");
             Slots.add("date");
             Slots.add("size");
             Slots.add("description");

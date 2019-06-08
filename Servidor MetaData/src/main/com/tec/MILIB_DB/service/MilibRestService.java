@@ -1,6 +1,7 @@
 package main.com.tec.MILIB_DB.service;
 
 // Libraries
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -14,14 +15,14 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import main.com.tec.MILIB_DB.util.jsonParser;
-
+import main.com.tec.MILIB_DB.domain.Metadata;
 
 
 /**
  * Class that implements the Web Service for the MILIB project for the DATABASE
  * This Web Service run on Port 8080
  * @author Esteban Alvarado Vargas
- * @version alpha 2.3
+ * @version alpha 3.5
  */
 @Path("/database")
 public class MilibRestService {
@@ -105,7 +106,6 @@ public class MilibRestService {
         // Insert the metadata
 
         Metadata.Insert(slotList,valuesList);
-        Metadata.Close();
 
         // --------------------------------------------------------------------
 
@@ -145,13 +145,32 @@ public class MilibRestService {
         // --------------------------------------------------------------------
         ArrayList<String> slotList = new ArrayList<>();
         ArrayList<String> whereList = new ArrayList<>();
-        ArrayList<String> valuesList = new ArrayList<>();
+        ArrayList<String> whereValuesList = new ArrayList<>();
 
-        jsonParser.jsonSelectParser(recvData,slotList,whereList,valuesList);
+        jsonParser.jsonSelectParser(recvData,slotList,whereList,whereValuesList);
 
         System.out.println("[Desde el REST]::" + slotList.toString()); // Return values
         System.out.println("[Desde el REST]::" + whereList.toString()); // Where condition
-        System.out.println("[Desde el REST]::" + valuesList.toString()); // Values condition
+        System.out.println("[Desde el REST]::" + whereValuesList.toString()); // Values condition
+
+        // Do the validation to determine: what is it that comes to SELECT?
+        // Note: It still needs to carry out the return of the information
+
+        if(slotList.isEmpty() && whereList.isEmpty()){
+
+            System.out.println("[SELECT]:: Se solicita toda la galeria");
+            Metadata.Select();
+
+        } else if(whereList.isEmpty() && whereValuesList.isEmpty()){
+
+            System.out.println("[SELECT]:: Se solicitan algunas columnas de toda la galeria");
+            Metadata.Select(slotList);
+
+        } else{
+
+            System.out.println("[SELECT]:: Se solicitan las columnas de las imagenes que cumplan con la condicion");
+            Metadata.Select(slotList,whereList,whereValuesList);
+        }
 
         // --------------------------------------------------------------------
 
@@ -197,6 +216,9 @@ public class MilibRestService {
         System.out.println("[Desde el REST]:: Where slots: " + whereList.toString()); // Where condition
         System.out.println("[Desde el REST]:: slot values: " + valuesList.toString()); // Values of each slot
         System.out.println("[Desde el REST]:: Where values: " + whereValuesList.toString()); // Where Values condition
+
+        Metadata.Update(slotList,valuesList,whereList,whereValuesList);
+
         // --------------------------------------------------------------------
 
         // Response
@@ -231,6 +253,8 @@ public class MilibRestService {
 
         System.out.println("[Desde el REST]:: Where slots: " + whereList.toString()); // Where condition
         System.out.println("[Desde el REST]:: Where values: " + whereValuesList.toString()); // Where Values condition
+
+        Metadata.Delete(whereList,whereValuesList);
         // --------------------------------------------------------------------
 
         // If deletion done, the send Status: OK else Status: FAIL
@@ -260,7 +284,7 @@ public class MilibRestService {
         //Commit stuff here
         Metadata.setFile_path("/home/esteban/Documentos/TEC/1S 2019/Algoritmos y estructuras de datos II/4. Proyectos/" +
                 "Proyecto #3/Source/MyInvensibleLibrary/Servidor MetaData/XML_Metadata/input.xml");
-        Metadata.Start();
+        Metadata.Close();
 
         System.out.println("[COMMIT] Commit Request");
         String ans = "Commit Successful!";
@@ -283,7 +307,7 @@ public class MilibRestService {
 
         Metadata.setFile_path("/home/esteban/Documentos/TEC/1S 2019/Algoritmos y estructuras de datos II/4. Proyectos/" +
                 "Proyecto #3/Source/MyInvensibleLibrary/Servidor MetaData/XML_Metadata/input.xml");
-        Metadata.Close();
+        Metadata.Start();
 
         String ans = "Rollback Success!";
 

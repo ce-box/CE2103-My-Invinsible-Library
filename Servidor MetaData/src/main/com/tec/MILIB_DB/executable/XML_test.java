@@ -1,6 +1,6 @@
 package main.com.tec.MILIB_DB.executable;
 
-import main.com.tec.MILIB_DB.service.Metadata;
+import main.com.tec.MILIB_DB.domain.Metadata;
 
 import java.util.ArrayList;
 
