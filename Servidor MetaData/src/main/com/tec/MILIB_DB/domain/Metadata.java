@@ -281,7 +281,7 @@ public class Metadata {
      * @param SlotsWhereValuesA Valores para evaluar mínimo en el where
      * @param SlotsWhereValuesB Valores para evaluar máximo en el where
      */
-    static void Select(ArrayList<String> Slots,ArrayList<String> SlotsWhere,ArrayList<String> SlotsWhereValuesA,ArrayList<String> SlotsWhereValuesB) {
+    public static void Select(ArrayList<String> Slots,ArrayList<String> SlotsWhere,ArrayList<String> SlotsWhereValuesA,ArrayList<String> SlotsWhereValuesB) {
         Element classElement = document.getRootElement();
 
         List<Element> studentList = classElement.getChildren();
