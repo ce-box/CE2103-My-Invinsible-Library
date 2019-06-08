@@ -26,8 +26,7 @@ import main.com.tec.MILIB_DB.domain.Metadata;
 @Path("/database")
 public class MilibRestService {
 
-    String XMLPath = "/home/esteban/Documentos/TEC/1S 2019/Algoritmos y estructuras de datos II/4. Proyectos/" +
-            "Proyecto #3/Source/MyInvensibleLibrary/Servidor MetaData/XML_Metadata/input.xml";
+    String XMLPath = "/home/juan/Documentos/Proyecto3/Servidor MetaData/XML_Metadata/input.xml";
 
     /**
      * Converts the received inputStream to a String for handling the
