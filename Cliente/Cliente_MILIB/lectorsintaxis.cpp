@@ -10,22 +10,10 @@ LectorSintaxis::LectorSintaxis(string inputIDE){
 string LectorSintaxis::manejarInputIDE(){
     string instruccion = obtenerInstruccion();
     vector<string> datosObtenidos;
-    if(instruccion == "INSERT"){
+    if(instruccion == "INSERT")
         instruccion = manejarInstruccionInsert();
-        boost::split(datosObtenidos, instruccion, boost::is_any_of("-"));
-        string columnas = datosObtenidos[0];
-        string valores = datosObtenidos[1];
-        qDebug()<<"INSERT";
-        qDebug()<<"COLUMNAS: " << columnas.c_str();
-        qDebug()<<"VALORES: " << valores.c_str();
-
-    }
-    else if(instruccion == "SELECT"){
+    else if(instruccion == "SELECT")
         instruccion = manejarInstruccionSelect();
-//        qDebug()<<"INSERT";
-//        qDebug()<<"COLUMNAS: " << columnas.c_str();
-//        qDebug()<<"VALORES: " << valores.c_str();
-    }
     else if(instruccion == "DELETE"){
         instruccion = manejarInstruccionDelete();
         boost::split(datosObtenidos, instruccion, boost::is_any_of(","));
@@ -38,12 +26,31 @@ string LectorSintaxis::manejarInputIDE(){
         }
         where = where.substr(0, where.size()-1);
         valores = valores.substr(0, valores.size()-1);
-        qDebug()<<"DELETE";
-        qDebug()<<"COLUMNAS:" << where.c_str();
-        qDebug()<<"VALORES:" << valores.c_str();
+        instruccion = where + "-" + valores;
     }
     else if(instruccion == "UPDATE"){
         instruccion = manejarInstruccionUpdate();
+        qDebug()<<instruccion.c_str();
+        boost::split(datosObtenidos, instruccion, boost::is_any_of("-"));
+        string set = datosObtenidos[0];
+        string where = datosObtenidos[1];
+        datosObtenidos.clear();
+        boost::split(datosObtenidos, set, boost::is_any_of(","));
+        vector<string> varSet;
+        string columnas;
+        string valores;
+        for(int i = 0; i < datosObtenidos.size(); i++){
+            boost::split(varSet, datosObtenidos[i], boost::is_any_of("="));
+            columnas += varSet[0] + ",";
+            valores += varSet[1] + ",";
+        }
+        columnas = columnas.substr(0, columnas.size()-1);
+        valores = valores.substr(0, valores.size()-1);
+        datosObtenidos.clear();
+        boost::split(datosObtenidos, where, boost::is_any_of("="));
+        string variableWhere = datosObtenidos[0];
+        string valorWhere = datosObtenidos[1];
+        instruccion = columnas + "-" + valores + "-" + variableWhere + "-" + valorWhere;
     }
     qDebug()<<instruccion.c_str();
     return instruccion;
