@@ -69,7 +69,7 @@ void Client::PUT(const QString &path, const QString &jsonDoc){
     qDebug() << "[PUT] Client POST request to: " << url.toString();
     qDebug() << "[PUT] Data sent: " << jsonDoc;
 
-    manager->put(request,jsonDoc.toUtf8());
+    manager->sendCustomRequest(request,"PUT",jsonDoc.toUtf8());
 
     return;
 }

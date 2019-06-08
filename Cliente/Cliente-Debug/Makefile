@@ -53,11 +53,13 @@ OBJECTS_DIR   = ./
 SOURCES       = ../Cliente_MILIB/main.cpp \
 		../Cliente_MILIB/mainwindow.cpp \
 		../Cliente_MILIB/ServerLibrary/client.cpp \
-		../Cliente_MILIB/ServerLibrary/serverlibrary.cpp moc_mainwindow.cpp
+		../Cliente_MILIB/ServerLibrary/serverlibrary.cpp \
+		../Cliente_MILIB/json/jsonserializer.cpp moc_mainwindow.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		client.o \
 		serverlibrary.o \
+		jsonserializer.o \
 		moc_mainwindow.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
@@ -135,10 +137,16 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
 		../Cliente_MILIB/Cliente_MILIB.pro ../Cliente_MILIB/mainwindow.h \
 		../Cliente_MILIB/ServerLibrary/client.h \
-		../Cliente_MILIB/ServerLibrary/serverlibrary.h ../Cliente_MILIB/main.cpp \
+		../Cliente_MILIB/ServerLibrary/serverlibrary.h \
+		../Cliente_MILIB/json/jsonserializer.h \
+		../Cliente_MILIB/Data_Structures/nodo.hpp \
+		../Cliente_MILIB/Data_Structures/nodo_def.h \
+		../Cliente_MILIB/Data_Structures/lista_def.h \
+		../Cliente_MILIB/Data_Structures/lista.hpp ../Cliente_MILIB/main.cpp \
 		../Cliente_MILIB/mainwindow.cpp \
 		../Cliente_MILIB/ServerLibrary/client.cpp \
-		../Cliente_MILIB/ServerLibrary/serverlibrary.cpp
+		../Cliente_MILIB/ServerLibrary/serverlibrary.cpp \
+		../Cliente_MILIB/json/jsonserializer.cpp
 QMAKE_TARGET  = Cliente_MILIB
 DESTDIR       = 
 TARGET        = Cliente_MILIB
@@ -324,8 +332,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../Cliente_MILIB/mainwindow.h ../Cliente_MILIB/ServerLibrary/client.h ../Cliente_MILIB/ServerLibrary/serverlibrary.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../Cliente_MILIB/main.cpp ../Cliente_MILIB/mainwindow.cpp ../Cliente_MILIB/ServerLibrary/client.cpp ../Cliente_MILIB/ServerLibrary/serverlibrary.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../Cliente_MILIB/mainwindow.h ../Cliente_MILIB/ServerLibrary/client.h ../Cliente_MILIB/ServerLibrary/serverlibrary.h ../Cliente_MILIB/json/jsonserializer.h ../Cliente_MILIB/Data_Structures/nodo.hpp ../Cliente_MILIB/Data_Structures/nodo_def.h ../Cliente_MILIB/Data_Structures/lista_def.h ../Cliente_MILIB/Data_Structures/lista.hpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../Cliente_MILIB/main.cpp ../Cliente_MILIB/mainwindow.cpp ../Cliente_MILIB/ServerLibrary/client.cpp ../Cliente_MILIB/ServerLibrary/serverlibrary.cpp ../Cliente_MILIB/json/jsonserializer.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../Cliente_MILIB/mainwindow.ui $(DISTDIR)/
 
 
@@ -386,7 +394,13 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_ui
 ####### Compile
 
 main.o: ../Cliente_MILIB/main.cpp ../Cliente_MILIB/mainwindow.h \
-		../Cliente_MILIB/ServerLibrary/client.h
+		../Cliente_MILIB/ServerLibrary/client.h \
+		../Cliente_MILIB/ServerLibrary/serverlibrary.h \
+		../Cliente_MILIB/json/jsonserializer.h \
+		../Cliente_MILIB/Data_Structures/lista.hpp \
+		../Cliente_MILIB/Data_Structures/nodo.hpp \
+		../Cliente_MILIB/Data_Structures/nodo_def.h \
+		../Cliente_MILIB/Data_Structures/lista_def.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../Cliente_MILIB/main.cpp
 
 mainwindow.o: ../Cliente_MILIB/mainwindow.cpp ../Cliente_MILIB/mainwindow.h \
@@ -396,8 +410,16 @@ mainwindow.o: ../Cliente_MILIB/mainwindow.cpp ../Cliente_MILIB/mainwindow.h \
 client.o: ../Cliente_MILIB/ServerLibrary/client.cpp ../Cliente_MILIB/ServerLibrary/client.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o client.o ../Cliente_MILIB/ServerLibrary/client.cpp
 
-serverlibrary.o: ../Cliente_MILIB/ServerLibrary/serverlibrary.cpp ../Cliente_MILIB/ServerLibrary/serverlibrary.h
+serverlibrary.o: ../Cliente_MILIB/ServerLibrary/serverlibrary.cpp ../Cliente_MILIB/ServerLibrary/serverlibrary.h \
+		../Cliente_MILIB/ServerLibrary/client.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o serverlibrary.o ../Cliente_MILIB/ServerLibrary/serverlibrary.cpp
+
+jsonserializer.o: ../Cliente_MILIB/json/jsonserializer.cpp ../Cliente_MILIB/json/jsonserializer.h \
+		../Cliente_MILIB/Data_Structures/lista.hpp \
+		../Cliente_MILIB/Data_Structures/nodo.hpp \
+		../Cliente_MILIB/Data_Structures/nodo_def.h \
+		../Cliente_MILIB/Data_Structures/lista_def.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o jsonserializer.o ../Cliente_MILIB/json/jsonserializer.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

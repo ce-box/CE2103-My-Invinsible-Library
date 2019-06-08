@@ -1,0 +1,44 @@
+            ██╗     ██╗███████╗████████╗    ████████╗███████╗███████╗████████╗███████╗
+            ██║     ██║██╔════╝╚══██╔══╝    ╚══██╔══╝██╔════╝██╔════╝╚══██╔══╝██╔════╝
+            ██║     ██║███████╗   ██║          ██║   █████╗  ███████╗   ██║   ███████╗
+            ██║     ██║╚════██║   ██║          ██║   ██╔══╝  ╚════██║   ██║   ╚════██║
+            ███████╗██║███████║   ██║          ██║   ███████╗███████║   ██║   ███████║
+            ╚══════╝╚═╝╚══════╝   ╚═╝          ╚═╝   ╚══════╝╚══════╝   ╚═╝   ╚══════╝
+
+-------------------------------------------------------------------------------------------------
+
+void lista_test(){
+    Lista<int> *lista = new Lista<int>;
+    cout<<lista->size()<<endl;
+    lista->push_back(12);
+    lista->push_back(100);
+    lista->push_back(5);
+    cout<<lista->size()<<endl;
+    lista->print_lista();
+    lista->push_front(23);
+    cout<<lista->size()<<endl;
+    lista->print_lista();
+    cout<<lista->get_index(2)<<endl;
+    cout<<lista->get(100)<<endl;
+    lista->insert(2,45);
+    cout<<lista->size()<<endl;
+    lista->print_lista();
+    lista->pop_back();
+    lista->print_lista();
+    cout<<lista->size()<<endl;
+    lista->pop_front();
+    lista->print_lista();
+    cout<<lista->size()<<endl;
+    lista->remove(45);
+    lista->print_lista();
+    cout<<lista->size()<<endl;
+    lista->push_back(8);
+    lista->push_back(15);
+
+    lista->print_lista();
+    cout<<lista->size()<<endl;
+
+    lista->remove_at(3);
+    lista->print_lista();
+    cout<<lista->size()<<endl;
+}
