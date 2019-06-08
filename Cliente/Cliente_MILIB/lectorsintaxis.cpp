@@ -22,7 +22,7 @@ string LectorSintaxis::manejarInputIDE(){
     }
     else if(instruccion == "SELECT"){
         instruccion = manejarInstruccionSelect();
-        qDebug()<<"INSERT";
+//        qDebug()<<"INSERT";
 //        qDebug()<<"COLUMNAS: " << columnas.c_str();
 //        qDebug()<<"VALORES: " << valores.c_str();
     }
@@ -168,7 +168,35 @@ string LectorSintaxis::manejarInstruccionSelect(){
             inputIDE = inputIDE.substr(7, inputSize-7);
             inputSize = inputIDE.size();
             string condicional = obtenerCondicionales();
-            return columnas + "-" + condicional;
+            bool isBetween = false;
+            string columnaBetween;
+            string verificarStr;
+            for(int i = 0; i < condicional.size()-7; i++){
+                verificarStr = condicional.substr(i, 7);
+                if(verificarStr == "BETWEEN"){
+                    isBetween = true;
+                    condicional = condicional.substr(i+7, condicional.size());
+                    break;
+                }else if(verificarStr.substr(0, 1) != " ")
+                    columnaBetween += verificarStr.substr(0, 1);
+            }
+            if(isBetween){
+                string valoresBetween;
+                for(int i = 0; i < valoresBetween.size()-3; i++){
+                    if(condicional.substr(i, 3) == "AND"){
+                        valoresBetween += "," + condicional.substr(i+3, condicional.size());
+                        break;
+                    }else valoresBetween = condicional.substr(i, 1);
+                }
+                return columnas + "-" + columnaBetween + "-" + valoresBetween;
+            }
+            string condFormato;
+            for(int i = 0; i < condicional.size(); i ++){
+                if(condicional.substr(i, 1) == "=")
+                    condFormato += "-";
+                else condFormato += condicional.substr(i, 1);
+            }
+            return columnas + "-" + condFormato;
         }else{
             idError = 10;
             return "ERROR";
