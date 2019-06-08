@@ -2,6 +2,7 @@
   <library name="Maven: asm:asm-all:3.3.1">
     <CLASSES>
       <root url="jar://$MAVEN_REPOSITORY$/asm/asm-all/3.3.1/asm-all-3.3.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libraries/jdom2-2.0.6.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$MAVEN_REPOSITORY$/asm/asm-all/3.3.1/asm-all-3.3.1-javadoc.jar!/" />

@@ -7,13 +7,15 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import main.com.tec.MILIB_DB.util.jsonParser;
-import main.com.tec.MILIB_DB.domain.Metadata;
+
+
 
 /**
  * Class that implements the Web Service for the MILIB project for the DATABASE
@@ -50,12 +52,15 @@ public class MilibRestService {
         return inputBuilder.toString();
     }
 
+
     @POST
     @Path("/start")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response START(InputStream incomingData){
 
-        //Metadata.Start();
+        Metadata.setFile_path("/home/esteban/Documentos/TEC/1S 2019/Algoritmos y estructuras de datos II/4. Proyectos/" +
+                "Proyecto #3/Source/MyInvensibleLibrary/Servidor MetaData/XML_Metadata/input.xml");
+        Metadata.Start();
         return Response.status(200).build();
     }
 
@@ -85,8 +90,26 @@ public class MilibRestService {
         System.out.println("[INSERT] Data Received: "+ recvData);
 
         // In this part the insert actions are performed
-        jsonParser.jsonInsertParser(recvData);
 
+        // --------------------------------------------------------------------
+
+        // Set the JSON data into the list
+        ArrayList<String> slotList = new ArrayList<>();
+        ArrayList<String> valuesList = new ArrayList<>();
+
+        jsonParser.jsonInsertParser(recvData,slotList,valuesList);
+
+        System.out.println("[INSERT]:: Slots: " + slotList.toString());
+        System.out.println("[INSERT]:: Slots Values: " + valuesList.toString());
+
+        // Insert the metadata
+
+        Metadata.Insert(slotList,valuesList);
+        Metadata.Close();
+
+        // --------------------------------------------------------------------
+
+        // Response
         JSONObject json = new JSONObject();
         json.put("Status","OK");
 
@@ -118,8 +141,21 @@ public class MilibRestService {
         System.out.println("[SELECT] Data Received: "+ recvData);
 
         // In this part the select actions are performed
-        jsonParser.jsonSelectParser(recvData);
 
+        // --------------------------------------------------------------------
+        ArrayList<String> slotList = new ArrayList<>();
+        ArrayList<String> whereList = new ArrayList<>();
+        ArrayList<String> valuesList = new ArrayList<>();
+
+        jsonParser.jsonSelectParser(recvData,slotList,whereList,valuesList);
+
+        System.out.println("[Desde el REST]::" + slotList.toString()); // Return values
+        System.out.println("[Desde el REST]::" + whereList.toString()); // Where condition
+        System.out.println("[Desde el REST]::" + valuesList.toString()); // Values condition
+
+        // --------------------------------------------------------------------
+
+        // Response
         JSONObject json = new JSONObject();
         json.put("valueC","a");
         json.put("valueD","b");
@@ -149,7 +185,21 @@ public class MilibRestService {
         System.out.println("[UPDATE] Data Received: "+ recvData);
 
         // In this part the update actions are performed
-        jsonParser.jsonUpdateParser(recvData);
+        // --------------------------------------------------------------------
+        ArrayList<String> slotList = new ArrayList<>();
+        ArrayList<String> valuesList = new ArrayList<>();
+        ArrayList<String> whereList = new ArrayList<>();
+        ArrayList<String> whereValuesList = new ArrayList<>();
+
+        jsonParser.jsonUpdateParser(recvData,slotList,valuesList,whereList,whereValuesList);
+
+        System.out.println("[Desde el REST]:: Slots: " + slotList.toString()); // Return values
+        System.out.println("[Desde el REST]:: Where slots: " + whereList.toString()); // Where condition
+        System.out.println("[Desde el REST]:: slot values: " + valuesList.toString()); // Values of each slot
+        System.out.println("[Desde el REST]:: Where values: " + whereValuesList.toString()); // Where Values condition
+        // --------------------------------------------------------------------
+
+        // Response
 
         return Response.status(200).build();
     }
@@ -173,7 +223,15 @@ public class MilibRestService {
         System.out.println("[DELETE] Data Received: "+ recvData);
 
         // In this part the deletion is effected
-        jsonParser.jsonDeleteParser(recvData);
+        // --------------------------------------------------------------------
+        ArrayList<String> whereList = new ArrayList<>();
+        ArrayList<String> whereValuesList = new ArrayList<>();
+
+        jsonParser.jsonDeleteParser(recvData,whereList,whereValuesList);
+
+        System.out.println("[Desde el REST]:: Where slots: " + whereList.toString()); // Where condition
+        System.out.println("[Desde el REST]:: Where values: " + whereValuesList.toString()); // Where Values condition
+        // --------------------------------------------------------------------
 
         // If deletion done, the send Status: OK else Status: FAIL
         JSONObject json = new JSONObject();
@@ -200,6 +258,9 @@ public class MilibRestService {
     public Response COMMIT(){
 
         //Commit stuff here
+        Metadata.setFile_path("/home/esteban/Documentos/TEC/1S 2019/Algoritmos y estructuras de datos II/4. Proyectos/" +
+                "Proyecto #3/Source/MyInvensibleLibrary/Servidor MetaData/XML_Metadata/input.xml");
+        Metadata.Start();
 
         System.out.println("[COMMIT] Commit Request");
         String ans = "Commit Successful!";
@@ -217,8 +278,13 @@ public class MilibRestService {
     @Produces(MediaType.TEXT_PLAIN)
     public Response BACK(){
 
-        //Commit stuff here
+        //Rollback stuff here
         System.out.println("[BACK] Rollback Request");
+
+        Metadata.setFile_path("/home/esteban/Documentos/TEC/1S 2019/Algoritmos y estructuras de datos II/4. Proyectos/" +
+                "Proyecto #3/Source/MyInvensibleLibrary/Servidor MetaData/XML_Metadata/input.xml");
+        Metadata.Close();
+
         String ans = "Rollback Success!";
 
         return Response.status(200).entity(ans).build();

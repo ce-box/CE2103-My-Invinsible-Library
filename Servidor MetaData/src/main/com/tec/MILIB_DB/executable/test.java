@@ -39,6 +39,6 @@ public class test {
 
         System.out.println(json.toString());
 
-        jsonParser.jsonInsertParser(json.toString());
+        //jsonParser.jsonInsertParser(json.toString());
     }
 }

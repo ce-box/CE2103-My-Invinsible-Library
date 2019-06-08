@@ -1,4 +1,4 @@
-package main.com.tec.MILIB_DB.domain;
+package main.com.tec.MILIB_DB.service;
 
 // Libraries
 import org.jdom2.Document;
@@ -21,15 +21,21 @@ public class Metadata {
 
     private static int IDGlobal;
     private static Document document;
+    private static String file_path;
 
+    public static void setFile_path(String file_path){
+        Metadata.file_path = file_path;
+    }
 
     /**
      * Carga el ID global guardado [BACK]
      */
     public static void Start(){
 
-        System.out.println("Start");
-        File inputFile = new File("Metadata/input.xml");
+
+        System.out.println("El man entra en la funcion!");
+        // Se debe colocar el path completo segun la maquina
+        File inputFile = new File(file_path);
         SAXBuilder saxBuilder = new SAXBuilder();
         document = null;
         try {
@@ -57,7 +63,7 @@ public class Metadata {
         xmlOutput.setFormat(Format.getPrettyFormat());
         try {
             //xmlOutput.output(document, System.out);
-            xmlOutput.output(document, new FileWriter("Metadata/input.xml"));
+            xmlOutput.output(document, new FileWriter(file_path));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -97,7 +103,12 @@ public class Metadata {
      * @param SlotsValues Valores a colocar
      */
     public static void Insert(ArrayList<String> Slots, ArrayList<String> SlotsValues){
+
+        System.out.println("ENTRA");
+
         Element classElement = document.getRootElement();
+
+        System.out.println("PASA ELEMENT");
 
         ArrayList<String> Aux;
         Aux=new ArrayList<>();
@@ -108,11 +119,17 @@ public class Metadata {
         Aux.add("size"); // size
         Aux.add("description");// description
 
+        System.out.println("PASA LA LISTA");
 
         Element Nuevo=new Element("image"+IDGlobal);
 
+        System.out.println("CREA EL ELEMENT");
+
         Element tmp;
         for (int j=0; j<Aux.size(); j++){
+
+            System.out.println("FOR 1 "+j);
+
             tmp=new Element(Aux.get(j));
             tmp.setText("null");
             Nuevo.addContent(tmp);
@@ -121,7 +138,12 @@ public class Metadata {
         tmp=Nuevo.getChild("ID");
         tmp.setText(""+IDGlobal++);
 
+        System.out.println("PASA el For 1 Va para el for 2");
+
         for (int j=0; j<Slots.size(); j++){
+
+            System.out.println("FOR 2 "+j);
+
             tmp=Nuevo.getChild(Slots.get(j));
             tmp.setText(SlotsValues.get(j));
         }
