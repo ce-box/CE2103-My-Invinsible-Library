@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class ID="2">
-  <image0>
-    <ID>0</ID>
+<class ID="3">
+  <image1>
+    <ID>1</ID>
     <name>img1</name>
     <author>null</author>
     <date>2012</date>
     <size>1000</size>
-    <description>la vara promete</description>
-  </image0>
-  <image1>
-    <ID>1</ID>
+    <description>null</description>
+  </image1>
+  <image2>
+    <ID>2</ID>
     <name>img2</name>
     <author>Erick Barrantes</author>
     <date>1998</date>
     <size>1024</size>
     <description>null</description>
-  </image1>
+  </image2>
 </class>

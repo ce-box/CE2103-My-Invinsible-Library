@@ -29,13 +29,15 @@ QString JsonSerializer::insertJSON(Lista<QString> *slotsList, Lista<QString> *va
 // Serializer the information to SELECT in JSON format
 QString JsonSerializer::selectJSON(Lista<QString> *slotsList,
                                    Lista<QString> *whereList,
-                                   Lista<QString> *whereValuesList){
+                                   Lista<QString> *whereValuesAList,
+                                   Lista<QString> *whereValuesBList){
     // Step 1: Creates three JsonArray w/ the Data of the list
     // ADVICE: Both lists (where and whereValues) must have the same size!!
 
     QJsonArray slot;
     QJsonArray where;
-    QJsonArray whereValues;
+    QJsonArray whereValuesA;
+    QJsonArray whereValuesB;
 
     for(int i = 0; i < slotsList->size();i++){
         slot.append(slotsList->get_index(i));
@@ -43,14 +45,17 @@ QString JsonSerializer::selectJSON(Lista<QString> *slotsList,
 
     for(int i = 0; i < whereList->size();i++){
         where.append(whereList->get_index(i));
-        whereValues.append(whereValuesList->get_index(i));
+        whereValuesA.append(whereValuesAList->get_index(i));
+        if(!whereValuesBList->empty())
+            whereValuesB.append(whereValuesBList->get_index(i));
     }
 
     // Step 2: Add those JsonArray  and create a JSON Object
     QJsonObject jsonObj;
     jsonObj.insert("slots",slot);
     jsonObj.insert("where",where);
-    jsonObj.insert("whereValues",whereValues);
+    jsonObj.insert("whereValuesA",whereValuesA);
+    jsonObj.insert("whereValuesB",whereValuesB);
 
     // Step 3: Convert the JsonDoc into QString
     QJsonDocument jsonDoc(jsonObj);
@@ -65,6 +70,7 @@ QString JsonSerializer::updateJSON(Lista<QString> *slotsList,
                                    Lista<QString> *valuesList,
                                    Lista<QString> *whereList,
                                    Lista<QString> *whereValuesList){
+
     // Step 1: Creates three JsonArray w/ the Data of the list
     // ADVICE: Each pair of lists (slot-values and where-values) must have the same size!!
 

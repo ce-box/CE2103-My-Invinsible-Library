@@ -26,7 +26,8 @@ import main.com.tec.MILIB_DB.domain.Metadata;
 @Path("/database")
 public class MilibRestService {
 
-    String XMLPath = "/home/juan/Documentos/Proyecto3/Servidor MetaData/XML_Metadata/input.xml";
+    String XMLPath = "/home/esteban/Documentos/TEC/1S 2019/Algoritmos y estructuras de datos II/4. Proyectos/" +
+            "Proyecto #3/Source/MyInvensibleLibrary/Servidor MetaData/XML_Metadata/input.xml";
 
     /**
      * Converts the received inputStream to a String for handling the
@@ -145,13 +146,15 @@ public class MilibRestService {
         // --------------------------------------------------------------------
         ArrayList<String> slotList = new ArrayList<>();
         ArrayList<String> whereList = new ArrayList<>();
-        ArrayList<String> whereValuesList = new ArrayList<>();
+        ArrayList<String> whereValuesAList = new ArrayList<>();
+        ArrayList<String> whereValuesBList = new ArrayList<>();
 
-        jsonParser.jsonSelectParser(recvData,slotList,whereList,whereValuesList);
+        jsonParser.jsonSelectParser(recvData,slotList,whereList,whereValuesAList,whereValuesBList);
 
         System.out.println("[Desde el REST]::" + slotList.toString()); // Return values
         System.out.println("[Desde el REST]::" + whereList.toString()); // Where condition
-        System.out.println("[Desde el REST]::" + whereValuesList.toString()); // Values condition
+        System.out.println("[Desde el REST]::" + whereValuesAList.toString()); // Values condition
+        System.out.println("[Desde el REST]::" + whereValuesBList.toString()); // Between values
 
         // Do the validation to determine: what is it that comes to SELECT?
         // Note: It still needs to carry out the return of the information
@@ -161,15 +164,19 @@ public class MilibRestService {
             System.out.println("[SELECT]:: Se solicita toda la galeria");
             Metadata.Select();
 
-        } else if(whereList.isEmpty() && whereValuesList.isEmpty()){
+        } else if(whereList.isEmpty() && whereValuesAList.isEmpty()){
 
             System.out.println("[SELECT]:: Se solicitan algunas columnas de toda la galeria");
             Metadata.Select(slotList);
 
-        } else{
+        } else if(!whereValuesAList.isEmpty() && whereValuesBList.isEmpty()){
 
             System.out.println("[SELECT]:: Se solicitan las columnas de las imagenes que cumplan con la condicion");
-            Metadata.Select(slotList,whereList,whereValuesList);
+            Metadata.Select(slotList,whereList,whereValuesAList);
+
+        } else {
+            System.out.println("[SELECT]:: Se solicitan las columnas de las imagenes que cumplan con la condicion en un Between");
+            Metadata.Select(slotList,whereList,whereValuesAList,whereValuesBList);
         }
 
         // --------------------------------------------------------------------

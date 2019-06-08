@@ -32,7 +32,8 @@ public:
      */
     static QString selectJSON(Lista<QString> *slotsList = new Lista<QString>,
                               Lista<QString> *whereList = new Lista<QString>,
-                              Lista<QString> *whereValuesList = new Lista<QString>);
+                              Lista<QString> *whereValuesAList = new Lista<QString>,
+                              Lista<QString> *whereValuesBList = new Lista<QString>);
 
     /**
      * @brief updateJSON

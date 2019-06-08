@@ -44,19 +44,21 @@ public class jsonParser {
      * @param json Json file to parse
      * @param slotsList List that will store the Slots to return
      * @param whereList List that will store the Where slots
-     * @param whereValuesList List that will store the Where values
+     * @param whereValuesAList List that will store the Where values
      * @throws JSONException If an error is detected when the JSON in parsed
      */
     public static void jsonSelectParser(String json,
                                         ArrayList<String> slotsList,
                                         ArrayList<String> whereList,
-                                        ArrayList<String> whereValuesList) throws JSONException{
+                                        ArrayList<String> whereValuesAList,
+                                        ArrayList<String> whereValuesBList) throws JSONException{
 
         // Step 1: First a JSONObject is created and the JSONArray is extracted from it
         JSONObject jsonObject = new JSONObject(json);
         JSONArray slots = jsonObject.getJSONArray("slots"); // The slot to return
         JSONArray where = jsonObject.getJSONArray("where"); // The condition
-        JSONArray whereValues= jsonObject.getJSONArray("whereValues"); // The values of the condition
+        JSONArray whereValuesA= jsonObject.getJSONArray("whereValuesA"); // The values of the condition
+        JSONArray whereValuesB= jsonObject.getJSONArray("whereValuesB"); // The values of the condition
 
         // Step 2: Then the data of the JSONArray is transferred to the lists
 
@@ -66,7 +68,8 @@ public class jsonParser {
 
         for(int i = 0; i < where.length(); i++){
             whereList.add((String)where.get(i));
-            whereValuesList.add((String)whereValues.get(i));
+            whereValuesAList.add((String)whereValuesA.get(i));
+            whereValuesBList.add((String)whereValuesB.get(i));
         }
     }
 
