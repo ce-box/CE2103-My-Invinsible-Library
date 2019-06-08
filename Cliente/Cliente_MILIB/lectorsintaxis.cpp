@@ -17,6 +17,10 @@ string LectorSintaxis::manejarInputIDE(){
         instruccion = manejarInstruccionSelect();
         qDebug()<<instruccion.c_str();
         return instruccion;
+    }else if(instruccion == "DELETE"){
+        instruccion = manejarInstruccionDelete();
+        qDebug()<<instruccion.c_str();
+        return instruccion;
     }
 }
 
@@ -171,8 +175,17 @@ string LectorSintaxis::obtenerCondicionalSelect(){
     return inputIDE;
 }
 
+string LectorSintaxis::manejarInstruccionDelete(){
+    qDebug()<<inputIDE.substr(0, 20).c_str();
+    inputIDE = inputIDE.substr(20, inputSize-20);
+    inputSize = inputIDE.size();
+    return inputIDE;
+}
+
 //INSERT INTO METADATA (NOMBRE, ARTISTA, DURACION, ALBUM)
 //VALUES ("Karma Police", "Radiohead", "4:27", "OK Computer");
 
 //SELECT NOMBRE, ALBUM FROM METADATA
 //WHERE ejemplo = "ejemplo";
+
+//DELETE FROM METADATA WHERE ejemplo = "ejemplo";

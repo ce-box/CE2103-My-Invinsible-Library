@@ -25,6 +25,8 @@ public:
     std::string manejarInstruccionSelect();
     std::string obtenerColumnasSelect();
     std::string obtenerCondicionalSelect();
+    std::string manejarInstruccionDelete();
+
 
 };
 
