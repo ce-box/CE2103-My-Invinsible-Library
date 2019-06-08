@@ -23,6 +23,12 @@ public class Metadata {
     private static Document document;
     private static String file_path;
 
+    public static ArrayList<ArrayList<String>> getSelectList() {
+        return SelectList;
+    }
+
+    private static ArrayList<ArrayList<String>> SelectList;
+
     public static void setFile_path(String file_path){
         Metadata.file_path = file_path;
     }
@@ -31,6 +37,7 @@ public class Metadata {
      * Carga el ID global guardado [BACK]
      */
     public static void Start(){
+        SelectList=new ArrayList<>();
 
         // Se debe colocar el path completo segun la maquina
         File inputFile = new File(file_path);
@@ -191,15 +198,23 @@ public class Metadata {
         Slots.add("size");
         Slots.add("description");
 
+        ArrayList<String> tmp= new ArrayList<>();
+
         for (String slot: Slots) {
+            tmp.add(slot);
             System.out.format("%-15s", slot);
         }
+        SelectList.add(tmp);
         System.out.println();
 
+
         for (Element student : studentList) {
+            tmp= new ArrayList<>();
             for (String slot : Slots) {
+                tmp.add(slot);
                 System.out.format("%-15s", student.getChild(slot).getText());
             }
+            SelectList.add(tmp);
             System.out.println();
         }
     }
@@ -214,16 +229,23 @@ public class Metadata {
         List<Element> studentList = classElement.getChildren();
         System.out.println("----------------------------");
 
+        ArrayList<String> tmp= new ArrayList<>();
 
         for (String slot: Slots) {
+            tmp.add(slot);
             System.out.format("%-15s", slot);
         }
+        SelectList.add(tmp);
         System.out.println();
 
+
         for (Element student : studentList) {
+            tmp= new ArrayList<>();
             for (String slot : Slots) {
+                tmp.add(slot);
                 System.out.format("%-15s", student.getChild(slot).getText());
             }
+            SelectList.add(tmp);
             System.out.println();
         }
     }
@@ -250,9 +272,13 @@ public class Metadata {
             Slots.add("description");
         }
 
+        ArrayList<String> tmp= new ArrayList<>();
+
         for (String slot: Slots) {
+            tmp.add(slot);
             System.out.format("%-15s", slot);
         }
+        SelectList.add(tmp);
         System.out.println();
 
         for (Element student : studentList) {
@@ -265,11 +291,14 @@ public class Metadata {
                 }
             }
 
+            tmp=new ArrayList<>();
+
             if (!Where) continue;
             for (String slot : Slots) {
+                tmp.add(slot);
                 System.out.format("%-15s", student.getChild(slot).getText());
             }
-
+            SelectList.add(tmp);
             System.out.println();
         }
     }
@@ -297,9 +326,13 @@ public class Metadata {
             Slots.add("description");
         }
 
-        for (String slot : Slots) {
+        ArrayList<String> tmp= new ArrayList<>();
+
+        for (String slot: Slots) {
+            tmp.add(slot);
             System.out.format("%-15s", slot);
         }
+        SelectList.add(tmp);
         System.out.println();
 
         for (Element student : studentList) {
@@ -318,11 +351,14 @@ public class Metadata {
                 }
             }
 
+            tmp=new ArrayList<>();
+
             if (!Where) continue;
             for (String slot : Slots) {
+                tmp.add(slot);
                 System.out.format("%-15s", student.getChild(slot).getText());
             }
-
+            SelectList.add(tmp);
             System.out.println();
         }
     }
