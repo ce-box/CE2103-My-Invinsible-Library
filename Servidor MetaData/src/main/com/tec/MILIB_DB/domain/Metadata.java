@@ -198,6 +198,7 @@ public class Metadata {
         Slots.add("size");
         Slots.add("description");
 
+        SelectList=new ArrayList<>();
         ArrayList<String> tmp= new ArrayList<>();
 
         for (String slot: Slots) {
@@ -229,6 +230,7 @@ public class Metadata {
         List<Element> studentList = classElement.getChildren();
         System.out.println("----------------------------");
 
+        SelectList=new ArrayList<>();
         ArrayList<String> tmp= new ArrayList<>();
 
         for (String slot: Slots) {
@@ -272,6 +274,7 @@ public class Metadata {
             Slots.add("description");
         }
 
+        SelectList=new ArrayList<>();
         ArrayList<String> tmp= new ArrayList<>();
 
         for (String slot: Slots) {
@@ -326,6 +329,7 @@ public class Metadata {
             Slots.add("description");
         }
 
+        SelectList=new ArrayList<>();
         ArrayList<String> tmp= new ArrayList<>();
 
         for (String slot: Slots) {
