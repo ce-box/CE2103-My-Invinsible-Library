@@ -9,19 +9,17 @@ LectorSintaxis::LectorSintaxis(string inputIDE){
 
 string LectorSintaxis::manejarInputIDE(){
     string instruccion = obtenerInstruccion();
-    if(instruccion == "INSERT"){
+    if(instruccion == "INSERT")
         instruccion = manejarInstruccionInsert();
-        qDebug()<<instruccion.c_str();
-        return instruccion;
-    }else if(instruccion == "SELECT"){
+    else if(instruccion == "SELECT")
         instruccion = manejarInstruccionSelect();
-        qDebug()<<instruccion.c_str();
-        return instruccion;
-    }else if(instruccion == "DELETE"){
+    else if(instruccion == "DELETE")
         instruccion = manejarInstruccionDelete();
-        qDebug()<<instruccion.c_str();
-        return instruccion;
-    }
+    else if(instruccion == "UPDATE")
+        instruccion = manejarInstruccionUpdate();
+
+    qDebug()<<instruccion.c_str();
+    return instruccion;
 }
 
 string LectorSintaxis::obtenerInstruccion(){
@@ -189,10 +187,46 @@ string LectorSintaxis::manejarInstruccionDelete(){
     return inputIDE;
 }
 
+string LectorSintaxis::manejarInstruccionUpdate(){
+    if(inputIDE.substr(0, 13) != "METADATA\nSET "){
+        idError = 12;
+        return "ERROR";
+    }
+    inputIDE = inputIDE.substr(13, inputSize-13);
+    inputSize = inputIDE.size();
+    string caracterActual;
+    string setStr;
+    for(int posicion = 0; posicion < inputSize; posicion++){
+        caracterActual = inputIDE[posicion];
+        if(caracterActual != "\n")
+            setStr += caracterActual;
+        else{
+            inputIDE = inputIDE.substr(posicion+1, inputSize-posicion);
+            inputSize = inputIDE.size();
+            break;
+        }
+    }
+
+    if(inputIDE.substr(0, 6) != "WHERE "){
+        idError = 13;
+        return "ERROR";
+    }
+
+    inputIDE = inputIDE.substr(6, inputSize-6);
+    inputSize = inputIDE.size();
+
+
+    return setStr + "-" + inputIDE;
+}
+
 //INSERT INTO METADATA (NOMBRE, ARTISTA, DURACION, ALBUM)
 //VALUES ("Karma Police", "Radiohead", "4:27", "OK Computer");
 
 //SELECT NOMBRE, ALBUM FROM METADATA
-//WHERE ejemplo = "ejemplo";
+//WHERE ejemplo = "valor";
 
-//DELETE FROM METADATA WHERE ejemplo = "ejemplo";
+//DELETE FROM METADATA WHERE ejemplo = "valor";
+
+//UPDATE METADATA
+//SET ejemplo1 = "valor1", ejemplo2 = "valor2"
+//WHERE ejemplo3 = "valor3";
