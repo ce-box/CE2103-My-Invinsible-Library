@@ -9,15 +9,42 @@ LectorSintaxis::LectorSintaxis(string inputIDE){
 
 string LectorSintaxis::manejarInputIDE(){
     string instruccion = obtenerInstruccion();
-    if(instruccion == "INSERT")
+    vector<string> datosObtenidos;
+    if(instruccion == "INSERT"){
         instruccion = manejarInstruccionInsert();
-    else if(instruccion == "SELECT")
-        instruccion = manejarInstruccionSelect();
-    else if(instruccion == "DELETE")
-        instruccion = manejarInstruccionDelete();
-    else if(instruccion == "UPDATE")
-        instruccion = manejarInstruccionUpdate();
+        boost::split(datosObtenidos, instruccion, boost::is_any_of("-"));
+        string columnas = datosObtenidos[0];
+        string valores = datosObtenidos[1];
+        qDebug()<<"INSERT";
+        qDebug()<<"COLUMNAS: " << columnas.c_str();
+        qDebug()<<"VALORES: " << valores.c_str();
 
+    }
+    else if(instruccion == "SELECT"){
+        instruccion = manejarInstruccionSelect();
+        qDebug()<<"INSERT";
+//        qDebug()<<"COLUMNAS: " << columnas.c_str();
+//        qDebug()<<"VALORES: " << valores.c_str();
+    }
+    else if(instruccion == "DELETE"){
+        instruccion = manejarInstruccionDelete();
+        boost::split(datosObtenidos, instruccion, boost::is_any_of(","));
+        string where;
+        string valores;
+        boost::split(datosObtenidos, instruccion, boost::is_any_of("="));
+        for(int i = 0; i < datosObtenidos.size(); i += 2){
+            where += datosObtenidos[i] + ",";
+            valores += datosObtenidos[i+1] + ",";
+        }
+        where = where.substr(0, where.size()-1);
+        valores = valores.substr(0, valores.size()-1);
+        qDebug()<<"DELETE";
+        qDebug()<<"COLUMNAS:" << where.c_str();
+        qDebug()<<"VALORES:" << valores.c_str();
+    }
+    else if(instruccion == "UPDATE"){
+        instruccion = manejarInstruccionUpdate();
+    }
     qDebug()<<instruccion.c_str();
     return instruccion;
 }
@@ -55,16 +82,17 @@ string LectorSintaxis::manejarInstruccionInsert(){
 string LectorSintaxis::obtenerContenidoTupla(){
     string contenido;
     string caracterActual;
+    bool enString = false;
     for(int posicion = 0; posicion < inputSize; posicion++){
         caracterActual = inputIDE[posicion];
-        if(caracterActual != " "){
-            if(caracterActual != ")")
-                contenido += caracterActual;
-            else{
-                inputIDE = inputIDE.substr(posicion+1, inputSize-posicion);
-                inputSize = inputIDE.size();
-                return contenido;
-            }
+        if(caracterActual != ")"){
+            if(caracterActual == "\"") enString = !enString;
+            else if(enString) contenido += caracterActual;
+            else if(caracterActual != " ") contenido += caracterActual;
+        }else{
+            inputIDE = inputIDE.substr(posicion+1, inputSize-posicion);
+            inputSize = inputIDE.size();
+            return contenido;
         }
     }
     return "ERROR";
@@ -137,7 +165,9 @@ string LectorSintaxis::manejarInstruccionSelect(){
         if(inputIDE == ";")
             return columnas;
         else if(inputIDE.substr(1, 6) == "WHERE "){
-            string condicional = obtenerCondicionalSelect();
+            inputIDE = inputIDE.substr(7, inputSize-7);
+            inputSize = inputIDE.size();
+            string condicional = obtenerCondicionales();
             return columnas + "-" + condicional;
         }else{
             idError = 10;
@@ -163,14 +193,24 @@ string LectorSintaxis::obtenerColumnasSelect(){
     return "ERROR";
 }
 
-string LectorSintaxis::obtenerCondicionalSelect(){
-    inputIDE = inputIDE.substr(7, inputSize-7);
-    inputSize = inputIDE.size();
-    if(inputIDE.substr(inputSize-1, 1) != ";"){
-        idError = 7;
-        return "ERROR";
+string LectorSintaxis::obtenerCondicionales(){
+    string caracterActual;
+    bool enString = false;
+    string condicional;
+    for(int posicion = 0; posicion < inputSize; posicion++){
+        caracterActual = inputIDE[posicion];
+        if(caracterActual != ";" && caracterActual != "\n"){
+            if(caracterActual == "\"") enString = !enString;
+            else if(enString) condicional += caracterActual;
+            else if(caracterActual != " ") condicional += caracterActual;
+        }else{
+            inputIDE = inputIDE.substr(posicion+1, inputSize-posicion);
+            inputSize = inputIDE.size();
+            return condicional;
+        }
     }
-    return inputIDE;
+    idError = 7;
+    return "ERROR";
 }
 
 string LectorSintaxis::manejarInstruccionDelete(){
@@ -180,32 +220,19 @@ string LectorSintaxis::manejarInstruccionDelete(){
     }
     inputIDE = inputIDE.substr(20, inputSize-20);
     inputSize = inputIDE.size();
-    if(inputIDE.substr(inputSize-1, 1) != ";"){
-        idError = 7;
-        return "ERROR";
-    }
-    return inputIDE;
+    string condicionales = obtenerCondicionales();
+    return condicionales;
 }
 
 string LectorSintaxis::manejarInstruccionUpdate(){
     if(inputIDE.substr(0, 13) != "METADATA\nSET "){
         idError = 12;
-        return "ERROR";
+        return "ERROR1";
     }
     inputIDE = inputIDE.substr(13, inputSize-13);
     inputSize = inputIDE.size();
-    string caracterActual;
-    string setStr;
-    for(int posicion = 0; posicion < inputSize; posicion++){
-        caracterActual = inputIDE[posicion];
-        if(caracterActual != "\n")
-            setStr += caracterActual;
-        else{
-            inputIDE = inputIDE.substr(posicion+1, inputSize-posicion);
-            inputSize = inputIDE.size();
-            break;
-        }
-    }
+
+    string setStr = obtenerCondicionales();
 
     if(inputIDE.substr(0, 6) != "WHERE "){
         idError = 13;
@@ -215,8 +242,9 @@ string LectorSintaxis::manejarInstruccionUpdate(){
     inputIDE = inputIDE.substr(6, inputSize-6);
     inputSize = inputIDE.size();
 
+    string condicionales = obtenerCondicionales();
 
-    return setStr + "-" + inputIDE;
+    return setStr + "-" + condicionales;
 }
 
 //INSERT INTO METADATA (NOMBRE, ARTISTA, DURACION, ALBUM)
@@ -228,5 +256,5 @@ string LectorSintaxis::manejarInstruccionUpdate(){
 //DELETE FROM METADATA WHERE ejemplo = "valor";
 
 //UPDATE METADATA
-//SET ejemplo1 = "valor1", ejemplo2 = "valor2"
-//WHERE ejemplo3 = "valor3";
+//SET var1 = "nuevoValor1", var2 = "nuevoValor2"
+//WHERE condicion = "valor";

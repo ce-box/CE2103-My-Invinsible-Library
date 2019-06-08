@@ -24,7 +24,7 @@ public:
     std::string obtenerValoresInsert();
     std::string manejarInstruccionSelect();
     std::string obtenerColumnasSelect();
-    std::string obtenerCondicionalSelect();
+    std::string obtenerCondicionales();
     std::string manejarInstruccionDelete();
     std::string manejarInstruccionUpdate();
 
