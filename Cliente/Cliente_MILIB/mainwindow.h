@@ -33,6 +33,8 @@ class MainWindow : public QMainWindow
 private slots:
     void abrirExploradorArchivos();
     void obtenerInputIDE();
+    void commit();
+    void rollback();
 
 public:
     explicit MainWindow(QWidget *parent = 0);

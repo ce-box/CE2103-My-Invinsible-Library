@@ -15,6 +15,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->subirImagenPushButton, SIGNAL (clicked()), this, SLOT (abrirExploradorArchivos()));
     connect(ui->runPushButton, SIGNAL (clicked()), this, SLOT (obtenerInputIDE()));
+    connect(ui->commitPushButton, SIGNAL (clicked()), this, SLOT (commit()));
+    connect(ui->rollbackPushButton, SIGNAL (clicked()), this, SLOT (rollback()));
 
     vector<string> ejmTabla;
     ejmTabla.push_back("NOMBRE,ARTISTA,DURACION,ALBUM");
@@ -110,16 +112,27 @@ void MainWindow::instruccionInsert(vector<string> vectorInstruccion){
 void MainWindow::instruccionSelect(vector<string> vectorInstruccion){
     vector<string> vectorSlots;
     boost::split(vectorSlots, vectorInstruccion[1], boost::is_any_of(","));
-    QString varWhere = QString::fromStdString(vectorInstruccion[2]);
-    QString valorWhere = QString::fromStdString(vectorInstruccion[3]);
     Lista<QString>* listaSlots = new Lista<QString>;
-    for(int i = 0; i < vectorSlots.size(); i++)
-        listaSlots->push_back(QString::fromStdString(vectorSlots[i]));
+    if(vectorSlots[0] != "*"){
+        for(int i = 0; i < vectorSlots.size(); i++)
+            listaSlots->push_back(QString::fromStdString(vectorSlots[i]));
+    }
     Lista<QString>* listaVarWhere = new Lista<QString>;
-    Lista<QString>* listaValorWhere = new Lista<QString>;
-    listaVarWhere->push_back(varWhere);
-    listaValorWhere->push_back(valorWhere);
-    QString json = JsonSerializer::selectJSON(listaSlots, listaVarWhere, listaValorWhere, new Lista<QString>);
+    Lista<QString>* listaValorWhereA = new Lista<QString>;
+    Lista<QString>* listaValorWhereB = new Lista<QString>;
+    if(vectorInstruccion.size() > 2){
+        QString varWhere = QString::fromStdString(vectorInstruccion[2]);
+        listaVarWhere->push_back(varWhere);
+        vector<string> vectorValoresWhere;
+        boost::split(vectorValoresWhere, vectorInstruccion[3], boost::is_any_of(","));
+        QString valorWhereA = QString::fromStdString(vectorValoresWhere[0]);
+        listaValorWhereA->push_back(valorWhereA);
+        if(vectorValoresWhere.size() > 1){
+            QString valorWhereB = QString::fromStdString(vectorValoresWhere[1]);
+            listaValorWhereB->push_back(valorWhereB);
+        }
+    }
+    QString json = JsonSerializer::selectJSON(listaSlots, listaVarWhere, listaValorWhereA, listaValorWhereB);
     ServerLibrary* server = ServerLibrary::getServer();
     server->SELECT(json);
 }
@@ -189,6 +202,14 @@ void MainWindow::insertarFilas(vector<string> elementos){
             ui->metadataTable->setItem(i, j, new QTableWidgetItem(QString::fromStdString(fila[j])));
         fila.clear();
     }
+}
+
+void MainWindow::commit(){
+
+}
+
+void MainWindow::rollback(){
+
 }
 
 
