@@ -7,6 +7,7 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Base64;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -50,32 +51,32 @@ public class RAIDRestService {
         ----------------------------------------------------------------------------------*/
 
     /**
-     * It is responsible for inserting new images in the RAID and in the
-     * metadata Database
-     * url: http://ip_addr:port/MILIB_RAID_war_exploded/api/raid/insert
+     * It is responsible for inserting new images in the RAID and divide the image logically in
+     * each disk (directory file)
+     * url: http://ip_addr:port/MILIB_RAID_war_exploded/api/raid/write
      *
      * @param incomingData Receive a JSON that contains the metadata of the image
      * @return Respond with the status of the request
      * @throws JSONException
      */
     @POST
-    @Path("/insert")
+    @Path("/write")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response INSERT(InputStream incomingData) throws JSONException {
+    public Response WRITE(InputStream incomingData) throws JSONException {
 
         // Convert the input in to an String
         String recvData = inputToString(incomingData);
 
         // Show in console the received data
-        System.out.println("[INSERT] Data Received: "+ recvData);
+        System.out.println("[WRITE] Image Received: "+ recvData);
 
-        // In this part the insert actions are performed
+        // In this part the write in disk actions are performed
 
         JSONObject json = new JSONObject();
         json.put("Status","OK");
 
-        System.out.println("[INSERT] Data sent: "+ json.toString());
+        System.out.println("[WRITE] Data sent: "+ json.toString());
 
         // Return HTTP response 200 in case of success
         return Response.status(201).entity(json.toString()).build();
@@ -84,29 +85,32 @@ public class RAIDRestService {
     /**
      * Method in charge of returning a JSON with the requested image from the client, under the
      * criterion of the parameters of the metadata
-     * url: http://ip_addr:port/MILIB_RAID_war_exploded/api/raid/select
-     * @param incomingData  Receive a json with the information of the requested image
+     * url: http://ip_addr:port/MILIB_RAID_war_exploded/api/raid/seek
+     * @param incomingData  Receive a json with the information of the requested images
      * @return Returns the requested image and metadata in JSON format
      * @throws JSONException
      */
-    @GET
-    @Path("/select")
+    @POST
+    @Path("/seek")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response SELECT(InputStream incomingData) throws JSONException {
+    public Response SEEK(InputStream incomingData) throws JSONException {
 
         // Convert the input in to an String
         String recvData = inputToString(incomingData);
 
         // Show in console the received data
-        System.out.println("[SELECT] Data Received: " + recvData);
+        System.out.println("[SEEK] Data Received: " + recvData);
 
-        // In this part the select actions are performed
+        /* In this part the select image disk actions are performed,
+           this will return the full original image even if one of
+           those disk are disabled. */
+
+        // Sends the image on Base64 format to complete the request!
         JSONObject json = new JSONObject();
-        json.put("valueC", "a");
-        json.put("valueD", "b");
-
-        System.out.println("[SELECT] Data sent: " + json.toString());
+        String img64 = Base64.getEncoder().encodeToString("image1".getBytes());
+        json.put("image", "a");
+        System.out.println("[SEEK] Data sent: " + json.toString());
 
         // Return HTTP response 200 in case of success
         return Response.status(200).entity(json.toString()).build();
@@ -119,7 +123,7 @@ public class RAIDRestService {
      * @return Indicates whether the image could be deleted
      * @throws JSONException
      */
-    @DELETE
+    @POST
     @Path("/delete")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response DELETE(InputStream incomingData) throws JSONException{
@@ -151,7 +155,7 @@ public class RAIDRestService {
      * url: http://ip_addr:port/MILIB_RAID_war_exploded/api/raid/commit
      * @return Returns a text indicating if the commit was successful
      */
-    @PUT
+    @POST
     @Path("/commit")
     @Produces(MediaType.TEXT_PLAIN)
     public Response COMMIT(){
@@ -159,7 +163,7 @@ public class RAIDRestService {
         //Commit stuff here
 
         System.out.println("[COMMIT] Commit Request");
-        String ans = "Commit Successful!";
+        String ans = " RAID Commit Successful!";
 
         return Response.status(200).entity(ans).build();
     }
@@ -169,14 +173,14 @@ public class RAIDRestService {
      * url: http://ip_addr:port/MILIB_RAID_war_exploded/api/raid/back
      * @return Returns a text indicating if the rollback was successful
      */
-    @PUT
+    @POST
     @Path("/back")
     @Produces(MediaType.TEXT_PLAIN)
     public Response BACK(){
 
         //Commit stuff here
         System.out.println("[BACK] Rollback Request");
-        String ans = "Rollback Success!";
+        String ans = "RAID Rollback Success!";
 
         return Response.status(200).entity(ans).build();
     }

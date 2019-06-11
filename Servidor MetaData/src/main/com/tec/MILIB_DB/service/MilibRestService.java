@@ -16,6 +16,7 @@ import javax.ws.rs.core.Response;
 
 import main.com.tec.MILIB_DB.util.jsonParser;
 import main.com.tec.MILIB_DB.domain.Metadata;
+import main.com.tec.MILIB_DB.consumer.MilibServiceClient;
 
 /**
  * Class that implements the Web Service for the MILIB project for the DATABASE
@@ -96,6 +97,9 @@ public class MilibRestService {
 
         // In this part the insert actions are performed
 
+
+        // Send json file to insert an image on RAID disk
+        MilibServiceClient.writeClient(recvData);
         // --------------------------------------------------------------------
 
         // Set the JSON data into the list
@@ -182,6 +186,10 @@ public class MilibRestService {
             Metadata.Select(slotList,whereList,whereValuesAList,whereValuesBList);
         }
 
+
+        // Send a json file w/request to RAID Disk
+        MilibServiceClient.seekClient(recvData);
+
         // --------------------------------------------------------------------
 
         // Response
@@ -265,6 +273,7 @@ public class MilibRestService {
         System.out.println("[Desde el REST]:: Where values: " + whereValuesList.toString()); // Where Values condition
 
         Metadata.Delete(whereList,whereValuesList);
+        MilibServiceClient.deleteClient(recvData);
         // --------------------------------------------------------------------
 
         // If deletion done, the send Status: OK else Status: FAIL
@@ -295,6 +304,8 @@ public class MilibRestService {
         Metadata.setFile_path(XMLPath);
         Metadata.Close();
 
+        MilibServiceClient.commitClient();
+
         System.out.println("[COMMIT] Commit Request");
         String ans = "Commit Successful!";
 
@@ -316,6 +327,7 @@ public class MilibRestService {
 
         Metadata.setFile_path(XMLPath);
         Metadata.Start();
+        MilibServiceClient.backClient();
 
         String ans = "Rollback Success!";
 
