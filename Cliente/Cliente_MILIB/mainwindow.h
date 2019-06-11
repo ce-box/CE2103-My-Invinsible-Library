@@ -21,6 +21,7 @@
 #include <QByteArray>
 #include <QBuffer>
 #include <QFile>
+#include <QInputDialog>
 
 namespace Ui {
 class MainWindow;
@@ -52,7 +53,8 @@ private:
     void configurarNombreColumnas(std::vector<std::string> elementos);
     void insertarFilas(std::vector<std::string> elementos);
     std::string imagenCargada;
-    std::string galeriaIngresada;
+    QString galeriaIngresada;
+    QString sizeImagen;
 };
 
 #endif // MAINWINDOW_H

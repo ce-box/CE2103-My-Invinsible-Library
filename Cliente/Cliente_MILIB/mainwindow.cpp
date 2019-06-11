@@ -45,8 +45,12 @@ void MainWindow::abrirExploradorArchivos(){
     QStringList direccionImagenes = QFileDialog::getOpenFileNames(this, tr("Abrir Imagen/Galería"),"/home",tr("Imágenes PNG (*.png)"));
     QString imgDireccion = direccionImagenes[0];
 
-    QImage imagen;
+    QPixmap imagen;
     imagen.load(imgDireccion, "PNG");
+
+    QFile archivo(imgDireccion);
+    sizeImagen = QString::number(archivo.size()/(1000000.0));
+    qDebug()<<sizeImagen;
 
     QByteArray byteArray;
     QBuffer buffer(&byteArray);
@@ -55,6 +59,8 @@ void MainWindow::abrirExploradorArchivos(){
     QByteArray byteArray64 = byteArray.toBase64();
     string data = byteArray64.toStdString();
     imagenCargada = data;
+
+    galeriaIngresada = QInputDialog::getText(this, "Galería", "Ingrese el nombre de la galería a la que pertenece la imagen:");
 
     //visualizarImagen(data);
 }
@@ -94,6 +100,7 @@ void MainWindow::obtenerInputIDE(){
         instruccionUpdate(vectorInstruccion);
         break;
     default:
+        manejarError(numeroInstruccion-4);
         break;
     }
 }
@@ -115,10 +122,18 @@ void MainWindow::instruccionInsert(vector<string> vectorInstruccion){
         listaSlots->push_back(QString::fromStdString(vectorSlots[i]));
         listaValues->push_back(QString::fromStdString(vectorValues[i]));
     }
+    listaSlots->push_back("galeria");
+    listaValues->push_back(galeriaIngresada);
+    listaSlots->push_back("size");
+    listaValues->push_back(sizeImagen);
 
     QString json = JsonSerializer::insertJSON(listaSlots, listaValues);
     ServerLibrary* server = ServerLibrary::getServer();
     server->INSERT(json);
+
+    imagenCargada = "";
+    galeriaIngresada = "";
+    sizeImagen = "";
 }
 
 void MainWindow::instruccionSelect(vector<string> vectorInstruccion){
