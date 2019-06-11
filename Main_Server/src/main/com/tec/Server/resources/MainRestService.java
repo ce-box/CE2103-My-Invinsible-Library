@@ -58,99 +58,131 @@ public class MainRestService {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response START(InputStream incomingData){
 
-        Consumer.START();
+        Consumer.startClient();
         return Response.status(200).build();
     }
 
     /**
      * It is responsible for inserting new images in the RAID and in the
      * metadata Database
-     * url: http://localhost:8081/Main_Server_war_exploded/api/server/database/insert
+     * url: http://localhost:8081/Main_Server_war_exploded/api/server/insert
      *
      * @param incomingData Receive a JSON that contains the metadata of the image
      * @return Respond with the status of the request
      */
     @POST
-    @Path("database/insert")
+    @Path("/insert")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response DB_INSERT(InputStream incomingData){
+    public Response serverInsert(InputStream incomingData){
 
         // Convert the input in to an String
         String recvData = inputToString(incomingData);
 
-        String resp = Consumer.DB_INSERT(recvData);
+        String resp = Consumer.insertClient(recvData);
 
         // Return HTTP response 200 in case of success
-        return Response.status(201).entity(resp).build();
+        return Response.status(200).entity(resp).build();
     }
 
-    /**
-     * It is responsible for inserting new images in the RAID and in the
-     * metadata Database
-     * url: http://localhost:8081/Main_Server_war_exploded/api/server/raid/insert
-     *
-     * @param incomingData Receive a JSON that contains the metadata of the image
-     * @return Respond with the status of the request
-     */
-    @POST
-    @Path("raid/insert")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response RAID_INSERT(InputStream incomingData){
 
-        // Convert the input in to an String
-        String recvData = inputToString(incomingData);
-
-        String resp = Consumer.RAID_INSERT(recvData);
-
-        // Return HTTP response 200 in case of success
-        return Response.status(201).entity(resp).build();
-    }
 
     /**
      * Method in charge of returning a JSON with the requested image from the client, under the
      * criterion of the parameters of the metadata
-     * url: http://ip_addr:port/MILIB_Servidor_war_exploded/api/database/select
+     * url: http://localhost:8081/Main_Server_war_exploded/api/server/select
      * @param incomingData  Receive a json with the information of the requested image
      * @return Returns the requested image and metadata in JSON format
      */
 
     @GET
-    @Path("database/select")
+    @Path("/select")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response DB_SELECT(InputStream incomingData){
+    public Response serverSelect(InputStream incomingData){
 
         // Convert the input in to an String
         String recvData = inputToString(incomingData);
 
-        String resp = Consumer.DB_SELECT(recvData);
+        String resp = Consumer.selectClient(recvData);
 
         // Return HTTP response 200 in case of success
         return Response.status(200).entity(resp).build();
     }
 
     /**
-     * Method in charge of returning a JSON with the requested image from the client, under the
-     * criterion of the parameters of the metadata
-     * url: http://ip_addr:port/MILIB_Servidor_war_exploded/api/database/select
-     * @param incomingData  Receive a json with the information of the requested image
-     * @return Returns the requested image and metadata in JSON format
+     * Url : http://localhost:8081/Main_Server_war_exploded/api/server/update
+     * @param incomingData
+     * @return
      */
-
-    @GET
-    @Path("raid/select")
+    @PUT
+    @Path("/update")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response RAID_SELECT(InputStream incomingData){
+    public Response serverUpdate(InputStream incomingData){
 
         // Convert the input in to an String
         String recvData = inputToString(incomingData);
 
-        String resp = Consumer.RAID_SELECT(recvData);
+        String resp = Consumer.updateClient(recvData);
 
         // Return HTTP response 200 in case of success
         return Response.status(200).entity(resp).build();
     }
+
+    /**
+     * Url : http://localhost:8081/Main_Server_war_exploded/api/server/delete
+     * @param incomingData
+     * @return
+     */
+    @DELETE
+    @Path("/delete")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response serverDelete(InputStream incomingData){
+
+        // Convert the input in to an String
+        String recvData = inputToString(incomingData);
+
+        String resp = Consumer.deleteClient(recvData);
+
+        // Return HTTP response 200 in case of success
+        return Response.status(200).entity(resp).build();
+    }
+
+    /**
+     * Url : http://localhost:8081/Main_Server_war_exploded/api/server/commit
+     * @param incomingData
+     * @return
+     */
+    @PUT
+    @Path("/commit")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response serverCommit(InputStream incomingData){
+
+        Consumer.commitClient();
+
+        // Return HTTP response 200 in case of success
+        return Response.status(200).build();
+    }
+
+    /**
+     * Url : http://localhost:8081/Main_Server_war_exploded/api/server/back
+     * @param incomingData
+     * @return
+     */
+    @PUT
+    @Path("/back")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response serverBack(InputStream incomingData){
+
+        Consumer.backClient();
+
+        // Return HTTP response 200 in case of success
+        return Response.status(200).build();
+    }
+
+
 }
