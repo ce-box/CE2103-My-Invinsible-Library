@@ -50,7 +50,7 @@ public class Metadata {
         ArrayList<String> L2=new ArrayList<>();
         L2.add("ID");
         ArrayList<String> L3=new ArrayList<>();
-        L3.add("1");
+        L3.add("10");
         Metadata.Select(L1,L2,L3,L4);
         System.out.println(Metadata.getSelectList() );
         Metadata.Close();
@@ -305,8 +305,9 @@ public class Metadata {
                     break;
                 }
             }
-            SelectList+="-";
+
             if (!Where) continue;
+            SelectList+="-";
             for (String slot : Slots) {
                 System.out.format("%-15s", student.getChild(slot).getText());
                 SelectList+=student.getChild(slot).getText()+",";
@@ -359,8 +360,8 @@ public class Metadata {
                 }
             }
 
-            SelectList+="-";
             if (!Where) continue;
+            SelectList+="-";
             for (String slot : Slots) {
                 System.out.format("%-15s", student.getChild(slot).getText());
                 SelectList+=student.getChild(slot).getText()+",";
