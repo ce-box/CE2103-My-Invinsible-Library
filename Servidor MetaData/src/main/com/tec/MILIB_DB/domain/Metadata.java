@@ -28,19 +28,33 @@ public class Metadata {
 
     private static ArrayList<String> Aux;
 
-    public String getSelectList() {
+    public static String getSelectList() {
         return SelectList;
     }
 
-    private String SelectList;
+    private static String SelectList;
 
-    private static String file_path="/home/esteban/Documentos/TEC/1S 2019/Algoritmos y estructuras de datos II/4. Proyectos" +
-            "/Proyecto #3/Source/MyInvensibleLibrary/Servidor MetaData/XML_Metadata/input.xml";
+    private static String file_path="/home/juan/Documentos/Proyecto3/Servidor MetaData/XML_Metadata/input.xml";
 
     public static void setFile_path(String file_path){
         Metadata.file_path = file_path;
     }
 
+    public static void main(String[] args){
+        Metadata.Start();
+        ArrayList<String> L1=new ArrayList<>();
+        L1.add("date");
+        L1.add("name");
+        ArrayList<String> L4=new ArrayList<>();
+        L4.add("7");
+        ArrayList<String> L2=new ArrayList<>();
+        L2.add("ID");
+        ArrayList<String> L3=new ArrayList<>();
+        L3.add("1");
+        Metadata.Select(L1,L2,L3,L4);
+        System.out.println(Metadata.getSelectList() );
+        Metadata.Close();
+    }
     /**
      * Carga el ID global guardado [BACK]
      */
@@ -198,18 +212,28 @@ public class Metadata {
 
         ArrayList<String> Slots=Aux;
 
+        SelectList="";
+
         for (String slot: Slots) {
+            SelectList+=slot+",";
             System.out.format("%-15s", slot);
         }
+        SelectList = SelectList.substring(0, SelectList.length() - 1);
         System.out.println();
 
 
         for (Element student : studentList) {
+            SelectList+="-";
             for (String slot : Slots) {
                 System.out.format("%-15s", student.getChild(slot).getText());
+                SelectList+=student.getChild(slot).getText()+",";
             }
             System.out.println();
+            SelectList = SelectList.substring(0, SelectList.length() - 1);
         }
+
+
+
     }
 
     /**
@@ -226,18 +250,24 @@ public class Metadata {
             Slots=Aux;
         }
 
+        SelectList="";
 
         for (String slot: Slots) {
+            SelectList+=slot+",";
             System.out.format("%-15s", slot);
         }
+        SelectList = SelectList.substring(0, SelectList.length() - 1);
         System.out.println();
 
 
         for (Element student : studentList) {
+            SelectList+="-";
             for (String slot : Slots) {
                 System.out.format("%-15s", student.getChild(slot).getText());
+                SelectList+=student.getChild(slot).getText()+",";
             }
             System.out.println();
+            SelectList = SelectList.substring(0, SelectList.length() - 1);
         }
     }
 
@@ -257,10 +287,13 @@ public class Metadata {
             Slots=Aux;
         }
 
+        SelectList="";
 
         for (String slot: Slots) {
+            SelectList+=slot+",";
             System.out.format("%-15s", slot);
         }
+        SelectList = SelectList.substring(0, SelectList.length() - 1);
         System.out.println();
 
         for (Element student : studentList) {
@@ -272,13 +305,14 @@ public class Metadata {
                     break;
                 }
             }
-
-
+            SelectList+="-";
             if (!Where) continue;
             for (String slot : Slots) {
                 System.out.format("%-15s", student.getChild(slot).getText());
+                SelectList+=student.getChild(slot).getText()+",";
             }
             System.out.println();
+            SelectList = SelectList.substring(0, SelectList.length() - 1);
         }
     }
 
@@ -300,9 +334,13 @@ public class Metadata {
         }
 
 
+        SelectList="";
+
         for (String slot: Slots) {
+            SelectList+=slot+",";
             System.out.format("%-15s", slot);
         }
+        SelectList = SelectList.substring(0, SelectList.length() - 1);
         System.out.println();
 
         for (Element student : studentList) {
@@ -321,11 +359,14 @@ public class Metadata {
                 }
             }
 
+            SelectList+="-";
             if (!Where) continue;
             for (String slot : Slots) {
                 System.out.format("%-15s", student.getChild(slot).getText());
+                SelectList+=student.getChild(slot).getText()+",";
             }
             System.out.println();
+            SelectList = SelectList.substring(0, SelectList.length() - 1);
         }
     }
 
