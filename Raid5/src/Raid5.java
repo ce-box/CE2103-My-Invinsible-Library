@@ -2,6 +2,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -46,6 +48,42 @@ public class Raid5 {
                 }
             }
         }
+    }
+
+    public String obtenerImagen(String id) throws IOException {
+        String imagen="";
+        String data1="";
+        String data2="";
+        String data3="";
+        String data[]=new String[3];
+        for (int i = 0; i <Discos.length ; i++) {
+
+            File[] contents = this.Discos[i].listFiles();
+            for (int j = 0; j < contents.length ; j++) {
+                String archivo=contents[j].toString();
+                boolean parte1 = archivo.indexOf(id+"1") !=-1? true: false;
+                boolean parte2 = archivo.indexOf(id+"2") !=-1? true: false;
+                boolean parte3 = archivo.indexOf(id+"3") !=-1? true: false;
+                if(parte1){
+                    File file = new File(archivo);
+                    String path= file.toString();
+                    data1 = new String(Files.readAllBytes(Paths.get(path)), StandardCharsets.UTF_8);
+
+                }
+                if(parte2){
+                    File file = new File(archivo);
+                    String path= file.toString();
+                    data2 = new String(Files.readAllBytes(Paths.get(path)), StandardCharsets.UTF_8);
+                }
+                if(parte3){
+                    File file = new File(archivo);
+                    String path= file.toString();
+                    data3 = new String(Files.readAllBytes(Paths.get(path)), StandardCharsets.UTF_8);
+                }
+            }
+        }
+        imagen=data1+data2+data3;
+        return imagen;
     }
     //######################################################################################################
     //ESTE METODO LO QUE HACE ES   BUSCAR ARCHIVOS  QUE CONTENGAN EL ID INGRESADO
