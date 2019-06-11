@@ -205,11 +205,13 @@ void MainWindow::insertarFilas(vector<string> elementos){
 }
 
 void MainWindow::commit(){
-
+    ServerLibrary* server = ServerLibrary::getServer();
+    server->COMMIT();
 }
 
 void MainWindow::rollback(){
-
+    ServerLibrary* server = ServerLibrary::getServer();
+    server->BACK();
 }
 
 
