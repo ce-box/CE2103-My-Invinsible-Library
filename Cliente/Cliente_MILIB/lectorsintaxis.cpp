@@ -11,9 +11,9 @@ string LectorSintaxis::manejarInputIDE(){
     string instruccion = obtenerInstruccion();
     vector<string> datosObtenidos;
     if(instruccion == "INSERT")
-        instruccion = manejarInstruccionInsert();
+        instruccion = "1-" + manejarInstruccionInsert();
     else if(instruccion == "SELECT")
-        instruccion = manejarInstruccionSelect();
+        instruccion = "2-" + manejarInstruccionSelect();
     else if(instruccion == "DELETE"){
         instruccion = manejarInstruccionDelete();
         boost::split(datosObtenidos, instruccion, boost::is_any_of(","));
@@ -26,11 +26,10 @@ string LectorSintaxis::manejarInputIDE(){
         }
         where = where.substr(0, where.size()-1);
         valores = valores.substr(0, valores.size()-1);
-        instruccion = where + "-" + valores;
+        instruccion = "3-" + where + "-" + valores;
     }
     else if(instruccion == "UPDATE"){
         instruccion = manejarInstruccionUpdate();
-        qDebug()<<instruccion.c_str();
         boost::split(datosObtenidos, instruccion, boost::is_any_of("-"));
         string set = datosObtenidos[0];
         string where = datosObtenidos[1];
@@ -50,9 +49,8 @@ string LectorSintaxis::manejarInputIDE(){
         boost::split(datosObtenidos, where, boost::is_any_of("="));
         string variableWhere = datosObtenidos[0];
         string valorWhere = datosObtenidos[1];
-        instruccion = columnas + "-" + valores + "-" + variableWhere + "-" + valorWhere;
+        instruccion = "4-" + columnas + "-" + valores + "-" + variableWhere + "-" + valorWhere;
     }
-    qDebug()<<instruccion.c_str();
     return instruccion;
 }
 
@@ -249,7 +247,7 @@ string LectorSintaxis::obtenerCondicionales(){
 }
 
 string LectorSintaxis::manejarInstruccionDelete(){
-    if(inputIDE.substr(0, 20) != "FROM METADATA WHERE "){
+    if(inputIDE.substr(0, 19) != "FROM METADATA WHERE"){
         idError = 11;
         return "ERROR";
     }

@@ -110,16 +110,27 @@ void MainWindow::instruccionInsert(vector<string> vectorInstruccion){
 void MainWindow::instruccionSelect(vector<string> vectorInstruccion){
     vector<string> vectorSlots;
     boost::split(vectorSlots, vectorInstruccion[1], boost::is_any_of(","));
-    QString varWhere = QString::fromStdString(vectorInstruccion[2]);
-    QString valorWhere = QString::fromStdString(vectorInstruccion[3]);
     Lista<QString>* listaSlots = new Lista<QString>;
-    for(int i = 0; i < vectorSlots.size(); i++)
-        listaSlots->push_back(QString::fromStdString(vectorSlots[i]));
-    Lista<QString>* listaVarWhere = new Lista<QString>;
-    Lista<QString>* listaValorWhere = new Lista<QString>;
-    listaVarWhere->push_back(varWhere);
-    listaValorWhere->push_back(valorWhere);
-    QString json = JsonSerializer::selectJSON(listaSlots, listaVarWhere, listaValorWhere, new Lista<QString>);
+    if(vectorSlots[0] != "*"){
+        for(int i = 0; i < vectorSlots.size(); i++)
+            listaSlots->push_back(QString::fromStdString(vectorSlots[i]));
+    }
+    Lista<QString>* listaVarWhere = new Lista<QString>; 
+    Lista<QString>* listaValorWhereA = new Lista<QString>; 
+    Lista<QString>* listaValorWhereB = new Lista<QString>; 
+    if(vectorInstruccion > 2){
+        QString varWhere = QString::fromStdString(vectorInstruccion[2]);
+        listaVarWhere->push_back(varWhere);
+        vector<string> vectorValoresWhere;
+        boost::split(vectorValoresWhere, vectorInstruccion[3], boost::is_any_of(","));
+        QString valorWhereA = QString::fromStdString(vectorValoresWhere[0]);
+        listaValorWhereA->push_back(valorWhereA);
+        if(vectorValoresWhere.size() > 1){
+            QString valorWhereB = QString::fromStdString(vectorValoresWhere[1]);
+            listaValorWhereB->push_back(valorWhereB);
+        }
+    }    
+    QString json = JsonSerializer::selectJSON(listaSlots, listaVarWhere, listaValorWhereA, new Lista<QString>);
     ServerLibrary* server = ServerLibrary::getServer();
     server->SELECT(json);
 }

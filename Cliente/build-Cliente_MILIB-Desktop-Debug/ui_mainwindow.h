@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.7.1
+** Created by: Qt User Interface Compiler version 5.9.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -36,6 +36,8 @@ public:
     QTableWidget *metadataTable;
     QPushButton *subirImagenPushButton;
     QPushButton *visualizarImagenPushButton;
+    QPushButton *rollbackPushButton;
+    QPushButton *commitPushButton;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -71,6 +73,12 @@ public:
         visualizarImagenPushButton = new QPushButton(mainFrame);
         visualizarImagenPushButton->setObjectName(QStringLiteral("visualizarImagenPushButton"));
         visualizarImagenPushButton->setGeometry(QRect(40, 260, 191, 41));
+        rollbackPushButton = new QPushButton(mainFrame);
+        rollbackPushButton->setObjectName(QStringLiteral("rollbackPushButton"));
+        rollbackPushButton->setGeometry(QRect(710, 480, 80, 22));
+        commitPushButton = new QPushButton(mainFrame);
+        commitPushButton->setObjectName(QStringLiteral("commitPushButton"));
+        commitPushButton->setGeometry(QRect(620, 480, 80, 22));
         MainWindow->setCentralWidget(centralWidget);
 
         retranslateUi(MainWindow);
@@ -85,6 +93,8 @@ public:
         AppOutputLabel->setText(QApplication::translate("MainWindow", "Application Output", Q_NULLPTR));
         subirImagenPushButton->setText(QApplication::translate("MainWindow", "Subir Imagen/Galer\303\255a", Q_NULLPTR));
         visualizarImagenPushButton->setText(QApplication::translate("MainWindow", "Visualizar imagen seleccionada", Q_NULLPTR));
+        rollbackPushButton->setText(QApplication::translate("MainWindow", "Rollback", Q_NULLPTR));
+        commitPushButton->setText(QApplication::translate("MainWindow", "Commit", Q_NULLPTR));
     } // retranslateUi
 
 };

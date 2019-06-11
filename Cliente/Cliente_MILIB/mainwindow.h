@@ -39,6 +39,10 @@ public:
     void colorearWidget(QWidget* textEdit, QString colorFondo);
     void visualizarImagen(std::string data);
     void insertarEnTabla(std::vector<std::string> elementos);
+    void instruccionInsert(std::vector<std::string> vectorInstruccion);
+    void instruccionSelect(std::vector<std::string> vectorInstruccion);
+    void instruccionDelete(std::vector<std::string> vectorInstruccion);
+    void instruccionUpdate(std::vector<std::string> vectorInstruccion);
     ~MainWindow();
 
 private:

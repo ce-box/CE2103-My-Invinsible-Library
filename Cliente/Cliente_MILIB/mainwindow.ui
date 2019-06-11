@@ -114,6 +114,32 @@
       <string>Visualizar imagen seleccionada</string>
      </property>
     </widget>
+    <widget class="QPushButton" name="rollbackPushButton">
+     <property name="geometry">
+      <rect>
+       <x>710</x>
+       <y>480</y>
+       <width>80</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Rollback</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="commitPushButton">
+     <property name="geometry">
+      <rect>
+       <x>620</x>
+       <y>480</y>
+       <width>80</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Commit</string>
+     </property>
+    </widget>
    </widget>
   </widget>
  </widget>
