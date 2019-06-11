@@ -9,12 +9,16 @@ MainWindow::MainWindow(QWidget *parent) :
 
     imagenCargada = "";
     galeriaIngresada = "";
+    sizeImagen = "";
 
     colorearWidget(ui->ideTextEdit, "#373753");
     colorearWidget(ui->appOutputTextEdit, "#373753");
 
     ui->mainFrame->setStyleSheet(".QFrame { background-color : #464646 } ");
     ui->AppOutputLabel->setStyleSheet("QLabel { color : white }");
+    ui->appOutputTextEdit->setTextColor("#ff0000");
+    ui->appOutputTextEdit->setFontPointSize(16);
+    ui->ideTextEdit->setFontPointSize(16);
 
     connect(ui->subirImagenPushButton, SIGNAL (clicked()), this, SLOT (abrirExploradorArchivos()));
     connect(ui->runPushButton, SIGNAL (clicked()), this, SLOT (obtenerInputIDE()));
@@ -26,11 +30,11 @@ MainWindow::MainWindow(QWidget *parent) :
     server->setRaid("/MILIB_RAID_war_exploded/api/raid", "192.168.100.20");
     server->START();
 
-    vector<string> ejmTabla;
-    ejmTabla.push_back("NOMBRE,ARTISTA,DURACION,ALBUM");
-    ejmTabla.push_back("Karma Police,Radiohead,4:27,OK Computer");
-    ejmTabla.push_back("De Musica Ligera,Soda Estereo,4:27,De Musica Ligera");
-    insertarEnTabla(ejmTabla);
+//    vector<string> ejmTabla;
+//    ejmTabla.push_back("NOMBRE,ARTISTA,DURACION,ALBUM");
+//    ejmTabla.push_back("Karma Police,Radiohead,4:27,OK Computer");
+//    ejmTabla.push_back("De Musica Ligera,Soda Estereo,4:27,De Musica Ligera");
+//    insertarEnTabla(ejmTabla);
 }
 
 void MainWindow::colorearWidget(QWidget* widget, QString colorFondo){
@@ -50,7 +54,6 @@ void MainWindow::abrirExploradorArchivos(){
 
     QFile archivo(imgDireccion);
     sizeImagen = QString::number(archivo.size()/(1000000.0));
-    qDebug()<<sizeImagen;
 
     QByteArray byteArray;
     QBuffer buffer(&byteArray);
@@ -78,14 +81,13 @@ void MainWindow::visualizarImagen(string data64){
 }
 
 void MainWindow::obtenerInputIDE(){
+    ui->appOutputTextEdit->setText("");
     string inputIDE = ui->ideTextEdit->toPlainText().toStdString();
     LectorSintaxis* lector = new LectorSintaxis(inputIDE);
     string instruccion = lector->manejarInputIDE();
-    qDebug()<<instruccion.c_str();
     vector<string> vectorInstruccion;
     boost::split(vectorInstruccion, instruccion, boost::is_any_of("-"));
     int numeroInstruccion = stoi(vectorInstruccion[0]);
-
     switch (numeroInstruccion) {
     case 1:
         instruccionInsert(vectorInstruccion);
@@ -107,8 +109,7 @@ void MainWindow::obtenerInputIDE(){
 
 void MainWindow::instruccionInsert(vector<string> vectorInstruccion){
     if(imagenCargada == ""){
-        qDebug()<<"DEBE CARGAR UNA IMAGEN ANTES DE ENVIAR INSTRUCCION INSERT.";
-        return;
+        return manejarError(13);
     }
     vector<string> vectorSlots;
     boost::split(vectorSlots, vectorInstruccion[1], boost::is_any_of(","));
@@ -206,6 +207,58 @@ void MainWindow::instruccionUpdate(vector<string> vectorInstruccion){
     QString json = JsonSerializer::updateJSON(listaSlots, listaValues, listaVarWhere, listaValorWhere);
     ServerLibrary* server = ServerLibrary::getServer();
     server->UPDATE(json);
+}
+
+void MainWindow::manejarError(int numeroError){
+    QString mensajeError = "Syntax Error: ";
+    switch(numeroError){
+    case 1:
+        mensajeError += "SQL Instruction was not found.";
+        break;
+    case 2:
+        mensajeError += "In INSERT Instruction\n\"INTO METADATA\" syntax instruction was not found.";
+        break;
+    case 3:
+        mensajeError += "In INSERT Instruction\nColumn names were not found.";
+        break;
+    case 4:
+        mensajeError += "In INSERT Instruction\nYou must close parenthesis.";
+        break;
+    case 5:
+        mensajeError += "In INSERT Instruction\n\"VALUES\" syntax instruction was not found.";
+        break;
+    case 6:
+        mensajeError += "Instruction termination was not found. Must close instruction with \";\".";
+        break;
+    case 7:
+        mensajeError += "In SELECT Instruction\nColumn names were not found.";
+        break;
+    case 8:
+        mensajeError += "\"FROM METADATA\" syntax instruction was not found.";
+        break;
+    case 9:
+        mensajeError += "\"WHERE\" syntax instruction was not found.";
+        break;
+    case 10:
+        mensajeError += "\"WHERE\" column name was not found.";
+        break;
+    case 11:
+        mensajeError += "In DELETE Instruction\n\"FROM METADATA WHERE\" syntax instruction was not found.";
+        break;
+    case 12:
+        mensajeError += "In UPDATE Instruction\n\"METADATA\" or \"SET\" syntax instructions were not found.";
+        break;
+    case 13:
+        mensajeError = "ERROR: You must upload an image before INSERT instruction.\nPlease, click \"Upload Image\" and select an image to continue.";
+        break;
+    case 14:
+        mensajeError = "ERROR: You must close string value.";
+        break;
+    default:
+        mensajeError += "Undefined";
+        break;
+    }
+    ui->appOutputTextEdit->setText(mensajeError);
 }
 
 void MainWindow::insertarEnTabla(vector<string> elementos){

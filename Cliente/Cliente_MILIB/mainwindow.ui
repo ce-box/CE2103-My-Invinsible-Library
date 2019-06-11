@@ -98,7 +98,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>Subir Imagen/Galería</string>
+      <string>Upload Image</string>
      </property>
     </widget>
     <widget class="QPushButton" name="visualizarImagenPushButton">
@@ -111,7 +111,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>Visualizar imagen seleccionada</string>
+      <string>Open Selected Image</string>
      </property>
     </widget>
     <widget class="QPushButton" name="rollbackPushButton">

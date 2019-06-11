@@ -46,6 +46,7 @@ public:
     void instruccionSelect(std::vector<std::string> vectorInstruccion);
     void instruccionDelete(std::vector<std::string> vectorInstruccion);
     void instruccionUpdate(std::vector<std::string> vectorInstruccion);
+    void manejarError(int numeroError);
     ~MainWindow();
 
 private:

@@ -91,8 +91,8 @@ public:
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", Q_NULLPTR));
         runPushButton->setText(QApplication::translate("MainWindow", "Run", Q_NULLPTR));
         AppOutputLabel->setText(QApplication::translate("MainWindow", "Application Output", Q_NULLPTR));
-        subirImagenPushButton->setText(QApplication::translate("MainWindow", "Subir Imagen/Galer\303\255a", Q_NULLPTR));
-        visualizarImagenPushButton->setText(QApplication::translate("MainWindow", "Visualizar imagen seleccionada", Q_NULLPTR));
+        subirImagenPushButton->setText(QApplication::translate("MainWindow", "Upload Image", Q_NULLPTR));
+        visualizarImagenPushButton->setText(QApplication::translate("MainWindow", "Open Selected Image", Q_NULLPTR));
         rollbackPushButton->setText(QApplication::translate("MainWindow", "Rollback", Q_NULLPTR));
         commitPushButton->setText(QApplication::translate("MainWindow", "Commit", Q_NULLPTR));
     } // retranslateUi
