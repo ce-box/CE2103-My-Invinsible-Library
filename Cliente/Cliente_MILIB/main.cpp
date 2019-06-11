@@ -17,13 +17,13 @@ void insertTest1 (ServerLibrary* server){
     Lista<QString> *valuesList =new Lista<QString>;
 
     slotsList->push_back("name");
-    //slotsList->push_back("author");
+    slotsList->push_back("author");
     slotsList->push_back("date");
     slotsList->push_back("size");
     //slotsList->push_back("description");
 
     valuesList->push_back("img1");
-    //valuesList->push_back("Esteban");
+    valuesList->push_back("Esteban");
     valuesList->push_back("2012");
     valuesList->push_back("1000");
     //valuesList->push_back("Cool! :)");
@@ -78,7 +78,9 @@ void selectTest1 (ServerLibrary* server){
 
     cout<<jsonQStr.toStdString()<<endl;
 
-    server->SELECT(jsonQStr);
+    QString recv = server->SELECT(jsonQStr);
+
+    qDebug()<<"[QT REC] :: "+ recv;
 }
 
 // Enviando Slot vacío
@@ -195,12 +197,12 @@ int main(int argc, char *argv[])
 
     // Prueba del INSERT -> Funcionan todas las condiciones
     insertTest1(server);
-    //insertTest2(server);
+    insertTest2(server);
 
     server->COMMIT();
 
     // Pruebas del SELECT -> Funcionan todas las condiciones
-    //selectTest1(server);
+    selectTest1(server);
     //selectTest2(server);
     //selectTest3(server);
     //selectTest4(server);

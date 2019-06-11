@@ -30,7 +30,7 @@ import main.com.tec.MILIB_DB.consumer.MilibServiceClient;
 @Path("/database")
 public class MilibRestService {
 
-    String XMLPath = "/home/esteban/Documentos/TEC/1S 2019/Algoritmos y estructuras de datos II/4. Proyectos/" +
+    private String XMLPath = "/home/esteban/Documentos/TEC/1S 2019/Algoritmos y estructuras de datos II/4. Proyectos/" +
             "Proyecto #3/Source/MyInvensibleLibrary/Servidor MetaData/XML_Metadata/input.xml";
 
     /**
@@ -189,16 +189,17 @@ public class MilibRestService {
             Metadata.Select(slotList,whereList,whereValuesAList,whereValuesBList);
         }
 
+        String metadataMatrix = Metadata.getSelectList();
 
         // Send a json file w/request to RAID Disk
         MilibServiceClient.seekClient(recvData);
 
         // --------------------------------------------------------------------
 
-        // Response
+        // Create a new Response w/ the selected data ready to send
         JSONObject json = new JSONObject();
-        json.put("valueC","a");
-        json.put("valueD","b");
+        json.put("MetadataStack",metadataMatrix);
+        json.put("imgStack","b");
 
         System.out.println("[SELECT] Data sent: "+ json.toString());
 

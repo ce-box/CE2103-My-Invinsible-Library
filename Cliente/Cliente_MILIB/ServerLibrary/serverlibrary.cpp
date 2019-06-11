@@ -85,10 +85,10 @@ void ServerLibrary::INSERT(QString MetaJson){
 QString ServerLibrary::SELECT(QString MetaJson){
 
     Client* client = new Client(this->IP,this->Port,this->defaultUrl);
-    client->GET("/select",MetaJson);
+    QString response = client->GET("/select",MetaJson);
 
     delete(client);
-    return "Hi";
+    return response;
 }
 
 // UPDATE

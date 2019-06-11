@@ -1,43 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<<<<<<< HEAD
-<class ID="4">
-=======
-<class ID="6">
->>>>>>> master
+<class ID="3">
   <image1>
     <ID>1</ID>
     <name>img1</name>
-    <author>null</author>
+    <author>Esteban</author>
     <date>2012</date>
     <size>1000</size>
     <description>null</description>
     <galery>null</galery>
   </image1>
-<<<<<<< HEAD
   <image2>
     <ID>2</ID>
-    <name>img1</name>
-    <author>null</author>
-    <date>2012</date>
-    <size>1000</size>
-    <description>null</description>
-  </image2>
-  <image3>
-    <ID>3</ID>
-    <name>img1</name>
-=======
-  <image5>
-    <ID>5</ID>
-    <name>KK</name>
->>>>>>> master
-    <author>null</author>
-    <date>2012</date>
-    <size>null</size>
-    <description>null</description>
-<<<<<<< HEAD
-  </image3>
-=======
+    <name>img2</name>
+    <author>Erick Barrantes</author>
+    <date>1998</date>
+    <size>1024</size>
+    <description>Cool! :)</description>
     <galery>null</galery>
-  </image5>
->>>>>>> master
+  </image2>
 </class>
