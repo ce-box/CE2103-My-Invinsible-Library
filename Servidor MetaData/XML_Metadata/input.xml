@@ -1,35 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class ID="5">
+<class ID="2">
   <image1>
     <ID>1</ID>
-    <name>img1</name>
-    <author>null</author>
-    <date>2012</date>
-    <size>1000</size>
+    <name>pikachuBailando.png</name>
+    <author>Ash Ketchup</author>
+    <date>2019</date>
+    <size>2KB</size>
     <description>null</description>
   </image1>
-  <image2>
-    <ID>2</ID>
-    <name>img2</name>
-    <author>Erick Barrantes</author>
-    <date>1998</date>
-    <size>1024</size>
-    <description>null</description>
-  </image2>
-  <image3>
-    <ID>3</ID>
-    <name>img1</name>
-    <author>null</author>
-    <date>2012</date>
-    <size>1000</size>
-    <description>null</description>
-  </image3>
-  <image4>
-    <ID>4</ID>
-    <name>img2</name>
-    <author>Erick Barrantes</author>
-    <date>1998</date>
-    <size>1024</size>
-    <description>null</description>
-  </image4>
 </class>

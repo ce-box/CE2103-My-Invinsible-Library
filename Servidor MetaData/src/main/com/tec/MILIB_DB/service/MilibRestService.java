@@ -19,7 +19,10 @@ import main.com.tec.MILIB_DB.domain.Metadata;
 
 /**
  * Class that implements the Web Service for the MILIB project for the DATABASE
- * This Web Service run on Port 8080
+ * This Web Service run on Port 8080<br>
+ *
+ * <p><b>ADVICE: </b>Since with the other types of request, all the orders have been
+ * replaced by @POST, which is the only verb with which it works</p>
  * @author Esteban Alvarado Vargas
  * @version alpha 3.5
  */
@@ -129,7 +132,7 @@ public class MilibRestService {
      * @return Returns the requested image and metadata in JSON format
      * @throws JSONException
      */
-    @GET
+    @POST
     @Path("/select")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -198,7 +201,7 @@ public class MilibRestService {
      * @param incomingData Receive a json with the information of the requested image
      * @return Respond with the status of the request
      */
-    @PUT
+    @POST
     @Path("/update")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -240,7 +243,7 @@ public class MilibRestService {
      * @return Indicates whether the image could be deleted
      * @throws JSONException
      */
-    @DELETE
+    @POST
     @Path("/delete")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response DELETE(InputStream incomingData) throws JSONException{
@@ -283,7 +286,7 @@ public class MilibRestService {
      * url: http://ip_addr:port/MILIB_Servidor_war_exploded/api/database/commit
      * @return Returns a text indicating if the commit was successful
      */
-    @PUT
+    @POST
     @Path("/commit")
     @Produces(MediaType.TEXT_PLAIN)
     public Response COMMIT(){
@@ -303,7 +306,7 @@ public class MilibRestService {
      * url: http://ip_addr:port/MILIB_Servidor_war_exploded/api/database/back
      * @return Returns a text indicating if the rollback was successful
      */
-    @PUT
+    @POST
     @Path("/back")
     @Produces(MediaType.TEXT_PLAIN)
     public Response BACK(){
