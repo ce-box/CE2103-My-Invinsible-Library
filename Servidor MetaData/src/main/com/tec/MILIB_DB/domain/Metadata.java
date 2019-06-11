@@ -55,6 +55,21 @@ public class Metadata {
         System.out.println(Metadata.getSelectList() );
         Metadata.Close();
     }
+
+    /**
+     * Toma una lista de slots y se asegura que existan en el xml
+     * @param Slots
+     * @return mensaje de error
+     */
+    public static String VerificarSlots(ArrayList<String> Slots){
+        for (String slot:Slots){
+            if(Aux.indexOf(slot)==-1){
+                return "La columna "+slot+" no existe";
+            }
+        }
+        return "";
+
+    }
     /**
      * Carga el ID global guardado [BACK]
      */
