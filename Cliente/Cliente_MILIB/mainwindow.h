@@ -51,6 +51,8 @@ private:
     Ui::MainWindow *ui;
     void configurarNombreColumnas(std::vector<std::string> elementos);
     void insertarFilas(std::vector<std::string> elementos);
+    std::string imagenCargada;
+    std::string galeriaIngresada;
 };
 
 #endif // MAINWINDOW_H

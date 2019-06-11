@@ -7,6 +7,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow){
     ui->setupUi(this);
 
+    imagenCargada = "";
+    galeriaIngresada = "";
+
     colorearWidget(ui->ideTextEdit, "#373753");
     colorearWidget(ui->appOutputTextEdit, "#373753");
 
@@ -18,16 +21,16 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->commitPushButton, SIGNAL (clicked()), this, SLOT (commit()));
     connect(ui->rollbackPushButton, SIGNAL (clicked()), this, SLOT (rollback()));
 
+//    ServerLibrary* server = ServerLibrary::getServer();
+//    server->setMilib("/MILIB_Servidor_war_exploded/api/database", "192.168.100.20");
+//    server->setRaid("/MILIB_RAID_war_exploded/api/raid", "192.168.100.20");
+//    server->START();
+
     vector<string> ejmTabla;
     ejmTabla.push_back("NOMBRE,ARTISTA,DURACION,ALBUM");
     ejmTabla.push_back("Karma Police,Radiohead,4:27,OK Computer");
     ejmTabla.push_back("De Musica Ligera,Soda Estereo,4:27,De Musica Ligera");
     insertarEnTabla(ejmTabla);
-
-    ServerLibrary* server = ServerLibrary::getServer();
-    server->setMilib("/MILIB_Servidor_war_exploded/api/database", "192.168.100.20");
-    server->setRaid("/MILIB_RAID_war_exploded/api/raid", "192.168.100.20");
-    server->START();
 }
 
 void MainWindow::colorearWidget(QWidget* widget, QString colorFondo){
@@ -51,8 +54,9 @@ void MainWindow::abrirExploradorArchivos(){
 
     QByteArray byteArray64 = byteArray.toBase64();
     string data = byteArray64.toStdString();
+    imagenCargada = data;
 
-    visualizarImagen(data);
+    //visualizarImagen(data);
 }
 
 void MainWindow::visualizarImagen(string data64){
@@ -94,6 +98,10 @@ void MainWindow::obtenerInputIDE(){
 }
 
 void MainWindow::instruccionInsert(vector<string> vectorInstruccion){
+    if(imagenCargada == ""){
+        qDebug()<<"DEBE CARGAR UNA IMAGEN ANTES DE ENVIAR INSTRUCCION INSERT.";
+        return;
+    }
     vector<string> vectorSlots;
     boost::split(vectorSlots, vectorInstruccion[1], boost::is_any_of(","));
     vector<string> vectorValues;
