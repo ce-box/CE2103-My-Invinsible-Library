@@ -21,10 +21,10 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->commitPushButton, SIGNAL (clicked()), this, SLOT (commit()));
     connect(ui->rollbackPushButton, SIGNAL (clicked()), this, SLOT (rollback()));
 
-//    ServerLibrary* server = ServerLibrary::getServer();
-//    server->setMilib("/MILIB_Servidor_war_exploded/api/database", "192.168.100.20");
-//    server->setRaid("/MILIB_RAID_war_exploded/api/raid", "192.168.100.20");
-//    server->START();
+    ServerLibrary* server = ServerLibrary::getServer();
+    server->setMilib("/MILIB_Servidor_war_exploded/api/database", "192.168.100.20");
+    server->setRaid("/MILIB_RAID_war_exploded/api/raid", "192.168.100.20");
+    server->START();
 
     vector<string> ejmTabla;
     ejmTabla.push_back("NOMBRE,ARTISTA,DURACION,ALBUM");
@@ -79,6 +79,7 @@ void MainWindow::obtenerInputIDE(){
     vector<string> vectorInstruccion;
     boost::split(vectorInstruccion, instruccion, boost::is_any_of("-"));
     int numeroInstruccion = stoi(vectorInstruccion[0]);
+
     switch (numeroInstruccion) {
     case 1:
         instruccionInsert(vectorInstruccion);
@@ -104,14 +105,17 @@ void MainWindow::instruccionInsert(vector<string> vectorInstruccion){
     }
     vector<string> vectorSlots;
     boost::split(vectorSlots, vectorInstruccion[1], boost::is_any_of(","));
+    Lista<QString>* listaSlots = new Lista<QString>;
+
     vector<string> vectorValues;
     boost::split(vectorValues, vectorInstruccion[2], boost::is_any_of(","));
-    Lista<QString>* listaSlots = new Lista<QString>;
     Lista<QString>* listaValues = new Lista<QString>;
+
     for(int i = 0; i < vectorSlots.size(); i++){
         listaSlots->push_back(QString::fromStdString(vectorSlots[i]));
         listaValues->push_back(QString::fromStdString(vectorValues[i]));
     }
+
     QString json = JsonSerializer::insertJSON(listaSlots, listaValues);
     ServerLibrary* server = ServerLibrary::getServer();
     server->INSERT(json);
@@ -125,15 +129,18 @@ void MainWindow::instruccionSelect(vector<string> vectorInstruccion){
         for(int i = 0; i < vectorSlots.size(); i++)
             listaSlots->push_back(QString::fromStdString(vectorSlots[i]));
     }
+
     Lista<QString>* listaVarWhere = new Lista<QString>;
     Lista<QString>* listaValorWhereA = new Lista<QString>;
     Lista<QString>* listaValorWhereB = new Lista<QString>;
     if(vectorInstruccion.size() > 2){
         QString varWhere = QString::fromStdString(vectorInstruccion[2]);
         listaVarWhere->push_back(varWhere);
+
         vector<string> vectorValoresWhere;
         boost::split(vectorValoresWhere, vectorInstruccion[3], boost::is_any_of(","));
         QString valorWhereA = QString::fromStdString(vectorValoresWhere[0]);
+
         listaValorWhereA->push_back(valorWhereA);
         if(vectorValoresWhere.size() > 1){
             QString valorWhereB = QString::fromStdString(vectorValoresWhere[1]);
@@ -147,11 +154,13 @@ void MainWindow::instruccionSelect(vector<string> vectorInstruccion){
 
 void MainWindow::instruccionDelete(vector<string> vectorInstruccion){
     QString varWhere = QString::fromStdString(vectorInstruccion[2]);
-    QString valorWhere = QString::fromStdString(vectorInstruccion[3]);
     Lista<QString>* listaVarWhere = new Lista<QString>;
-    Lista<QString>* listaValorWhere = new Lista<QString>;
     listaVarWhere->push_back(varWhere);
+
+    QString valorWhere = QString::fromStdString(vectorInstruccion[3]);
+    Lista<QString>* listaValorWhere = new Lista<QString>;
     listaValorWhere->push_back(valorWhere);
+
     QString json = JsonSerializer::deleteJSON(listaVarWhere, listaValorWhere);
     ServerLibrary* server = ServerLibrary::getServer();
     server->DELETE(json);
@@ -160,20 +169,25 @@ void MainWindow::instruccionDelete(vector<string> vectorInstruccion){
 void MainWindow::instruccionUpdate(vector<string> vectorInstruccion){
     vector<string> vectorSlots;
     boost::split(vectorSlots, vectorInstruccion[1], boost::is_any_of(","));
+    Lista<QString>* listaSlots = new Lista<QString>;
+
     vector<string> vectorValues;
     boost::split(vectorValues, vectorInstruccion[2], boost::is_any_of(","));
-    Lista<QString>* listaSlots = new Lista<QString>;
     Lista<QString>* listaValues = new Lista<QString>;
+
     for(int i = 0; i < vectorSlots.size(); i++){
         listaSlots->push_back(QString::fromStdString(vectorSlots[i]));
         listaValues->push_back(QString::fromStdString(vectorValues[i]));
     }
+
     QString varWhere = QString::fromStdString(vectorInstruccion[3]);
-    QString valorWhere = QString::fromStdString(vectorInstruccion[4]);
     Lista<QString>* listaVarWhere = new Lista<QString>;
-    Lista<QString>* listaValorWhere = new Lista<QString>;
     listaVarWhere->push_back(varWhere);
+
+    QString valorWhere = QString::fromStdString(vectorInstruccion[4]);
+    Lista<QString>* listaValorWhere = new Lista<QString>;
     listaValorWhere->push_back(valorWhere);
+
     QString json = JsonSerializer::updateJSON(listaSlots, listaValues, listaVarWhere, listaValorWhere);
     ServerLibrary* server = ServerLibrary::getServer();
     server->UPDATE(json);
