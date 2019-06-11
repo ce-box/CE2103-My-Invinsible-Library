@@ -21,7 +21,16 @@ public class Metadata {
 
     private static int IDGlobal;
     private static Document document;
-    private static String file_path;
+
+    private static String file_path="/home/esteban/Documentos/TEC/1S 2019/Algoritmos y estructuras de datos II/4. Proyectos" +
+            "/Proyecto #3/Source/MyInvensibleLibrary/Servidor MetaData/XML_Metadata/input.xml";
+
+    public static ArrayList<ArrayList<String>> getSelectList() {
+        return SelectList;
+    }
+
+
+    private static ArrayList<ArrayList<String>> SelectList;
 
     public static void setFile_path(String file_path){
         Metadata.file_path = file_path;
@@ -31,6 +40,7 @@ public class Metadata {
      * Carga el ID global guardado [BACK]
      */
     public static void Start(){
+        SelectList=new ArrayList<>();
 
         // Se debe colocar el path completo segun la maquina
         File inputFile = new File(file_path);
@@ -191,15 +201,24 @@ public class Metadata {
         Slots.add("size");
         Slots.add("description");
 
+        SelectList=new ArrayList<>();
+        ArrayList<String> tmp= new ArrayList<>();
+
         for (String slot: Slots) {
+            tmp.add(slot);
             System.out.format("%-15s", slot);
         }
+        SelectList.add(tmp);
         System.out.println();
 
+
         for (Element student : studentList) {
+            tmp= new ArrayList<>();
             for (String slot : Slots) {
+                tmp.add(student.getChild(slot).getText());
                 System.out.format("%-15s", student.getChild(slot).getText());
             }
+            SelectList.add(tmp);
             System.out.println();
         }
     }
@@ -214,16 +233,24 @@ public class Metadata {
         List<Element> studentList = classElement.getChildren();
         System.out.println("----------------------------");
 
+        SelectList=new ArrayList<>();
+        ArrayList<String> tmp= new ArrayList<>();
 
         for (String slot: Slots) {
+            tmp.add(slot);
             System.out.format("%-15s", slot);
         }
+        SelectList.add(tmp);
         System.out.println();
 
+
         for (Element student : studentList) {
+            tmp= new ArrayList<>();
             for (String slot : Slots) {
+                tmp.add(student.getChild(slot).getText());
                 System.out.format("%-15s", student.getChild(slot).getText());
             }
+            SelectList.add(tmp);
             System.out.println();
         }
     }
@@ -250,9 +277,14 @@ public class Metadata {
             Slots.add("description");
         }
 
+        SelectList=new ArrayList<>();
+        ArrayList<String> tmp= new ArrayList<>();
+
         for (String slot: Slots) {
+            tmp.add(slot);
             System.out.format("%-15s", slot);
         }
+        SelectList.add(tmp);
         System.out.println();
 
         for (Element student : studentList) {
@@ -265,11 +297,75 @@ public class Metadata {
                 }
             }
 
+            tmp=new ArrayList<>();
+
             if (!Where) continue;
             for (String slot : Slots) {
+                tmp.add(student.getChild(slot).getText());
                 System.out.format("%-15s", student.getChild(slot).getText());
             }
+            SelectList.add(tmp);
+            System.out.println();
+        }
+    }
 
+    /**
+     * Select de SQL
+     * @param Slots Espacios a ver
+     * @param SlotsWhere Espacios para evaluar el where
+     * @param SlotsWhereValuesA Valores para evaluar mínimo en el where
+     * @param SlotsWhereValuesB Valores para evaluar máximo en el where
+     */
+    public static void Select(ArrayList<String> Slots,ArrayList<String> SlotsWhere,ArrayList<String> SlotsWhereValuesA,ArrayList<String> SlotsWhereValuesB) {
+        Element classElement = document.getRootElement();
+
+        List<Element> studentList = classElement.getChildren();
+        System.out.println("----------------------------");
+
+        if (Slots == null) {
+            Slots = new ArrayList<String>();
+            Slots.add("ID");
+            Slots.add("name");
+            Slots.add("autor");
+            Slots.add("date");
+            Slots.add("size");
+            Slots.add("description");
+        }
+
+        SelectList=new ArrayList<>();
+        ArrayList<String> tmp= new ArrayList<>();
+
+        for (String slot: Slots) {
+            tmp.add(slot);
+            System.out.format("%-15s", slot);
+        }
+        SelectList.add(tmp);
+        System.out.println();
+
+        for (Element student : studentList) {
+            boolean Where = true;
+            float value;
+            float valueA;
+            float valueB;
+
+            for (int i = 0; i < SlotsWhere.size(); i++) {
+                value = Float.parseFloat(student.getChild(SlotsWhere.get(i)).getText());
+                valueA = Float.parseFloat(SlotsWhereValuesA.get(i));
+                valueB = Float.parseFloat(SlotsWhereValuesB.get(i));
+                if (valueA > value || value > valueB) {
+                    Where = false;
+                    break;
+                }
+            }
+
+            tmp=new ArrayList<>();
+
+            if (!Where) continue;
+            for (String slot : Slots) {
+                tmp.add(student.getChild(slot).getText());
+                System.out.format("%-15s", student.getChild(slot).getText());
+            }
+            SelectList.add(tmp);
             System.out.println();
         }
     }

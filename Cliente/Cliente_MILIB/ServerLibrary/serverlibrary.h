@@ -69,25 +69,19 @@ public:
     void BACK();
 
     // Configuration of the necessary information for the connection
-    void setRaid(QString url,QString ip = "localhost",QString port = "9080");
-    void setMilib(QString url,QString ip = "localhost",QString port = "8080");
+    void setServer(QString url,QString ip = "localhost",QString port = "8081");
 
     // Returns and prints API information on the screen
-    void getRaidInfo();
-    void getMilibInfo();
+    void getServerInfo();
+
 private:
 
     static ServerLibrary* server;
 
-    // MILIB :: information necessary for connection to the web service
-    QString MilibIP;
-    QString MilibPort;
-    QString MilibUrl;
-
-    // RAID :: information necessary for connection to the web service
-    QString RaidIP;
-    QString RaidPort;
-    QString RaidUrl;
+    // SERVER :: information necessary for connection to the web service
+    QString IP;
+    QString Port;
+    QString defaultUrl;
 
     ServerLibrary();
 };

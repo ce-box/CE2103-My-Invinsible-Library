@@ -17,15 +17,20 @@ import javax.ws.rs.core.Response;
 import main.com.tec.MILIB_DB.util.jsonParser;
 import main.com.tec.MILIB_DB.domain.Metadata;
 
-
 /**
  * Class that implements the Web Service for the MILIB project for the DATABASE
- * This Web Service run on Port 8080
+ * This Web Service run on Port 8080<br>
+ *
+ * <p><b>ADVICE: </b>Since with the other types of request, all the orders have been
+ * replaced by @POST, which is the only verb with which it works</p>
  * @author Esteban Alvarado Vargas
  * @version alpha 3.5
  */
 @Path("/database")
 public class MilibRestService {
+
+    String XMLPath = "/home/esteban/Documentos/TEC/1S 2019/Algoritmos y estructuras de datos II/4. Proyectos/" +
+            "Proyecto #3/Source/MyInvensibleLibrary/Servidor MetaData/XML_Metadata/input.xml";
 
     /**
      * Converts the received inputStream to a String for handling the
@@ -59,8 +64,7 @@ public class MilibRestService {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response START(InputStream incomingData){
 
-        Metadata.setFile_path("/home/esteban/Documentos/TEC/1S 2019/Algoritmos y estructuras de datos II/4. Proyectos/" +
-                "Proyecto #3/Source/MyInvensibleLibrary/Servidor MetaData/XML_Metadata/input.xml");
+        Metadata.setFile_path(XMLPath);
         Metadata.Start();
         return Response.status(200).build();
     }
@@ -128,7 +132,7 @@ public class MilibRestService {
      * @return Returns the requested image and metadata in JSON format
      * @throws JSONException
      */
-    @GET
+    @POST
     @Path("/select")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -145,13 +149,15 @@ public class MilibRestService {
         // --------------------------------------------------------------------
         ArrayList<String> slotList = new ArrayList<>();
         ArrayList<String> whereList = new ArrayList<>();
-        ArrayList<String> whereValuesList = new ArrayList<>();
+        ArrayList<String> whereValuesAList = new ArrayList<>();
+        ArrayList<String> whereValuesBList = new ArrayList<>();
 
-        jsonParser.jsonSelectParser(recvData,slotList,whereList,whereValuesList);
+        jsonParser.jsonSelectParser(recvData,slotList,whereList,whereValuesAList,whereValuesBList);
 
         System.out.println("[Desde el REST]::" + slotList.toString()); // Return values
         System.out.println("[Desde el REST]::" + whereList.toString()); // Where condition
-        System.out.println("[Desde el REST]::" + whereValuesList.toString()); // Values condition
+        System.out.println("[Desde el REST]::" + whereValuesAList.toString()); // Values condition
+        System.out.println("[Desde el REST]::" + whereValuesBList.toString()); // Between values
 
         // Do the validation to determine: what is it that comes to SELECT?
         // Note: It still needs to carry out the return of the information
@@ -161,15 +167,19 @@ public class MilibRestService {
             System.out.println("[SELECT]:: Se solicita toda la galeria");
             Metadata.Select();
 
-        } else if(whereList.isEmpty() && whereValuesList.isEmpty()){
+        } else if(whereList.isEmpty() && whereValuesAList.isEmpty()){
 
             System.out.println("[SELECT]:: Se solicitan algunas columnas de toda la galeria");
             Metadata.Select(slotList);
 
-        } else{
+        } else if(!whereValuesAList.isEmpty() && whereValuesBList.isEmpty()){
 
             System.out.println("[SELECT]:: Se solicitan las columnas de las imagenes que cumplan con la condicion");
-            Metadata.Select(slotList,whereList,whereValuesList);
+            Metadata.Select(slotList,whereList,whereValuesAList);
+
+        } else {
+            System.out.println("[SELECT]:: Se solicitan las columnas de las imagenes que cumplan con la condicion en un Between");
+            Metadata.Select(slotList,whereList,whereValuesAList,whereValuesBList);
         }
 
         // --------------------------------------------------------------------
@@ -191,7 +201,7 @@ public class MilibRestService {
      * @param incomingData Receive a json with the information of the requested image
      * @return Respond with the status of the request
      */
-    @PUT
+    @POST
     @Path("/update")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -233,7 +243,7 @@ public class MilibRestService {
      * @return Indicates whether the image could be deleted
      * @throws JSONException
      */
-    @DELETE
+    @POST
     @Path("/delete")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response DELETE(InputStream incomingData) throws JSONException{
@@ -276,14 +286,13 @@ public class MilibRestService {
      * url: http://ip_addr:port/MILIB_Servidor_war_exploded/api/database/commit
      * @return Returns a text indicating if the commit was successful
      */
-    @PUT
+    @POST
     @Path("/commit")
     @Produces(MediaType.TEXT_PLAIN)
     public Response COMMIT(){
 
         //Commit stuff here
-        Metadata.setFile_path("/home/esteban/Documentos/TEC/1S 2019/Algoritmos y estructuras de datos II/4. Proyectos/" +
-                "Proyecto #3/Source/MyInvensibleLibrary/Servidor MetaData/XML_Metadata/input.xml");
+        Metadata.setFile_path(XMLPath);
         Metadata.Close();
 
         System.out.println("[COMMIT] Commit Request");
@@ -297,7 +306,7 @@ public class MilibRestService {
      * url: http://ip_addr:port/MILIB_Servidor_war_exploded/api/database/back
      * @return Returns a text indicating if the rollback was successful
      */
-    @PUT
+    @POST
     @Path("/back")
     @Produces(MediaType.TEXT_PLAIN)
     public Response BACK(){
@@ -305,8 +314,7 @@ public class MilibRestService {
         //Rollback stuff here
         System.out.println("[BACK] Rollback Request");
 
-        Metadata.setFile_path("/home/esteban/Documentos/TEC/1S 2019/Algoritmos y estructuras de datos II/4. Proyectos/" +
-                "Proyecto #3/Source/MyInvensibleLibrary/Servidor MetaData/XML_Metadata/input.xml");
+        Metadata.setFile_path(XMLPath);
         Metadata.Start();
 
         String ans = "Rollback Success!";

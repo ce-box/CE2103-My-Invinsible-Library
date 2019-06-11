@@ -43,13 +43,13 @@ void insertTest2 (ServerLibrary* server){
     slotsList->push_back("author");
     slotsList->push_back("date");
     slotsList->push_back("size");
-    //slotsList->push_back("description");
+    slotsList->push_back("description");
 
     valuesList->push_back("img2");
     valuesList->push_back("Erick Barrantes");
     valuesList->push_back("1998");
     valuesList->push_back("1024");
-    //valuesList->push_back("Cool! :)");
+    valuesList->push_back("Cool! :)");
 
     QString jsonQStr = JsonSerializer::insertJSON(slotsList,valuesList);
 
@@ -120,6 +120,28 @@ void selectTest4 (ServerLibrary* server){
     server->SELECT(jsonQStr);
 }
 
+// Enviando request con between
+void selectTest5 (ServerLibrary* server){
+    Lista<QString> *slotsList =new Lista<QString>;
+    Lista<QString> *whereList =new Lista<QString>;
+    Lista<QString> *whereValuesAList =new Lista<QString>;
+    Lista<QString> *whereValuesBList =new Lista<QString>;
+
+    slotsList->push_back("name");
+    slotsList->push_back("author");
+    slotsList->push_back("date");
+
+    whereList->push_back("ID");
+    whereValuesAList->push_back("1");
+    whereValuesBList->push_back("2");
+
+    QString jsonQStr = JsonSerializer::selectJSON(slotsList,whereList,whereValuesAList,whereValuesBList);
+
+    cout<<jsonQStr.toStdString()<<endl;
+
+    server->SELECT(jsonQStr);
+}
+
 // Haciendo un Update
 void updateTest(ServerLibrary* server){
     Lista<QString> *slotsList =new Lista<QString>;
@@ -163,28 +185,27 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
 
     ServerLibrary* server = ServerLibrary::getServer();
-    server->setMilib("/MILIB_Servidor_war_exploded/api/database","192.168.100.20");
-    server->setRaid("/MILIB_RAID_war_exploded/api/raid","192.168.100.20");
-    server->getMilibInfo();
-    server->getRaidInfo();
+    server->setServer("/Main_Server_war_exploded/api/server","192.168.0.21");
+    server->getServerInfo();
 
     // Primero se debe iniciar el server
-    //server->START();
+    server->START();
 
     // Prueba del INSERT -> Funcionan todas las condiciones
-    //insertTest1(server);
-    //insertTest2(server);
+    insertTest1(server);
+    insertTest2(server);
 
-    //server->COMMIT();
+    server->COMMIT();
 
     // Pruebas del SELECT -> Funcionan todas las condiciones
     //selectTest1(server);
     //selectTest2(server);
     //selectTest3(server);
     //selectTest4(server);
+    selectTest5(server);
 
     // Pruebas del UPDATE -> Funcionan todas las condiciones
-    updateTest(server);
+    //updateTest(server);
 
     //server->COMMIT();
 
