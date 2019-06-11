@@ -7,7 +7,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="02284dce-3526-487a-b240-7662be33298d" name="Default Changelist" comment="">
+<<<<<<< HEAD
+      <change beforePath="$PROJECT_DIR$/../Cliente/Cliente-Debug/Cliente_MILIB" beforeDir="false" afterPath="$PROJECT_DIR$/../Cliente/Cliente-Debug/Cliente_MILIB" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Cliente/Cliente-Debug/jsonserializer.o" beforeDir="false" afterPath="$PROJECT_DIR$/../Cliente/Cliente-Debug/jsonserializer.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Cliente/Cliente-Debug/main.o" beforeDir="false" afterPath="$PROJECT_DIR$/../Cliente/Cliente-Debug/main.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Cliente/Cliente_MILIB/Cliente_MILIB.pro.user" beforeDir="false" afterPath="$PROJECT_DIR$/../Cliente/Cliente_MILIB/Cliente_MILIB.pro.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Cliente/Cliente_MILIB/json/jsonserializer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Cliente/Cliente_MILIB/json/jsonserializer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Cliente/Cliente_MILIB/json/jsonserializer.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Cliente/Cliente_MILIB/json/jsonserializer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Cliente/Cliente_MILIB/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Cliente/Cliente_MILIB/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Main_Server/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Main_Server/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Main_Server/src/main/com/tec/Server/consumer/Consumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Main_Server/src/main/com/tec/Server/consumer/Consumer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Main_Server/target/classes/main/com/tec/Server/consumer/Consumer.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Main_Server/target/classes/main/com/tec/Server/consumer/Consumer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/XML_Metadata/input.xml" beforeDir="false" afterPath="$PROJECT_DIR$/XML_Metadata/input.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/com/tec/MILIB_DB/consumer/MilibServiceClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/com/tec/MILIB_DB/consumer/MilibServiceClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/com/tec/MILIB_DB/service/MilibRestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/com/tec/MILIB_DB/service/MilibRestService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/com/tec/MILIB_DB/util/jsonParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/com/tec/MILIB_DB/util/jsonParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor RAID/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Servidor RAID/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor RAID/src/main/com/tec/MILIB_RAID/Resources/RAIDRestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Servidor RAID/src/main/com/tec/MILIB_RAID/Resources/RAIDRestService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor RAID/target/MILIB_RAID-1.0-SNAPSHOT/WEB-INF/classes/main/com/tec/MILIB_RAID/Resources/RAIDRestService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Servidor RAID/target/MILIB_RAID-1.0-SNAPSHOT/WEB-INF/classes/main/com/tec/MILIB_RAID/Resources/RAIDRestService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor RAID/target/classes/main/com/tec/MILIB_RAID/Resources/RAIDRestService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Servidor RAID/target/classes/main/com/tec/MILIB_RAID/Resources/RAIDRestService.class" afterDir="false" />
+=======
       <change beforePath="$PROJECT_DIR$/src/main/com/tec/MILIB_DB/domain/Metadata.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/com/tec/MILIB_DB/domain/Metadata.java" afterDir="false" />
+>>>>>>> master
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -23,10 +45,17 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="225">
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
+        <entry file="file://$PROJECT_DIR$/src/main/com/tec/MILIB_DB/service/MilibRestService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="96">
+              <caret line="150" column="30" lean-forward="true" selection-start-line="150" selection-start-column="30" selection-end-line="150" selection-end-column="30" />
+=======
         <entry file="file://$PROJECT_DIR$/src/main/com/tec/MILIB_DB/executable/XML_test.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="150">
               <caret line="12" column="28" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
+>>>>>>> master
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -35,10 +64,17 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+<<<<<<< HEAD
+        <entry file="file://$PROJECT_DIR$/src/main/com/tec/MILIB_DB/consumer/MilibServiceClient.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="84">
+              <caret line="27" column="49" selection-start-line="27" selection-start-column="49" selection-end-line="27" selection-end-column="49" />
+=======
         <entry file="file://$PROJECT_DIR$/src/main/com/tec/MILIB_DB/domain/Metadata.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="329">
               <caret line="360" column="13" selection-start-line="360" selection-start-column="13" selection-end-line="360" selection-end-column="13" />
+>>>>>>> master
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#682#683#0" expanded="true" />
@@ -60,8 +96,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/com/tec/MILIB_DB/executable/test.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+            <state relative-caret-position="510">
+              <caret line="157" column="33" selection-start-line="157" selection-start-column="33" selection-end-line="157" selection-end-column="33" />
+=======
             <state relative-caret-position="83">
               <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+>>>>>>> master
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -72,8 +113,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/com/tec/MILIB_DB/service/MilibRestService.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+            <state relative-caret-position="16">
+              <caret line="36" selection-start-line="36" selection-end-line="36" />
+=======
             <state relative-caret-position="270">
               <caret line="31" selection-start-line="31" selection-end-line="31" />
+>>>>>>> master
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -81,6 +127,8 @@
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
+=======
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/com/tec/MILIB_DB/util/jsonParser.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -99,6 +147,7 @@
           </provider>
         </entry>
       </file>
+>>>>>>> master
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -133,11 +182,18 @@
         <option value="$PROJECT_DIR$/src/main/com/tec/MILIB_DB/executable/XML_test.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/com/tec/MILIB_DB/service/Metadata.java" />
+<<<<<<< HEAD
+        <option value="$PROJECT_DIR$/src/main/com/tec/MILIB_DB/domain/Metadata.java" />
+=======
+>>>>>>> master
         <option value="$PROJECT_DIR$/src/main/com/tec/MILIB_DB/util/jsonParser.java" />
-        <option value="$PROJECT_DIR$/src/main/com/tec/MILIB_DB/consumer/MilibServiceClient.java" />
         <option value="$PROJECT_DIR$/src/main/com/tec/MILIB_DB/service/MilibRestService.java" />
         <option value="$PROJECT_DIR$/XML_Metadata/input.xml" />
+<<<<<<< HEAD
+        <option value="$PROJECT_DIR$/src/main/com/tec/MILIB_DB/consumer/MilibServiceClient.java" />
+=======
         <option value="$PROJECT_DIR$/src/main/com/tec/MILIB_DB/domain/Metadata.java" />
+>>>>>>> master
       </list>
     </option>
   </component>
@@ -533,12 +589,17 @@
       <workItem from="1560027219344" duration="1184000" />
       <workItem from="1560183079989" duration="6246000" />
       <workItem from="1560270868427" duration="177000" />
-      <workItem from="1560271094408" duration="1699000" />
+      <workItem from="1560271094408" duration="1922000" />
+      <workItem from="1560290047623" duration="1406000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
+    <option name="totallyTimeSpent" value="81194000" />
+=======
     <option name="totallyTimeSpent" value="81550000" />
+>>>>>>> master
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -553,7 +614,11 @@
     <frame x="0" y="-1" width="1366" height="768" extended-state="6" />
     <editor active="true" />
     <layout>
+<<<<<<< HEAD
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49788135" visible="true" weight="0.2150376" />
+=======
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49788135" visible="true" weight="0.20681818" />
+>>>>>>> master
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -565,7 +630,11 @@
       <window_info anchor="bottom" id="Duplicates" weight="0.32919255" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32911393" />
+<<<<<<< HEAD
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.53322786" />
+=======
       <window_info anchor="bottom" id="Run" order="2" weight="0.5326087" />
+>>>>>>> master
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39906833" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -650,14 +719,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/com/tec/MILIB_DB/service/MilibRestService.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="96">
+          <caret line="150" column="30" lean-forward="true" selection-start-line="150" selection-start-column="30" selection-end-line="150" selection-end-column="30" />
+=======
         <state relative-caret-position="270">
           <caret line="31" selection-start-line="31" selection-end-line="31" />
+>>>>>>> master
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/XML_Metadata/input.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="16">
+          <caret line="1" column="12" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="12" />
+=======
     <entry file="file://$PROJECT_DIR$/src/main/com/tec/MILIB_DB/executable/XML_test.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -665,19 +745,41 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+>>>>>>> master
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/com/tec/MILIB_DB/executable/test.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="16">
+          <caret line="36" selection-start-line="36" selection-end-line="36" />
+=======
         <state relative-caret-position="83">
           <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+>>>>>>> master
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/src/main/com/tec/MILIB_DB/util/jsonParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="157" column="33" selection-start-line="157" selection-start-column="33" selection-end-line="157" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/com/tec/MILIB_DB/consumer/MilibServiceClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="27" column="49" selection-start-line="27" selection-start-column="49" selection-end-line="27" selection-end-column="49" />
+=======
     <entry file="file://$PROJECT_DIR$/XML_Metadata/input.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -689,6 +791,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="329">
           <caret line="360" column="13" selection-start-line="360" selection-start-column="13" selection-end-line="360" selection-end-column="13" />
+>>>>>>> master
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#682#683#0" expanded="true" />

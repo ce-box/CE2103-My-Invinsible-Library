@@ -1,7 +1,7 @@
 #include "jsonserializer.h"
 
 // Serializer the information to INSERT in JSON format
-QString JsonSerializer::insertJSON(Lista<QString> *slotsList, Lista<QString> *valuesList){
+QString JsonSerializer::insertJSON(Lista<QString> *slotsList, Lista<QString> *valuesList,QString img64){
 
     // Step 1: Creates two JsonArray w/ the Data of both list
     // ADVICE: Both lists must have the same size!!
@@ -17,6 +17,7 @@ QString JsonSerializer::insertJSON(Lista<QString> *slotsList, Lista<QString> *va
     QJsonObject jsonObj;
     jsonObj.insert("slots",slot);
     jsonObj.insert("slotsValues",slotValues);
+    jsonObj.insert("img64",img64);
 
     // Step 3: Convert the JsonDoc into QString
     QJsonDocument jsonDoc(jsonObj);

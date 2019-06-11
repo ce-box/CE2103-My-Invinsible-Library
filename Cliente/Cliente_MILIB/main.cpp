@@ -28,7 +28,9 @@ void insertTest1 (ServerLibrary* server){
     valuesList->push_back("1000");
     //valuesList->push_back("Cool! :)");
 
-    QString jsonQStr = JsonSerializer::insertJSON(slotsList,valuesList);
+    QString img = "bclbszvbdszvdyuayuvyua";
+
+    QString jsonQStr = JsonSerializer::insertJSON(slotsList,valuesList,img);
 
     cout<<jsonQStr.toStdString()<<endl;
 
@@ -51,7 +53,7 @@ void insertTest2 (ServerLibrary* server){
     valuesList->push_back("1024");
     valuesList->push_back("Cool! :)");
 
-    QString jsonQStr = JsonSerializer::insertJSON(slotsList,valuesList);
+    QString jsonQStr = JsonSerializer::insertJSON(slotsList,valuesList,"");
 
     cout<<jsonQStr.toStdString()<<endl;
 
@@ -185,7 +187,7 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
 
     ServerLibrary* server = ServerLibrary::getServer();
-    server->setServer("/Main_Server_war_exploded/api/server","172.18.67.117");
+    server->setServer("/Main_Server_war_exploded/api/server","192.168.100.20");
     server->getServerInfo();
 
     // Primero se debe iniciar el server
@@ -193,7 +195,7 @@ int main(int argc, char *argv[])
 
     // Prueba del INSERT -> Funcionan todas las condiciones
     insertTest1(server);
-    insertTest2(server);
+    //insertTest2(server);
 
     server->COMMIT();
 
@@ -202,7 +204,7 @@ int main(int argc, char *argv[])
     //selectTest2(server);
     //selectTest3(server);
     //selectTest4(server);
-    selectTest5(server);
+    //selectTest5(server);
 
     // Pruebas del UPDATE -> Funcionan todas las condiciones
     //updateTest(server);
