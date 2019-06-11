@@ -25,7 +25,7 @@ public class MilibServiceClient {
     }
 
     // Network configuration: IP + URL
-    private static String db_ip = "172.18.67.117";
+    private static String db_ip = "192.168.100.20";
     private static String db_default_Url = " http://"+db_ip+":9080/MILIB_RAID_war_exploded/api/raid";
 
     /* --------------------------------------------

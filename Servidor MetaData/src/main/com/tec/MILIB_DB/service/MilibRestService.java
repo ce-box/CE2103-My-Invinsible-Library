@@ -98,8 +98,7 @@ public class MilibRestService {
         // In this part the insert actions are performed
 
 
-        // Send json file to insert an image on RAID disk
-        MilibServiceClient.writeClient(recvData);
+
         // --------------------------------------------------------------------
 
         // Set the JSON data into the list
@@ -114,6 +113,10 @@ public class MilibRestService {
         // Insert the metadata
 
         Metadata.Insert(slotList,valuesList);
+
+        // Create and Send json file to insert an image on RAID disk
+        String sendData = jsonParser.jsontoRaid(recvData,"1");
+        MilibServiceClient.writeClient(sendData);
 
         // --------------------------------------------------------------------
 

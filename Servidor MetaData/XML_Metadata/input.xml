@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class ID="5">
+<class ID="4">
   <image1>
     <ID>1</ID>
     <name>img1</name>
@@ -10,11 +10,11 @@
   </image1>
   <image2>
     <ID>2</ID>
-    <name>img2</name>
-    <author>Erick Barrantes</author>
-    <date>1998</date>
-    <size>1024</size>
-    <description>Cool! :)</description>
+    <name>img1</name>
+    <author>null</author>
+    <date>2012</date>
+    <size>1000</size>
+    <description>null</description>
   </image2>
   <image3>
     <ID>3</ID>
@@ -24,12 +24,4 @@
     <size>1000</size>
     <description>null</description>
   </image3>
-  <image4>
-    <ID>4</ID>
-    <name>img2</name>
-    <author>Erick Barrantes</author>
-    <date>1998</date>
-    <size>1024</size>
-    <description>Cool! :)</description>
-  </image4>
 </class>

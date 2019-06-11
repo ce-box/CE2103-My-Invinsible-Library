@@ -46,6 +46,16 @@ public class RAIDRestService {
         return inputBuilder.toString();
     }
 
+    /**
+     *
+     * @param ID
+     * @param img64
+     */
+    private void jsonParse(String json, String ID,String img64) throws JSONException {
+
+
+    }
+
     /* -----------------------------------------------------------------------------------
                                 REGULAR SYNTAX - RAID 5
         ----------------------------------------------------------------------------------*/
@@ -72,6 +82,16 @@ public class RAIDRestService {
         System.out.println("[WRITE] Image Received: "+ recvData);
 
         // In this part the write in disk actions are performed
+
+        String ID = "",img64 = "";
+        JSONObject jsonObject = new JSONObject(recvData);
+
+        // Deserealize and shows the data into console
+        ID = jsonObject.getString("ID");
+        img64 = jsonObject.getString("img64");
+
+        System.out.println("[WRITE] ID: "+ ID);
+        System.out.println("[WRITE] img64: "+ img64);
 
         JSONObject json = new JSONObject();
         json.put("Status","OK");
