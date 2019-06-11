@@ -185,7 +185,7 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
 
     ServerLibrary* server = ServerLibrary::getServer();
-    server->setServer("/Main_Server_war_exploded/api/server","192.168.0.21");
+    server->setServer("/Main_Server_war_exploded/api/server","172.18.67.117");
     server->getServerInfo();
 
     // Primero se debe iniciar el server

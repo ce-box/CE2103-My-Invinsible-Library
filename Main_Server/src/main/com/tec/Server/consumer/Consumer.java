@@ -23,7 +23,7 @@ public class Consumer {
     }
 
     // Network configuration: IP + URL
-    private static String db_ip = "192.168.0.21";
+    private static String db_ip = "172.18.67.117";
     private static String db_default_Url = " http://"+db_ip+":8080/MILIB_Servidor_war_exploded/api/database";
 
     /* --------------------------------------------
