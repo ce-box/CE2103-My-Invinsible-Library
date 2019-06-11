@@ -8,7 +8,9 @@ import java.util.ArrayList;
  * Class responsible for the translation of the JSON according to the method
  * by which the request was made
  * @author Esteban Alvarado Vargas
- * @version alpha 1.1
+ * @version alpha 2.1
+ *
+ * Note: Next version will support the parse of an string64 image from client
  */
 public class jsonParser {
 

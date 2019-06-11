@@ -15,20 +15,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * This class is responsible of the image metadata storage in MILIB Database
+ * @author Juan Pablo
+ * @author Esteban
+ * @version alpha 3.5
  */
 public class Metadata {
 
+    // Networking configuration
     private static int IDGlobal;
     private static Document document;
 
     private static String file_path="/home/esteban/Documentos/TEC/1S 2019/Algoritmos y estructuras de datos II/4. Proyectos" +
             "/Proyecto #3/Source/MyInvensibleLibrary/Servidor MetaData/XML_Metadata/input.xml";
 
+
+
     public static ArrayList<ArrayList<String>> getSelectList() {
         return SelectList;
     }
-
 
     private static ArrayList<ArrayList<String>> SelectList;
 
