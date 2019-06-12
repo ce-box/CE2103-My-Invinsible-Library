@@ -110,6 +110,14 @@ public class MilibRestService {
         System.out.println("[INSERT]:: Slots: " + slotList.toString());
         System.out.println("[INSERT]:: Slots Values: " + valuesList.toString());
 
+        // Validate no ID insert
+
+        if(!Metadata.verifySlotsNoID(slotList).equals("")){
+            JSONObject jsonError = new JSONObject();
+            jsonError.put("Status", Metadata.verifySlots(slotList));
+            return Response.status(200).entity(jsonError.toString()).build();
+        }
+
         // Validate that slots are valid
         if(!slotList.isEmpty()) {
 
@@ -204,6 +212,18 @@ public class MilibRestService {
             }
         }
 
+        // If came an SELECT with an BETWEEN
+        if(!whereValuesBList.isEmpty()){
+
+            String isAvailableSlot = Metadata.verifySlotsRange(whereList);
+
+            if (!isAvailableSlot.equals("")) {
+                JSONObject jsonError = new JSONObject();
+                jsonError.put("Status", isAvailableSlot);
+                return Response.status(200).entity(jsonError.toString()).build();
+            }
+        }
+
         // Select wich Select method will be called
         if(slotList.isEmpty() && whereList.isEmpty()){
 
@@ -275,6 +295,14 @@ public class MilibRestService {
         System.out.println("[Desde el REST]:: Where slots: " + whereList.toString()); // Where condition
         System.out.println("[Desde el REST]:: slot values: " + valuesList.toString()); // Values of each slot
         System.out.println("[Desde el REST]:: Where values: " + whereValuesList.toString()); // Where Values condition
+
+        // Validate no ID update
+
+        if(!Metadata.verifySlotsNoID(slotList).equals("")){
+            JSONObject jsonError = new JSONObject();
+            jsonError.put("Status", Metadata.verifySlots(slotList));
+            return Response.status(200).entity(jsonError.toString()).build();
+        }
 
         // Validate that slots and where are valid
 

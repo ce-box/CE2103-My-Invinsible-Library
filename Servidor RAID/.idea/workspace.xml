@@ -8,19 +8,15 @@
   <component name="ChangeListManager">
     <list default="true" id="3873dadc-184b-4bae-b2de-267f873e44d3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../Cliente/Cliente-Debug/Cliente_MILIB" beforeDir="false" afterPath="$PROJECT_DIR$/../Cliente/Cliente-Debug/Cliente_MILIB" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Cliente/Cliente-Debug/client.o" beforeDir="false" afterPath="$PROJECT_DIR$/../Cliente/Cliente-Debug/client.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Cliente/Cliente-Debug/main.o" beforeDir="false" afterPath="$PROJECT_DIR$/../Cliente/Cliente-Debug/main.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Cliente/Cliente-Debug/serverlibrary.o" beforeDir="false" afterPath="$PROJECT_DIR$/../Cliente/Cliente-Debug/serverlibrary.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Cliente/Cliente_MILIB/ServerLibrary/client.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Cliente/Cliente_MILIB/ServerLibrary/client.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Cliente/Cliente_MILIB/ServerLibrary/client.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Cliente/Cliente_MILIB/ServerLibrary/client.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Cliente/Cliente_MILIB/ServerLibrary/serverlibrary.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Cliente/Cliente_MILIB/ServerLibrary/serverlibrary.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Cliente/Cliente_MILIB/ServerLibrary/serverlibrary.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Cliente/Cliente_MILIB/ServerLibrary/serverlibrary.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Cliente/Cliente_MILIB/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Cliente/Cliente_MILIB/main.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Main_Server/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Main_Server/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Servidor MetaData/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Servidor MetaData/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Servidor MetaData/XML_Metadata/input.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Servidor MetaData/XML_Metadata/input.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor MetaData/src/main/com/tec/MILIB_DB/domain/Metadata.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Servidor MetaData/src/main/com/tec/MILIB_DB/domain/Metadata.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Servidor MetaData/src/main/com/tec/MILIB_DB/service/MilibRestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Servidor MetaData/src/main/com/tec/MILIB_DB/service/MilibRestService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor MetaData/target/MILIB_Server-1.0-SNAPSHOT/WEB-INF/classes/main/com/tec/MILIB_DB/domain/Metadata.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Servidor MetaData/target/MILIB_Server-1.0-SNAPSHOT/WEB-INF/classes/main/com/tec/MILIB_DB/domain/Metadata.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Servidor MetaData/target/MILIB_Server-1.0-SNAPSHOT/WEB-INF/classes/main/com/tec/MILIB_DB/service/MilibRestService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Servidor MetaData/target/MILIB_Server-1.0-SNAPSHOT/WEB-INF/classes/main/com/tec/MILIB_DB/service/MilibRestService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Servidor MetaData/target/classes/main/com/tec/MILIB_DB/domain/Metadata.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Servidor MetaData/target/classes/main/com/tec/MILIB_DB/domain/Metadata.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Servidor MetaData/target/classes/main/com/tec/MILIB_DB/service/MilibRestService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Servidor MetaData/target/classes/main/com/tec/MILIB_DB/service/MilibRestService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
@@ -239,12 +235,12 @@
       <workItem from="1559699560006" duration="515000" />
       <workItem from="1560271202635" duration="1959000" />
       <workItem from="1560290593678" duration="1072000" />
-      <workItem from="1560293886867" duration="1804000" />
+      <workItem from="1560293886867" duration="2156000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11110000" />
+    <option name="totallyTimeSpent" value="11462000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="30" width="1366" height="738" extended-state="6" />

@@ -109,7 +109,7 @@ public class Metadata {
         Aux.add("date");// date
         Aux.add("size"); // size
         Aux.add("description");// description
-        Aux.add("galery");
+        Aux.add("gallery");
 
         // Se debe colocar el path completo segun la maquina
         File inputFile = new File(file_path);
