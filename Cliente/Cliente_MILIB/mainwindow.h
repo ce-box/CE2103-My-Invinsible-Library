@@ -32,6 +32,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 private slots:
+    void obtenerDatoTabla();
     void abrirExploradorArchivos();
     void obtenerInputIDE();
     void commit();
@@ -40,8 +41,8 @@ private slots:
 public:
     explicit MainWindow(QWidget *parent = 0);
     void colorearWidget(QWidget* textEdit, QString colorFondo);
-    void visualizarImagen(std::string data);
-    void insertarEnTabla(std::vector<std::string> elementos);
+    void visualizarImagen(int numeroFila);
+    void insertarEnTabla(string elementos);
     void instruccionInsert(std::vector<std::string> vectorInstruccion);
     void instruccionSelect(std::vector<std::string> vectorInstruccion);
     void instruccionDelete(std::vector<std::string> vectorInstruccion);
@@ -56,6 +57,7 @@ private:
     std::string imagenCargada;
     QString galeriaIngresada;
     QString sizeImagen;
+    std::string imagenesSeleccionadas;
 };
 
 #endif // MAINWINDOW_H

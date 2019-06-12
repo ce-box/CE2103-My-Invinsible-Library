@@ -21,6 +21,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->ideTextEdit->setFontPointSize(16);
 
     connect(ui->subirImagenPushButton, SIGNAL (clicked()), this, SLOT (abrirExploradorArchivos()));
+    connect(ui->visualizarImagenPushButton, SIGNAL (clicked()), this, SLOT (obtenerDatoTabla()));
     connect(ui->runPushButton, SIGNAL (clicked()), this, SLOT (obtenerInputIDE()));
     connect(ui->commitPushButton, SIGNAL (clicked()), this, SLOT (commit()));
     connect(ui->rollbackPushButton, SIGNAL (clicked()), this, SLOT (rollback()));
@@ -29,12 +30,6 @@ MainWindow::MainWindow(QWidget *parent) :
     server->setMilib("/MILIB_Servidor_war_exploded/api/database", "192.168.100.20");
     server->setRaid("/MILIB_RAID_war_exploded/api/raid", "192.168.100.20");
     server->START();
-
-//    vector<string> ejmTabla;
-//    ejmTabla.push_back("NOMBRE,ARTISTA,DURACION,ALBUM");
-//    ejmTabla.push_back("Karma Police,Radiohead,4:27,OK Computer");
-//    ejmTabla.push_back("De Musica Ligera,Soda Estereo,4:27,De Musica Ligera");
-//    insertarEnTabla(ejmTabla);
 }
 
 void MainWindow::colorearWidget(QWidget* widget, QString colorFondo){
@@ -47,6 +42,7 @@ void MainWindow::colorearWidget(QWidget* widget, QString colorFondo){
 void MainWindow::abrirExploradorArchivos(){
     //TODO: Decidir si solo insertar imagenes una por una o seleccionar varias imagenes.
     QStringList direccionImagenes = QFileDialog::getOpenFileNames(this, tr("Abrir Imagen/Galería"),"/home",tr("Imágenes PNG (*.png)"));
+    if(direccionImagenes.size() == 0) return;
     QString imgDireccion = direccionImagenes[0];
 
     QPixmap imagen;
@@ -65,10 +61,27 @@ void MainWindow::abrirExploradorArchivos(){
 
     galeriaIngresada = QInputDialog::getText(this, "Galería", "Ingrese el nombre de la galería a la que pertenece la imagen:");
 
-    //visualizarImagen(data);
 }
 
-void MainWindow::visualizarImagen(string data64){
+void MainWindow::obtenerDatoTabla(){
+    int cantidadFilas = ui->metadataTable->rowCount();
+    bool datoEncontrado = false;
+    int numeroFilaSeleccionada;
+    for(int i = 0; i < cantidadFilas && !datoEncontrado; i++){
+        if(ui->metadataTable->item(i,0)->isSelected()){
+            datoEncontrado = true;
+            numeroFilaSeleccionada = i;
+        }
+    }
+    if(!datoEncontrado) return;
+    visualizarImagen(numeroFilaSeleccionada);
+}
+
+
+void MainWindow::visualizarImagen(int numeroFila){
+    vector<string> imagenes;
+    boost::split(imagenes, imagenesSeleccionadas, boost::is_any_of(","));
+    string data64 = imagenes[numeroFila];
     QString QTdata = QString::fromStdString(data64);
     QByteArray dataRecibida(QTdata.toUtf8());
     QPixmap imagen;
@@ -123,10 +136,12 @@ void MainWindow::instruccionInsert(vector<string> vectorInstruccion){
         listaSlots->push_back(QString::fromStdString(vectorSlots[i]));
         listaValues->push_back(QString::fromStdString(vectorValues[i]));
     }
-    listaSlots->push_back("galeria");
+    listaSlots->push_back("gallery");
     listaValues->push_back(galeriaIngresada);
     listaSlots->push_back("size");
     listaValues->push_back(sizeImagen);
+    listaSlots->push_back("img64");
+    listaValues->push_back(QString::fromStdString(imagenCargada));
 
     QString json = JsonSerializer::insertJSON(listaSlots, listaValues);
     ServerLibrary* server = ServerLibrary::getServer();
@@ -165,7 +180,14 @@ void MainWindow::instruccionSelect(vector<string> vectorInstruccion){
     }
     QString json = JsonSerializer::selectJSON(listaSlots, listaVarWhere, listaValorWhereA, listaValorWhereB);
     ServerLibrary* server = ServerLibrary::getServer();
-    server->SELECT(json);
+    QString respuestaServidor = server->SELECT(json);
+    QJsonDocument jsonDoc = QJsonDocument::fromJson(respuestaServidor.toUtf8());
+    QJsonObject jsonObject = jsonDoc.object();
+    string status = jsonObject.value("status").toString().toStdString();
+    //if(status != "Done")
+    string datosSeleccionados = jsonObject.value("MetadataStack").toString().toStdString();
+    imagenesSeleccionadas = jsonObject.value("imgStack").toString().toStdString();
+    insertarEnTabla(datosSeleccionados);
 }
 
 void MainWindow::instruccionDelete(vector<string> vectorInstruccion){
@@ -249,10 +271,11 @@ void MainWindow::manejarError(int numeroError){
         mensajeError += "In UPDATE Instruction\n\"METADATA\" or \"SET\" syntax instructions were not found.";
         break;
     case 13:
-        mensajeError = "ERROR: You must upload an image before INSERT instruction.\nPlease, click \"Upload Image\" and select an image to continue.";
+        mensajeError = "ERROR: You must upload an image before INSERT instruction.\nPlease, click \"Upload Image\" "
+                       "and select an image to continue.";
         break;
     case 14:
-        mensajeError = "ERROR: You must close string value.";
+        mensajeError += "You must close string value.";
         break;
     default:
         mensajeError += "Undefined";
@@ -261,7 +284,9 @@ void MainWindow::manejarError(int numeroError){
     ui->appOutputTextEdit->setText(mensajeError);
 }
 
-void MainWindow::insertarEnTabla(vector<string> elementos){
+void MainWindow::insertarEnTabla(string datosSeleccionados){
+    vector<string> elementos;
+    boost::split(elementos, datosSeleccionados, boost::is_any_of("-"));
     if(elementos.size() == 0) return;
     configurarNombreColumnas(elementos);
     elementos.erase(elementos.begin());
