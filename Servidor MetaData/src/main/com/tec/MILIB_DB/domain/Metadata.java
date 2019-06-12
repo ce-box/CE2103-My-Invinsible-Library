@@ -179,7 +179,7 @@ public class Metadata {
      * @param Slots Espacios a colocar
      * @param SlotsValues Valores a colocar
      */
-    public static void Insert(ArrayList<String> Slots, ArrayList<String> SlotsValues){
+    public static String Insert(ArrayList<String> Slots, ArrayList<String> SlotsValues){
 
         System.out.println("ENTRA");
 
@@ -204,7 +204,7 @@ public class Metadata {
         }
 
         tmp=Nuevo.getChild("ID");
-        tmp.setText(""+IDGlobal++);
+        tmp.setText(""+IDGlobal);
 
         System.out.println("PASA el For 1 Va para el for 2");
 
@@ -217,6 +217,8 @@ public class Metadata {
         }
 
         classElement.addContent(Nuevo);
+
+        return ""+IDGlobal++;
     };
 
     /**
