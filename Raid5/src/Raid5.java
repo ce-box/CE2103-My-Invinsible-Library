@@ -61,9 +61,9 @@ public class Raid5 {
             File[] contents = this.Discos[i].listFiles();
             for (int j = 0; j < contents.length ; j++) {
                 String archivo=contents[j].toString();
-                boolean parte1 = archivo.indexOf(id+"1") !=-1? true: false;
-                boolean parte2 = archivo.indexOf(id+"2") !=-1? true: false;
-                boolean parte3 = archivo.indexOf(id+"3") !=-1? true: false;
+                boolean parte1 = archivo.indexOf(id+"-1") !=-1? true: false;
+                boolean parte2 = archivo.indexOf(id+"-2") !=-1? true: false;
+                boolean parte3 = archivo.indexOf(id+"-3") !=-1? true: false;
                 if(parte1){
                     File file = new File(archivo);
                     String path= file.toString();
@@ -117,10 +117,10 @@ int temporal=turno;
                 turno=0;
             }
             if(parte==4){
-                crearArchivo(Discos[turno].getAbsolutePath(),data[i],id+"P");
+                crearArchivo(Discos[turno].getAbsolutePath(),data[i],id+"-P");
             }
             else{
-                crearArchivo(Discos[turno].getAbsolutePath(),data[i],id+parte);
+                crearArchivo(Discos[turno].getAbsolutePath(),data[i],id+"-"+parte);
 
             }
            parte=parte+1;
