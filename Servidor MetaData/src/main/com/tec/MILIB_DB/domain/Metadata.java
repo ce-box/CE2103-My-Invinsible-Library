@@ -85,6 +85,20 @@ public class Metadata {
     }
 
     /**
+     * Toma una lista de slots y se asegura que no sean ID en el xml
+     * @param Slots
+     * @return mensaje de error
+     */
+    public static String verifySlotsNoID(ArrayList<String> Slots){
+        for (String slot:Slots){
+            if(slot=="ID"){
+                return "ID no es una columna válida para modificar";
+            }
+        }
+        return "";
+    }
+
+    /**
      * Carga el ID global guardado [BACK]
      */
     public static void Start(){
