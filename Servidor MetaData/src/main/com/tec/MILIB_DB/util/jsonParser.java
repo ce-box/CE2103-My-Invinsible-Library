@@ -68,10 +68,19 @@ public class jsonParser {
             slotsList.add((String) slots.get(i));
         }
 
-        for(int i = 0; i < where.length(); i++){
-            whereList.add((String)where.get(i));
-            whereValuesAList.add((String)whereValuesA.get(i));
-            whereValuesBList.add((String)whereValuesB.get(i));
+        System.out.println(where.length());
+        System.out.println(whereValuesA.length());
+        System.out.println(whereValuesB.length());
+
+        if(where.length() != 0) {
+            for (int i = 0; i < where.length(); i++) {
+                whereList.add((String) where.get(i));
+
+                if(whereValuesA.length() > 0)
+                    whereValuesAList.add((String) whereValuesA.get(i));
+                if(whereValuesB.length() > 0)
+                    whereValuesBList.add((String) whereValuesB.get(i));
+            }
         }
     }
 

@@ -73,40 +73,43 @@ void ServerLibrary::START(){
 }
 
 // INSERT
-void ServerLibrary::INSERT(QString MetaJson){
+QString ServerLibrary::INSERT(QString MetaJson){
 
     Client* client = new Client(this->IP,this->Port,this->defaultUrl);
-    client->POST("/insert",MetaJson);
+    QString response = client->POST("/insert",MetaJson);
 
     delete(client);
+    return response;
 }
 
 // SELECT
 QString ServerLibrary::SELECT(QString MetaJson){
 
     Client* client = new Client(this->IP,this->Port,this->defaultUrl);
-    client->GET("/select",MetaJson);
+    QString response = client->GET("/select",MetaJson);
 
     delete(client);
-    return "Hi";
+    return response;
 }
 
 // UPDATE
-void ServerLibrary::UPDATE(QString MetaJson){
+QString ServerLibrary::UPDATE(QString MetaJson){
 
     Client* client = new Client(this->IP,this->Port,this->defaultUrl);
-    client->PUT("/update",MetaJson);
+    QString response = client->PUT("/update",MetaJson);
 
     delete(client);
+    return response;
 }
 
 // DELETE
-void ServerLibrary::DELETE(QString MetaJson){
+QString ServerLibrary::DELETE(QString MetaJson){
 
     Client* client = new Client(this->IP,this->Port,this->defaultUrl);
-    client->DELETE("/delete",MetaJson);
+    QString response = client->DELETE("/delete",MetaJson);
 
     delete(client);
+    return response;
 }
 
 // COMMIT

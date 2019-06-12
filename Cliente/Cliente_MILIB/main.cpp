@@ -17,13 +17,13 @@ void insertTest1 (ServerLibrary* server){
     Lista<QString> *valuesList =new Lista<QString>;
 
     slotsList->push_back("name");
-    //slotsList->push_back("author");
+    slotsList->push_back("author");
     slotsList->push_back("date");
     slotsList->push_back("size");
     //slotsList->push_back("description");
 
     valuesList->push_back("img1");
-    //valuesList->push_back("Esteban");
+    valuesList->push_back("Esteban");
     valuesList->push_back("2012");
     valuesList->push_back("1000");
     //valuesList->push_back("Cool! :)");
@@ -35,6 +35,14 @@ void insertTest1 (ServerLibrary* server){
     cout<<jsonQStr.toStdString()<<endl;
 
     server->INSERT(jsonQStr);
+
+    // From QString to JSON
+
+    /*QJsonDocument jsonDoc = QJsonDocument::fromJson(jsonQStr.toUtf8());
+    QJsonObject jsonObject = jsonDoc.object();
+    QString img64 = jsonObject.value("img64").toString();
+
+    qDebug() << img64;*/
 }
 
 void insertTest2 (ServerLibrary* server){
@@ -65,7 +73,7 @@ void selectTest1 (ServerLibrary* server){
     Lista<QString> *whereList =new Lista<QString>;
     Lista<QString> *whereValuesList =new Lista<QString>;
 
-    slotsList->push_back("name");
+    slotsList->push_back("Nombre");
     slotsList->push_back("author");
     slotsList->push_back("date");
     slotsList->push_back("size");
@@ -78,7 +86,9 @@ void selectTest1 (ServerLibrary* server){
 
     cout<<jsonQStr.toStdString()<<endl;
 
-    server->SELECT(jsonQStr);
+    QString recv = server->SELECT(jsonQStr);
+
+    qDebug()<<"[QT REC] :: "+ recv;
 }
 
 // Enviando Slot vacío
@@ -87,7 +97,7 @@ void selectTest2 (ServerLibrary* server){
     Lista<QString> *whereList =new Lista<QString>;
     Lista<QString> *whereValuesList =new Lista<QString>;
 
-    whereList->push_back("author");
+    whereList->push_back("compa");
     whereValuesList->push_back("Esteban");
 
     QString jsonQStr = JsonSerializer::selectJSON(slotsList,whereList,whereValuesList);
@@ -195,7 +205,7 @@ int main(int argc, char *argv[])
 
     // Prueba del INSERT -> Funcionan todas las condiciones
     insertTest1(server);
-    //insertTest2(server);
+    insertTest2(server);
 
     server->COMMIT();
 

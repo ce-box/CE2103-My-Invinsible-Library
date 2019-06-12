@@ -44,7 +44,7 @@ public class Metadata {
         Metadata.Start();
         ArrayList<String> L1=new ArrayList<>();
         L1.add("date");
-        L1.add("name");
+        L1.add("ID");
         ArrayList<String> L4=new ArrayList<>();
         L4.add("7");
         ArrayList<String> L2=new ArrayList<>();
@@ -52,9 +52,52 @@ public class Metadata {
         ArrayList<String> L3=new ArrayList<>();
         L3.add("10");
         Metadata.Select(L1,L2,L3,L4);
-        System.out.println(Metadata.getSelectList() );
+        System.out.println(Metadata.verifySlotsRange(L1) );
         Metadata.Close();
     }
+
+    /**
+     * Toma una lista de slots y se asegura que existan en el xml
+     * @param Slots
+     * @return mensaje de error
+     */
+    public static String verifySlots(ArrayList<String> Slots){
+        for (String slot:Slots){
+            if(Aux.indexOf(slot)==-1){
+                return "La columna \""+slot+"\" no existe";
+            }
+        }
+        return "";
+    }
+
+    /**
+     * Toma una lista de slots y se asegura que sean float en el xml
+     * @param Slots
+     * @return mensaje de error
+     */
+    public static String verifySlotsRange(ArrayList<String> Slots){
+        for (String slot:Slots){
+            if(!(slot=="ID" || slot=="size" || slot=="date")){
+                return "La columna \""+slot+"\" no es válida para un rango";
+            }
+        }
+        return "";
+    }
+
+    /**
+     * Toma una lista de slots y se asegura que no sean ID en el xml
+     * @param Slots
+     * @return mensaje de error
+     */
+    public static String verifySlotsNoID(ArrayList<String> Slots){
+        for (String slot:Slots){
+            if(slot=="ID"){
+                return "ID no es una columna válida para modificar";
+            }
+        }
+        return "";
+    }
+
     /**
      * Carga el ID global guardado [BACK]
      */
@@ -66,7 +109,7 @@ public class Metadata {
         Aux.add("date");// date
         Aux.add("size"); // size
         Aux.add("description");// description
-        Aux.add("galery");
+        Aux.add("gallery");
 
         // Se debe colocar el path completo segun la maquina
         File inputFile = new File(file_path);
