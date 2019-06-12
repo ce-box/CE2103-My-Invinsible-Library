@@ -65,7 +65,7 @@ void selectTest1 (ServerLibrary* server){
     Lista<QString> *whereList =new Lista<QString>;
     Lista<QString> *whereValuesList =new Lista<QString>;
 
-    slotsList->push_back("name");
+    slotsList->push_back("Nombre");
     slotsList->push_back("author");
     slotsList->push_back("date");
     slotsList->push_back("size");
@@ -89,7 +89,7 @@ void selectTest2 (ServerLibrary* server){
     Lista<QString> *whereList =new Lista<QString>;
     Lista<QString> *whereValuesList =new Lista<QString>;
 
-    whereList->push_back("author");
+    whereList->push_back("compa");
     whereValuesList->push_back("Esteban");
 
     QString jsonQStr = JsonSerializer::selectJSON(slotsList,whereList,whereValuesList);
@@ -196,14 +196,14 @@ int main(int argc, char *argv[])
     server->START();
 
     // Prueba del INSERT -> Funcionan todas las condiciones
-    insertTest1(server);
-    insertTest2(server);
+    //insertTest1(server);
+    //insertTest2(server);
 
-    server->COMMIT();
+    //server->COMMIT();
 
     // Pruebas del SELECT -> Funcionan todas las condiciones
     selectTest1(server);
-    //selectTest2(server);
+    selectTest2(server);
     //selectTest3(server);
     //selectTest4(server);
     //selectTest5(server);

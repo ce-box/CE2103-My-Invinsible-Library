@@ -169,6 +169,31 @@ public class MilibRestService {
         // Do the validation to determine: what is it that comes to SELECT?
         // Note: It still needs to carry out the return of the information
 
+        // Validate that slots or whereSlots are correct!
+
+        if(!slotList.isEmpty()) {
+
+            String isAvailableSlot = Metadata.verifySlots(slotList);
+
+            if (!isAvailableSlot.equals("")) {
+                JSONObject jsonError = new JSONObject();
+                jsonError.put("Status", isAvailableSlot);
+                return Response.status(200).entity(jsonError.toString()).build();
+            }
+        }
+
+        if(!whereList.isEmpty()) {
+
+            String isAvailableSlot = Metadata.verifySlots(whereList);
+
+            if (!isAvailableSlot.equals("")) {
+                JSONObject jsonError = new JSONObject();
+                jsonError.put("Status", isAvailableSlot);
+                return Response.status(200).entity(jsonError.toString()).build();
+            }
+        }
+
+        // Select wich Select method will be called
         if(slotList.isEmpty() && whereList.isEmpty()){
 
             System.out.println("[SELECT]:: Se solicita toda la galeria");
@@ -198,6 +223,7 @@ public class MilibRestService {
 
         // Create a new Response w/ the selected data ready to send
         JSONObject json = new JSONObject();
+        json.put("Status","Done");
         json.put("MetadataStack",metadataMatrix);
         json.put("imgStack","b");
 
