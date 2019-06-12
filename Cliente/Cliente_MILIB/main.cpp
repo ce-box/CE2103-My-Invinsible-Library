@@ -196,26 +196,26 @@ int main(int argc, char *argv[])
     server->START();
 
     // Prueba del INSERT -> Funcionan todas las condiciones
-    //insertTest1(server);
-    //insertTest2(server);
+    insertTest1(server);
+    insertTest2(server);
 
-    //server->COMMIT();
+    server->COMMIT();
 
     // Pruebas del SELECT -> Funcionan todas las condiciones
     selectTest1(server);
     selectTest2(server);
-    //selectTest3(server);
-    //selectTest4(server);
-    //selectTest5(server);
+    selectTest3(server);
+    selectTest4(server);
+    selectTest5(server);
 
     // Pruebas del UPDATE -> Funcionan todas las condiciones
-    //updateTest(server);
+    updateTest(server);
 
-    //server->COMMIT();
+    server->COMMIT();
 
     // Pruebas del DELETE
-    //deleteTest(server);
-    //server->COMMIT();
+    deleteTest(server);
+    server->COMMIT();
 
     return a.exec();
 }

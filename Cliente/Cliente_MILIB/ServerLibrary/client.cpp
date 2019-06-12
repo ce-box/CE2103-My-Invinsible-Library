@@ -57,7 +57,7 @@ QString Client::GET(const QString &path, const QString &jsonDoc){
 }
 
 // PUT Method
-void Client::PUT(const QString &path, const QString &jsonDoc){
+QString Client::PUT(const QString &path, const QString &jsonDoc){
 
     QNetworkAccessManager *manager = new QNetworkAccessManager();
     QUrl url(this->defaultPath + path);
@@ -69,9 +69,18 @@ void Client::PUT(const QString &path, const QString &jsonDoc){
     qDebug() << "[PUT] Client POST request to: " << url.toString();
     qDebug() << "[PUT] Data sent: " << jsonDoc;
 
-    manager->sendCustomRequest(request,"PUT",jsonDoc.toUtf8());
+    QNetworkReply *reply = manager->sendCustomRequest(
+                request,"PUT",jsonDoc.toUtf8());
 
-    return;
+    // Esto es necesario para leer la entrada
+    QEventLoop loop;
+    QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+    loop.exec();
+    QString recv = (QString)reply->readAll();
+
+    qDebug()<<"[PUT] Data received: "<< recv;
+
+    return recv;
 }
 
 // DELETE Method

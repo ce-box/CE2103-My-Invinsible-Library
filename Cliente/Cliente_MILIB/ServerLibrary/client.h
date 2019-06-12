@@ -58,7 +58,7 @@ public:
      * @param jsonDoc[in] : JSON that contains the data to send
      * @return void
      */
-    void PUT(const QString &path, const QString &jsonDoc = "");
+    QString PUT(const QString &path, const QString &jsonDoc = "");
 
     /**
      * @brief DELETE is pretty easy to understand. It is used to **delete**

@@ -32,7 +32,7 @@ public:
      * @param MetaJson[in] :Receive a JSON that contains the metadata of the image
      * @return void
      */
-    void INSERT(QString MetaJson);
+    QString INSERT(QString MetaJson);
 
     /**
      * @brief Method in charge of returning a JSON with the requested image from
@@ -47,7 +47,7 @@ public:
      * @param MetaJson[in] : Receive a json with the information of the requested image
      * @return void
      */
-    void UPDATE(QString MetaJson);
+    QString UPDATE(QString MetaJson);
 
     // The delete receives metada but it is in charge of connecting
     // with both web services to complete the action
@@ -56,7 +56,7 @@ public:
      * @param MetaJson[in] : Receive a json with the information of the requested image
      * @return void
      */
-    void DELETE(QString MetaJson);
+    QString DELETE(QString MetaJson);
 
     /**
      * @brief Make commit of all changes made to the database

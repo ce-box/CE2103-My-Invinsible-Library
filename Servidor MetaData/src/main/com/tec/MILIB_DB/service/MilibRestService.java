@@ -110,8 +110,19 @@ public class MilibRestService {
         System.out.println("[INSERT]:: Slots: " + slotList.toString());
         System.out.println("[INSERT]:: Slots Values: " + valuesList.toString());
 
-        // Insert the metadata
+        // Validate that slots are valid
+        if(!slotList.isEmpty()) {
 
+            String isAvailableSlot = Metadata.verifySlots(slotList);
+
+            if (!isAvailableSlot.equals("")) {
+                JSONObject jsonError = new JSONObject();
+                jsonError.put("Status", isAvailableSlot);
+                return Response.status(200).entity(jsonError.toString()).build();
+            }
+        }
+
+        // Insert the metadata
         Metadata.Insert(slotList,valuesList);
 
         // Create and Send json file to insert an image on RAID disk
@@ -122,7 +133,7 @@ public class MilibRestService {
 
         // Response
         JSONObject json = new JSONObject();
-        json.put("Status","OK");
+        json.put("Status","Done");
 
         System.out.println("[INSERT] Data sent: "+ json.toString());
 
@@ -265,13 +276,41 @@ public class MilibRestService {
         System.out.println("[Desde el REST]:: slot values: " + valuesList.toString()); // Values of each slot
         System.out.println("[Desde el REST]:: Where values: " + whereValuesList.toString()); // Where Values condition
 
+        // Validate that slots and where are valid
+
+        if(!slotList.isEmpty()) {
+
+            String isAvailableSlot = Metadata.verifySlots(slotList);
+
+            if (!isAvailableSlot.equals("")) {
+                JSONObject jsonError = new JSONObject();
+                jsonError.put("Status", isAvailableSlot);
+                return Response.status(200).entity(jsonError.toString()).build();
+            }
+        }
+
+        if(!whereList.isEmpty()) {
+
+            String isAvailableSlot = Metadata.verifySlots(whereList);
+
+            if (!isAvailableSlot.equals("")) {
+                JSONObject jsonError = new JSONObject();
+                jsonError.put("Status", isAvailableSlot);
+                return Response.status(200).entity(jsonError.toString()).build();
+            }
+        }
+
         Metadata.Update(slotList,valuesList,whereList,whereValuesList);
 
         // --------------------------------------------------------------------
 
         // Response
+        JSONObject json = new JSONObject();
+        json.put("Status","Done");
 
-        return Response.status(200).build();
+        System.out.println("[UPDATE] Data sent: "+ json.toString());
+
+        return Response.status(200).entity(json.toString()).build();
     }
 
     /**
@@ -302,13 +341,26 @@ public class MilibRestService {
         System.out.println("[Desde el REST]:: Where slots: " + whereList.toString()); // Where condition
         System.out.println("[Desde el REST]:: Where values: " + whereValuesList.toString()); // Where Values condition
 
+        // Validate that where are valid
+
+        if(!whereList.isEmpty()) {
+
+            String isAvailableSlot = Metadata.verifySlots(whereList);
+
+            if (!isAvailableSlot.equals("")) {
+                JSONObject jsonError = new JSONObject();
+                jsonError.put("Status", isAvailableSlot);
+                return Response.status(200).entity(jsonError.toString()).build();
+            }
+        }
+
         Metadata.Delete(whereList,whereValuesList);
         MilibServiceClient.deleteClient(recvData);
         // --------------------------------------------------------------------
 
         // If deletion done, the send Status: OK else Status: FAIL
         JSONObject json = new JSONObject();
-        json.put("Status","OK");
+        json.put("Status","Done");
 
         System.out.println("[DELETE] Data sent: "+ json.toString());
 
