@@ -14,14 +14,11 @@ ServerLibrary* ServerLibrary::getServer(){
 
 // Constructor
 ServerLibrary::ServerLibrary(){
-    // Setea los valores default del proyecto
-    this->MilibIP = "localhost";
-    this->MilibPort = "8080";
-    this->MilibUrl = "http//localhost:8080";
 
-    this->RaidIP = "localhost";
-    this->RaidPort = "9080";
-    this->RaidUrl = "http//localhost:9080";
+    // Setea los valores default del proyecto
+    this->IP = "localhost";
+    this->Port = "8080";
+    this->defaultUrl = "http//"+IP+":"+Port;
 
 }
 
@@ -30,39 +27,23 @@ ServerLibrary::ServerLibrary(){
 //----------------------------------------------------------------------
 
 // Configuration of the necessary information for the connection
-void ServerLibrary::setMilib(QString url, QString ip, QString port){
-    this->MilibUrl = url;
-    this->MilibPort = port;
-    this->MilibIP = ip;
+void ServerLibrary::setServer(QString url, QString ip, QString port){
+    this->defaultUrl = url;
+    this->Port = port;
+    this->IP = ip;
 }
 
-void ServerLibrary::setRaid(QString url, QString ip, QString port){
-    this->RaidUrl = url;
-    this->RaidPort = port;
-    this->RaidIP = ip;
-}
 
 // Returns and prints API information on the screen
-void ServerLibrary::getMilibInfo(){
+void ServerLibrary::getServerInfo(){
     qDebug()<< "--------------------------";
     qDebug()<< "        MILIB API         ";
     qDebug()<< "--------------------------";
-    qDebug()<< "* URL:"<< this->MilibUrl;
-    qDebug()<< "* PORT:"<< this->MilibPort;
-    qDebug()<< "* IP ADDR:"<< this->MilibIP;
+    qDebug()<< "* URL:"<< this->defaultUrl;
+    qDebug()<< "* PORT:"<< this->Port;
+    qDebug()<< "* IP ADDR:"<< this->IP;
     qDebug()<< "--------------------------\n";
 }
-
-void ServerLibrary::getRaidInfo(){
-    qDebug()<< "--------------------------";
-    qDebug()<< "         RAID API         ";
-    qDebug()<< "--------------------------";
-    qDebug()<< "* URL:"<< this->RaidUrl;
-    qDebug()<< "* PORT:"<< this->RaidPort;
-    qDebug()<< "* IP ADDR:"<< this->RaidIP;
-    qDebug()<< "--------------------------\n";
-}
-
 
 
 
@@ -86,64 +67,55 @@ void ServerLibrary::getRaidInfo(){
 
 // START
 void ServerLibrary::START(){
-    Client* client = new Client(this->MilibIP,this->MilibPort,this->MilibUrl);
+    Client* client = new Client(this->IP,this->Port,this->defaultUrl);
     client->POST("/start");
     delete(client);
 }
 
 // INSERT
-void ServerLibrary::INSERT(QString MetaJson){
+QString ServerLibrary::INSERT(QString MetaJson){
 
-    Client* client = new Client(this->MilibIP,this->MilibPort,this->MilibUrl);
-    client->POST("/insert",MetaJson);
-
-    client->updateInfo(this->RaidIP,this->RaidPort,this->RaidUrl);
-    client->POST("/insert",MetaJson);
+    Client* client = new Client(this->IP,this->Port,this->defaultUrl);
+    QString response = client->POST("/insert",MetaJson);
 
     delete(client);
+    return response;
 }
 
 // SELECT
 QString ServerLibrary::SELECT(QString MetaJson){
 
-    Client* client = new Client(this->MilibIP,this->MilibPort,this->MilibUrl);
-    client->GET("/select",MetaJson);
-
-    client->updateInfo(this->RaidIP,this->RaidPort,this->RaidUrl);
-    client->GET("/select",MetaJson);
+    Client* client = new Client(this->IP,this->Port,this->defaultUrl);
+    QString response = client->GET("/select",MetaJson);
 
     delete(client);
-    return "Hi";
+    return response;
 }
 
 // UPDATE
-void ServerLibrary::UPDATE(QString MetaJson){
+QString ServerLibrary::UPDATE(QString MetaJson){
 
-    Client* client = new Client(this->MilibIP,this->MilibPort,this->MilibUrl);
-    client->PUT("/update",MetaJson);
+    Client* client = new Client(this->IP,this->Port,this->defaultUrl);
+    QString response = client->PUT("/update",MetaJson);
 
     delete(client);
+    return response;
 }
 
 // DELETE
-void ServerLibrary::DELETE(QString MetaJson){
+QString ServerLibrary::DELETE(QString MetaJson){
 
-    Client* client = new Client(this->MilibIP,this->MilibPort,this->MilibUrl);
-    client->DELETE("/delete",MetaJson);
-
-    client->updateInfo(this->RaidIP,this->RaidPort,this->RaidUrl);
-    client->DELETE("/delete",MetaJson);
+    Client* client = new Client(this->IP,this->Port,this->defaultUrl);
+    QString response = client->DELETE("/delete",MetaJson);
 
     delete(client);
+    return response;
 }
 
 // COMMIT
 void ServerLibrary::COMMIT(){
 
-    Client* client = new Client(this->MilibIP,this->MilibPort,this->MilibUrl);
-    client->PUT("/commit");
-
-    client->updateInfo(this->RaidIP,this->RaidPort,this->RaidUrl);
+    Client* client = new Client(this->IP,this->Port,this->defaultUrl);
     client->PUT("/commit");
 
     delete(client);
@@ -152,10 +124,7 @@ void ServerLibrary::COMMIT(){
 // ROLLBACK
 void ServerLibrary::BACK(){
 
-    Client* client = new Client(this->MilibIP,this->MilibPort,this->MilibUrl);
-    client->PUT("/back");
-
-    client->updateInfo(this->RaidIP,this->RaidPort,this->RaidUrl);
+    Client* client = new Client(this->IP,this->Port,this->defaultUrl);
     client->PUT("/back");
 
     delete(client);

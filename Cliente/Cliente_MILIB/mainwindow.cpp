@@ -26,10 +26,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->commitPushButton, SIGNAL (clicked()), this, SLOT (commit()));
     connect(ui->rollbackPushButton, SIGNAL (clicked()), this, SLOT (rollback()));
 
-    ServerLibrary* server = ServerLibrary::getServer();
-    server->setMilib("/MILIB_Servidor_war_exploded/api/database", "192.168.100.20");
-    server->setRaid("/MILIB_RAID_war_exploded/api/raid", "192.168.100.20");
-    server->START();
+//    ServerLibrary* server = ServerLibrary::getServer();
+//    server->setServer("/Main_Server_war_exploded/api/server", "192.168.42.40", "8081");
+//    server->START();
 }
 
 void MainWindow::colorearWidget(QWidget* widget, QString colorFondo){
@@ -57,9 +56,9 @@ void MainWindow::abrirExploradorArchivos(){
 
     QByteArray byteArray64 = byteArray.toBase64();
     string data = byteArray64.toStdString();
+    galeriaIngresada = QInputDialog::getText(this, "Galería", "Ingrese el nombre de la galería a la que pertenece la imagen:");
     imagenCargada = data;
 
-    galeriaIngresada = QInputDialog::getText(this, "Galería", "Ingrese el nombre de la galería a la que pertenece la imagen:");
 
 }
 
@@ -98,6 +97,7 @@ void MainWindow::obtenerInputIDE(){
     string inputIDE = ui->ideTextEdit->toPlainText().toStdString();
     LectorSintaxis* lector = new LectorSintaxis(inputIDE);
     string instruccion = lector->manejarInputIDE();
+    delete lector;
     vector<string> vectorInstruccion;
     boost::split(vectorInstruccion, instruccion, boost::is_any_of("-"));
     int numeroInstruccion = stoi(vectorInstruccion[0]);
@@ -140,10 +140,8 @@ void MainWindow::instruccionInsert(vector<string> vectorInstruccion){
     listaValues->push_back(galeriaIngresada);
     listaSlots->push_back("size");
     listaValues->push_back(sizeImagen);
-    listaSlots->push_back("img64");
-    listaValues->push_back(QString::fromStdString(imagenCargada));
 
-    QString json = JsonSerializer::insertJSON(listaSlots, listaValues);
+    QString json = JsonSerializer::insertJSON(listaSlots, listaValues, QString::fromStdString(imagenCargada));
     ServerLibrary* server = ServerLibrary::getServer();
     server->INSERT(json);
 
@@ -164,6 +162,7 @@ void MainWindow::instruccionSelect(vector<string> vectorInstruccion){
     Lista<QString>* listaVarWhere = new Lista<QString>;
     Lista<QString>* listaValorWhereA = new Lista<QString>;
     Lista<QString>* listaValorWhereB = new Lista<QString>;
+    
     if(vectorInstruccion.size() > 2){
         QString varWhere = QString::fromStdString(vectorInstruccion[2]);
         listaVarWhere->push_back(varWhere);

@@ -21,7 +21,7 @@ public:
      * @param valuesList
      * @return
      */
-    static QString insertJSON(Lista<QString> *slotsList,Lista<QString> *valuesList);
+    static QString insertJSON(Lista<QString> *slotsList,Lista<QString> *valuesList,QString img64);
 
     /**
      * @brief selectJSON

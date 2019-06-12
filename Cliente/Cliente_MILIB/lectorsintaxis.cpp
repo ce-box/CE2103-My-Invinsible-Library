@@ -194,18 +194,22 @@ string LectorSintaxis::manejarInstruccionSelect(){
                 return "ERROR";
             }
             string condicional = obtenerCondicionales();
+            qDebug()<<condicional.c_str();
             if(idError != 0) return "ERROR";
             bool isBetween = false;
             string columnaBetween;
             string verificarStr;
-            for(int i = 0; i < condicional.size()-7; i++){
-                verificarStr = condicional.substr(i, 7);
-                if(verificarStr == "BETWEEN"){
-                    isBetween = true;
-                    condicional = condicional.substr(i+7, condicional.size());
-                    break;
-                }else if(verificarStr.substr(0, 1) != " ")
-                    columnaBetween += verificarStr.substr(0, 1);
+            if(condicional.size() >= 7){
+                for(int i = 0; i < condicional.size()-7; i++){
+                    verificarStr = condicional.substr(i, 7);
+                    qDebug()<<"VerStr:"<<verificarStr.c_str();
+                    if(verificarStr == "BETWEEN"){
+                        isBetween = true;
+                        condicional = condicional.substr(i+7, condicional.size());
+                        break;
+                    }else if(verificarStr.substr(0, 1) != " ")
+                        columnaBetween += verificarStr.substr(0, 1);
+                }
             }
             if(isBetween){
                 string valoresBetween;

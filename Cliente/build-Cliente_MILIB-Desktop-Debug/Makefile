@@ -226,7 +226,6 @@ DIST          = /home/erickcr12/Qt5.9.1/5.9.1/gcc_64/mkspecs/features/spec_pre.p
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/mkspecs/features/qt_config.prf \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/mkspecs/linux-g++/qmake.conf \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/mkspecs/features/spec_post.prf \
-		../Cliente_MILIB/.qmake.stash \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/mkspecs/features/exclusive_builds.prf \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/mkspecs/features/toolchain.prf \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/mkspecs/features/default_pre.prf \
@@ -432,7 +431,6 @@ Makefile: ../Cliente_MILIB/Cliente_MILIB.pro /home/erickcr12/Qt5.9.1/5.9.1/gcc_6
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/mkspecs/features/qt_config.prf \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/mkspecs/linux-g++/qmake.conf \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/mkspecs/features/spec_post.prf \
-		.qmake.stash \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/mkspecs/features/exclusive_builds.prf \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/mkspecs/features/toolchain.prf \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/mkspecs/features/default_pre.prf \
@@ -617,7 +615,6 @@ Makefile: ../Cliente_MILIB/Cliente_MILIB.pro /home/erickcr12/Qt5.9.1/5.9.1/gcc_6
 /home/erickcr12/Qt5.9.1/5.9.1/gcc_64/mkspecs/features/qt_config.prf:
 /home/erickcr12/Qt5.9.1/5.9.1/gcc_64/mkspecs/linux-g++/qmake.conf:
 /home/erickcr12/Qt5.9.1/5.9.1/gcc_64/mkspecs/features/spec_post.prf:
-.qmake.stash:
 /home/erickcr12/Qt5.9.1/5.9.1/gcc_64/mkspecs/features/exclusive_builds.prf:
 /home/erickcr12/Qt5.9.1/5.9.1/gcc_64/mkspecs/features/toolchain.prf:
 /home/erickcr12/Qt5.9.1/5.9.1/gcc_64/mkspecs/features/default_pre.prf:
@@ -799,11 +796,53 @@ moc_mainwindow.cpp: ../Cliente_MILIB/ventanaimagen.h \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtGui/QImage \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtGui/QPixmap \
 		../Cliente_MILIB/lectorsintaxis.h \
+		../Cliente_MILIB/ServerLibrary/serverlibrary.h \
+		../Cliente_MILIB/ServerLibrary/client.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/QNetworkAccessManager \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/qnetworkaccessmanager.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/qtnetworkglobal.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/qtnetwork-config.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/qnetworkrequest.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QSharedDataPointer \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QString \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QUrl \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QVariant \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QVector \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QObject \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/QSslConfiguration \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/qsslconfiguration.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/qsslsocket.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/qtcpsocket.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/qabstractsocket.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/qsslerror.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/qsslcertificate.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qcryptographichash.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qdatetime.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/qssl.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QFlags \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/QSslPreSharedKeyAuthenticator \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/qsslpresharedkeyauthenticator.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QMetaType \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/QNetworkReply \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/qnetworkreply.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QIODevice \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/QNetworkRequest \
+		../Cliente_MILIB/Data_Structures/lista.hpp \
+		../Cliente_MILIB/Data_Structures/nodo.hpp \
+		../Cliente_MILIB/Data_Structures/nodo_def.h \
+		../Cliente_MILIB/Data_Structures/lista_def.h \
+		../Cliente_MILIB/json/jsonserializer.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QJsonArray \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qjsonarray.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qjsonvalue.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QJsonDocument \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qjsondocument.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QJsonObject \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qjsonobject.h \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QMainWindow \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qmainwindow.h \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qtabwidget.h \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qicon.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QString \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtGui/QColor \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QColorDialog \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qcolordialog.h \
@@ -824,10 +863,13 @@ moc_mainwindow.cpp: ../Cliente_MILIB/ventanaimagen.h \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QBuffer \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qbuffer.h \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QFile \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QInputDialog \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qinputdialog.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qlineedit.h \
 		../Cliente_MILIB/mainwindow.h \
 		moc_predefs.h \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/bin/moc
-	/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/mkspecs/linux-g++ -I/home/erickcr12/Documents/AyEDII/Proyectos/MyInvensibleLibrary/Cliente/Cliente_MILIB -I/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include -I/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets -I/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtGui -I/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork -I/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore -I. -I/usr/include/c++/6 -I/usr/include/x86_64-linux-gnu/c++/6 -I/usr/include/c++/6/backward -I/usr/lib/gcc/x86_64-linux-gnu/6/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include -I/usr/include/c++/6 -I/usr/include/x86_64-linux-gnu/c++/6 -I/usr/include/c++/6/backward -I/usr/lib/gcc/x86_64-linux-gnu/6/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../Cliente_MILIB/mainwindow.h -o moc_mainwindow.cpp
+	/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/mkspecs/linux-g++ -I/home/erickcr12/Documents/AyEDII/Proyectos/MyInvensibleLibrary/Cliente/Cliente_MILIB -I/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include -I/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets -I/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtGui -I/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork -I/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore -I. -I/usr/include/c++/6 -I/usr/include/x86_64-linux-gnu/c++/6 -I/usr/include/c++/6/backward -I/usr/lib/gcc/x86_64-linux-gnu/6/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../Cliente_MILIB/mainwindow.h -o moc_mainwindow.cpp
 
 moc_ventanaimagen.cpp: /home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QDialog \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qdialog.h \
@@ -935,7 +977,7 @@ moc_ventanaimagen.cpp: /home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QD
 		../Cliente_MILIB/ventanaimagen.h \
 		moc_predefs.h \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/bin/moc
-	/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/mkspecs/linux-g++ -I/home/erickcr12/Documents/AyEDII/Proyectos/MyInvensibleLibrary/Cliente/Cliente_MILIB -I/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include -I/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets -I/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtGui -I/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork -I/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore -I. -I/usr/include/c++/6 -I/usr/include/x86_64-linux-gnu/c++/6 -I/usr/include/c++/6/backward -I/usr/lib/gcc/x86_64-linux-gnu/6/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include -I/usr/include/c++/6 -I/usr/include/x86_64-linux-gnu/c++/6 -I/usr/include/c++/6/backward -I/usr/lib/gcc/x86_64-linux-gnu/6/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../Cliente_MILIB/ventanaimagen.h -o moc_ventanaimagen.cpp
+	/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/mkspecs/linux-g++ -I/home/erickcr12/Documents/AyEDII/Proyectos/MyInvensibleLibrary/Cliente/Cliente_MILIB -I/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include -I/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets -I/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtGui -I/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork -I/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore -I. -I/usr/include/c++/6 -I/usr/include/x86_64-linux-gnu/c++/6 -I/usr/include/c++/6/backward -I/usr/lib/gcc/x86_64-linux-gnu/6/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../Cliente_MILIB/ventanaimagen.h -o moc_ventanaimagen.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -1066,11 +1108,53 @@ main.o: ../Cliente_MILIB/main.cpp ../Cliente_MILIB/mainwindow.h \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtGui/QImage \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtGui/QPixmap \
 		../Cliente_MILIB/lectorsintaxis.h \
+		../Cliente_MILIB/ServerLibrary/serverlibrary.h \
+		../Cliente_MILIB/ServerLibrary/client.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/QNetworkAccessManager \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/qnetworkaccessmanager.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/qtnetworkglobal.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/qtnetwork-config.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/qnetworkrequest.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QSharedDataPointer \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QString \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QUrl \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QVariant \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QVector \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QObject \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/QSslConfiguration \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/qsslconfiguration.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/qsslsocket.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/qtcpsocket.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/qabstractsocket.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/qsslerror.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/qsslcertificate.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qcryptographichash.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qdatetime.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/qssl.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QFlags \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/QSslPreSharedKeyAuthenticator \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/qsslpresharedkeyauthenticator.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QMetaType \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/QNetworkReply \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/qnetworkreply.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QIODevice \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/QNetworkRequest \
+		../Cliente_MILIB/Data_Structures/lista.hpp \
+		../Cliente_MILIB/Data_Structures/nodo.hpp \
+		../Cliente_MILIB/Data_Structures/nodo_def.h \
+		../Cliente_MILIB/Data_Structures/lista_def.h \
+		../Cliente_MILIB/json/jsonserializer.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QJsonArray \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qjsonarray.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qjsonvalue.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QJsonDocument \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qjsondocument.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QJsonObject \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qjsonobject.h \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QMainWindow \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qmainwindow.h \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qtabwidget.h \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qicon.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QString \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtGui/QColor \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QColorDialog \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qcolordialog.h \
@@ -1091,6 +1175,9 @@ main.o: ../Cliente_MILIB/main.cpp ../Cliente_MILIB/mainwindow.h \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QBuffer \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qbuffer.h \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QFile \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QInputDialog \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qinputdialog.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qlineedit.h \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QApplication \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qapplication.h \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qcoreapplication.h \
@@ -1206,11 +1293,53 @@ mainwindow.o: ../Cliente_MILIB/mainwindow.cpp ../Cliente_MILIB/mainwindow.h \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtGui/QImage \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtGui/QPixmap \
 		../Cliente_MILIB/lectorsintaxis.h \
+		../Cliente_MILIB/ServerLibrary/serverlibrary.h \
+		../Cliente_MILIB/ServerLibrary/client.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/QNetworkAccessManager \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/qnetworkaccessmanager.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/qtnetworkglobal.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/qtnetwork-config.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/qnetworkrequest.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QSharedDataPointer \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QString \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QUrl \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QVariant \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QVector \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QObject \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/QSslConfiguration \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/qsslconfiguration.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/qsslsocket.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/qtcpsocket.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/qabstractsocket.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/qsslerror.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/qsslcertificate.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qcryptographichash.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qdatetime.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/qssl.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QFlags \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/QSslPreSharedKeyAuthenticator \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/qsslpresharedkeyauthenticator.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QMetaType \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/QNetworkReply \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/qnetworkreply.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QIODevice \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtNetwork/QNetworkRequest \
+		../Cliente_MILIB/Data_Structures/lista.hpp \
+		../Cliente_MILIB/Data_Structures/nodo.hpp \
+		../Cliente_MILIB/Data_Structures/nodo_def.h \
+		../Cliente_MILIB/Data_Structures/lista_def.h \
+		../Cliente_MILIB/json/jsonserializer.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QJsonArray \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qjsonarray.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qjsonvalue.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QJsonDocument \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qjsondocument.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QJsonObject \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qjsonobject.h \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QMainWindow \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qmainwindow.h \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qtabwidget.h \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qicon.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QString \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtGui/QColor \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QColorDialog \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qcolordialog.h \
@@ -1231,45 +1360,10 @@ mainwindow.o: ../Cliente_MILIB/mainwindow.cpp ../Cliente_MILIB/mainwindow.h \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QBuffer \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qbuffer.h \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QFile \
-		ui_mainwindow.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QVariant \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QAction \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qaction.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qactiongroup.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QApplication \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qapplication.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qcoreapplication.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qeventloop.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qguiapplication.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qinputmethod.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QButtonGroup \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qbuttongroup.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QFrame \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QHeaderView \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qheaderview.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qabstractitemview.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qabstractitemmodel.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qitemselectionmodel.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qstyleoption.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qvalidator.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qregularexpression.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qslider.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qabstractslider.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qstyle.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qtabbar.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qrubberband.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QLabel \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qlabel.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QPushButton \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qpushbutton.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qabstractbutton.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QTableWidget \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qtablewidget.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qtableview.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QWidget
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QInputDialog \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qinputdialog.h \
+		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qlineedit.h \
+		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../Cliente_MILIB/mainwindow.cpp
 
 ventanaimagen.o: ../Cliente_MILIB/ventanaimagen.cpp ../Cliente_MILIB/ventanaimagen.h \
@@ -1376,41 +1470,7 @@ ventanaimagen.o: ../Cliente_MILIB/ventanaimagen.cpp ../Cliente_MILIB/ventanaimag
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qtouchdevice.h \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtGui/QImage \
 		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtGui/QPixmap \
-		ui_ventanaimagen.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QVariant \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QAction \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qaction.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qicon.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qactiongroup.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QApplication \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qapplication.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qcoreapplication.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qeventloop.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qguiapplication.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qinputmethod.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QButtonGroup \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qbuttongroup.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QHeaderView \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qheaderview.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qabstractitemview.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qframe.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qabstractitemmodel.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qitemselectionmodel.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qstyleoption.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qvalidator.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qregularexpression.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qslider.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qabstractslider.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qstyle.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qtabbar.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qtabwidget.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qrubberband.h \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QLabel \
-		/home/erickcr12/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qlabel.h
+		ui_ventanaimagen.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ventanaimagen.o ../Cliente_MILIB/ventanaimagen.cpp
 
 lectorsintaxis.o: ../Cliente_MILIB/lectorsintaxis.cpp ../Cliente_MILIB/lectorsintaxis.h \
