@@ -34,8 +34,7 @@ public class Metadata {
 
     private static String SelectList;
 
-    private static String file_path="/home/esteban/Documentos/TEC/1S 2019/Algoritmos y estructuras de datos II/4. Proyectos" +
-            "/Proyecto #3/Source/MyInvensibleLibrary/Servidor MetaData/XML_Metadata/input.xml";
+    private static String file_path="/home/juan/Documentos/Proyecto3/Servidor MetaData/XML_Metadata/input.xml";
 
     public static void setFile_path(String file_path){
         Metadata.file_path = file_path;
@@ -45,7 +44,7 @@ public class Metadata {
         Metadata.Start();
         ArrayList<String> L1=new ArrayList<>();
         L1.add("date");
-        L1.add("name");
+        L1.add("ID");
         ArrayList<String> L4=new ArrayList<>();
         L4.add("7");
         ArrayList<String> L2=new ArrayList<>();
@@ -53,7 +52,7 @@ public class Metadata {
         ArrayList<String> L3=new ArrayList<>();
         L3.add("10");
         Metadata.Select(L1,L2,L3,L4);
-        System.out.println(Metadata.getSelectList() );
+        System.out.println(Metadata.verifySlotsRange(L1) );
         Metadata.Close();
     }
 
@@ -65,12 +64,26 @@ public class Metadata {
     public static String verifySlots(ArrayList<String> Slots){
         for (String slot:Slots){
             if(Aux.indexOf(slot)==-1){
-                return "La columna "+slot+" no existe";
+                return "La columna \""+slot+"\" no existe";
             }
         }
         return "";
-
     }
+
+    /**
+     * Toma una lista de slots y se asegura que sean float en el xml
+     * @param Slots
+     * @return mensaje de error
+     */
+    public static String verifySlotsRange(ArrayList<String> Slots){
+        for (String slot:Slots){
+            if(!(slot=="ID" || slot=="size" || slot=="date")){
+                return "La columna \""+slot+"\" no es válida para un rango";
+            }
+        }
+        return "";
+    }
+
     /**
      * Carga el ID global guardado [BACK]
      */
