@@ -186,7 +186,10 @@ string LectorSintaxis::manejarInstruccionSelect(){
         inputSize = inputIDE.size();
         if(inputIDE == ";")
             return columnas;
-        else if(inputIDE.substr(1, 6) == "WHERE "){
+        else if(inputIDE == ""){
+            idError = 6;
+            return "ERROR";
+        }else if(inputIDE.substr(1, 6) == "WHERE "){
             inputIDE = inputIDE.substr(7, inputSize-7);
             inputSize = inputIDE.size();
             if(inputIDE.substr(inputIDE.size()-1, 1) != ";"){
@@ -194,7 +197,6 @@ string LectorSintaxis::manejarInstruccionSelect(){
                 return "ERROR";
             }
             string condicional = obtenerCondicionales();
-            qDebug()<<condicional.c_str();
             if(idError != 0) return "ERROR";
             bool isBetween = false;
             string columnaBetween;
@@ -202,7 +204,6 @@ string LectorSintaxis::manejarInstruccionSelect(){
             if(condicional.size() >= 7){
                 for(int i = 0; i < condicional.size()-7; i++){
                     verificarStr = condicional.substr(i, 7);
-                    qDebug()<<"VerStr:"<<verificarStr.c_str();
                     if(verificarStr == "BETWEEN"){
                         isBetween = true;
                         condicional = condicional.substr(i+7, condicional.size());
@@ -238,10 +239,15 @@ string LectorSintaxis::manejarInstruccionSelect(){
 string LectorSintaxis::obtenerColumnasSelect(){
     string columnas;
     string caracterActual;
+    bool columnaExiste = false;
     for(int posicion = 0; posicion < inputSize; posicion++){
         caracterActual = inputIDE[posicion];
-        if(caracterActual != " ")
+        if(caracterActual != " "){
             columnas += caracterActual;
+            columnaExiste = true;
+        }
+        else if(!columnaExiste)
+            break;
         else if(columnas.substr(posicion-1, 1) != ","){
             inputIDE = inputIDE.substr(posicion+1, inputSize-posicion);
             inputSize = inputIDE.size();

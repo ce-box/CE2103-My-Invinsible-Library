@@ -26,9 +26,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->commitPushButton, SIGNAL (clicked()), this, SLOT (commit()));
     connect(ui->rollbackPushButton, SIGNAL (clicked()), this, SLOT (rollback()));
 
-//    ServerLibrary* server = ServerLibrary::getServer();
-//    server->setServer("/Main_Server_war_exploded/api/server", "192.168.42.40", "8081");
-//    server->START();
+    ServerLibrary* server = ServerLibrary::getServer();
+    server->setServer("/Main_Server_war_exploded/api/server", "192.168.43.6", "8081");
+    server->START();
 }
 
 void MainWindow::colorearWidget(QWidget* widget, QString colorFondo){
@@ -39,7 +39,6 @@ void MainWindow::colorearWidget(QWidget* widget, QString colorFondo){
 }
 
 void MainWindow::abrirExploradorArchivos(){
-    //TODO: Decidir si solo insertar imagenes una por una o seleccionar varias imagenes.
     QStringList direccionImagenes = QFileDialog::getOpenFileNames(this, tr("Abrir Imagen/Galería"),"/home",tr("Imágenes PNG (*.png)"));
     if(direccionImagenes.size() == 0) return;
     QString imgDireccion = direccionImagenes[0];
@@ -190,11 +189,11 @@ void MainWindow::instruccionSelect(vector<string> vectorInstruccion){
 }
 
 void MainWindow::instruccionDelete(vector<string> vectorInstruccion){
-    QString varWhere = QString::fromStdString(vectorInstruccion[2]);
+    QString varWhere = QString::fromStdString(vectorInstruccion[1]);
     Lista<QString>* listaVarWhere = new Lista<QString>;
     listaVarWhere->push_back(varWhere);
 
-    QString valorWhere = QString::fromStdString(vectorInstruccion[3]);
+    QString valorWhere = QString::fromStdString(vectorInstruccion[2]);
     Lista<QString>* listaValorWhere = new Lista<QString>;
     listaValorWhere->push_back(valorWhere);
 
@@ -337,7 +336,7 @@ MainWindow::~MainWindow(){
 //VALUES("pikachuBailando.png", "Ash Ketchup", "2019", "2MB");
 
 //SELECT name, author FROM METADATA
-//WHERE date = "2019";
+//WHERE date = "2019"; //WHERE date BETWEEN 0 AND 5;
 
 //DELETE FROM METADATA WHERE date = "2019";
 
