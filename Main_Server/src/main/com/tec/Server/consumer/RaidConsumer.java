@@ -1,6 +1,6 @@
-package main.com.tec.MILIB_DB.consumer;
+package main.com.tec.Server.consumer;
 
-/// Libraries
+// Libraries
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -9,23 +9,10 @@ import java.net.URL;
 import java.net.URLConnection;
 
 
-
-/**
- *
- */
-public class MilibServiceClient {
-
-    public static void main(String[] args) {
-
-        writeClient("{}");
-        seekClient("{}");
-        deleteClient("{}");
-        commitClient();
-        backClient();
-    }
+public class RaidConsumer {
 
     // Network configuration: IP + URL
-    private static String db_ip = "192.168.100.20";
+    private static String db_ip = "192.168.0.21";
     private static String db_default_Url = " http://"+db_ip+":9080/MILIB_RAID_war_exploded/api/raid";
 
     /* --------------------------------------------

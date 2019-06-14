@@ -4,13 +4,14 @@ package main.com.tec.Server.resources;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import main.com.tec.Server.consumer.*;
+import main.com.tec.Server.util.jsonParser;
+import org.json.JSONException;
 
 
 /**
@@ -58,7 +59,11 @@ public class MainRestService {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response START(InputStream incomingData){
 
-        Consumer.startClient();
+        // Convert the input in to an String
+        String recvData = inputToString(incomingData);
+
+        MilibConsumer.startClient(recvData);
+
         return Response.status(200).build();
     }
 
@@ -74,12 +79,17 @@ public class MainRestService {
     @Path("/insert")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response serverInsert(InputStream incomingData){
+    public Response serverInsert(InputStream incomingData) throws JSONException {
 
         // Convert the input in to an String
         String recvData = inputToString(incomingData);
 
-        String resp = Consumer.insertClient(recvData);
+        String resp = MilibConsumer.insertClient(recvData);
+
+        // Create and Send json file to insert an image on RAID disk
+        String ID = MilibConsumer.getInsertedId(recvData);
+        String toRaidJson = jsonParser.jsontoRaid(recvData,ID);
+        RaidConsumer.writeClient(toRaidJson);
 
         // Return HTTP response 200 in case of success
         return Response.status(200).entity(resp).build();
@@ -99,12 +109,17 @@ public class MainRestService {
     @Path("/select")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response serverSelect(InputStream incomingData){
+    public Response serverSelect(InputStream incomingData) throws JSONException{
 
         // Convert the input in to an String
         String recvData = inputToString(incomingData);
 
-        String resp = Consumer.selectClient(recvData);
+        String resp = MilibConsumer.selectClient(recvData);
+
+        // Create and Send json file to select an image from RAID disk
+        String ID = MilibConsumer.getInsertedId(recvData);
+        //String toRaidJson = jsonParser.jsontoRaid("{}",ID);
+        //RaidConsumer.seekClient(toRaidJson);
 
         // Return HTTP response 200 in case of success
         return Response.status(200).entity(resp).build();
@@ -124,7 +139,7 @@ public class MainRestService {
         // Convert the input in to an String
         String recvData = inputToString(incomingData);
 
-        String resp = Consumer.updateClient(recvData);
+        String resp = MilibConsumer.updateClient(recvData);
 
         // Return HTTP response 200 in case of success
         return Response.status(200).entity(resp).build();
@@ -139,12 +154,17 @@ public class MainRestService {
     @Path("/delete")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response serverDelete(InputStream incomingData){
+    public Response serverDelete(InputStream incomingData) throws JSONException{
 
         // Convert the input in to an String
         String recvData = inputToString(incomingData);
 
-        String resp = Consumer.deleteClient(recvData);
+        String resp = MilibConsumer.deleteClient(recvData);
+
+        // Create and Send json file to select an image from RAID disk
+        String ID = MilibConsumer.getInsertedId(recvData);
+        String toRaidJson = jsonParser.jsontoRaid("{}",ID);
+        RaidConsumer.seekClient(toRaidJson);
 
         // Return HTTP response 200 in case of success
         return Response.status(200).entity(resp).build();
@@ -161,7 +181,8 @@ public class MainRestService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response serverCommit(InputStream incomingData){
 
-        Consumer.commitClient();
+        MilibConsumer.commitClient();
+        RaidConsumer.commitClient();
 
         // Return HTTP response 200 in case of success
         return Response.status(200).build();
@@ -178,7 +199,8 @@ public class MainRestService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response serverBack(InputStream incomingData){
 
-        Consumer.backClient();
+        MilibConsumer.backClient();
+        RaidConsumer.backClient();
 
         // Return HTTP response 200 in case of success
         return Response.status(200).build();

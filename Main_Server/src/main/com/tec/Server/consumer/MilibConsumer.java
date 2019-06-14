@@ -10,10 +10,10 @@ import java.net.URLConnection;
 /**
  *
  */
-public class Consumer {
+public class MilibConsumer {
 
     public static void main(String[] args) {
-        startClient();
+        startClient("{}");
         insertClient("{}");
         selectClient("{}");
         updateClient("{}");
@@ -23,14 +23,14 @@ public class Consumer {
     }
 
     // Network configuration: IP + URL
-    private static String db_ip = "192.168.100.20";
+    private static String db_ip = "192.168.0.21";
     private static String db_default_Url = " http://"+db_ip+":8080/MILIB_Servidor_war_exploded/api/database";
 
     /* --------------------------------------------
                     CLIENT MANAGER
        --------------------------------------------*/
 
-    public static void startClient(){
+    public static void startClient(String json){
         try {
             URL url = new URL(db_default_Url + "/start");
             URLConnection connection = url.openConnection();
@@ -39,7 +39,7 @@ public class Consumer {
             connection.setConnectTimeout(5000);
             connection.setReadTimeout(5000);
             OutputStreamWriter out = new OutputStreamWriter(connection.getOutputStream());
-            out.write("");
+            out.write(json);
             out.close();
 
             // Step 3: Receive the Data sent from Server
@@ -265,5 +265,41 @@ public class Consumer {
         } catch (Exception e) {
             System.out.println("\n[BACK] Error while calling MILIB DB REST Service");
             System.out.println(e);
-        }    }
+        }
+    }
+
+    public static String getInsertedId(String json){
+        try {
+            URL url = new URL(db_default_Url + "/getId");
+            URLConnection connection = url.openConnection();
+            connection.setDoOutput(true);
+            connection.setRequestProperty("Content-Type", "application/json");
+            connection.setConnectTimeout(5000);
+            connection.setReadTimeout(5000);
+            OutputStreamWriter out = new OutputStreamWriter(connection.getOutputStream());
+            out.write(json);
+            out.close();
+
+            // Step 3: Receive the Data sent from Server
+            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            StringBuilder builder = new StringBuilder();
+            String line = null;
+
+            while ((line = in.readLine()) != null) {
+                builder.append(line);
+            }
+            System.out.println("\n[GET ID] MILIB REST Service Invoked Successfully..");
+            System.out.println("\n[GET ID] Data recieved: " + builder.toString());
+            in.close();
+
+            return builder.toString();
+
+
+        } catch (Exception e) {
+            System.out.println("\n[GET ID] Error while calling MILIB DB REST Service");
+            System.out.println(e);
+        }
+
+        return "";
+    }
 }

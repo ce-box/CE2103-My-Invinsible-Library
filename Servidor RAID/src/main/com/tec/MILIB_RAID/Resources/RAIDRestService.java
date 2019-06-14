@@ -5,6 +5,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Base64;
@@ -13,12 +14,16 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import main.com.tec.MILIB_RAID.domain.RaidController;
+
 /**
  * Class that implements the Web Service for the MILIB project for the RAID
  * This Web Service run on Port 9080
  */
 @Path("/raid")
 public class RAIDRestService {
+
+    RaidController raid = new RaidController();
 
     /**
      * Converts the received inputStream to a String for handling the
@@ -93,6 +98,8 @@ public class RAIDRestService {
         System.out.println("[WRITE] ID: "+ ID);
         System.out.println("[WRITE] img64: "+ img64);
 
+        raid.write(img64,ID);
+
         JSONObject json = new JSONObject();
         json.put("Status","OK");
 
@@ -114,7 +121,7 @@ public class RAIDRestService {
     @Path("/seek")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response SEEK(InputStream incomingData) throws JSONException {
+    public Response SEEK(InputStream incomingData) throws JSONException, IOException {
 
         // Convert the input in to an String
         String recvData = inputToString(incomingData);
@@ -126,6 +133,7 @@ public class RAIDRestService {
            this will return the full original image even if one of
            those disk are disabled. */
 
+        raid.seek("1");
         // Sends the image on Base64 format to complete the request!
         JSONObject json = new JSONObject();
         String img64 = Base64.getEncoder().encodeToString("image1".getBytes());
@@ -156,6 +164,8 @@ public class RAIDRestService {
 
         // In this part the deletion is effected
 
+        raid.delete("1");
+
         // If deletion done, the send Status: OK else Status: FAIL
         JSONObject json = new JSONObject();
         json.put("Status","OK");
@@ -178,13 +188,14 @@ public class RAIDRestService {
     @POST
     @Path("/commit")
     @Produces(MediaType.TEXT_PLAIN)
-    public Response COMMIT(){
+    public Response COMMIT() throws IOException {
 
         //Commit stuff here
 
         System.out.println("[COMMIT] Commit Request");
         String ans = " RAID Commit Successful!";
 
+        raid.commit();
         return Response.status(200).entity(ans).build();
     }
 
@@ -202,6 +213,7 @@ public class RAIDRestService {
         System.out.println("[BACK] Rollback Request");
         String ans = "RAID Rollback Success!";
 
+        // raid.rollBack();
         return Response.status(200).entity(ans).build();
     }
 }
