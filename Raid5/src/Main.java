@@ -66,6 +66,14 @@ public class Main {
         String infromacion=Base64.encode(data);
         RaidController controlador=new RaidController();
         controlador.meterImagen(infromacion,"Tux");
+        System.out.println("el resultado del scanner es"+controlador.raid5.scanearDiscos());
+        System.out.println("el resultado de la busqueda  es"+controlador.raid5.buscar("Tux-1"));
+        System.out.println("el resultado de la busqueda  es"+controlador.raid5.buscar("Tux-2"));
+        System.out.println("el resultado de la busqueda  es"+controlador.raid5.buscar("Tux-3"));
+        System.out.println("el resultado de la busqueda  es"+controlador.raid5.buscar("Tux-P"));
+
+
+        //controlador.meterImagen(infromacion,"Tux");
 //        if(infromacion.equals(encodedImage)){
 //            System.out.println("las imagenes si son iguales perro");
 //        }

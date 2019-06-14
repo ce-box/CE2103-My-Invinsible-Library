@@ -2,10 +2,7 @@ import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -27,6 +24,49 @@ public class Raid5 {
         FileOutputStream out = new FileOutputStream(ruta+"/"+nombre+".txt");
         out.write(informacionAmeter.getBytes());
         out.close();
+    }
+    public  static byte[][] cualEsmasGrande(byte[]array1,byte[]array2,byte[]array3){
+        byte[][]arraysOrdenados=new byte[3][];
+        int size1=array1.length;
+        int size2=array2.length;
+        int size3=array3.length;
+
+        if(size1>=size2&&size1>=size3){
+            arraysOrdenados[0]=array1;
+            if(size2>size3){
+                arraysOrdenados[1]=array2;
+                arraysOrdenados[2]=array3;
+            }
+            else{
+                arraysOrdenados[2]=array2;
+                arraysOrdenados[1]=array3;
+            }
+        }
+        if(size2>=size1&&size2>=size3){
+            arraysOrdenados[0]=array2;
+            if(size1>size3){
+                arraysOrdenados[1]=array1;
+                arraysOrdenados[2]=array3;
+            }
+            else{
+                arraysOrdenados[2]=array1;
+                arraysOrdenados[1]=array3;
+            }
+        }
+        if(size3>=size1&&size3>=size2){
+            arraysOrdenados[0]=array3;
+            if(size1>size2){
+                arraysOrdenados[1]=array1;
+                arraysOrdenados[2]=array2;
+            }
+            else{
+                arraysOrdenados[2]=array1;
+                arraysOrdenados[1]=array2;
+            }
+        }
+
+
+        return arraysOrdenados;
     }
     //##########################################
     public void crearImagen(String ruta, BufferedImage image, String nombre) throws IOException {
@@ -59,7 +99,71 @@ public class Raid5 {
             }
         }
     }
+    public int scanearDiscos(){
+        for (int i = 0; i <Discos.length ; i++) {
+            if(Discos[i].listFiles().length==0){
+                return i;
+            }
+        }
+        //Retorna esto si ningun disco esta vacio
+        return 99;
 
+    }
+
+    public byte[][] obtenerInfromacionDisponible(String id) throws IOException {
+        byte[][] infromacionDisponible = new byte[3][];
+        int contador = 0;
+        for (int i = 0; i < Discos.length; i++) {
+            File[] contents = this.Discos[i].listFiles();
+            for (int j = 0; j < contents.length; j++) {
+                String archivo = contents[j].toString();
+                boolean loEncontre = archivo.indexOf(id) != -1 ? true : false;
+                boolean parte1 = archivo.indexOf(id + "-1") != -1 ? true : false;
+                boolean parte2 = archivo.indexOf(id + "-2") != -1 ? true : false;
+                boolean parte3 = archivo.indexOf(id + "-3") != -1 ? true : false;
+                boolean parteP = archivo.indexOf(id + "-P") != -1 ? true : false;
+                if (parte1) {
+                    File file = new File(archivo);
+                    String path = file.toString();
+                    BufferedImage data = ImageIO.read(file);
+                    ByteArrayOutputStream contenedor = new ByteArrayOutputStream();
+                    ImageIO.write(data, "png", contenedor);
+                    infromacionDisponible[contador] = contenedor.toByteArray();
+                    contador++;
+
+                }
+                if (parte2) {
+                    File file = new File(archivo);
+                    String path = file.toString();
+                    BufferedImage data = ImageIO.read(file);
+                    ByteArrayOutputStream contenedor = new ByteArrayOutputStream();
+                    ImageIO.write(data, "png", contenedor);
+                    infromacionDisponible[contador] = contenedor.toByteArray();
+                    contador++;
+                }
+                if (parte3) {
+                    File file = new File(archivo);
+                    String path = file.toString();
+                    BufferedImage data = ImageIO.read(file);
+                    ByteArrayOutputStream contenedor = new ByteArrayOutputStream();
+                    ImageIO.write(data, "png", contenedor);
+                    infromacionDisponible[contador] = contenedor.toByteArray();
+                    contador++;
+                }
+                if (parteP) {
+                    File file = new File(archivo);
+                    String path = file.toString();
+                    String data = new String(Files.readAllBytes(Paths.get(path)), StandardCharsets.UTF_8);
+                    infromacionDisponible[contador] = Base64.decode(data);
+                    contador++;
+
+
+                }
+                return infromacionDisponible;
+
+            }
+        }
+    }
     public String obtenerImagen(String id) throws IOException {
         String imagen="";
         String data1="";
@@ -104,16 +208,51 @@ public class Raid5 {
             File[] contents = this.Discos[i].listFiles();
             for (int j = 0; j < contents.length ; j++) {
                 String archivo=contents[j].toString();
-                boolean isFound = archivo.indexOf(id) !=-1? true: false;
+                System.out.println(archivo.toString());
+                boolean isFound = archivo.contains(id) ? true: false;
                 if(isFound){
-                   cuantasVecesLoEcontre++;
-                }
-                if(cuantasVecesLoEcontre==4){
                     return true;
+
                 }
             }
         }
         return false;
+    }public String dameIdDelaImagen(String archivo{
+        String nombre = "/raiz/feo/loca/12-1.png";
+        String id = "";
+        boolean inicio = false;
+        for (int x = nombre.length() - 1; x >= 0; x--){
+            if (nombre.charAt(x) == '/') {
+                inicio = false;
+            }
+            if (inicio) {
+                id = id + nombre.charAt(x);
+            }
+            if (nombre.charAt(x) == '-') {
+                inicio = true;
+            }
+        }
+        String idReal="";
+        for (int x=id.length()-1;x>=0;x--)
+            idReal = idReal + id.charAt(x);
+        return idReal;
+    }
+
+    public void recuperarDiscoCompleto() throws IOException {
+        int discoARecuperar =this.scanearDiscos();
+        for (int i = 0; i <Discos.length ; i++) {
+            if(i!=discoARecuperar){
+                File[] contents = this.Discos[i].listFiles();
+                for (int j = 0; j < contents.length ; j++) {
+                    String archivo=contents[j].toString();
+                    String idArchivo=dameIdDelaImagen(archivo);
+                     byte[][]infromacionDisponible=obtenerInfromacionDisponible(idArchivo);
+                     infromacionDisponible=cualEsmasGrande(infromacionDisponible[0],infromacionDisponible[2],infromacionDisponible[2]);
+
+                }
+            }
+
+        }
     }
     //#################################################################################################################
     //ESTE METODO LO QUE HACE ES GUARDAR LA INFORMACION CONTENIDA EN EL ARRAY DE STRING Y LO DISTRIBUYE ENTRE LOS DISCOS

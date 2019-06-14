@@ -14,7 +14,7 @@ import java.util.List;
 public class RaidController {
     private  List<String> listaId = new ArrayList<String>();
     private  List<String> listaImagenes = new ArrayList<String>();
-    private  Raid5 raid5=new Raid5();
+    public   Raid5 raid5=new Raid5();
     public void write(String imagen,String id){
         listaImagenes.add(imagen);
         listaId.add(id);
@@ -65,6 +65,15 @@ public class RaidController {
 
 
         return arraysOrdenados;
+    }
+    public boolean seek(String id){
+        if(raid5.buscar(id+"-1")&&raid5.buscar(id+"-2")&&raid5.buscar(id+"-3")&&raid5.buscar(id+"-P")){
+            return true;
+        }
+        else{
+            return false;
+        }
+
     }
     public void delete(String idParaEliminar){
 
