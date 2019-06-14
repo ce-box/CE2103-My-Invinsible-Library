@@ -18,6 +18,49 @@ public class RaidController {
         System.out.println("ESTE ES EL ARRAY DE ID"+Arrays.toString(listaId.toArray()));
         // adds 1 at 0 index
     }
+    public  static byte[][] cualEsmasGrande(byte[]array1,byte[]array2,byte[]array3){
+        byte[][]arraysOrdenados=new byte[3][];
+        int size1=array1.length;
+        int size2=array2.length;
+        int size3=array3.length;
+
+        if(size1>=size2&&size1>=size3){
+            arraysOrdenados[0]=array1;
+            if(size2>size3){
+                arraysOrdenados[1]=array2;
+                arraysOrdenados[2]=array3;
+            }
+            else{
+                arraysOrdenados[2]=array2;
+                arraysOrdenados[1]=array3;
+            }
+        }
+        if(size2>=size1&&size2>=size3){
+            arraysOrdenados[0]=array2;
+            if(size1>size3){
+                arraysOrdenados[1]=array1;
+                arraysOrdenados[2]=array3;
+            }
+            else{
+                arraysOrdenados[2]=array1;
+                arraysOrdenados[1]=array3;
+            }
+        }
+        if(size3>=size1&&size3>=size2){
+            arraysOrdenados[0]=array3;
+            if(size1>size2){
+                arraysOrdenados[1]=array1;
+                arraysOrdenados[2]=array2;
+            }
+            else{
+                arraysOrdenados[2]=array1;
+                arraysOrdenados[1]=array2;
+            }
+        }
+
+
+        return arraysOrdenados;
+    }
     public void delete(String idParaEliminar){
 
         int indiceDeImagenAEliminar=listaId.indexOf(idParaEliminar);
