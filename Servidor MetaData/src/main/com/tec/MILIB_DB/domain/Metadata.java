@@ -8,9 +8,7 @@ import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,37 +21,26 @@ import java.util.List;
 public class Metadata {
 
     // Networking configuration
-    private static int IDGlobal;
-    private static Document document;
+    private  int IDGlobal;
+    private  Document document;
 
-    private static ArrayList<String> Aux;
+    private  ArrayList<String> Aux;
 
-    public static String getSelectList() {
+    public  String getSelectList() {
         return SelectList;
     }
 
-    private static String SelectList;
+    private  String SelectList;
 
-    private static String file_path="/home/esteban/Documentos/TEC/1S 2019/Algoritmos y estructuras de datos II/4. Proyectos/Proyecto #3/Source/MyInvensibleLibrary/Servidor MetaData/XML_Metadata/input.xml";
+    private static String file_path="/home/juan/Documentos/Proyecto3/Servidor MetaData/XML_Metadata/input.xml";
 
-    public static void setFile_path(String file_path){
+    public  void setFile_path(String file_path){
         Metadata.file_path = file_path;
     }
 
-    public static void main(String[] args){
-        Metadata.Start();
-        ArrayList<String> L1=new ArrayList<>();
-        L1.add("date");
-        L1.add("ID");
-        ArrayList<String> L4=new ArrayList<>();
-        L4.add("7");
-        ArrayList<String> L2=new ArrayList<>();
-        L2.add("ID");
-        ArrayList<String> L3=new ArrayList<>();
-        L3.add("10");
-        Metadata.Select(L1,L2,L3,L4);
-        System.out.println(Metadata.verifySlotsRange(L1) );
-        Metadata.Close();
+
+    public  void main(String[] args){
+
     }
 
     /**
@@ -61,7 +48,7 @@ public class Metadata {
      * @param Slots
      * @return mensaje de error
      */
-    public static String verifySlots(ArrayList<String> Slots){
+    public  String verifySlots(ArrayList<String> Slots){
         for (String slot:Slots){
             if(Aux.indexOf(slot)==-1){
                 return "La columna \""+slot+"\" no existe";
@@ -75,7 +62,7 @@ public class Metadata {
      * @param Slots
      * @return mensaje de error
      */
-    public static String verifySlotsRange(ArrayList<String> Slots){
+    public  String verifySlotsRange(ArrayList<String> Slots){
         for (String slot:Slots){
             if(!(slot.equals("ID") || slot.equals("size") || slot.equals("date"))){
                 return "La columna \""+slot+"\" no es válida para un rango";
@@ -89,9 +76,9 @@ public class Metadata {
      * @param Slots
      * @return mensaje de error
      */
-    public static String verifySlotsNoID(ArrayList<String> Slots){
+    public  String verifySlotsNoID(ArrayList<String> Slots){
         for (String slot:Slots){
-            if(slot=="ID"){
+            if(slot.equals("ID")){
                 return "ID no es una columna válida para modificar";
             }
         }
@@ -101,7 +88,7 @@ public class Metadata {
     /**
      * Carga el ID global guardado [BACK]
      */
-    public static void Start(){
+    public  void Start(){
         Aux=new ArrayList<>();
         Aux.add("ID"); // ID
         Aux.add("name"); // name
@@ -129,7 +116,7 @@ public class Metadata {
     /**
      * Guarda el ID global [COMMIT]
      */
-    public static void Close(){
+    public  void Close(){
         Element classElement = document.getRootElement();
 
         System.out.println("###"+IDGlobal);
@@ -153,7 +140,7 @@ public class Metadata {
      * @param SlotsWhere Espacios para evaluar el where
      * @param SlotsWhereValues Valores para evaluar el where
      */
-    public static void Update(ArrayList<String> Slots,ArrayList<String> SlotsValues ,ArrayList<String> SlotsWhere,ArrayList<String> SlotsWhereValues){
+    public  void Update(ArrayList<String> Slots,ArrayList<String> SlotsValues ,ArrayList<String> SlotsWhere,ArrayList<String> SlotsWhereValues){
         Element classElement = document.getRootElement();
         List<Element> studentList = classElement.getChildren();
         System.out.println("----------------------------");
@@ -179,7 +166,7 @@ public class Metadata {
      * @param Slots Espacios a colocar
      * @param SlotsValues Valores a colocar
      */
-    public static String Insert(ArrayList<String> Slots, ArrayList<String> SlotsValues){
+    public  String Insert(ArrayList<String> Slots, ArrayList<String> SlotsValues){
 
         System.out.println("ENTRA");
 
@@ -226,7 +213,7 @@ public class Metadata {
      * @param SlotsWhere Espacios para evaluar el where
      * @param SlotsWhereValues Valores para evaluar el where
      */
-    public static void Delete(ArrayList<String> SlotsWhere,ArrayList<String> SlotsWhereValues){
+    public  void Delete(ArrayList<String> SlotsWhere,ArrayList<String> SlotsWhereValues){
         Element classElement = document.getRootElement();
 
         List<Element> studentList = classElement.getChildren();
@@ -249,7 +236,7 @@ public class Metadata {
     /**
      * Select de SQL con ALL
      */
-    public static void Select(){
+    public  void Select(){
         Element classElement = document.getRootElement();
 
         List<Element> studentList = classElement.getChildren();
@@ -285,7 +272,7 @@ public class Metadata {
      * Update de SQL
      * @param Slots Espacios a ver
      */
-    public static void Select(ArrayList<String> Slots){
+    public  void Select(ArrayList<String> Slots){
         Element classElement = document.getRootElement();
 
         List<Element> studentList = classElement.getChildren();
@@ -322,7 +309,7 @@ public class Metadata {
      * @param SlotsWhere Espacios para evaluar el where
      * @param SlotsWhereValues Valores para evaluar el where
      */
-    public static void Select(ArrayList<String> Slots,ArrayList<String> SlotsWhere,ArrayList<String> SlotsWhereValues){
+    public  void Select(ArrayList<String> Slots,ArrayList<String> SlotsWhere,ArrayList<String> SlotsWhereValues){
         Element classElement = document.getRootElement();
 
         List<Element> studentList = classElement.getChildren();
@@ -369,7 +356,7 @@ public class Metadata {
      * @param SlotsWhereValuesA Valores para evaluar mínimo en el where
      * @param SlotsWhereValuesB Valores para evaluar máximo en el where
      */
-    public static void Select(ArrayList<String> Slots,ArrayList<String> SlotsWhere,ArrayList<String> SlotsWhereValuesA,ArrayList<String> SlotsWhereValuesB) {
+    public  void Select(ArrayList<String> Slots,ArrayList<String> SlotsWhere,ArrayList<String> SlotsWhereValuesA,ArrayList<String> SlotsWhereValuesB) {
         Element classElement = document.getRootElement();
 
         List<Element> studentList = classElement.getChildren();
