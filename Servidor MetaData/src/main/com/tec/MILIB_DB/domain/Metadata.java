@@ -34,7 +34,7 @@ public class Metadata {
 
     private static String SelectList;
 
-    private static String file_path="/home/juan/Documentos/Proyecto3/Servidor MetaData/XML_Metadata/input.xml";
+    private static String file_path="/home/esteban/Documentos/TEC/1S 2019/Algoritmos y estructuras de datos II/4. Proyectos/Proyecto #3/Source/MyInvensibleLibrary/Servidor MetaData/XML_Metadata/input.xml";
 
     public static void setFile_path(String file_path){
         Metadata.file_path = file_path;
@@ -77,7 +77,7 @@ public class Metadata {
      */
     public static String verifySlotsRange(ArrayList<String> Slots){
         for (String slot:Slots){
-            if(!(slot=="ID" || slot=="size" || slot=="date")){
+            if(!(slot.equals("ID") || slot.equals("size") || slot.equals("date"))){
                 return "La columna \""+slot+"\" no es válida para un rango";
             }
         }

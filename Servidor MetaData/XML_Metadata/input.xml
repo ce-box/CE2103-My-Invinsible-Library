@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class ID="5">
+<class ID="6">
   <image1>
     <ID>1</ID>
-    <name>img1</name>
+    <name>Stephe Curry vs Kawhi Leonard</name>
     <author>Esteban</author>
     <date>2012</date>
     <size>1000</size>
@@ -36,4 +36,13 @@
     <description>null</description>
     <gallery>Pokemon</gallery>
   </image4>
+  <image5>
+    <ID>5</ID>
+    <name>pokeball.png</name>
+    <author>Satoshi Tajiri</author>
+    <date>2018</date>
+    <size>0.027193</size>
+    <description>null</description>
+    <gallery>pokemones</gallery>
+  </image5>
 </class>
