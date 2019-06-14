@@ -1,6 +1,8 @@
 #ifndef JSONSERIALIZER_H
 #define JSONSERIALIZER_H
 
+#define username "Esteban"
+
 // Libraries
 #include <QtCore/QJsonArray>
 #include <QtCore/QJsonDocument>
@@ -14,6 +16,15 @@
 class JsonSerializer
 {
 public:
+
+    /**
+     * @brief startJSON
+     * @param slotsList
+     * @param valuesList
+     * @return
+     */
+    static QString startJSON();
+
 
     /**
      * @brief insertJSON

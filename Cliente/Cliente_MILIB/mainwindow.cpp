@@ -27,7 +27,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->rollbackPushButton, SIGNAL (clicked()), this, SLOT (rollback()));
 
     ServerLibrary* server = ServerLibrary::getServer();
-    server->setServer("/Main_Server_war_exploded/api/server", "192.168.43.6", "8081");
+    server->setServer("/Main_Server_war_exploded/api/server", "192.168.0.21", "8081");
     server->START();
 }
 
@@ -332,14 +332,17 @@ MainWindow::~MainWindow(){
     delete ui;
 }
 
-//INSERT INTO METADATA(name,author,date,size)
-//VALUES("pikachuBailando.png", "Ash Ketchup", "2019", "2MB");
+/*INSERT INTO METADATA(name,author,date,size)
+  VALUES("pikachuBailando.png", "Ash Ketchup", "2019", "2MB"); */
 
-//SELECT name, author FROM METADATA
-//WHERE date = "2019"; //WHERE date BETWEEN 0 AND 5;
+/*
+SELECT name, author FROM METADATA
+WHERE date = "2019"; //WHERE date BETWEEN 0 AND 5; */
 
 //DELETE FROM METADATA WHERE date = "2019";
 
-//UPDATE METADATA
-//SET date = "2020", author = "Brock"
-//WHERE name = "pikachuBailando.png";
+/*
+UPDATE METADATA
+SET date = "2020", author = "Brock"
+WHERE name = "pikachuBailando.png";
+*/

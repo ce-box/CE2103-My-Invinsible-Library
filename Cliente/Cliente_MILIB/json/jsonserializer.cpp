@@ -1,5 +1,20 @@
 #include "jsonserializer.h"
 
+// Serializer the information to START in JSON format
+QString JsonSerializer::startJSON(){
+
+    // Step 1: Creates an JsonObject w/ username
+    QJsonObject jsonObj;
+    jsonObj.insert("username",username);
+
+    // Step 2: Convert the JsonDoc into QString
+    QJsonDocument jsonDoc(jsonObj);
+    QByteArray jsonB = jsonDoc.toJson();
+    QString jsonQStr = QString(jsonB);
+
+    return jsonQStr;
+}
+
 // Serializer the information to INSERT in JSON format
 QString JsonSerializer::insertJSON(Lista<QString> *slotsList, Lista<QString> *valuesList,QString img64){
 

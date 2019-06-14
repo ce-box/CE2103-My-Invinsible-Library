@@ -50,6 +50,7 @@ void ServerLibrary::getServerInfo(){
 //----------------------------------------------------------------------
 //                      CONNECTION METHODS
 //----------------------------------------------------------------------
+#include <json/jsonserializer.h>
 
 // Interface that connects GUI with RAID and METADATA DATABASE
 
@@ -68,7 +69,7 @@ void ServerLibrary::getServerInfo(){
 // START
 void ServerLibrary::START(){
     Client* client = new Client(this->IP,this->Port,this->defaultUrl);
-    client->POST("/start");
+    client->POST("/start",JsonSerializer::startJSON());
     delete(client);
 }
 
