@@ -30,6 +30,7 @@ QString JsonSerializer::insertJSON(Lista<QString> *slotsList, Lista<QString> *va
 
     // Step 2: Add those JsonArray  and create a JSON Object
     QJsonObject jsonObj;
+    jsonObj.insert("username",username);
     jsonObj.insert("slots",slot);
     jsonObj.insert("slotsValues",slotValues);
     jsonObj.insert("img64",img64);
@@ -68,6 +69,7 @@ QString JsonSerializer::selectJSON(Lista<QString> *slotsList,
 
     // Step 2: Add those JsonArray  and create a JSON Object
     QJsonObject jsonObj;
+    jsonObj.insert("username",username);
     jsonObj.insert("slots",slot);
     jsonObj.insert("where",where);
     jsonObj.insert("whereValuesA",whereValuesA);
@@ -107,6 +109,7 @@ QString JsonSerializer::updateJSON(Lista<QString> *slotsList,
 
     // Step 2: Add those JsonArray  and create a JSON Object
     QJsonObject jsonObj;
+    jsonObj.insert("username",username);
     jsonObj.insert("slots",slot);
     jsonObj.insert("slotsValues",slotValues);
     jsonObj.insert("where",where);
@@ -136,6 +139,7 @@ QString JsonSerializer::deleteJSON(Lista<QString> *whereList,
 
     // Step 2: Add those JsonArray  and create a JSON Object
     QJsonObject jsonObj;
+    jsonObj.insert("username",username);
     jsonObj.insert("where",where);
     jsonObj.insert("whereValues",whereValues);
 
