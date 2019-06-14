@@ -1,5 +1,10 @@
 import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -70,7 +75,29 @@ public class RaidController {
         System.out.println("ESTE ES EL ARRAY DE ID"+Arrays.toString(listaId.toArray()));
     }
 
+public void meterImagen(String imagenBase64,String id) throws IOException {
+    byte [] arrayDeImagen= Base64.decode(imagenBase64);
+    ByteArrayInputStream bis = new ByteArrayInputStream(arrayDeImagen);
+    BufferedImage image = ImageIO.read(bis);
+    BufferedImage primeraParte = image.getSubimage(0, 0, (image.getWidth()/3),image.getHeight());
+    BufferedImage segundaParte = image.getSubimage(image.getWidth()/3, 0, image.getWidth()/3, image.getHeight());
+    BufferedImage terceraParte = image.getSubimage(image.getWidth()/3*2, 0, image.getWidth()/3, image.getHeight());
+    BufferedImage partesDeLaImagen[]={primeraParte,segundaParte,terceraParte};
+    ByteArrayOutputStream contenedor1 = new ByteArrayOutputStream();
+    ImageIO.write(primeraParte, "png", contenedor1);
 
+    ByteArrayOutputStream contenedor2 = new ByteArrayOutputStream();
+    ImageIO.write(segundaParte, "png", contenedor2);
+    System.out.println("el size de contendor2 es"+contenedor2.toByteArray().length);
+
+    ByteArrayOutputStream contenedor3 = new ByteArrayOutputStream();
+    ImageIO.write(terceraParte, "png", contenedor3);
+    byte[][]arraysOrdenados=cualEsmasGrande(contenedor1.toByteArray(),contenedor2.toByteArray(),contenedor3.toByteArray());
+    byte [] paridad=calcularParidad(arraysOrdenados[0],arraysOrdenados[1],arraysOrdenados[2]);
+    System.out.println("el size de paridad es"+paridad.length);
+    this.raid5.GuardarInfromacion(partesDeLaImagen,id,Base64.encode(paridad));
+
+}
 public String[] serializacion(String imagen){
         int size=imagen.length();
         String[] Respuesta = new String[4];
@@ -101,7 +128,7 @@ public String[] serializacion(String imagen){
             }
             else{
                 String[] data=serializacion(imagen);
-                raid5.GuardarInfromacion(data,id);
+                //raid5.GuardarInfromacion(data,id);
                 //System.out.println("este es el data"+Arrays.toString(listaImagenes.toArray()));
 
                 //this.write(imagen,data);
@@ -150,7 +177,7 @@ public String[] serializacion(String imagen){
         }
         //AQUI LO QUE HACEMOS ES PONER LOS CAMPOS RESTANTES CON LOS DEL PRIMER ARRAY
         for (int i=bloque1.length-1;i>=sizeInicial;i--) {
-            System.out.println("No son del mismo size");
+           // System.out.println("No son del mismo size");
             arraycompleto[i] = 0 ;
         }
         return arraycompleto;

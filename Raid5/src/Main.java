@@ -64,33 +64,35 @@ public class Main {
         String encodedImage = Base64.encode(baos.toByteArray());
         byte [] data=Base64.decode(encodedImage);
         String infromacion=Base64.encode(data);
-        if(infromacion.equals(encodedImage)){
-            System.out.println("las imagenes si son iguales perro");
-        }
-        File croppedFile1 = new File("/home/reds/Descargas/primeraParte.png");
-        File croppedFile2 = new File("/home/reds/Descargas/segundaParte.png");
-        File croppedFile3 = new File("/home/reds/Descargas/terceraParte.png");
-        BufferedImage parte1 = ImageIO.read(croppedFile1);
-        BufferedImage parte2 = ImageIO.read(croppedFile2);
-        BufferedImage parte3 =ImageIO.read(croppedFile3);
-
-        ByteArrayOutputStream contenedor1 = new ByteArrayOutputStream();
-        ImageIO.write(parte1, "png", contenedor1);
-
-        ByteArrayOutputStream contenedor2 = new ByteArrayOutputStream();
-        ImageIO.write(parte2, "png", contenedor2);
-
-        ByteArrayOutputStream contenedor3 = new ByteArrayOutputStream();
-        ImageIO.write(parte3, "png", contenedor3);
-
-        System.out.println("el size del array 1 es "+contenedor1.toByteArray().length);
-        System.out.println("el size del array 2 es "+contenedor2.toByteArray().length);
-        System.out.println("el size del array 3 es "+contenedor3.toByteArray().length);
-        byte[][]arraysOrdenados=cualEsmasGrande(contenedor1.toByteArray(),contenedor2.toByteArray(),contenedor3.toByteArray());
-
-        System.out.println("el size del array  1 es "+arraysOrdenados[0].length);
-        System.out.println("el size del array 2 es "+arraysOrdenados[1].length);
-        System.out.println("el size del array 3 es "+arraysOrdenados[2].length);
+        RaidController controlador=new RaidController();
+        controlador.meterImagen(infromacion,"Tux");
+//        if(infromacion.equals(encodedImage)){
+//            System.out.println("las imagenes si son iguales perro");
+//        }
+//        File croppedFile1 = new File("/home/reds/Descargas/primeraParte.png");
+//        File croppedFile2 = new File("/home/reds/Descargas/segundaParte.png");
+//        File croppedFile3 = new File("/home/reds/Descargas/terceraParte.png");
+//        BufferedImage parte1 = ImageIO.read(croppedFile1);
+//        BufferedImage parte2 = ImageIO.read(croppedFile2);
+//        BufferedImage parte3 =ImageIO.read(croppedFile3);
+//
+//        ByteArrayOutputStream contenedor1 = new ByteArrayOutputStream();
+//        ImageIO.write(parte1, "png", contenedor1);
+//
+//        ByteArrayOutputStream contenedor2 = new ByteArrayOutputStream();
+//        ImageIO.write(parte2, "png", contenedor2);
+//
+//        ByteArrayOutputStream contenedor3 = new ByteArrayOutputStream();
+//        ImageIO.write(parte3, "png", contenedor3);
+//
+//        System.out.println("el size del array 1 es "+contenedor1.toByteArray().length);
+//        System.out.println("el size del array 2 es "+contenedor2.toByteArray().length);
+//        System.out.println("el size del array 3 es "+contenedor3.toByteArray().length);
+//        byte[][]arraysOrdenados=cualEsmasGrande(contenedor1.toByteArray(),contenedor2.toByteArray(),contenedor3.toByteArray());
+//
+//        System.out.println("el size del array  1 es "+arraysOrdenados[0].length);
+//        System.out.println("el size del array 2 es "+arraysOrdenados[1].length);
+//        System.out.println("el size del array 3 es "+arraysOrdenados[2].length);
 
 
 //

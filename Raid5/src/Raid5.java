@@ -1,3 +1,7 @@
+import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -24,6 +28,12 @@ public class Raid5 {
         out.write(informacionAmeter.getBytes());
         out.close();
     }
+    //##########################################
+    public void crearImagen(String ruta, BufferedImage image, String nombre) throws IOException {
+        File archivo = new File(ruta+"/"+nombre+".png");
+        ImageIO.write(image, "png", archivo);
+    }
+    //##########333
     //######################################################################################################
     //ESTE METODO LO QUE HACE ES   BUSCAR ARCHIVOS  QUE CONTENGAN EL ID INGRESADO Y ELIMINARLOS DE LOS DISCOS
     //#######################################################################################################
@@ -109,19 +119,19 @@ public class Raid5 {
     //ESTE METODO LO QUE HACE ES GUARDAR LA INFORMACION CONTENIDA EN EL ARRAY DE STRING Y LO DISTRIBUYE ENTRE LOS DISCOS
     // DE MMANERA QUE LA PARIDAD QUEDE  DISTRIBUIDA EN MEDIO DE TODOS LOS DISCOS
     //#################################################################################################################
-    public void GuardarInfromacion(String[] data,String id) throws IOException {
+    public void GuardarInfromacion( BufferedImage partesDeLaImagen[] ,String id,String Paridad) throws IOException {
+
         int parte=1;
-int temporal=turno;
+        int temporal=turno;
         for (int i = 0; i < Discos.length; i++) {
             if(turno==4){
                 turno=0;
             }
             if(parte==4){
-                crearArchivo(Discos[turno].getAbsolutePath(),data[i],id+"-P");
+                crearArchivo(Discos[turno].getAbsolutePath(),Paridad,id+"-P");
             }
             else{
-                crearArchivo(Discos[turno].getAbsolutePath(),data[i],id+"-"+parte);
-
+                crearImagen(Discos[turno].getAbsolutePath(),partesDeLaImagen[i],id+"-"+parte);
             }
            parte=parte+1;
            turno++;
