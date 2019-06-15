@@ -27,7 +27,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->rollbackPushButton, SIGNAL (clicked()), this, SLOT (rollback()));
 
     ServerLibrary* server = ServerLibrary::getServer();
-    server->setServer("/Main_Server_war_exploded/api/server", "192.168.0.21", "8081");
+    server->setServer("/Main_Server_war_exploded/api/server", "192.168.100.20", "8081");
     server->START();
 }
 
