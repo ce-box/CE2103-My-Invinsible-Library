@@ -52,11 +52,11 @@ public class jsonParser {
 
         // Get img from input JSON
         JSONObject jsonObject1 = new JSONObject(img);
-        String img64 = "";
+        String img64 = jsonObject1.getString("imgStack");
 
         // Join jsons
         JSONObject jsonObject2 = new JSONObject(json);
-        jsonObject2.put("img64",img64);
+        jsonObject2.put("imgStack",img64);
 
         System.out.println("[JSON] "+jsonObject2.toString());
         return jsonObject2.toString();

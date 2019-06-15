@@ -147,11 +147,10 @@ public class RAIDRestService {
         System.out.println("[SEEK] User:" + user);
         System.out.println("[SEEK] ID: " + ID);
 
-        //String img642 = raid.seek(ID);
+        //String img64 = raid.seek(ID);
 
         JSONObject json = new JSONObject();
-        String img64 = Base64.getEncoder().encodeToString("image1".getBytes());
-        json.put("img64", "a");
+        json.put("imgStack", "a");
         System.out.println("[SEEK] Data sent: " + json.toString());
 
         // Return HTTP response 200 in case of success

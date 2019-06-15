@@ -124,11 +124,11 @@ public class MainRestService {
         System.out.println("[JSON] :: "+toRaidJson);
         String img = RaidConsumer.seekClient(toRaidJson); // { img64 = imagen}
 
-        System.out.println(json + "/n" + "{\"img64\":\"img1\"}");
+        System.out.println(json + "/n" + "{\"imgStack\":\"img1\"}");
         String resp = jsonParser.raidtoIDE(json,img);
 
         // Return HTTP response 200 in case of success
-        return Response.status(200).entity(json).build();
+        return Response.status(200).entity(resp).build();
     }
 
     /**

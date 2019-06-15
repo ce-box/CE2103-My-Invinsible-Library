@@ -172,7 +172,6 @@ public class dataManager {
         JSONObject respJson = new JSONObject();
         respJson.put("Status","Done");
         respJson.put("MetadataStack",metadataMatrix);
-        respJson.put("imgStack","b");
 
         return Response.status(200).entity(respJson.toString()).build();
     }
