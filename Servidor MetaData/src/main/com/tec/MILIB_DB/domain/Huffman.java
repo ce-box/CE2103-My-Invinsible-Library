@@ -283,7 +283,6 @@ public class Huffman {
         } catch (JDOMException | IOException e) {
             e.printStackTrace();
         }
-        System.out.println("Root element :" + document.getRootElement().getName());
         Element el  = document.getRootElement();
         GetTreeXMLRecursive(root,el);
     }
@@ -308,7 +307,7 @@ public class Huffman {
         }
     }
 
-    public static void DecodeFile(){
+    public static void DecodeFile(String dir){
         Node root= new Node(' ',0);
         GetTreeXML(root);
 
@@ -322,28 +321,24 @@ public class Huffman {
 
         GlobalDecoded="";
         int index = -1;
-        System.out.println("\nDecoded string is: \n");
+        //System.out.println("\nDecoded string is: \n");
         while (index < sb.length() - 2) {
             index = decode(root, index, new StringBuilder().append(sb));
         }
-        System.out.println(GlobalDecoded);
+        //System.out.println(GlobalDecoded);
 
-        try (PrintWriter out = new PrintWriter(file_path)) {
+        try (PrintWriter out = new PrintWriter(dir)) {
             out.println(GlobalDecoded);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
     }
 
     public static void main(String[] args)
     {
-        //String text = "Huffman coding is a data compression algorithm.";
-
-        //buildHuffmanTree(text);
 
         //EncodeFile("/home/juan/Documentos/Proyecto3/Servidor MetaData/XML_Metadata/input.xml");
 
-        DecodeFile();
+        DecodeFile("/home/juan/Documentos/Proyecto3/Servidor MetaData/XML_Metadata/input.xml");
     }
 }
