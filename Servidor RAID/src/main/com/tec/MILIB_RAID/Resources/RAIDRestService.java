@@ -113,31 +113,45 @@ public class RAIDRestService {
      * Method in charge of returning a JSON with the requested image from the client, under the
      * criterion of the parameters of the metadata
      * url: http://ip_addr:port/MILIB_RAID_war_exploded/api/raid/seek
-     * @param incomingData  Receive a json with the information of the requested images
+     * Receive a json with the information of the requested images
      * @return Returns the requested image and metadata in JSON format
      * @throws JSONException
      */
-    @POST
+    /*@POST
     @Path("/seek")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response SEEK() throws JSONException, IOException {
+
+        JSONObject json = new JSONObject();
+        String img64 = Base64.getEncoder().encodeToString("image1".getBytes());
+        json.put("img64", "a");
+        System.out.println("[SEEK] Data sent: " + json.toString());
+
+        // Return HTTP response 200 in case of success
+        return Response.status(200).entity(json.toString()).build();
+    }*/
+
+    @POST
+    @Path("/select")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response SEEK(InputStream incomingData) throws JSONException, IOException {
 
-        // Convert the input in to an String
         String recvData = inputToString(incomingData);
 
-        // Show in console the received data
-        System.out.println("[SEEK] Data Received: " + recvData);
+        JSONObject input = new JSONObject(recvData);
 
-        /* In this part the select image disk actions are performed,
-           this will return the full original image even if one of
-           those disk are disabled. */
+        String user = input.getString("username");
+        String ID = input.getString("ID");
 
-        raid.seek("1");
-        // Sends the image on Base64 format to complete the request!
+        System.out.println("[SEEK] User:" + user);
+        System.out.println("[SEEK] ID: " + ID);
+
+        //String img642 = raid.seek(ID);
+
         JSONObject json = new JSONObject();
         String img64 = Base64.getEncoder().encodeToString("image1".getBytes());
-        json.put("image", "a");
+        json.put("img64", "a");
         System.out.println("[SEEK] Data sent: " + json.toString());
 
         // Return HTTP response 200 in case of success
@@ -162,9 +176,15 @@ public class RAIDRestService {
         // Show in console the received data
         System.out.println("[DELETE] Data Received: "+ recvData);
 
+        JSONObject input = new JSONObject(recvData);
+        String user = input.getString("username");
+        String ID = input.getString("ID");
+        System.out.println("[DELETE] User:" + user);
+        System.out.println("[DELETE] ID: " + ID);
+
         // In this part the deletion is effected
 
-        raid.delete("1");
+        //raid.delete(ID);
 
         // If deletion done, the send Status: OK else Status: FAIL
         JSONObject json = new JSONObject();

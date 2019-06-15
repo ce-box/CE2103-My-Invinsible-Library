@@ -52,7 +52,7 @@ public class RaidConsumer {
 
     public static String seekClient(String json){
         try {
-            URL url = new URL(db_default_Url + "/seek");
+            URL url = new URL(db_default_Url + "/select");
             URLConnection connection = url.openConnection();
             connection.setDoOutput(true);
             connection.setRequestProperty("Content-Type", "application/json");

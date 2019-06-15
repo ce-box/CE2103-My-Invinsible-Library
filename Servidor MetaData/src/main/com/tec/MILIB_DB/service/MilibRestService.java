@@ -79,6 +79,7 @@ public class MilibRestService {
         if(!users.containsKey(username)){
             users.put(username,new Metadata());
             System.out.println("Se crea un nuevo usuario!");
+            System.out.println("[START] Users:: "+users.toString());
         }
 
         users.get(username).setFile_path(XMLPath);

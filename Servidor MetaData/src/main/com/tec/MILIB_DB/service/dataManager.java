@@ -39,6 +39,7 @@ public class dataManager {
         // If the username exists it just initialized else creates a new Metadata instance
         if(!users.containsKey(username)){
             users.put(username,new Metadata());
+            System.out.println("[START] Users:: "+users.toString());
         }
 
         // Validate no ID insert
@@ -102,6 +103,7 @@ public class dataManager {
         // If the username exists it just initialized else creates a new Metadata instance
         if(!users.containsKey(username)){
             users.put(username,new Metadata());
+            System.out.println("[START] Users:: "+users.toString());
         }
 
         // Validate that slots or whereSlots are correct!
@@ -200,6 +202,7 @@ public class dataManager {
         // If the username exists it just initialized else creates a new Metadata instance
         if(!users.containsKey(username)){
             users.put(username,new Metadata());
+            System.out.println("[START] Users:: "+users.toString());
         }
 
         // Validate no ID update
@@ -269,6 +272,7 @@ public class dataManager {
         // If the user doesnt exist creates a new Metadata instance
         if(!users.containsKey(username)){
             users.put(username,new Metadata());
+            System.out.println("[START] Users:: "+users.toString());
         }
 
         // Validate that where are valid
