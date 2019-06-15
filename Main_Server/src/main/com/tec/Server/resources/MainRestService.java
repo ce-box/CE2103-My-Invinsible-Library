@@ -88,7 +88,7 @@ public class MainRestService {
 
         // Create and Send json file to insert an image on RAID disk
         String ID = MilibConsumer.getInsertedId(recvData);
-        String toRaidJson = jsonParser.jsontoRaid(recvData,ID);
+        String toRaidJson = jsonParser.inserttoRaid(recvData,ID);
         RaidConsumer.writeClient(toRaidJson);
 
         // Return HTTP response 200 in case of success
@@ -114,15 +114,18 @@ public class MainRestService {
         // Convert the input in to an String
         String recvData = inputToString(incomingData);
 
-        String resp = MilibConsumer.selectClient(recvData);
+        String json = MilibConsumer.selectClient(recvData);
 
         // Create and Send json file to select an image from RAID disk
         String ID = MilibConsumer.getInsertedId(recvData);
-        //String toRaidJson = jsonParser.jsontoRaid("{}",ID);
-        //RaidConsumer.seekClient(toRaidJson);
+        String toRaidJson = jsonParser.selecttoRaid("1");
+        System.out.println(toRaidJson);
+        String img = RaidConsumer.seekClient(toRaidJson); // { img64 = imagen}
+
+        //String resp = jsonParser.raidtoIDE(json,img);
 
         // Return HTTP response 200 in case of success
-        return Response.status(200).entity(resp).build();
+        return Response.status(200).entity(json).build();
     }
 
     /**
@@ -163,7 +166,7 @@ public class MainRestService {
 
         // Create and Send json file to select an image from RAID disk
         String ID = MilibConsumer.getInsertedId(recvData);
-        String toRaidJson = jsonParser.jsontoRaid("{}",ID);
+        String toRaidJson = jsonParser.selecttoRaid(ID);
         RaidConsumer.seekClient(toRaidJson);
 
         // Return HTTP response 200 in case of success
