@@ -7,17 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a1997e57-7d8a-4bfe-a646-53768a057b3f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/com/tec/Server/resources/MainRestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/com/tec/Server/resources/MainRestService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/com/tec/Server/util/jsonParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/com/tec/Server/util/jsonParser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Servidor MetaData/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Servidor MetaData/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Servidor MetaData/src/main/com/tec/MILIB_DB/service/dataManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Servidor MetaData/src/main/com/tec/MILIB_DB/service/dataManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Servidor MetaData/target/MILIB_Server-1.0-SNAPSHOT/WEB-INF/classes/main/com/tec/MILIB_DB/service/dataManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Servidor MetaData/target/MILIB_Server-1.0-SNAPSHOT/WEB-INF/classes/main/com/tec/MILIB_DB/service/dataManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Servidor MetaData/target/classes/main/com/tec/MILIB_DB/service/dataManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Servidor MetaData/target/classes/main/com/tec/MILIB_DB/service/dataManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Servidor RAID/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Servidor RAID/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Servidor RAID/src/main/com/tec/MILIB_RAID/Resources/RAIDRestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Servidor RAID/src/main/com/tec/MILIB_RAID/Resources/RAIDRestService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Servidor RAID/target/MILIB_RAID-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/../Servidor RAID/target/MILIB_RAID-1.0-SNAPSHOT.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Servidor RAID/target/MILIB_RAID-1.0-SNAPSHOT/WEB-INF/classes/main/com/tec/MILIB_RAID/Resources/RAIDRestService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Servidor RAID/target/MILIB_RAID-1.0-SNAPSHOT/WEB-INF/classes/main/com/tec/MILIB_RAID/Resources/RAIDRestService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Servidor RAID/target/classes/main/com/tec/MILIB_RAID/Resources/RAIDRestService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Servidor RAID/target/classes/main/com/tec/MILIB_RAID/Resources/RAIDRestService.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -310,7 +300,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37185000" />
+    <option name="totallyTimeSpent" value="37407000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="30" width="1366" height="738" extended-state="6" />
@@ -327,7 +317,7 @@
       <window_info id="Web" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.5063291" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.5063291" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />

@@ -78,7 +78,7 @@ public class RAIDRestService {
     @Path("/write")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response WRITE(InputStream incomingData) throws JSONException {
+    public Response WRITE(InputStream incomingData) throws JSONException, IOException {
 
         // Convert the input in to an String
         String recvData = inputToString(incomingData);
@@ -98,7 +98,7 @@ public class RAIDRestService {
         System.out.println("[WRITE] ID: "+ ID);
         System.out.println("[WRITE] img64: "+ img64);
 
-        raid.write(img64,ID);
+        raid.Write(img64,ID);
 
         JSONObject json = new JSONObject();
         json.put("Status","OK");
