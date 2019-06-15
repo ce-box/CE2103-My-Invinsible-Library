@@ -117,7 +117,7 @@ QString ServerLibrary::DELETE(QString MetaJson){
 void ServerLibrary::COMMIT(){
 
     Client* client = new Client(this->IP,this->Port,this->defaultUrl);
-    client->PUT("/commit");
+    client->PUT("/commit",JsonSerializer::startJSON());
 
     delete(client);
 }
@@ -126,7 +126,7 @@ void ServerLibrary::COMMIT(){
 void ServerLibrary::BACK(){
 
     Client* client = new Client(this->IP,this->Port,this->defaultUrl);
-    client->PUT("/back");
+    client->PUT("/back",JsonSerializer::startJSON());
 
     delete(client);
 }
