@@ -25,9 +25,9 @@ MyInvincibleLibrary (MILIB) corresponde al _tercer Proyecto_ del curso de _Algor
 El sistema desarrollado cuenta con: **ServerLibrary**: Permite a múltiples clientes acceder a la información de MyInvincibleLibrary. **RAID Library**: permite el almacenamiento de las galerías y brinda redundancia al sistema. **Metadata DB**: base de datos NoSQL para el almacenamiento de la metadata de las imágenes. **MyIDE**: permite a los múltiples clientes gestionar la metadata de las galerías de imágenes.
 
 ## Vista Previa.
-
-```
-```
+<p align="center">
+    <img src="https://res.cloudinary.com/estalvgs1999/image/upload/v1560636301/CE2103/MILIB_acjobj.png">
+</p>
 
 ## Requisitos.
 [MILIB] MyIDE y Server Library trabajan en:
