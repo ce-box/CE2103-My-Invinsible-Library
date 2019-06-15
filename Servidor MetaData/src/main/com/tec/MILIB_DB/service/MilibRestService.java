@@ -286,6 +286,8 @@ public class MilibRestService {
         // Get the ID of the last request
         String resp = users.get(username).getID();
 
+        System.out.println("[GET ID] Id: " + resp);
+
         return Response.status(200).entity(resp).build();
 
     }

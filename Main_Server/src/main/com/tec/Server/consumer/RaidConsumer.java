@@ -12,7 +12,7 @@ import java.net.URLConnection;
 public class RaidConsumer {
 
     // Network configuration: IP + URL
-    private static String db_ip = "192.168.0.21";
+    private static String db_ip = "192.168.100.20";
     private static String db_default_Url = " http://"+db_ip+":9080/MILIB_RAID_war_exploded/api/raid";
 
     /* --------------------------------------------

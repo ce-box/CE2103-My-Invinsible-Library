@@ -15,17 +15,14 @@ public class jsonParser {
 
         // Get img from input JSON
         JSONObject jsonObject = new JSONObject(json);
-        String img64 = "";
+        String img64 = jsonObject.getString("img64");
+        String username = jsonObject.getString("username");
 
-        try {
-            img64 = jsonObject.getString("img64");
-        }catch (JSONException e){
-
-        }
         // Create new JSON to RAID
         JSONObject jsonOut = new JSONObject();
         jsonOut.put("ID",ID);
         jsonOut.put("img64",img64);
+        jsonOut.put("username",username);
 
         return jsonOut.toString();
     }
@@ -36,11 +33,16 @@ public class jsonParser {
      * @return
      * @throws JSONException
      */
-    public static String selecttoRaid(String ID) throws JSONException{
+    public static String selecttoRaid(String json,String ID) throws JSONException{
+
+        // Get img from input JSON
+        JSONObject jsonObject = new JSONObject(json);
+        String username = jsonObject.getString("username");
 
         // Get img from input JSON
         JSONObject jsonOut = new JSONObject();
         jsonOut.put("ID",ID);
+        jsonOut.put("username",username);
 
         return jsonOut.toString();
     }

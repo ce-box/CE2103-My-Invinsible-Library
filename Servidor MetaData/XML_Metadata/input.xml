@@ -1,30 +1,3 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class ID="5">
-  <image1>
-    <ID>1</ID>
-    <name>pikachuBailando.png</name>
-    <author>Ash Ketchup</author>
-    <date>2019</date>
-    <size>0.025421</size>
-    <description>null</description>
-    <gallery>a</gallery>
-  </image1>
-  <image2>
-    <ID>2</ID>
-    <name>camaron.png</name>
-    <author>El viejo</author>
-    <date>2000</date>
-    <size>0.027193</size>
-    <description>null</description>
-    <gallery>a</gallery>
-  </image2>
-  <image3>
-    <ID>3</ID>
-    <name>ElpackdeSahid.png</name>
-    <author>Erick</author>
-    <date>2019</date>
-    <size>0.025421</size>
-    <description>En la cima del exito</description>
-    <gallery>Sahid</gallery>
-  </image3>
+<class ID="1">
 </class>
