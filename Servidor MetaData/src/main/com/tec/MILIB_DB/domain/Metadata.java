@@ -31,6 +31,7 @@ public class Metadata {
     }
 
     private  String SelectList;
+    private String requestID;
 
     private static String file_path="/home/juan/Documentos/Proyecto3/Servidor MetaData/XML_Metadata/input.xml";
 
@@ -38,9 +39,12 @@ public class Metadata {
         Metadata.file_path = file_path;
     }
 
+    private void Metadata(){
+        System.out.println("Se ha instanciado una nueva metadata!");
+    }
 
-    public  void main(String[] args){
-
+    public String getID(){
+        return this.requestID;
     }
 
     /**
@@ -205,7 +209,8 @@ public class Metadata {
 
         classElement.addContent(Nuevo);
 
-        return ""+IDGlobal++;
+        this.requestID = ""+IDGlobal++; // Almacena el ID de la imagen insertada
+        return "";
     };
 
     /**

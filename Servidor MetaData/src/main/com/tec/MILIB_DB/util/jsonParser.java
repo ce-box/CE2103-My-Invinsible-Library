@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * Class responsible for the translation of the JSON according to the method
  * by which the request was made
  * @author Esteban Alvarado Vargas
- * @version alpha 2.1
+ * @version alpha 3.5
  *
  * Note: Next version will support the parse of an string64 image from client
  */
@@ -147,9 +147,9 @@ public class jsonParser {
     }
 
     /**
-     *
-     * @param json
-     * @return
+     * Gets the username of the json parser
+     * @param json Json file to parse
+     * @return the username in String format
      */
     public static String getUsername(String json) throws JSONException{
         // Step 1: First a JSONObject is created

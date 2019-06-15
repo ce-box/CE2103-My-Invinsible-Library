@@ -181,7 +181,9 @@ public class MainRestService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response serverCommit(InputStream incomingData){
 
-        MilibConsumer.commitClient();
+        String recvData = inputToString(incomingData);
+
+        MilibConsumer.commitClient(recvData);
         RaidConsumer.commitClient();
 
         // Return HTTP response 200 in case of success
@@ -199,7 +201,9 @@ public class MainRestService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response serverBack(InputStream incomingData){
 
-        MilibConsumer.backClient();
+        String recvData = inputToString(incomingData);
+
+        MilibConsumer.backClient(recvData);
         RaidConsumer.backClient();
 
         // Return HTTP response 200 in case of success
