@@ -1,5 +1,8 @@
 package main.com.tec.MILIB_DB.domain;
 
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.PriorityQueue;
@@ -38,6 +41,12 @@ class Node
 
 
 public class Huffman {
+    private static Node GlobalRoot;
+
+    public static Node getGlobalRoot() {
+        return GlobalRoot;
+    }
+
     // traverse the Huffman Tree and store Huffman Codes
     // in a map.
     public static void encode(Node root, String str,
@@ -147,37 +156,127 @@ public class Huffman {
         while (index < sb.length() - 2) {
             index = decode(root, index, sb);
         }
-
-        SaveTreeXML(root);
     }
 
-    public static void SaveTreeXML(Node root){
+    static Document SaveTreeXML(Node root){
         Document doc=new Document();
         Element el = new Element("root");
         doc.setRootElement(el);
 
         SaveTreeXMLRecursive(root,el);
+
+        return doc;
     }
 
-    private static void SaveTreeXMLRecursive(Node root, Element el){
-        // base case
-        if (root == null) {
-            return;
-        }
+    static void SaveTreeXMLRecursive(Node root, Element el){
+        el.setAttribute("freq",root.freq+"");
 
         if (root.left == null && root.right == null) {
-            System.out.printf("%s (%d)", root.ch, root.freq);
+            el.setAttribute("char",root.ch+"");
         }
 
-        SaveTreeXMLRecursive(root.left,el);
-        SaveTreeXMLRecursive(root.right,el);
+        if (root.left!=null){
+            Element tmp= new Element("lefChild");
+            el.addContent(tmp);
+            SaveTreeXMLRecursive(root.left,tmp);
+        }
+
+        if (root.right!=null){
+            Element tmp= new Element("lefChild");
+            el.addContent(tmp);
+            SaveTreeXMLRecursive(root.right,tmp);
+        }
+
     }
 
+    static String EncodeString(String text){
+        // count frequency of appearance of each character
+        // and store it in a map
+        Map<Character, Integer> freq = new HashMap<>();
+        for (int i = 0 ; i < text.length(); i++) {
+            if (!freq.containsKey(text.charAt(i))) {
+                freq.put(text.charAt(i), 0);
+            }
+            freq.put(text.charAt(i), freq.get(text.charAt(i)) + 1);
+        }
+
+        // Create a priority queue to store live nodes of Huffman tree
+        // Notice that highest priority item has lowest frequency
+        PriorityQueue<Node> pq = new PriorityQueue<>((l, r) -> l.freq - r.freq);
+
+        // Create a leaf node for each character and add it
+        // to the priority queue.
+        for (Map.Entry<Character, Integer> entry : freq.entrySet()) {
+            pq.add(new Node(entry.getKey(), entry.getValue()));
+        }
+
+        // do till there is more than one node in the queue
+        while (pq.size() != 1)
+        {
+            // Remove the two nodes of highest priority
+            // (lowest frequency) from the queue
+            Node left = pq.poll();
+            Node right = pq.poll();
+
+            // Create a new internal node with these two nodes as children
+            // and with frequency equal to the sum of the two nodes
+            // frequencies. Add the new node to the priority queue.
+            int sum = left.freq + right.freq;
+            pq.add(new Node('\0', sum, left, right));
+        }
+
+        // root stores pointer to root of Huffman Tree
+        Node root = pq.peek();
+
+        // traverse the Huffman tree and store the Huffman codes in a map
+        Map<Character, String> huffmanCode = new HashMap<>();
+        encode(root, "", huffmanCode);
+
+        // print encoded string
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0 ; i < text.length(); i++) {
+            sb.append(huffmanCode.get(text.charAt(i)));
+        }
+
+        GlobalRoot=root;
+        return sb.toString();
+    }
+
+    public static void EncodeFile(String dir){
+        byte[] encoded = new byte[0];
+        try {
+            encoded = Files.readAllBytes(Paths.get(dir));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String text=new String(encoded, Charset.defaultCharset());
+        String sb=EncodeString(text);
+
+        String substring = dir.substring(0, dir.length() - 9);
+
+        try (PrintWriter out = new PrintWriter(substring+"Huffman.txt")) {
+            out.println(sb);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        Document doc= SaveTreeXML(GlobalRoot);
+
+        XMLOutputter xmlOutput = new XMLOutputter();
+        xmlOutput.setFormat(Format.getPrettyFormat());
+        try {
+            xmlOutput.output(doc, new FileWriter(substring +"HuffmanTree.xml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void main(String[] args)
     {
         String text = "Huffman coding is a data compression algorithm.";
 
         buildHuffmanTree(text);
+
+        EncodeFile("/home/juan/Documentos/Proyecto3/Servidor MetaData/XML_Metadata/input.xml");
     }
 }
