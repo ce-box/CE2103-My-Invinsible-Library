@@ -1,6 +1,7 @@
 import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -64,8 +65,6 @@ public class Raid5 {
                 arraysOrdenados[1]=array2;
             }
         }
-
-
         return arraysOrdenados;
     }
     //##########################################
@@ -107,9 +106,7 @@ public class Raid5 {
         }
         //Retorna esto si ningun disco esta vacio
         return 99;
-
     }
-
     public byte[][] obtenerInfromacionDisponible(String id) throws IOException {
         byte[][] infromacionDisponible = new byte[3][];
         int contador = 0;
@@ -156,48 +153,53 @@ public class Raid5 {
                     String data = new String(Files.readAllBytes(Paths.get(path)), StandardCharsets.UTF_8);
                     infromacionDisponible[contador] = Base64.decode(data);
                     contador++;
-
-
                 }
                 return infromacionDisponible;
-
             }
         }
+        return infromacionDisponible;
+
     }
     public String obtenerImagen(String id) throws IOException {
-        String imagen="";
-        String data1="";
-        String data2="";
-        String data3="";
-        String data[]=new String[3];
-        for (int i = 0; i <Discos.length ; i++) {
+        String imagen = "";
+        String data1 = "";
+        String data2 = "";
+        String data3 = "";
+        String data[] = new String[3];
+        BufferedImage ImagenCortada1 = null;
+        BufferedImage ImagenCortada2 = null;
+        BufferedImage ImagenCortada3 = null;
+        for (int i = 0; i < Discos.length; i++) {
 
             File[] contents = this.Discos[i].listFiles();
-            for (int j = 0; j < contents.length ; j++) {
-                String archivo=contents[j].toString();
-                boolean parte1 = archivo.indexOf(id+"-1") !=-1? true: false;
-                boolean parte2 = archivo.indexOf(id+"-2") !=-1? true: false;
-                boolean parte3 = archivo.indexOf(id+"-3") !=-1? true: false;
-                if(parte1){
+            for (int j = 0; j < contents.length; j++) {
+                String archivo = contents[j].toString();
+                boolean parte1 = archivo.indexOf(id + "-1") != -1 ? true : false;
+                boolean parte2 = archivo.indexOf(id + "-2") != -1 ? true : false;
+                boolean parte3 = archivo.indexOf(id + "-3") != -1 ? true : false;
+                if (parte1) {
                     File file = new File(archivo);
-                    String path= file.toString();
-                    data1 = new String(Files.readAllBytes(Paths.get(path)), StandardCharsets.UTF_8);
-
+                     ImagenCortada1 = ImageIO.read(file);
                 }
-                if(parte2){
+                if (parte2) {
                     File file = new File(archivo);
-                    String path= file.toString();
-                    data2 = new String(Files.readAllBytes(Paths.get(path)), StandardCharsets.UTF_8);
+                     ImagenCortada2 = ImageIO.read(file);
                 }
-                if(parte3){
+                if (parte3) {
                     File file = new File(archivo);
-                    String path= file.toString();
-                    data3 = new String(Files.readAllBytes(Paths.get(path)), StandardCharsets.UTF_8);
+                    ImagenCortada3 = ImageIO.read(file);
                 }
             }
         }
-        imagen=data1+data2+data3;
-        return imagen;
+        BufferedImage ImagenCompleta = new BufferedImage(ImagenCortada1.getWidth() * 3, ImagenCortada1.getHeight(), ImagenCortada1.getType());
+        Graphics2D graph = ImagenCompleta.createGraphics();
+        graph.drawImage(ImagenCortada1, 0, 0, null);
+        graph.drawImage(ImagenCortada2, ImagenCompleta.getWidth() / 3, 0, null);
+        graph.drawImage(ImagenCortada3, ImagenCompleta.getWidth() / 3 * 2, 0, null);
+        ByteArrayOutputStream contenedor = new ByteArrayOutputStream();
+        ImageIO.write(ImagenCompleta, "png", contenedor);
+        String ImagenCompletaBase64=Base64.encode(contenedor.toByteArray());
+        return ImagenCompletaBase64;
     }
     //######################################################################################################
     //ESTE METODO LO QUE HACE ES   BUSCAR ARCHIVOS  QUE CONTENGAN EL ID INGRESADO
@@ -217,7 +219,7 @@ public class Raid5 {
             }
         }
         return false;
-    }public String dameIdDelaImagen(String archivo{
+    }public String dameIdDelaImagen(String archivo){
         String nombre = "/raiz/feo/loca/12-1.png";
         String id = "";
         boolean inicio = false;
