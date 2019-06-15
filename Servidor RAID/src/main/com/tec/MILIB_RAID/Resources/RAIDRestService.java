@@ -98,7 +98,7 @@ public class RAIDRestService {
         System.out.println("[WRITE] ID: "+ ID);
         System.out.println("[WRITE] img64: "+ img64);
 
-        raid.Write(img64,ID);
+        raid.Write(img64,ID+"#");
 
         JSONObject json = new JSONObject();
         json.put("Status","OK");
@@ -147,10 +147,10 @@ public class RAIDRestService {
         System.out.println("[SEEK] User:" + user);
         System.out.println("[SEEK] ID: " + ID);
 
-        //String img64 = raid.seek(ID);
+        String img64 = raid.seek(ID+"#");
 
         JSONObject json = new JSONObject();
-        json.put("imgStack", "a");
+        json.put("imgStack", img64);
         System.out.println("[SEEK] Data sent: " + json.toString());
 
         // Return HTTP response 200 in case of success
@@ -183,7 +183,7 @@ public class RAIDRestService {
 
         // In this part the deletion is effected
 
-        //raid.delete(ID);
+        raid.delete(ID+"#");
 
         // If deletion done, the send Status: OK else Status: FAIL
         JSONObject json = new JSONObject();

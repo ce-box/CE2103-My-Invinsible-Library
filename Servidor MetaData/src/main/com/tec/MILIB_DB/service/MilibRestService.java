@@ -35,7 +35,7 @@ public class MilibRestService {
             "Proyecto #3/Source/MyInvensibleLibrary/Servidor MetaData/XML_Metadata/input.xml";
 
     // Dictionary that contains the metadata instances by username
-    private static Map<String,Metadata> users = new HashMap<>();
+    private static  Map<String,Metadata> users = new HashMap<>();
 
 
     /**

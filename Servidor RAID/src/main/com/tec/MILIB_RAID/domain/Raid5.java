@@ -13,9 +13,10 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class Raid5 {
-    private int turno=0;
+    private static int turno=0;
     private Path currentRelativePath = Paths.get("");
-    private String s = currentRelativePath.toAbsolutePath().toString();
+    private String s = "/home/esteban/Documentos/TEC/1S 2019/Algoritmos y estructuras de datos II/4. Proyectos/" +
+            "Proyecto #3/Source/MyInvensibleLibrary/Servidor RAID";//currentRelativePath.toAbsolutePath().toString();
     public File Disco1 = new File(s+"/src"+"/Disco1");
     public File Disco2 = new File(s+"/src"+"/Disco2");
     public File Disco3 = new File(s+"/src"+"/Disco3");
@@ -74,6 +75,7 @@ public class Raid5 {
     public void crearImagen(String ruta, BufferedImage image, String nombre) throws IOException {
         File archivo = new File(ruta+"/"+nombre+".png");
         ImageIO.write(image, "png", archivo);
+        System.out.println(ruta);
     }
     //##########333
     //######################################################################################################
@@ -236,24 +238,35 @@ public class Raid5 {
             File[] contents = this.Discos[i].listFiles();
             for (int j = 0; j < contents.length; j++) {
                 String archivo = contents[j].toString();
-                boolean parte1 = archivo.indexOf(id + "-1") != -1 ? true : false;
-                boolean parte2 = archivo.indexOf(id + "-2") != -1 ? true : false;
-                boolean parte3 = archivo.indexOf(id + "-3") != -1 ? true : false;
+                System.out.println("Archivo ubicado:" + archivo);
+                boolean parte1 = archivo.contains(id + "-1");// != -1 ? true : false;
+                boolean parte2 = archivo.contains(id + "-2");// != -1 ? true : false;
+                boolean parte3 = archivo.contains(id + "-3"); // != -1 ? true : false;
+
                 if (parte1) {
+                    System.out.println("Entra al if 1");
                     File file = new File(archivo);
                      ImagenCortada1 = ImageIO.read(file);
                 }
                 if (parte2) {
+                    System.out.println("Entra al if 2");
                     File file = new File(archivo);
                      ImagenCortada2 = ImageIO.read(file);
                 }
                 if (parte3) {
+                    System.out.println("Entra al if 3");
                     File file = new File(archivo);
                     ImagenCortada3 = ImageIO.read(file);
                 }
             }
         }
+        System.out.println("Img ID: " + id);
 
+        ImagenCortada1 = DameImagenEspecifica(id+"-1.png");
+        ImagenCortada2 = DameImagenEspecifica(id+"-2.png");
+        ImagenCortada3 = DameImagenEspecifica(id+"-3.png");
+
+        System.out.println("Pasa la asignacion de las imagenes");
         BufferedImage ImagenCompleta = new BufferedImage(ImagenCortada1.getWidth() * 3, ImagenCortada1.getHeight(), ImagenCortada1.getType());
         Graphics2D graph = ImagenCompleta.createGraphics();
         graph.drawImage(ImagenCortada1, 0, 0, null);
