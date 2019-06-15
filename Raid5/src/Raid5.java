@@ -137,6 +137,8 @@ public class Raid5 {
         }
         return "";
     }
+
+
     public int  dameElSizeDelArray(String id,int numero1,int numero2,int numero3) throws IOException, ClassNotFoundException {
         FileInputStream fin = new FileInputStream(DameDireccionDelArchivo(id+"-INFO.txt"));
         ObjectInputStream ois = new ObjectInputStream(fin);
@@ -249,6 +251,7 @@ public class Raid5 {
                 }
             }
         }
+
         BufferedImage ImagenCompleta = new BufferedImage(ImagenCortada1.getWidth() * 3, ImagenCortada1.getHeight(), ImagenCortada1.getType());
         Graphics2D graph = ImagenCompleta.createGraphics();
         graph.drawImage(ImagenCortada1, 0, 0, null);
@@ -258,6 +261,41 @@ public class Raid5 {
         ImageIO.write(ImagenCompleta, "png", contenedor);
         String ImagenCompletaBase64=Base64.encode(contenedor.toByteArray());
         return ImagenCompletaBase64;
+    }
+
+    //#####################################################################################################
+    public BufferedImage[] obtenerImagenesRestantes(String id) throws IOException {
+        BufferedImage imagenesRestantes[] = new BufferedImage[2];
+        int posicion=0;
+        for (int i = 0; i < Discos.length; i++) {
+            File[] contents = this.Discos[i].listFiles();
+            for (int j = 0; j < contents.length; j++) {
+                String archivo = contents[j].toString();
+                boolean parte1 = archivo.indexOf(id + "-1") != -1 ? true : false;
+                boolean parte2 = archivo.indexOf(id + "-2") != -1 ? true : false;
+                boolean parte3 = archivo.indexOf(id + "-3") != -1 ? true : false;
+                if (parte1) {
+                    File file = new File(archivo);
+                    BufferedImage ParteDeImagenEncontrada =ImageIO.read(file);
+                    imagenesRestantes[posicion]=ParteDeImagenEncontrada;
+                    posicion++;
+                }
+                if (parte2) {
+                    File file = new File(archivo);
+                    BufferedImage ParteDeImagenEncontrada =ImageIO.read(file);
+                    imagenesRestantes[posicion]=ParteDeImagenEncontrada;
+                    posicion++;
+                }
+                if (parte3) {
+                    File file = new File(archivo);
+                    BufferedImage ParteDeImagenEncontrada =ImageIO.read(file);
+                    imagenesRestantes[posicion]=ParteDeImagenEncontrada;
+                    posicion++;
+                }
+            }
+        }
+
+        return imagenesRestantes;
     }
     //######################################################################################################
     //ESTE METODO LO QUE HACE ES   BUSCAR ARCHIVOS  QUE CONTENGAN EL ID INGRESADO
@@ -271,6 +309,7 @@ public class Raid5 {
                 System.out.println(archivo.toString());
                 boolean isFound = archivo.contains(id) ? true: false;
                 if(isFound){
+
                     return true;
 
                 }
@@ -278,7 +317,24 @@ public class Raid5 {
         }
         return false;
     }
-
+//#####################################################################################################################
+public BufferedImage DameImagenEspecifica(String id) throws IOException {
+    for (int i = 0; i <Discos.length ; i++) {
+        File[] contents = this.Discos[i].listFiles();
+        for (int j = 0; j < contents.length ; j++) {
+            String archivo=contents[j].toString();
+            System.out.println(archivo.toString());
+            boolean isFound = archivo.contains(id) ? true: false;
+            if(isFound){
+                File file = new File(archivo);
+                BufferedImage ImagenEncontrada =ImageIO.read(file);
+                return ImagenEncontrada;
+            }
+        }
+    }
+    return null;
+}
+//#####################################################################################################################
 
     public String dameIdDelaImagen(String archivo){
         String nombre = "/raiz/feo/loca/12-1.png";

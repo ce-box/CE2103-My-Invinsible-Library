@@ -72,17 +72,23 @@ public class Main {
 
 
 
-        BufferedImage image = ImageIO.read(new File("/home/reds/Descargas/Tux.png"));
-
-        System.out.println("Original Image Dimension: "+image.getWidth()+"x"+image.getHeight());
+        BufferedImage image = ImageIO.read(new File("/home/reds/Descargas/Dona.png"));
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         ImageIO.write(image, "png", baos);
         String encodedImage = Base64.encode(baos.toByteArray());
 //        byte [] data=Base64.decode(encodedImage);
 //        String infromacion=Base64.encode(data);
         RaidController controlador=new RaidController();
-        //controlador.Write(encodedImage,"Tux");
-        controlador.recuperrar("Tux");
+        controlador.Write(encodedImage,"1#");
+        //controlador.recuperrar("2#");
+        //controlador.recuperrar("1");
+        //controlador.delete("2#");
+        BufferedImage image2 = ImageIO.read(new File("/home/reds/Descargas/Tux.png"));
+        ByteArrayOutputStream baos2 = new ByteArrayOutputStream();
+        ImageIO.write(image2, "png", baos2);
+        String encodedImage2 = Base64.encode(baos2.toByteArray());
+        //controlador.Write(encodedImage2,"2#");
+
         //controlador.raid5.DameDireccionDelArchivo("Tux-INFO.txt");
 
         //controlador.delete("Tux");
