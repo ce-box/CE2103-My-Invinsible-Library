@@ -7,7 +7,9 @@ import java.util.ArrayList;
 public class XML_test {
 
     public static void main(String[] args) {
-        Metadata.Start();
+
+        Metadata metadata = new Metadata();
+        metadata.Start();
 
         ArrayList<String> slotList = new ArrayList<>();
         slotList.add("name");
@@ -23,9 +25,9 @@ public class XML_test {
         valuesList.add("1000");
         valuesList.add("Beautiful pic");
 
-        Metadata.Insert(slotList,valuesList);
+        metadata.Insert(slotList,valuesList);
 
-        Metadata.Close();
+        metadata.Close();
 
 
     }
