@@ -224,18 +224,21 @@ public class Metadata {
         List<Element> studentList = classElement.getChildren();
         System.out.println("----------------------------");
 
+        this.requestID="";
 
         for (int i=0;i<studentList.size();i++) {
             Element student=studentList.get(i);
             for (int j=0; j<SlotsWhere.size(); j++){
                 //System.out.println("$$$"+student.getChild(SlotsWhere.get(j)).getText()+"$$$"+SlotsValues.get(j));
                 if (student.getChild(SlotsWhere.get(j)).getText().equals(SlotsWhereValues.get(j))){
+                    this.requestID+=student.getChild("ID").getText()+",";
                     classElement.removeChild(student.getName());
                     i--;
                 }
             }
         }
 
+        this.requestID=this.requestID.substring(0,this.requestID.length()-1);
     }
 
     /**
@@ -251,6 +254,7 @@ public class Metadata {
 
         SelectList="";
 
+
         for (String slot: Slots) {
             SelectList+=slot+",";
             System.out.format("%-15s", slot);
@@ -258,6 +262,7 @@ public class Metadata {
         SelectList = SelectList.substring(0, SelectList.length() - 1);
         System.out.println();
 
+        this.requestID="";
 
         for (Element student : studentList) {
             SelectList+="-";
@@ -267,9 +272,10 @@ public class Metadata {
             }
             System.out.println();
             SelectList = SelectList.substring(0, SelectList.length() - 1);
+            this.requestID+=student.getChild("ID").getText()+",";
         }
 
-
+        this.requestID=this.requestID.substring(0,this.requestID.length()-1);
 
     }
 
@@ -296,6 +302,7 @@ public class Metadata {
         SelectList = SelectList.substring(0, SelectList.length() - 1);
         System.out.println();
 
+        this.requestID="";
 
         for (Element student : studentList) {
             SelectList+="-";
@@ -305,7 +312,9 @@ public class Metadata {
             }
             System.out.println();
             SelectList = SelectList.substring(0, SelectList.length() - 1);
+            this.requestID+=student.getChild("ID").getText()+",";
         }
+        this.requestID=this.requestID.substring(0,this.requestID.length()-1);
     }
 
     /**
@@ -333,6 +342,8 @@ public class Metadata {
         SelectList = SelectList.substring(0, SelectList.length() - 1);
         System.out.println();
 
+        this.requestID="";
+
         for (Element student : studentList) {
             boolean Where=true;
 
@@ -351,7 +362,10 @@ public class Metadata {
             }
             System.out.println();
             SelectList = SelectList.substring(0, SelectList.length() - 1);
+            this.requestID+=student.getChild("ID").getText()+",";
         }
+
+        this.requestID=this.requestID.substring(0,this.requestID.length()-1);
     }
 
     /**
@@ -381,6 +395,8 @@ public class Metadata {
         SelectList = SelectList.substring(0, SelectList.length() - 1);
         System.out.println();
 
+        this.requestID="";
+
         for (Element student : studentList) {
             boolean Where = true;
             float value;
@@ -405,7 +421,10 @@ public class Metadata {
             }
             System.out.println();
             SelectList = SelectList.substring(0, SelectList.length() - 1);
+            this.requestID+=student.getChild("ID").getText()+",";
         }
+
+        this.requestID=this.requestID.substring(0,this.requestID.length()-1);
     }
 
 }
