@@ -12,6 +12,7 @@ import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.Format;
+import org.jdom2.output.SAXOutputter;
 import org.jdom2.output.XMLOutputter;
 
 import java.io.*;
@@ -42,6 +43,9 @@ class Node
 
 public class Huffman {
     private static Node GlobalRoot;
+    private static String file_path="/home/juan/Documentos/Proyecto3/Servidor MetaData/XML_Metadata/input.xml";
+    private static String path = file_path.substring(0, file_path.length() - 9);
+    private static String GlobalDecoded="";
 
     public static Node getGlobalRoot() {
         return GlobalRoot;
@@ -74,7 +78,8 @@ public class Huffman {
         // found a leaf node
         if (root.left == null && root.right == null)
         {
-            System.out.print(root.ch);
+            //System.out.print(root.ch);
+            GlobalDecoded+=root.ch;
             return index;
         }
 
@@ -176,13 +181,13 @@ public class Huffman {
         }
 
         if (root.left!=null){
-            Element tmp= new Element("lefChild");
+            Element tmp= new Element("leftChild");
             el.addContent(tmp);
             SaveTreeXMLRecursive(root.left,tmp);
         }
 
         if (root.right!=null){
-            Element tmp= new Element("lefChild");
+            Element tmp= new Element("rightChild");
             el.addContent(tmp);
             SaveTreeXMLRecursive(root.right,tmp);
         }
@@ -252,9 +257,7 @@ public class Huffman {
         String text=new String(encoded, Charset.defaultCharset());
         String sb=EncodeString(text);
 
-        String substring = dir.substring(0, dir.length() - 9);
-
-        try (PrintWriter out = new PrintWriter(substring+"Huffman.txt")) {
+        try (PrintWriter out = new PrintWriter(path+"Huffman.txt")) {
             out.println(sb);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -265,18 +268,82 @@ public class Huffman {
         XMLOutputter xmlOutput = new XMLOutputter();
         xmlOutput.setFormat(Format.getPrettyFormat());
         try {
-            xmlOutput.output(doc, new FileWriter(substring +"HuffmanTree.xml"));
+            xmlOutput.output(doc, new FileWriter(path +"HuffmanTree.xml"));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    static void GetTreeXML(Node root) {
+        File inputFile = new File(path+"HuffmanTree.xml");
+        SAXBuilder saxBuilder = new SAXBuilder();
+        Document document = null;
+        try {
+            document = saxBuilder.build(inputFile);
+        } catch (JDOMException | IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Root element :" + document.getRootElement().getName());
+        Element el  = document.getRootElement();
+        GetTreeXMLRecursive(root,el);
+    }
+
+    static void GetTreeXMLRecursive(Node root, Element el){
+        root.freq=Integer.parseInt(el.getAttributeValue("freq"));
+
+        if (el.getChild("leftChild") == null && el.getChild("rightChild") == null) {
+            root.ch=el.getAttributeValue("char").charAt(0);
+        }
+
+        if (el.getChild("leftChild")!=null){
+            Node tmp= new Node(' ',0);
+            root.left=tmp;
+            GetTreeXMLRecursive(tmp,el.getChild("leftChild"));
+        }
+
+        if (el.getChild("rightChild")!=null){
+            Node tmp= new Node(' ',0);
+            root.right=tmp;
+            GetTreeXMLRecursive(tmp,el.getChild("rightChild"));
+        }
+    }
+
+    public static void DecodeFile(){
+        Node root= new Node(' ',0);
+        GetTreeXML(root);
+
+        byte[] encoded = new byte[0];
+        try {
+            encoded = Files.readAllBytes(Paths.get(path+"Huffman.txt"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String sb=new String(encoded, Charset.defaultCharset());
+
+        GlobalDecoded="";
+        int index = -1;
+        System.out.println("\nDecoded string is: \n");
+        while (index < sb.length() - 2) {
+            index = decode(root, index, new StringBuilder().append(sb));
+        }
+        System.out.println(GlobalDecoded);
+
+        try (PrintWriter out = new PrintWriter(file_path)) {
+            out.println(GlobalDecoded);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public static void main(String[] args)
     {
-        String text = "Huffman coding is a data compression algorithm.";
+        //String text = "Huffman coding is a data compression algorithm.";
 
-        buildHuffmanTree(text);
+        //buildHuffmanTree(text);
 
-        EncodeFile("/home/juan/Documentos/Proyecto3/Servidor MetaData/XML_Metadata/input.xml");
+        //EncodeFile("/home/juan/Documentos/Proyecto3/Servidor MetaData/XML_Metadata/input.xml");
+
+        DecodeFile();
     }
 }
