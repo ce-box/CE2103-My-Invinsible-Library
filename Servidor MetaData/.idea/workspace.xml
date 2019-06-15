@@ -87,6 +87,7 @@
             <state relative-caret-position="-224">
               <caret line="41" column="10" selection-start-line="41" selection-start-column="10" selection-end-line="41" selection-end-column="10" />
               <folding>
+                <element signature="imports" expanded="true" />
                 <element signature="e#1088#1089#0" expanded="true" />
                 <element signature="e#1125#1126#0" expanded="true" />
               </folding>
@@ -95,9 +96,62 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/com/tec/MILIB_DB/domain/Huffman.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="192">
+              <caret line="331" column="37" selection-start-line="331" selection-start-column="37" selection-end-line="331" selection-end-column="37" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="class#Node#0" />
+                <element signature="e#797#798#0" expanded="true" />
+                <element signature="e#830#831#0" expanded="true" />
+                <element signature="method#encode#0;class#Huffman#0" />
+                <element signature="method#buildHuffmanTree#0;class#Huffman#0" />
+                <element signature="method#SaveTreeXML#0;class#Huffman#0" />
+                <element signature="method#SaveTreeXMLRecursive#0;class#Huffman#0" />
+                <element signature="method#GetEncodedString#0;class#Huffman#0" />
+                <element signature="method#EncodeFile#0;class#Huffman#0" />
+                <element signature="method#GetTreeXML#0;class#Huffman#0" />
+                <element signature="method#GetTreeXMLRecursive#0;class#Huffman#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/XML_Metadata/HuffmanTree.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="75" column="28" lean-forward="true" selection-start-line="75" selection-start-column="28" selection-end-line="75" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/XML_Metadata/Huffman.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/com/tec/MILIB_DB/executable/test.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="8" column="42" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="42" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MILIB_MetadataDB.iml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
+            <state relative-caret-position="261">
               <caret line="19" column="56" selection-start-line="19" selection-start-column="56" selection-end-line="19" selection-end-column="56" />
             </state>
           </provider>
@@ -175,6 +229,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -191,20 +247,12 @@
               <item name="MILIB_Servidor" type="b2602c69:ProjectViewProjectNode" />
               <item name="Servidor MetaData" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MILIB_Servidor" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Servidor MetaData" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="MILIB_DB" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="MILIB_Servidor" type="b2602c69:ProjectViewProjectNode" />
               <item name="Servidor MetaData" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="MILIB_DB" type="462c0819:PsiDirectoryNode" />
               <item name="domain" type="462c0819:PsiDirectoryNode" />
             </path>
@@ -212,7 +260,21 @@
               <item name="MILIB_Servidor" type="b2602c69:ProjectViewProjectNode" />
               <item name="Servidor MetaData" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="MILIB_DB" type="462c0819:PsiDirectoryNode" />
+              <item name="domain" type="462c0819:PsiDirectoryNode" />
+              <item name="Huffman.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+            </path>
+            <path>
+              <item name="MILIB_Servidor" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Servidor MetaData" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="MILIB_DB" type="462c0819:PsiDirectoryNode" />
+              <item name="executable" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MILIB_Servidor" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Servidor MetaData" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="MILIB_DB" type="462c0819:PsiDirectoryNode" />
               <item name="service" type="462c0819:PsiDirectoryNode" />
             </path>
@@ -225,15 +287,13 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Main_Server" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -262,7 +322,20 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.20">
+  <component name="RunManager" selected="Application.Huffman">
+    <configuration name="Huffman" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.com.tec.MILIB_DB.domain.Huffman" />
+      <module name="MILIB_MetadataDB" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.com.tec.MILIB_DB.domain.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Metadata" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.com.tec.MILIB_DB.domain.Metadata" />
       <module name="MILIB_MetadataDB" />
@@ -304,19 +377,6 @@
     </configuration>
     <configuration name="XML_test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.com.tec.MILIB_DB.executable.XML_test" />
-      <module name="MILIB_MetadataDB" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="main.com.tec.MILIB_DB.executable.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="main.com.tec.MILIB_DB.executable.test" />
       <module name="MILIB_MetadataDB" />
       <extension name="coverage">
         <pattern>
@@ -495,18 +555,18 @@
     <list>
       <item itemvalue="Application.MilibRestService" />
       <item itemvalue="Application.MilibServiceClient" />
-      <item itemvalue="Application.test" />
       <item itemvalue="Application.XML_test" />
       <item itemvalue="Application.Metadata" />
       <item itemvalue="Tomcat Server.Tomcat 9.0.20" />
+      <item itemvalue="Application.Huffman" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Huffman" />
         <item itemvalue="Application.MilibRestService" />
         <item itemvalue="Application.Metadata" />
         <item itemvalue="Application.MilibServiceClient" />
         <item itemvalue="Application.XML_test" />
-        <item itemvalue="Application.test" />
       </list>
     </recent_temporary>
   </component>
@@ -626,16 +686,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/tec/MILIB_DB/executable/test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/com/tec/MILIB_DB/consumer/MilibServiceClient.java" />
     <entry file="file://$PROJECT_DIR$/JavaDoc/main/com/tec/MILIB/Consumer/MilibServiceClient.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -692,13 +742,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/tec/MILIB_DB/domain/Metadata.java">
+    <entry file="file://$PROJECT_DIR$/src/main/com/tec/MILIB_DB/executable/test.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-224">
           <caret line="41" column="10" selection-start-line="41" selection-start-column="10" selection-end-line="41" selection-end-column="10" />
           <folding>
-            <element signature="e#1088#1089#0" expanded="true" />
-            <element signature="e#1125#1126#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -714,7 +763,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/tec/MILIB_DB/service/dataManager.java">
+    <entry file="file://$PROJECT_DIR$/src/main/com/tec/MILIB_DB/domain/Metadata.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="127">
           <caret line="274" column="68" selection-start-line="274" selection-start-column="68" selection-end-line="274" selection-end-column="68" />
@@ -724,12 +773,43 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/XML_Metadata/input.xml">
+    <entry file="file://$PROJECT_DIR$/XML_Metadata/Huffman.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
           <caret line="10" column="11" lean-forward="true" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/XML_Metadata/HuffmanTree.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="75" column="28" lean-forward="true" selection-start-line="75" selection-start-column="28" selection-end-line="75" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/com/tec/MILIB_DB/domain/Huffman.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="331" column="37" selection-start-line="331" selection-start-column="37" selection-end-line="331" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="class#Node#0" />
+            <element signature="e#797#798#0" expanded="true" />
+            <element signature="e#830#831#0" expanded="true" />
+            <element signature="method#encode#0;class#Huffman#0" />
+            <element signature="method#buildHuffmanTree#0;class#Huffman#0" />
+            <element signature="method#SaveTreeXML#0;class#Huffman#0" />
+            <element signature="method#SaveTreeXMLRecursive#0;class#Huffman#0" />
+            <element signature="method#GetEncodedString#0;class#Huffman#0" />
+            <element signature="method#EncodeFile#0;class#Huffman#0" />
+            <element signature="method#GetTreeXML#0;class#Huffman#0" />
+            <element signature="method#GetTreeXMLRecursive#0;class#Huffman#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/XML_Metadata/input.xml">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
   <component name="masterDetails">
