@@ -34,21 +34,21 @@ public class RaidController {
         String Imagen1=id+"-1.png";
         String Imagen2=id+"-2.png";
         String Imagen3=id+"-3.png";
-        String [] imagenesOrdenas={Imagen1,Imagen2,Imagen2};
-        
-        byte[][] informacionDisponible=this.raid5.obtenerInfromacionDisponible(id);
-        System.out.println("EL size es"+informacionDisponible[0].length);
-        System.out.println("EL size es"+informacionDisponible[1].length);
-        System.out.println("EL size es"+informacionDisponible[2].length);
-        int numero=raid5.dameElSizeDelArray(id,informacionDisponible[0].length,informacionDisponible[1].length,informacionDisponible[2].length);
-        System.out.println("el numero es "+ numero);
-        byte[][]infromacionDisponibleOrdenado=this.raid5.cualEsmasGrande(informacionDisponible[0],informacionDisponible[1],informacionDisponible[2]);
-        byte[] ParteRecuperado=recuperacion(infromacionDisponibleOrdenado[2],infromacionDisponibleOrdenado[1],infromacionDisponibleOrdenado[0],numero);
-        ByteArrayInputStream bis = new ByteArrayInputStream(ParteRecuperado);
-        BufferedImage recuperado = ImageIO.read(bis);
-        BufferedImage[]OtrasImagenes=(this.raid5.obtenerImagenesRestantes(id));
 
         if(!raid5.buscar(Imagen1)){
+
+
+            byte[][] informacionDisponible=this.raid5.obtenerInfromacionDisponible(id);
+            System.out.println("EL size es"+informacionDisponible[0].length);
+            System.out.println("EL size es"+informacionDisponible[1].length);
+            System.out.println("EL size es"+informacionDisponible[2].length);
+            int numero=raid5.dameElSizeDelArray(id,informacionDisponible[0].length,informacionDisponible[1].length,informacionDisponible[2].length);
+            System.out.println("el numero es "+ numero);
+            byte[][]infromacionDisponibleOrdenado=this.raid5.cualEsmasGrande(informacionDisponible[0],informacionDisponible[1],informacionDisponible[2]);
+            byte[] ParteRecuperado=recuperacion(infromacionDisponibleOrdenado[2],infromacionDisponibleOrdenado[1],infromacionDisponibleOrdenado[0],numero);
+            ByteArrayInputStream bis = new ByteArrayInputStream(ParteRecuperado);
+            BufferedImage recuperado = ImageIO.read(bis);
+
             System.out.println("La que  es la 1");
             BufferedImage bImage2 = raid5.DameImagenEspecifica(Imagen2);
             BufferedImage bImage3 = raid5.DameImagenEspecifica(Imagen3);
@@ -66,6 +66,18 @@ public class RaidController {
         }
 
         if(!raid5.buscar(Imagen2)){
+
+            byte[][] informacionDisponible=this.raid5.obtenerInfromacionDisponible(id);
+            System.out.println("EL size es"+informacionDisponible[0].length);
+            System.out.println("EL size es"+informacionDisponible[1].length);
+            System.out.println("EL size es"+informacionDisponible[2].length);
+            int numero=raid5.dameElSizeDelArray(id,informacionDisponible[0].length,informacionDisponible[1].length,informacionDisponible[2].length);
+            System.out.println("el numero es "+ numero);
+            byte[][]infromacionDisponibleOrdenado=this.raid5.cualEsmasGrande(informacionDisponible[0],informacionDisponible[1],informacionDisponible[2]);
+            byte[] ParteRecuperado=recuperacion(infromacionDisponibleOrdenado[2],infromacionDisponibleOrdenado[1],infromacionDisponibleOrdenado[0],numero);
+            ByteArrayInputStream bis = new ByteArrayInputStream(ParteRecuperado);
+            BufferedImage recuperado = ImageIO.read(bis);
+
             System.out.println("La que  es la 1");
             BufferedImage bImage1 = raid5.DameImagenEspecifica(Imagen1);
             BufferedImage bImage3 = raid5.DameImagenEspecifica(Imagen3);
@@ -83,6 +95,18 @@ public class RaidController {
             ImageIO.write(recuperado, "png", new File(Imagen2) );
         }
         if(!raid5.buscar(Imagen3)){
+
+            byte[][] informacionDisponible=this.raid5.obtenerInfromacionDisponible(id);
+            System.out.println("EL size es"+informacionDisponible[0].length);
+            System.out.println("EL size es"+informacionDisponible[1].length);
+            System.out.println("EL size es"+informacionDisponible[2].length);
+            int numero=raid5.dameElSizeDelArray(id,informacionDisponible[0].length,informacionDisponible[1].length,informacionDisponible[2].length);
+            System.out.println("el numero es "+ numero);
+            byte[][]infromacionDisponibleOrdenado=this.raid5.cualEsmasGrande(informacionDisponible[0],informacionDisponible[1],informacionDisponible[2]);
+            byte[] ParteRecuperado=recuperacion(infromacionDisponibleOrdenado[2],infromacionDisponibleOrdenado[1],infromacionDisponibleOrdenado[0],numero);
+            ByteArrayInputStream bis = new ByteArrayInputStream(ParteRecuperado);
+            BufferedImage recuperado = ImageIO.read(bis);
+
             System.out.println("La que  es la 1");
             BufferedImage bImage1 = raid5.DameImagenEspecifica(Imagen1);
             BufferedImage bImage2 = raid5.DameImagenEspecifica(Imagen2);
@@ -99,8 +123,25 @@ public class RaidController {
             System.out.println("La que  es la 3");
             ImageIO.write(recuperado, "png", new File(Imagen3) );
         }
+        else{
 
-        System.out.println("EL size del recuperado es"+ParteRecuperado.length);
+            BufferedImage bImage1 = raid5.DameImagenEspecifica(Imagen1);
+            BufferedImage bImage2 = raid5.DameImagenEspecifica(Imagen2);
+            BufferedImage bImage3 = raid5.DameImagenEspecifica(Imagen3);
+
+            BufferedImage joined = new BufferedImage(bImage1.getWidth()*3,bImage1.getHeight(), bImage1.getType());
+            Graphics2D graph = joined.createGraphics();
+            graph.drawImage(bImage1, 0, 0,null);
+            graph.drawImage(bImage2, joined.getWidth()/3, 0,null);
+            graph.drawImage(bImage3, joined.getWidth()/3*2, 0,null);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write(joined, "png", baos);
+            raid5.borrar(id);
+            this.Write(Base64.encode(baos.toByteArray()),id);
+
+        }
+
+        //System.out.println("EL size del recuperado es"+ParteRecuperado.length);
     }
     //###################################################################################################################
 

@@ -79,8 +79,8 @@ public class Main {
 //        byte [] data=Base64.decode(encodedImage);
 //        String infromacion=Base64.encode(data);
         RaidController controlador=new RaidController();
-        controlador.Write(encodedImage,"1#");
-        //controlador.recuperrar("2#");
+        //controlador.Write(encodedImage,"1#");
+        controlador.recuperrar("1#");
         //controlador.recuperrar("1");
         //controlador.delete("2#");
         BufferedImage image2 = ImageIO.read(new File("/home/reds/Descargas/Tux.png"));
