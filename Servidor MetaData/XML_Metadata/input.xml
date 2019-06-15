@@ -1,48 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class ID="6">
+<class ID="4">
   <image1>
     <ID>1</ID>
-    <name>Stephe Curry vs Kawhi Leonard</name>
-    <author>Esteban</author>
-    <date>2012</date>
-    <size>1000</size>
+    <name>pikachuBailando.png</name>
+    <author>Ash Ketchup</author>
+    <date>2019</date>
+    <size>0.025421</size>
     <description>null</description>
-    <gallery>null</gallery>
+    <gallery>a</gallery>
   </image1>
   <image2>
     <ID>2</ID>
-    <name>img2</name>
-    <author>Erick Barrantes</author>
-    <date>1998</date>
-    <size>1024</size>
-    <description>Cool! :)</description>
-    <gallery>null</gallery>
+    <name>camaron.png</name>
+    <author>El viejo</author>
+    <date>2000</date>
+    <size>0.027193</size>
+    <description>null</description>
+    <gallery>a</gallery>
   </image2>
   <image3>
     <ID>3</ID>
-    <name>a.png</name>
-    <author>Brock</author>
-    <date>2020</date>
-    <size>5.44034</size>
-    <description>null</description>
-    <gallery>Prueba1</gallery>
+    <name>ElpackdeSahid.png</name>
+    <author>Erick</author>
+    <date>2019</date>
+    <size>0.025421</size>
+    <description>En la cima del exito</description>
+    <gallery>Sahid</gallery>
   </image3>
-  <image4>
-    <ID>4</ID>
-    <name>pikachuBailando.png</name>
-    <author>Noguera</author>
-    <date>1999</date>
-    <size>5.44034</size>
-    <description>null</description>
-    <gallery>Pokemon</gallery>
-  </image4>
-  <image5>
-    <ID>5</ID>
-    <name>pokeball.png</name>
-    <author>Satoshi Tajiri</author>
-    <date>2018</date>
-    <size>0.027193</size>
-    <description>null</description>
-    <gallery>pokemones</gallery>
-  </image5>
 </class>

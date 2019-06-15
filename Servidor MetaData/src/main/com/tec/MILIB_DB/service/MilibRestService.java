@@ -9,6 +9,8 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -31,6 +33,10 @@ public class MilibRestService {
 
     private String XMLPath = "/home/esteban/Documentos/TEC/1S 2019/Algoritmos y estructuras de datos II/4. Proyectos/" +
             "Proyecto #3/Source/MyInvensibleLibrary/Servidor MetaData/XML_Metadata/input.xml";
+
+    // Dictionary that contains the metadata instances by username
+    private static Map<String,Metadata> users = new HashMap<>();
+
 
     /**
      * Converts the received inputStream to a String for handling the
@@ -68,8 +74,15 @@ public class MilibRestService {
         String username = jsonParser.getUsername(recvData);
 
         System.out.println("[START] Username: "+username);
-        Metadata.setFile_path(XMLPath);
-        Metadata.Start();
+
+        // If the username exists it just initialized else creates a new Metadata instance
+        if(!users.containsKey(username)){
+            users.put(username,new Metadata());
+            System.out.println("Se crea un nuevo usuario!");
+        }
+
+        users.get(username).setFile_path(XMLPath);
+        users.get(username).Start();
 
         return Response.status(200).build();
     }
@@ -101,52 +114,12 @@ public class MilibRestService {
 
         // In this part the insert actions are performed
 
+        Response resp = dataManager.insert(recvData,users);
 
-
-        // --------------------------------------------------------------------
-
-        // Set the JSON data into the list
-        ArrayList<String> slotList = new ArrayList<>();
-        ArrayList<String> valuesList = new ArrayList<>();
-
-        jsonParser.jsonInsertParser(recvData,slotList,valuesList);
-
-        System.out.println("[INSERT]:: Slots: " + slotList.toString());
-        System.out.println("[INSERT]:: Slots Values: " + valuesList.toString());
-
-        // Validate no ID insert
-
-        if(!Metadata.verifySlotsNoID(slotList).equals("")){
-            JSONObject jsonError = new JSONObject();
-            jsonError.put("Status", Metadata.verifySlots(slotList));
-            return Response.status(200).entity(jsonError.toString()).build();
-        }
-
-        // Validate that slots are valid
-        if(!slotList.isEmpty()) {
-
-            String isAvailableSlot = Metadata.verifySlots(slotList);
-
-            if (!isAvailableSlot.equals("")) {
-                JSONObject jsonError = new JSONObject();
-                jsonError.put("Status", isAvailableSlot);
-                return Response.status(200).entity(jsonError.toString()).build();
-            }
-        }
-
-        // Insert the metadata
-        Metadata.Insert(slotList,valuesList);
-
-        // --------------------------------------------------------------------
-
-        // Response
-        JSONObject json = new JSONObject();
-        json.put("Status","Done");
-
-        System.out.println("[INSERT] Data sent: "+ json.toString());
+        System.out.println("[INSERT] Data sent: "+ resp.getEntity());
 
         // Return HTTP response 200 in case of success
-        return Response.status(201).entity(json.toString()).build();
+        return Response.status(201).entity(resp.getEntity()).build();
     }
 
 
@@ -172,95 +145,14 @@ public class MilibRestService {
 
         // In this part the select actions are performed
 
-        // --------------------------------------------------------------------
-        ArrayList<String> slotList = new ArrayList<>();
-        ArrayList<String> whereList = new ArrayList<>();
-        ArrayList<String> whereValuesAList = new ArrayList<>();
-        ArrayList<String> whereValuesBList = new ArrayList<>();
+        Response res = dataManager.select(recvData,users);
 
-        jsonParser.jsonSelectParser(recvData,slotList,whereList,whereValuesAList,whereValuesBList);
-
-        System.out.println("[Desde el REST]::" + slotList.toString()); // Return values
-        System.out.println("[Desde el REST]::" + whereList.toString()); // Where condition
-        System.out.println("[Desde el REST]::" + whereValuesAList.toString()); // Values condition
-        System.out.println("[Desde el REST]::" + whereValuesBList.toString()); // Between values
-
-        // Do the validation to determine: what is it that comes to SELECT?
-        // Note: It still needs to carry out the return of the information
-
-        // Validate that slots or whereSlots are correct!
-
-        if(!slotList.isEmpty()) {
-
-            String isAvailableSlot = Metadata.verifySlots(slotList);
-
-            if (!isAvailableSlot.equals("")) {
-                JSONObject jsonError = new JSONObject();
-                jsonError.put("Status", isAvailableSlot);
-                return Response.status(200).entity(jsonError.toString()).build();
-            }
-        }
-
-        if(!whereList.isEmpty()) {
-
-            String isAvailableSlot = Metadata.verifySlots(whereList);
-
-            if (!isAvailableSlot.equals("")) {
-                JSONObject jsonError = new JSONObject();
-                jsonError.put("Status", isAvailableSlot);
-                return Response.status(200).entity(jsonError.toString()).build();
-            }
-        }
-
-        // If came an SELECT with an BETWEEN
-        if(!whereValuesBList.isEmpty()){
-
-            String isAvailableSlot = Metadata.verifySlotsRange(whereList);
-
-            if (!isAvailableSlot.equals("")) {
-                JSONObject jsonError = new JSONObject();
-                jsonError.put("Status", isAvailableSlot);
-                return Response.status(200).entity(jsonError.toString()).build();
-            }
-        }
-
-        // Select wich Select method will be called
-        if(slotList.isEmpty() && whereList.isEmpty()){
-
-            System.out.println("[SELECT]:: Se solicita toda la galeria");
-            Metadata.Select();
-
-        } else if(whereList.isEmpty() && whereValuesAList.isEmpty()){
-
-            System.out.println("[SELECT]:: Se solicitan algunas columnas de toda la galeria");
-            Metadata.Select(slotList);
-
-        } else if(!whereValuesAList.isEmpty() && whereValuesBList.isEmpty()){
-
-            System.out.println("[SELECT]:: Se solicitan las columnas de las imagenes que cumplan con la condicion");
-            Metadata.Select(slotList,whereList,whereValuesAList);
-
-        } else {
-            System.out.println("[SELECT]:: Se solicitan las columnas de las imagenes que cumplan con la condicion en un Between");
-            Metadata.Select(slotList,whereList,whereValuesAList,whereValuesBList);
-        }
-
-        String metadataMatrix = Metadata.getSelectList();
-
-
-        // --------------------------------------------------------------------
-
-        // Create a new Response w/ the selected data ready to send
-        JSONObject json = new JSONObject();
-        json.put("Status","Done");
-        json.put("MetadataStack",metadataMatrix);
-        json.put("imgStack","b");
-
-        System.out.println("[SELECT] Data sent: "+ json.toString());
+        System.out.println("[SELECT] Data sent: "+ res.getEntity());
 
         // Return HTTP response 200 in case of success
-        return Response.status(200).entity(json.toString()).build();
+        return Response.status(200).entity(res.getEntity()).build();
     }
+
 
     /**
      * Update the metadata of an image or several images
@@ -281,62 +173,12 @@ public class MilibRestService {
         System.out.println("[UPDATE] Data Received: "+ recvData);
 
         // In this part the update actions are performed
-        // --------------------------------------------------------------------
-        ArrayList<String> slotList = new ArrayList<>();
-        ArrayList<String> valuesList = new ArrayList<>();
-        ArrayList<String> whereList = new ArrayList<>();
-        ArrayList<String> whereValuesList = new ArrayList<>();
 
-        jsonParser.jsonUpdateParser(recvData,slotList,valuesList,whereList,whereValuesList);
+        Response resp = dataManager.update(recvData,users);
 
-        System.out.println("[Desde el REST]:: Slots: " + slotList.toString()); // Return values
-        System.out.println("[Desde el REST]:: Where slots: " + whereList.toString()); // Where condition
-        System.out.println("[Desde el REST]:: slot values: " + valuesList.toString()); // Values of each slot
-        System.out.println("[Desde el REST]:: Where values: " + whereValuesList.toString()); // Where Values condition
+        System.out.println("[UPDATE] Data sent: "+ resp.getEntity());
 
-        // Validate no ID update
-
-        if(!Metadata.verifySlotsNoID(slotList).equals("")){
-            JSONObject jsonError = new JSONObject();
-            jsonError.put("Status", Metadata.verifySlots(slotList));
-            return Response.status(200).entity(jsonError.toString()).build();
-        }
-
-        // Validate that slots and where are valid
-
-        if(!slotList.isEmpty()) {
-
-            String isAvailableSlot = Metadata.verifySlots(slotList);
-
-            if (!isAvailableSlot.equals("")) {
-                JSONObject jsonError = new JSONObject();
-                jsonError.put("Status", isAvailableSlot);
-                return Response.status(200).entity(jsonError.toString()).build();
-            }
-        }
-
-        if(!whereList.isEmpty()) {
-
-            String isAvailableSlot = Metadata.verifySlots(whereList);
-
-            if (!isAvailableSlot.equals("")) {
-                JSONObject jsonError = new JSONObject();
-                jsonError.put("Status", isAvailableSlot);
-                return Response.status(200).entity(jsonError.toString()).build();
-            }
-        }
-
-        Metadata.Update(slotList,valuesList,whereList,whereValuesList);
-
-        // --------------------------------------------------------------------
-
-        // Response
-        JSONObject json = new JSONObject();
-        json.put("Status","Done");
-
-        System.out.println("[UPDATE] Data sent: "+ json.toString());
-
-        return Response.status(200).entity(json.toString()).build();
+        return Response.status(200).entity(resp.getEntity()).build();
     }
 
     /**
@@ -358,40 +200,13 @@ public class MilibRestService {
         System.out.println("[DELETE] Data Received: "+ recvData);
 
         // In this part the deletion is effected
-        // --------------------------------------------------------------------
-        ArrayList<String> whereList = new ArrayList<>();
-        ArrayList<String> whereValuesList = new ArrayList<>();
 
-        jsonParser.jsonDeleteParser(recvData,whereList,whereValuesList);
+        Response resp = dataManager.delete(recvData,users);
 
-        System.out.println("[Desde el REST]:: Where slots: " + whereList.toString()); // Where condition
-        System.out.println("[Desde el REST]:: Where values: " + whereValuesList.toString()); // Where Values condition
-
-        // Validate that where are valid
-
-        if(!whereList.isEmpty()) {
-
-            String isAvailableSlot = Metadata.verifySlots(whereList);
-
-            if (!isAvailableSlot.equals("")) {
-                JSONObject jsonError = new JSONObject();
-                jsonError.put("Status", isAvailableSlot);
-                return Response.status(200).entity(jsonError.toString()).build();
-            }
-        }
-
-        Metadata.Delete(whereList,whereValuesList);
-
-        // --------------------------------------------------------------------
-
-        // If deletion done, the send Status: OK else Status: FAIL
-        JSONObject json = new JSONObject();
-        json.put("Status","Done");
-
-        System.out.println("[DELETE] Data sent: "+ json.toString());
+        System.out.println("[DELETE] Data sent: "+ resp.getEntity());
 
         // Return HTTP response 200 in case of success
-        return Response.status(200).entity(json.toString()).build();
+        return Response.status(200).entity(resp.getEntity()).build();
     }
 
     /* -----------------------------------------------------------------------------------
@@ -405,12 +220,17 @@ public class MilibRestService {
      */
     @POST
     @Path("/commit")
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
-    public Response COMMIT(){
+    public Response COMMIT(InputStream incomingData) throws JSONException{
+
+        String recvData = inputToString(incomingData);
+
+        String username = jsonParser.getUsername(recvData);
 
         //Commit stuff here
-        Metadata.setFile_path(XMLPath);
-        Metadata.Close();
+        users.get(username).setFile_path(XMLPath);
+        users.get(username).Close();
 
         System.out.println("[COMMIT] Commit Request");
         String ans = "Commit Successful!";
@@ -425,32 +245,46 @@ public class MilibRestService {
      */
     @POST
     @Path("/back")
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
-    public Response BACK(){
+    public Response BACK(InputStream incomingData) throws JSONException{
+
+        String recvData = inputToString(incomingData);
+
+        String username = jsonParser.getUsername(recvData);
 
         //Rollback stuff here
         System.out.println("[BACK] Rollback Request");
 
-        Metadata.setFile_path(XMLPath);
-        Metadata.Start();
+        users.get(username).setFile_path(XMLPath);
+        users.get(username).Start();
 
         String ans = "Rollback Success!";
 
         return Response.status(200).entity(ans).build();
     }
 
+    /**
+     * Returns the ID of the last insert/select request
+     * @param incomingData Receive a json with the information of the image to delete
+     * @return Returns the ID of the last request
+     * @throws JSONException
+     */
     @POST
     @Path("/getId")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
-    public Response GET_ID(InputStream incomingData){
+    public Response GET_ID(InputStream incomingData) throws JSONException{
 
         String recvData = inputToString(incomingData);
+        String username = jsonParser.getUsername(recvData);
 
         // Show in console the received data
         System.out.println("[GET ID] Data Received: "+ recvData);
+        System.out.println("[GET ID] Username: "+ username);
 
-        String resp = "1"; // Metadata.getID(info)
+        // Get the ID of the last request
+        String resp = users.get(username).getID();
 
         return Response.status(200).entity(resp).build();
 
