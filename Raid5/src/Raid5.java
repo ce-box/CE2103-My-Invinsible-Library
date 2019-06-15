@@ -8,6 +8,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 public class Raid5 {
     private int turno=0;
@@ -26,7 +27,7 @@ public class Raid5 {
         out.write(informacionAmeter.getBytes());
         out.close();
     }
-    public  static byte[][] cualEsmasGrande(byte[]array1,byte[]array2,byte[]array3){
+    public   byte[][] cualEsmasGrande(byte[]array1,byte[]array2,byte[]array3){
         byte[][]arraysOrdenados=new byte[3][];
         int size1=array1.length;
         int size2=array2.length;
@@ -107,7 +108,66 @@ public class Raid5 {
         //Retorna esto si ningun disco esta vacio
         return 99;
     }
-    public byte[][] obtenerInfromacionDisponible(String id) throws IOException {
+
+
+
+    public int ObtenerElNumeroMasGrande(int size1,int size2, int size3){
+        if(size1>size2&&size1>size3){
+            return size1;
+        }
+        else if(size2>size1&&size2>size3){
+            return size2;
+        }
+        else{
+            return size3;
+        }
+    }
+
+    public String DameDireccionDelArchivo(String id){
+        for (int i = 0; i <Discos.length ; i++) {
+            File[] contents = this.Discos[i].listFiles();
+            for (int j = 0; j < contents.length ; j++) {
+                String archivo=contents[j].toString();
+                boolean isFound = archivo.contains(id) ? true: false;
+                if(isFound){
+                    System.out.println("ESTE ES EL ARCHIVO"+archivo);
+                    return archivo;
+                }
+            }
+        }
+        return "";
+    }
+    public int  dameElSizeDelArray(String id,int numero1,int numero2,int numero3) throws IOException, ClassNotFoundException {
+        FileInputStream fin = new FileInputStream(DameDireccionDelArchivo(id+"-INFO.txt"));
+        ObjectInputStream ois = new ObjectInputStream(fin);
+        ArrayList<Integer> sizes = (ArrayList<Integer>)ois.readObject();
+        ArrayList<Integer> ValoresIngresados = new ArrayList<Integer>();
+        ValoresIngresados.add(numero1);
+        ValoresIngresados.add(numero2);
+        ValoresIngresados.add(numero3);
+        System.out.println("El array contiene esto");
+        int valorAdevolver=0;
+        for (int i = 0; i <3 ; i++) {
+            if(ValoresIngresados.contains(sizes.get(i))){
+
+            }
+            else{
+                return sizes.get(i);
+            }
+
+
+        }
+        if(valorAdevolver==0){
+             valorAdevolver=this.ObtenerElNumeroMasGrande(numero1,numero2,numero3);
+
+        }
+        return valorAdevolver;
+
+    }
+
+
+
+    public byte[][]obtenerInfromacionDisponible(String id) throws IOException {
         byte[][] infromacionDisponible = new byte[3][];
         int contador = 0;
         for (int i = 0; i < Discos.length; i++) {
@@ -127,7 +187,6 @@ public class Raid5 {
                     ImageIO.write(data, "png", contenedor);
                     infromacionDisponible[contador] = contenedor.toByteArray();
                     contador++;
-
                 }
                 if (parte2) {
                     File file = new File(archivo);
@@ -154,7 +213,6 @@ public class Raid5 {
                     infromacionDisponible[contador] = Base64.decode(data);
                     contador++;
                 }
-                return infromacionDisponible;
             }
         }
         return infromacionDisponible;
@@ -219,7 +277,10 @@ public class Raid5 {
             }
         }
         return false;
-    }public String dameIdDelaImagen(String archivo){
+    }
+
+
+    public String dameIdDelaImagen(String archivo){
         String nombre = "/raiz/feo/loca/12-1.png";
         String id = "";
         boolean inicio = false;
@@ -239,6 +300,7 @@ public class Raid5 {
             idReal = idReal + id.charAt(x);
         return idReal;
     }
+
 
     public void recuperarDiscoCompleto() throws IOException {
         int discoARecuperar =this.scanearDiscos();
@@ -270,6 +332,26 @@ public class Raid5 {
             }
             if(parte==4){
                 crearArchivo(Discos[turno].getAbsolutePath(),Paridad,id+"-P");
+                ByteArrayOutputStream baos1 = new ByteArrayOutputStream();
+                ImageIO.write(partesDeLaImagen[0], "png", baos1);
+                ByteArrayOutputStream baos2 = new ByteArrayOutputStream();
+                ImageIO.write(partesDeLaImagen[1], "png", baos2);
+                ByteArrayOutputStream baos3 = new ByteArrayOutputStream();
+                ImageIO.write(partesDeLaImagen[2], "png", baos3);
+                ArrayList<Integer> sizes = new ArrayList<Integer>();
+                int lenght1=baos1.toByteArray().length;
+                int lenght2=baos2.toByteArray().length;
+                int lenght3=baos3.toByteArray().length;
+                int lenghtMasGrande=this.ObtenerElNumeroMasGrande(lenght1,lenght2,lenght3)+10;
+                sizes.add(lenght1);
+                sizes.add(lenght2);
+                sizes.add(lenght3);
+                sizes.add(lenghtMasGrande);
+                FileOutputStream fout=new FileOutputStream(Discos[turno].getAbsolutePath()+"/"+id+"-INFO.txt");
+                ObjectOutputStream out= new ObjectOutputStream(fout);
+                out.writeObject(sizes);
+                out.close();
+
             }
             else{
                 crearImagen(Discos[turno].getAbsolutePath(),partesDeLaImagen[i],id+"-"+parte);
@@ -277,6 +359,7 @@ public class Raid5 {
            parte=parte+1;
            turno++;
         }
+
         turno=temporal;
         turno=turno+1;
     }

@@ -15,7 +15,11 @@ public class RaidController {
     private  List<String> listaId = new ArrayList<String>();
     private  List<String> listaImagenes = new ArrayList<String>();
     public   Raid5 raid5=new Raid5();
-    public void write(String imagen,String id){
+
+    //###################################################################################################################
+
+
+    public void writeCommit(String imagen,String id){
         listaImagenes.add(imagen);
         listaId.add(id);
         System.out.println("YA SE INSERTO ALGO SIN COMMIT");
@@ -23,6 +27,23 @@ public class RaidController {
         System.out.println("ESTE ES EL ARRAY DE ID"+Arrays.toString(listaId.toArray()));
         // adds 1 at 0 index
     }
+    public  void recuperrar(String id) throws IOException, ClassNotFoundException {
+         byte[][] informacionDisponible=this.raid5.obtenerInfromacionDisponible(id);
+        System.out.println("EL size es"+informacionDisponible[0].length);
+        System.out.println("EL size es"+informacionDisponible[1].length);
+        System.out.println("EL size es"+informacionDisponible[2].length);
+        int numero=raid5.dameElSizeDelArray(id,informacionDisponible[0].length,informacionDisponible[1].length,informacionDisponible[2].length);
+
+        System.out.println("el numero es "+ numero);
+        byte[][]infromacionDisponibleOrdenado=this.raid5.cualEsmasGrande(informacionDisponible[0],informacionDisponible[1],informacionDisponible[2]);
+        byte[] ParteRecuperado=recuperacion(infromacionDisponibleOrdenado[2],infromacionDisponibleOrdenado[1],infromacionDisponibleOrdenado[0],numero);
+        ByteArrayInputStream bis = new ByteArrayInputStream(ParteRecuperado);
+        BufferedImage bImage2 = ImageIO.read(bis);
+        ImageIO.write(bImage2, "png", new File("output.png") );
+        System.out.println("EL size del recuperado es"+ParteRecuperado.length);
+    }
+    //###################################################################################################################
+
     public  static byte[][] cualEsmasGrande(byte[]array1,byte[]array2,byte[]array3){
         byte[][]arraysOrdenados=new byte[3][];
         int size1=array1.length;
@@ -66,20 +87,27 @@ public class RaidController {
 
         return arraysOrdenados;
     }
+
+    //###################################################################################################################
+
     public String seek(String id) throws IOException {
         return raid5.obtenerImagen(id);
-
     }
+
+    //###################################################################################################################
+
     public void delete(String idParaEliminar){
-
-        int indiceDeImagenAEliminar=listaId.indexOf(idParaEliminar);
-        listaImagenes.set(indiceDeImagenAEliminar,"0");
-        System.out.println("YA SE ELIMINAR ALGO SIN COMMIT");
-        System.out.println("ESTE ES EL ARRAY DE IMAGENES"+Arrays.toString(listaImagenes.toArray()));
-        System.out.println("ESTE ES EL ARRAY DE ID"+Arrays.toString(listaId.toArray()));
+        this.raid5.borrar(idParaEliminar);
+//        int indiceDeImagenAEliminar=listaId.indexOf(idParaEliminar);
+//        listaImagenes.set(indiceDeImagenAEliminar,"0");
+//        System.out.println("YA SE ELIMINAR ALGO SIN COMMIT");
+//        System.out.println("ESTE ES EL ARRAY DE IMAGENES"+Arrays.toString(listaImagenes.toArray()));
+//        System.out.println("ESTE ES EL ARRAY DE ID"+Arrays.toString(listaId.toArray()));
     }
 
-public void meterImagen(String imagenBase64,String id) throws IOException {
+    //###################################################################################################################
+
+    public void Write(String imagenBase64,String id) throws IOException {
     byte [] arrayDeImagen= Base64.decode(imagenBase64);
     ByteArrayInputStream bis = new ByteArrayInputStream(arrayDeImagen);
     BufferedImage image = ImageIO.read(bis);
@@ -102,6 +130,9 @@ public void meterImagen(String imagenBase64,String id) throws IOException {
     this.raid5.GuardarInfromacion(partesDeLaImagen,id,Base64.encode(paridad));
 
 }
+
+//###################################################################################################################
+
 public String[] serializacion(String imagen){
         int size=imagen.length();
         String[] Respuesta = new String[4];
@@ -120,6 +151,7 @@ public String[] serializacion(String imagen){
         return Respuesta;
 
 }
+//###################################################################################################################
     public void commit() throws IOException {
         Iterator<String> idActual = listaId.iterator();
         Iterator<String> imagenActual = listaImagenes.iterator();
@@ -139,6 +171,8 @@ public String[] serializacion(String imagen){
             }
         }
     }
+    //###################################################################################################################
+
     public static byte [] XOR(byte array1[],byte array2[]){
         byte[] array2Lleno=rellenar(array1,array2);
         byte[] array_3 = new byte[array1.length];
@@ -148,12 +182,16 @@ public String[] serializacion(String imagen){
         }
         return array_3;
     }
+    //###################################################################################################################
+
     //ESTA FUNCION LO QUE HACE ES RECUPERAR UN BYTE ARRAY A PARTIR DE SU PARIDAD Y OTROS DOS ARRAYS
     public static  byte[] recuperacion(byte[] arrayX,byte[]arrayZ,byte paridad[],int sizeDelArrayParaRecuperar){
         byte[] temp=XOR(paridad,arrayZ);
         byte[]arrayRecuperado = XOR(temp,arrayX);
         return Arrays.copyOfRange(arrayRecuperado, 0, sizeDelArrayParaRecuperar);
     }
+    //###################################################################################################################
+
     //ESTA FUNCION LO QUE HACE ES COMPARAR DOS ARRAY PARA VER SI SON IGUALES
     public static void CompararArray(byte[] bloque1, byte[] bloque2){
         boolean Funciono=true;
@@ -164,13 +202,20 @@ public String[] serializacion(String imagen){
             }
         }
         System.out.println("EL VALOR DE LA PRUEBA ES "+Funciono);
-
     }
+
+    //###################################################################################################################
+
+
     public static byte[] calcularParidad( byte[] bloque1,byte[] bloque2,byte [] bloque3){
         byte[] temp=XOR(bloque1,bloque2);//AQUI LO QUE HACEMOS ES HACER UN XOR ENTRE LOS DOS PRIMEROS ARRAYS
         byte[] paridad=XOR(temp,bloque3);//CON EL RESULTADO LE HACEMOS UNA XOR AL RESTANTE PARA OBTENER EL QUE NOS FALTA
         return paridad;
     }
+    //###################################################################################################################
+
+
+
     public  static byte[]rellenar( byte[] bloque1,byte[] bloqueaRellenar){
         byte[]arraycompleto = new byte[bloque1.length];
         int sizeInicial=bloqueaRellenar.length;
@@ -186,5 +231,7 @@ public String[] serializacion(String imagen){
         }
         return arraycompleto;
     }
+    //###################################################################################################################
+
 
 }

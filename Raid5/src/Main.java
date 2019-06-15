@@ -3,12 +3,10 @@ import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Main {
@@ -55,22 +53,44 @@ public class Main {
 
         return arraysOrdenados;
     }
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
 //split
+//        ArrayList<Integer> sizes = new ArrayList<Integer>();
+//        sizes.add(222);
+//        sizes.add(333);
+//        sizes.add(444);
+//        FileOutputStream fout=new FileOutputStream("/home/reds/Descargas/output.txt");
+//        ObjectOutputStream out= new ObjectOutputStream(fout);
+//        out.writeObject(sizes);
+//        out.close();
+//
+//        FileInputStream fin = new FileInputStream("/home/reds/Descargas/output.txt");
+//        ObjectInputStream ois = new ObjectInputStream(fin);
+//        ArrayList<Integer> sizes2 = (ArrayList<Integer>)ois.readObject();
+//        for(int employee : sizes2) System.out.println(employee);
+
+
+
+
         BufferedImage image = ImageIO.read(new File("/home/reds/Descargas/Tux.png"));
 
         System.out.println("Original Image Dimension: "+image.getWidth()+"x"+image.getHeight());
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         ImageIO.write(image, "png", baos);
-//        String encodedImage = Base64.encode(baos.toByteArray());
+        String encodedImage = Base64.encode(baos.toByteArray());
 //        byte [] data=Base64.decode(encodedImage);
 //        String infromacion=Base64.encode(data);
         RaidController controlador=new RaidController();
-        System.out.println(controlador.seek("Tux"));
-        byte [] data = Base64.decode(controlador.seek("Tux"));
-        ByteArrayInputStream bis = new ByteArrayInputStream(data);
-        BufferedImage bImage2 = ImageIO.read(bis);
-        ImageIO.write(bImage2, "png", new File("output.png") );
+        //controlador.Write(encodedImage,"Tux");
+        controlador.recuperrar("Tux");
+        //controlador.raid5.DameDireccionDelArchivo("Tux-INFO.txt");
+
+        //controlador.delete("Tux");
+//        System.out.println(controlador.seek("Tux"));
+//        byte [] data = Base64.decode(controlador.seek("Tux"));
+//        ByteArrayInputStream bis = new ByteArrayInputStream(data);
+//        BufferedImage bImage2 = ImageIO.read(bis);
+//        ImageIO.write(bImage2, "png", new File("output.png") );
 
 //        System.out.println("el resultado del scanner es"+controlador.raid5.scanearDiscos());
 //        System.out.println("el resultado de la busqueda  es"+controlador.raid5.buscar("Tux-1"));
@@ -113,14 +133,14 @@ public class Main {
 //        //Get the cropped image
 //        //ASI ES COMO PARTIMOS LA IMAGEN EN 3 PARTES
 //
-        BufferedImage primeraParte = image.getSubimage(0, 0, (image.getWidth()/3),image.getHeight());
-        BufferedImage segundaParte = image.getSubimage(image.getWidth()/3, 0, image.getWidth()/3, image.getHeight());
-        BufferedImage terceraParte = image.getSubimage(image.getWidth()/3*2, 0, image.getWidth()/3, image.getHeight());
-
-        //Create a file to stream the out buffered image to
-        File croppedFile1 = new File("/home/reds/Descargas/primeraParte.png");
-        File croppedFile2 = new File("/home/reds/Descargas/segundaParte.png");
-        File croppedFile3 = new File("/home/reds/Descargas/terceraParte.png");
+//        BufferedImage primeraParte = image.getSubimage(0, 0, (image.getWidth()/3),image.getHeight());
+//        BufferedImage segundaParte = image.getSubimage(image.getWidth()/3, 0, image.getWidth()/3, image.getHeight());
+//        BufferedImage terceraParte = image.getSubimage(image.getWidth()/3*2, 0, image.getWidth()/3, image.getHeight());
+//
+//        //Create a file to stream the out buffered image to
+//        File croppedFile1 = new File("/home/reds/Descargas/primeraParte.png");
+//        File croppedFile2 = new File("/home/reds/Descargas/segundaParte.png");
+//        File croppedFile3 = new File("/home/reds/Descargas/terceraParte.png");
 //
 //        //Write the cropped file
 //        ImageIO.write(primeraParte, "png", croppedFile1);
