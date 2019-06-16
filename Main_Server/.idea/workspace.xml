@@ -7,7 +7,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a1997e57-7d8a-4bfe-a646-53768a057b3f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../Servidor MetaData/src/main/com/tec/MILIB_DB/domain/Node.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Servidor MetaData/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Servidor MetaData/.idea/workspace.xml" afterDir="false" />
     </list>
@@ -153,8 +152,8 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -300,18 +299,19 @@
       <workItem from="1560627953446" duration="5156000" />
       <workItem from="1560638191505" duration="1648000" />
       <workItem from="1560659996443" duration="849000" />
-      <workItem from="1560661352714" duration="2397000" />
+      <workItem from="1560661352714" duration="2399000" />
+      <workItem from="1560690826057" duration="46000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42301000" />
+    <option name="totallyTimeSpent" value="42349000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="30" width="1366" height="738" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15413533" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1556391" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -322,7 +322,7 @@
       <window_info id="Web" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.5063291" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.5063291" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
