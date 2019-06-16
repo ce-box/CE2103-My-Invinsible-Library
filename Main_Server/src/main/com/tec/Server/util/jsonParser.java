@@ -29,11 +29,26 @@ public class jsonParser {
 
     /**
      *
-     * @param ID
+     * @param json
      * @return
      * @throws JSONException
      */
-    public static String selecttoRaid(String json,String ID) throws JSONException{
+    public static String selecttoRaid(String json) throws JSONException{
+
+        // Get img from input JSON
+        JSONObject jsonObject = new JSONObject(json);
+        String username = jsonObject.getString("username");
+        String ID = jsonObject.getString("ID");
+
+        // Get img from input JSON
+        JSONObject jsonOut = new JSONObject();
+        jsonOut.put("ID",ID);
+        jsonOut.put("username",username);
+
+        return jsonOut.toString();
+    }
+
+    public static String deleteRaid(String json,String ID) throws JSONException{
 
         // Get img from input JSON
         JSONObject jsonObject = new JSONObject(json);

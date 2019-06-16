@@ -1,3 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class ID="1">
+<class ID="2">
+  <image1>
+    <ID>1</ID>
+    <name>pikachuBailando.png</name>
+    <author>Ash Ketchup</author>
+    <date>2019</date>
+    <size>0.025421</size>
+    <description>null</description>
+    <gallery>Estrella</gallery>
+  </image1>
 </class>
