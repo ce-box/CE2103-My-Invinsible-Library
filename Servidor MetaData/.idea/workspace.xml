@@ -7,25 +7,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="02284dce-3526-487a-b240-7662be33298d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/com/tec/MILIB_DB/service/dataManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/com/tec/MILIB_DB/domain/Huffman.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Main_Server/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Main_Server/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Main_Server/src/main/com/tec/Server/consumer/MilibConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Main_Server/src/main/com/tec/Server/consumer/MilibConsumer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Main_Server/src/main/com/tec/Server/resources/MainRestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Main_Server/src/main/com/tec/Server/resources/MainRestService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Main_Server/target/Main_Server-1.0-SNAPSHOT/WEB-INF/classes/main/com/tec/Server/consumer/MilibConsumer.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Main_Server/target/Main_Server-1.0-SNAPSHOT/WEB-INF/classes/main/com/tec/Server/consumer/MilibConsumer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Main_Server/target/Main_Server-1.0-SNAPSHOT/WEB-INF/classes/main/com/tec/Server/resources/MainRestService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Main_Server/target/Main_Server-1.0-SNAPSHOT/WEB-INF/classes/main/com/tec/Server/resources/MainRestService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Main_Server/target/classes/main/com/tec/Server/consumer/MilibConsumer.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Main_Server/target/classes/main/com/tec/Server/consumer/MilibConsumer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Main_Server/target/classes/main/com/tec/Server/resources/MainRestService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Main_Server/target/classes/main/com/tec/Server/resources/MainRestService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/XML_Metadata/input.xml" beforeDir="false" afterPath="$PROJECT_DIR$/XML_Metadata/input.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/com/tec/MILIB_DB/domain/Metadata.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/com/tec/MILIB_DB/domain/Metadata.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/com/tec/MILIB_DB/executable/XML_test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/com/tec/MILIB_DB/executable/XML_test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/com/tec/MILIB_DB/service/MilibRestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/com/tec/MILIB_DB/service/MilibRestService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/com/tec/MILIB_DB/util/jsonParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/com/tec/MILIB_DB/util/jsonParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/main/com/tec/MILIB_DB/domain/Metadata.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/com/tec/MILIB_DB/domain/Metadata.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/main/com/tec/MILIB_DB/executable/XML_test.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/com/tec/MILIB_DB/executable/XML_test.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/main/com/tec/MILIB_DB/service/MilibRestService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/com/tec/MILIB_DB/service/MilibRestService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Servidor RAID/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Servidor RAID/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/com/tec/MILIB_DB/domain/Node.java" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -43,13 +29,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/com/tec/MILIB_DB/service/MilibRestService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="285" column="41" selection-start-line="285" selection-start-column="41" selection-end-line="285" selection-end-column="41" />
+            <state>
+              <caret line="151" selection-start-line="151" selection-end-line="151" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#START#0;class#MilibRestService#0" />
-                <element signature="method#INSERT#0;class#MilibRestService#0" />
-                <element signature="method#SELECT#0;class#MilibRestService#0" />
               </folding>
             </state>
           </provider>
@@ -58,21 +41,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/com/tec/MILIB_DB/service/dataManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="430">
-              <caret line="294" column="72" selection-start-line="294" selection-start-column="72" selection-end-line="294" selection-end-column="72" />
+            <state relative-caret-position="1024">
+              <caret line="71" column="16" selection-start-line="71" selection-start-column="8" selection-end-line="71" selection-end-column="16" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#select#0;class#dataManager#0" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/XML_Metadata/input.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="16">
-              <caret line="1" column="14" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -80,10 +53,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/com/tec/MILIB_DB/util/jsonParser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="10" column="21" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
+            <state relative-caret-position="112">
+              <caret line="7" column="76" lean-forward="true" selection-start-line="7" selection-start-column="76" selection-end-line="7" selection-end-column="76" />
               <folding>
                 <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/com/tec/MILIB_DB/domain/Huffman.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="176">
+              <caret line="59" column="22" lean-forward="true" selection-start-line="59" selection-start-column="22" selection-end-line="59" selection-end-column="22" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#870#871#0" expanded="true" />
+                <element signature="e#918#919#0" expanded="true" />
+                <element signature="e#1452#1453#0" expanded="true" />
+                <element signature="e#1485#1486#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -92,23 +81,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/com/tec/MILIB_DB/domain/Metadata.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3715">
-              <caret line="46" column="30" selection-start-line="46" selection-start-column="30" selection-end-line="46" selection-end-column="30" />
-              <folding>
-                <element signature="e#959#960#0" expanded="true" />
-                <element signature="e#995#996#0" expanded="true" />
-                <element signature="e#1088#1089#0" expanded="true" />
-                <element signature="e#1114#1115#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MILIB_MetadataDB.iml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="19" column="56" selection-start-line="19" selection-start-column="56" selection-end-line="19" selection-end-column="56" />
+            <state relative-caret-position="320">
+              <caret line="31" selection-start-line="31" selection-end-line="31" />
             </state>
           </provider>
         </entry>
@@ -149,10 +123,13 @@
         <option value="$PROJECT_DIR$/src/main/com/tec/MILIB_DB/consumer/MilibServiceClient.java" />
         <option value="$PROJECT_DIR$/src/main/com/tec/MILIB_DB/executable/XML_test.java" />
         <option value="$PROJECT_DIR$/src/main/com/tec/MILIB_DB/util/jsonParser.java" />
-        <option value="$PROJECT_DIR$/XML_Metadata/input.xml" />
-        <option value="$PROJECT_DIR$/src/main/com/tec/MILIB_DB/service/dataManager.java" />
         <option value="$PROJECT_DIR$/src/main/com/tec/MILIB_DB/domain/Metadata.java" />
+        <option value="$PROJECT_DIR$/src/main/com/tec/MILIB_DB/service/dataManager.java" />
         <option value="$PROJECT_DIR$/src/main/com/tec/MILIB_DB/service/MilibRestService.java" />
+        <option value="$PROJECT_DIR$/src/main/com/tec/MILIB_DB/domain/Node.java" />
+        <option value="$PROJECT_DIR$/src/main/com/tec/MILIB_DB/domain/huffmanCode.java" />
+        <option value="$PROJECT_DIR$/XML_Metadata/input.xml" />
+        <option value="$PROJECT_DIR$/src/main/com/tec/MILIB_DB/domain/Huffman.java" />
       </list>
     </option>
   </component>
@@ -185,6 +162,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -224,7 +203,19 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="MILIB_DB" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="domain" type="462c0819:PsiDirectoryNode" />
+              <item name="Huffman.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+            </path>
+            <path>
+              <item name="MILIB_Servidor" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Servidor MetaData" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MILIB_Servidor" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Servidor MetaData" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="MILIB_Servidor" type="b2602c69:ProjectViewProjectNode" />
@@ -235,8 +226,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -249,7 +238,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.25" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
@@ -272,7 +261,20 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.20">
+  <component name="RunManager" selected="Application.Huffman">
+    <configuration name="Huffman" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.com.tec.MILIB_DB.domain.Huffman" />
+      <module name="MILIB_MetadataDB" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.com.tec.MILIB_DB.domain.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Metadata" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.com.tec.MILIB_DB.domain.Metadata" />
       <module name="MILIB_MetadataDB" />
@@ -325,20 +327,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="main.com.tec.MILIB_DB.executable.test" />
-      <module name="MILIB_MetadataDB" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="main.com.tec.MILIB_DB.executable.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Tomcat 9.0.20" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.20" ALTERNATIVE_JRE_ENABLED="false">
+    <configuration name="Tomcat 9.0.20" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.20" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="1.8">
       <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/MILIB_Servidor_war_exploded/api" />
       <deployment>
         <artifact name="MILIB_Servidor:war exploded">
@@ -505,18 +494,18 @@
     <list>
       <item itemvalue="Application.MilibRestService" />
       <item itemvalue="Application.MilibServiceClient" />
-      <item itemvalue="Application.test" />
       <item itemvalue="Application.XML_test" />
       <item itemvalue="Application.Metadata" />
+      <item itemvalue="Application.Huffman" />
       <item itemvalue="Tomcat Server.Tomcat 9.0.20" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Huffman" />
         <item itemvalue="Application.MilibRestService" />
         <item itemvalue="Application.Metadata" />
         <item itemvalue="Application.MilibServiceClient" />
         <item itemvalue="Application.XML_test" />
-        <item itemvalue="Application.test" />
       </list>
     </recent_temporary>
   </component>
@@ -548,11 +537,18 @@
       <workItem from="1560466255707" duration="4388000" />
       <workItem from="1560548703021" duration="2433000" />
       <workItem from="1560570411407" duration="8087000" />
+      <workItem from="1560611831945" duration="1726000" />
+      <workItem from="1560628065152" duration="4197000" />
+      <workItem from="1560635504766" duration="285000" />
+      <workItem from="1560638149208" duration="2904000" />
+      <workItem from="1560659951316" duration="880000" />
+      <workItem from="1560662556332" duration="2048000" />
+      <workItem from="1560690876223" duration="3374000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="103793000" />
+    <option name="totallyTimeSpent" value="119731000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -567,8 +563,8 @@
     <frame x="0" y="30" width="1366" height="738" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.75" visible="true" weight="0.26917294" />
-      <window_info id="Structure" order="1" sideWeight="0.25" side_tool="true" visible="true" weight="0.26917294" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.85280377" visible="true" weight="0.19548872" />
+      <window_info id="Structure" order="1" sideWeight="0.14719626" side_tool="true" visible="true" weight="0.19548872" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Capture Tool" order="4" />
@@ -578,7 +574,7 @@
       <window_info id="Web" order="8" sideWeight="0.50211865" side_tool="true" weight="0.42412937" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32911393" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.48259494" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3227848" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39906833" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -652,20 +648,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="19" column="68" selection-start-line="19" selection-start-column="68" selection-end-line="19" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="784">
-          <caret line="49" column="21" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/com/tec/MILIB_DB/executable/XML_test.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
@@ -683,64 +665,101 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/tec/MILIB_DB/domain/Metadata.java">
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/web.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3715">
-          <caret line="46" column="30" selection-start-line="46" selection-start-column="30" selection-end-line="46" selection-end-column="30" />
-          <folding>
-            <element signature="e#959#960#0" expanded="true" />
-            <element signature="e#995#996#0" expanded="true" />
-            <element signature="e#1088#1089#0" expanded="true" />
-            <element signature="e#1114#1115#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="78">
+          <caret line="19" column="68" selection-start-line="19" selection-start-column="68" selection-end-line="19" selection-end-column="68" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/tec/MILIB_DB/util/jsonParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="10" column="21" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/com/tec/MILIB_DB/domain/huffmanCode.java" />
     <entry file="file://$PROJECT_DIR$/src/main/com/tec/MILIB_DB/service/MilibRestService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="285" column="41" selection-start-line="285" selection-start-column="41" selection-end-line="285" selection-end-column="41" />
+        <state>
+          <caret line="151" selection-start-line="151" selection-end-line="151" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#START#0;class#MilibRestService#0" />
-            <element signature="method#INSERT#0;class#MilibRestService#0" />
-            <element signature="method#SELECT#0;class#MilibRestService#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/com/tec/MILIB_DB/service/dataManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="430">
-          <caret line="294" column="72" selection-start-line="294" selection-start-column="72" selection-end-line="294" selection-end-column="72" />
+        <state relative-caret-position="1024">
+          <caret line="71" column="16" selection-start-line="71" selection-start-column="8" selection-end-line="71" selection-end-column="16" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#select#0;class#dataManager#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/com/tec/MILIB_DB/domain/Node.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="11" column="25" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MILIB_MetadataDB.iml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
+        <state relative-caret-position="304">
           <caret line="19" column="56" selection-start-line="19" selection-start-column="56" selection-end-line="19" selection-end-column="56" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/XML_Metadata/input.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/com/tec/MILIB_DB/domain/Metadata.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16">
-          <caret line="1" column="14" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
+        <state relative-caret-position="320">
+          <caret line="31" selection-start-line="31" selection-end-line="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/com/tec/MILIB_DB/util/jsonParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="7" column="76" lean-forward="true" selection-start-line="7" selection-start-column="76" selection-end-line="7" selection-end-column="76" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/rt.jar!/java/util/Comparator.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="17" column="8" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/XML_Metadata/input.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/XML_Metadata/HuffmanTree.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-432" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/XML_Metadata/Huffman.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="555">
+          <caret line="49" column="21" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/com/tec/MILIB_DB/domain/Huffman.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="59" column="22" lean-forward="true" selection-start-line="59" selection-start-column="22" selection-end-line="59" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#870#871#0" expanded="true" />
+            <element signature="e#918#919#0" expanded="true" />
+            <element signature="e#1452#1453#0" expanded="true" />
+            <element signature="e#1485#1486#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -755,6 +774,7 @@
             <option name="proportions">
               <list>
                 <option value="0.25" />
+                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>
@@ -802,7 +822,6 @@
             <option name="proportions">
               <list>
                 <option value="0.25" />
-                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>
@@ -810,7 +829,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>Maven: asm:asm-all:3.3.1</last-edited>
+          <last-edited>Maven: org.json:json:20090211</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

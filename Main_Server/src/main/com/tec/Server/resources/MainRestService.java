@@ -12,6 +12,7 @@ import javax.ws.rs.core.Response;
 import main.com.tec.Server.consumer.*;
 import main.com.tec.Server.util.jsonParser;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 
 /**
@@ -88,7 +89,7 @@ public class MainRestService {
 
         // Create and Send json file to insert an image on RAID disk
         String ID = MilibConsumer.getInsertedId(recvData);
-        String toRaidJson = jsonParser.jsontoRaid(recvData,ID);
+        String toRaidJson = jsonParser.inserttoRaid(recvData,ID);
         RaidConsumer.writeClient(toRaidJson);
 
         // Return HTTP response 200 in case of success
@@ -116,10 +117,27 @@ public class MainRestService {
 
         String resp = MilibConsumer.selectClient(recvData);
 
+        // Return HTTP response 200 in case of success
+        return Response.status(200).entity(resp).build();
+    }
+
+    @GET
+    @Path("/selectImg")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response serverSelectImg(InputStream incomingData) throws JSONException{
+
+        // Convert the input in to an String
+        String recvData = inputToString(incomingData);
+
         // Create and Send json file to select an image from RAID disk
-        String ID = MilibConsumer.getInsertedId(recvData);
-        //String toRaidJson = jsonParser.jsontoRaid("{}",ID);
-        //RaidConsumer.seekClient(toRaidJson);
+
+        String toRaidJson = jsonParser.selecttoRaid(recvData);
+
+        System.out.println("[JSON] :: "+toRaidJson);
+        String resp = RaidConsumer.seekClient(toRaidJson); // { img64 = imagen}
+
+        System.out.println(resp);
 
         // Return HTTP response 200 in case of success
         return Response.status(200).entity(resp).build();
@@ -163,8 +181,10 @@ public class MainRestService {
 
         // Create and Send json file to select an image from RAID disk
         String ID = MilibConsumer.getInsertedId(recvData);
-        String toRaidJson = jsonParser.jsontoRaid("{}",ID);
-        RaidConsumer.seekClient(toRaidJson);
+        String toRaidJson = jsonParser.deleteRaid(recvData,ID);
+
+        System.out.println("[JSON] :: "+toRaidJson);
+        RaidConsumer.deleteClient(toRaidJson);
 
         // Return HTTP response 200 in case of success
         return Response.status(200).entity(resp).build();

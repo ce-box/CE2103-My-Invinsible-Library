@@ -39,6 +39,7 @@ public class dataManager {
         // If the username exists it just initialized else creates a new Metadata instance
         if(!users.containsKey(username)){
             users.put(username,new Metadata());
+            System.out.println("[START] Users:: "+users.toString());
         }
 
         // Validate no ID insert
@@ -102,6 +103,7 @@ public class dataManager {
         // If the username exists it just initialized else creates a new Metadata instance
         if(!users.containsKey(username)){
             users.put(username,new Metadata());
+            System.out.println("[START] Users:: "+users.toString());
         }
 
         // Validate that slots or whereSlots are correct!
@@ -170,7 +172,6 @@ public class dataManager {
         JSONObject respJson = new JSONObject();
         respJson.put("Status","Done");
         respJson.put("MetadataStack",metadataMatrix);
-        respJson.put("imgStack","b");
 
         return Response.status(200).entity(respJson.toString()).build();
     }
@@ -200,6 +201,7 @@ public class dataManager {
         // If the username exists it just initialized else creates a new Metadata instance
         if(!users.containsKey(username)){
             users.put(username,new Metadata());
+            System.out.println("[START] Users:: "+users.toString());
         }
 
         // Validate no ID update
@@ -269,6 +271,7 @@ public class dataManager {
         // If the user doesnt exist creates a new Metadata instance
         if(!users.containsKey(username)){
             users.put(username,new Metadata());
+            System.out.println("[START] Users:: "+users.toString());
         }
 
         // Validate that where are valid

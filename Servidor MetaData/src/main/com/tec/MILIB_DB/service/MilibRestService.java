@@ -35,7 +35,7 @@ public class MilibRestService {
             "Proyecto #3/Source/MyInvensibleLibrary/Servidor MetaData/XML_Metadata/input.xml";
 
     // Dictionary that contains the metadata instances by username
-    private static Map<String,Metadata> users = new HashMap<>();
+    private static  Map<String,Metadata> users = new HashMap<>();
 
 
     /**
@@ -79,6 +79,7 @@ public class MilibRestService {
         if(!users.containsKey(username)){
             users.put(username,new Metadata());
             System.out.println("Se crea un nuevo usuario!");
+            System.out.println("[START] Users:: "+users.toString());
         }
 
         users.get(username).setFile_path(XMLPath);
@@ -285,6 +286,8 @@ public class MilibRestService {
 
         // Get the ID of the last request
         String resp = users.get(username).getID();
+
+        System.out.println("[GET ID] Id: " + resp);
 
         return Response.status(200).entity(resp).build();
 
