@@ -313,7 +313,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Huffman">
+  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.20">
     <configuration name="Huffman" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.com.tec.MILIB_DB.domain.Huffman" />
       <module name="MILIB_MetadataDB" />
