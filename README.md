@@ -40,6 +40,7 @@ El sistema desarrollado cuenta con: **ServerLibrary**: Permite a múltiples clie
 
 **Nota:** La aplicación de escritorio es exclusiva del SO Linux en sus distintas distribuciones, pero los servidores al ser desarrollados en Java pueden correr en cualquier sistema operativa con el sdk Java 1.8 y Java EE7.
 ```
+Qt5 upper 5.8
 Qt5::Widgets Qt5::Core Qt5::Network
 Apache Tomcat 9.0.2 Java EE7
 ```
@@ -61,7 +62,7 @@ Prerequisitos: Debe tener instalado Git en su consola.
 ```
     $ git clone https://github.com/estalvgs1999/MyInvensibleLibrary.git
 ```
-7. Presione Enter. Se creará su clon local para Gladiator-GBP.
+7. Presione Enter. Se creará su clon local para My-Invinsible-Library.
 
 8. Seleccione el branch 'master' para obtener el código del [MILIB] MyIDE, y 'ServerRAID' o 'ServerMILIB' para obtener el código de los servidores.
 
