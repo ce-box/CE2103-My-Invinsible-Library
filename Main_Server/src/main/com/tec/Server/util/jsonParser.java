@@ -63,15 +63,11 @@ public class jsonParser {
     }
 
 
-    public static String raidtoIDE(String json, String img) throws JSONException {
-
-        // Get img from input JSON
-        JSONObject jsonObject1 = new JSONObject(img);
-        String img64 = jsonObject1.getString("imgStack");
+    public static String raidtoIDE(String json, String idStack) throws JSONException {
 
         // Join jsons
         JSONObject jsonObject2 = new JSONObject(json);
-        jsonObject2.put("imgStack",img64);
+        jsonObject2.put("IdStack",idStack);
 
         System.out.println("[JSON] "+jsonObject2.toString());
         return jsonObject2.toString();

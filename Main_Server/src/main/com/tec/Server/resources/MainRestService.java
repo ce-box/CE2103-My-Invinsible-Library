@@ -116,6 +116,9 @@ public class MainRestService {
         String recvData = inputToString(incomingData);
 
         String resp = MilibConsumer.selectClient(recvData);
+        String id = MilibConsumer.getInsertedId(recvData);
+
+        resp = jsonParser.raidtoIDE(resp,id);
 
         // Return HTTP response 200 in case of success
         return Response.status(200).entity(resp).build();
