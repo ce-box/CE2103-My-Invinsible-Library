@@ -457,7 +457,12 @@ client.o: ../Cliente_MILIB/ServerLibrary/client.cpp ../Cliente_MILIB/ServerLibra
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o client.o ../Cliente_MILIB/ServerLibrary/client.cpp
 
 serverlibrary.o: ../Cliente_MILIB/ServerLibrary/serverlibrary.cpp ../Cliente_MILIB/ServerLibrary/serverlibrary.h \
-		../Cliente_MILIB/ServerLibrary/client.h
+		../Cliente_MILIB/ServerLibrary/client.h \
+		../Cliente_MILIB/json/jsonserializer.h \
+		../Cliente_MILIB/Data_Structures/lista.hpp \
+		../Cliente_MILIB/Data_Structures/nodo.hpp \
+		../Cliente_MILIB/Data_Structures/nodo_def.h \
+		../Cliente_MILIB/Data_Structures/lista_def.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o serverlibrary.o ../Cliente_MILIB/ServerLibrary/serverlibrary.cpp
 
 jsonserializer.o: ../Cliente_MILIB/json/jsonserializer.cpp ../Cliente_MILIB/json/jsonserializer.h \

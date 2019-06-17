@@ -41,6 +41,12 @@
        <height>460</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <family>Source Code Pro</family>
+       <pointsize>14</pointsize>
+      </font>
+     </property>
     </widget>
     <widget class="QPushButton" name="runPushButton">
      <property name="geometry">
@@ -63,6 +69,14 @@
        <width>661</width>
        <height>161</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Source Code Pro</family>
+       <pointsize>14</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
      </property>
     </widget>
     <widget class="QLabel" name="AppOutputLabel">

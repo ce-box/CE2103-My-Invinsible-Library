@@ -17,9 +17,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->mainFrame->setStyleSheet(".QFrame { background-color : #464646 } ");
     ui->AppOutputLabel->setStyleSheet("QLabel { color : white }");
-    ui->appOutputTextEdit->setTextColor("#ff0000");
-    ui->appOutputTextEdit->setFontPointSize(16);
-    ui->ideTextEdit->setFontPointSize(16);
+    ui->appOutputTextEdit->setTextColor("#ff2121");
 
     connect(ui->subirImagenPushButton, SIGNAL (clicked()), this, SLOT (abrirExploradorArchivos()));
     connect(ui->visualizarImagenPushButton, SIGNAL (clicked()), this, SLOT (obtenerDatoTabla()));
