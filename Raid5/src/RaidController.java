@@ -143,6 +143,15 @@ public class RaidController {
 
         //System.out.println("EL size del recuperado es"+ParteRecuperado.length);
     }
+    //##################################################################################################################
+    public void RecuperacionTotal() throws IOException, ClassNotFoundException {
+        ArrayList<String> IdsParaRecuperar=this.raid5.DameIdsParaRecuperar();
+        for (int i = 0; i <IdsParaRecuperar.size() ; i++) {
+            String id=IdsParaRecuperar.get(i);
+            recuperrar(id);
+        }
+
+    }
     //###################################################################################################################
 
     public  static byte[][] cualEsmasGrande(byte[]array1,byte[]array2,byte[]array3){

@@ -9,6 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Raid5 {
     private int turno=0;
@@ -317,6 +318,28 @@ public class Raid5 {
         }
         return false;
     }
+
+    public boolean buscarSiUnaImagenEstaCompleta(String id){
+        int cuantasVecesLoEcontre=0;
+        for (int i = 0; i <Discos.length ; i++) {
+            File[] contents = this.Discos[i].listFiles();
+            for (int j = 0; j < contents.length ; j++) {
+                String archivo=contents[j].toString();
+                System.out.println(archivo.toString());
+                boolean isFound = archivo.contains(id) ? true: false;
+                if(isFound){
+
+                    cuantasVecesLoEcontre++;
+                }
+            }
+        }
+        if(cuantasVecesLoEcontre==5){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 //#####################################################################################################################
 public BufferedImage DameImagenEspecifica(String id) throws IOException {
     for (int i = 0; i <Discos.length ; i++) {
@@ -335,14 +358,58 @@ public BufferedImage DameImagenEspecifica(String id) throws IOException {
     return null;
 }
 //#####################################################################################################################
+    public ArrayList<String> DameIdsParaRecuperar(){
+        ArrayList<String> IdsParaRecuperar = new ArrayList<String>();
+        int NumeroDeDiscoRandom=DameUnDiscoQueNoEstaVacio();
+         File DiscoParaConseguirId=Discos[NumeroDeDiscoRandom];
+         File DiscoParaConseguirId2=Discos[NumeroDeDiscoRandom-1];
+        for (int i = 0; i <DiscoParaConseguirId.listFiles().length ; i++) {
+            String id=dameIdDelaImagen(DiscoParaConseguirId.list()[i]);
+            System.out.println("El id es"+ id);
+             boolean LaimagenEsta=buscarSiUnaImagenEstaCompleta(id);
+             if(!LaimagenEsta){
+                 IdsParaRecuperar.add(id);
+                 System.out.println("Esta imagen no esta completa"+ id);
+             }
+        }
+        for (int i = 0; i <DiscoParaConseguirId2.listFiles().length ; i++) {
+            String id=dameIdDelaImagen(DiscoParaConseguirId2.list()[i]);
+            boolean LaimagenEsta=buscarSiUnaImagenEstaCompleta(id);
+            if(!LaimagenEsta){
+                if(!IdsParaRecuperar.contains(id)){
+                    IdsParaRecuperar.add(id);
+                }
+                System.out.println("Esta imagen no esta completa"+id);
+            }
+        }
+        return IdsParaRecuperar;
+    }
+
+    public int DameUnDiscoQueNoEstaVacio(){
+        Random r = new Random();
+        int discoRandom=r.ints(1, (3 + 1)).findFirst().getAsInt();
+        if(Discos[discoRandom].listFiles().length!=0){
+            System.out.println("El numero es "+ discoRandom);
+            return discoRandom;
+
+        }
+        else{
+            return DameUnDiscoQueNoEstaVacio();
+        }
+
+
+
+    }
+//#####################################################################################################################
 
     public String dameIdDelaImagen(String archivo){
-        String nombre = "/raiz/feo/loca/12-1.png";
+        String nombre = archivo;
         String id = "";
         boolean inicio = false;
         for (int x = nombre.length() - 1; x >= 0; x--){
             if (nombre.charAt(x) == '/') {
                 inicio = false;
+                break;
             }
             if (inicio) {
                 id = id + nombre.charAt(x);
@@ -351,29 +418,18 @@ public BufferedImage DameImagenEspecifica(String id) throws IOException {
                 inicio = true;
             }
         }
+        System.out.println("El ide sin inversion es "+ id);
         String idReal="";
         for (int x=id.length()-1;x>=0;x--)
             idReal = idReal + id.charAt(x);
+        System.out.println("El ide con inversion es "+ idReal);
+
+
         return idReal;
     }
 
 
-    public void recuperarDiscoCompleto() throws IOException {
-        int discoARecuperar =this.scanearDiscos();
-        for (int i = 0; i <Discos.length ; i++) {
-            if(i!=discoARecuperar){
-                File[] contents = this.Discos[i].listFiles();
-                for (int j = 0; j < contents.length ; j++) {
-                    String archivo=contents[j].toString();
-                    String idArchivo=dameIdDelaImagen(archivo);
-                     byte[][]infromacionDisponible=obtenerInfromacionDisponible(idArchivo);
-                     infromacionDisponible=cualEsmasGrande(infromacionDisponible[0],infromacionDisponible[2],infromacionDisponible[2]);
 
-                }
-            }
-
-        }
-    }
     //#################################################################################################################
     //ESTE METODO LO QUE HACE ES GUARDAR LA INFORMACION CONTENIDA EN EL ARRAY DE STRING Y LO DISTRIBUYE ENTRE LOS DISCOS
     // DE MMANERA QUE LA PARIDAD QUEDE  DISTRIBUIDA EN MEDIO DE TODOS LOS DISCOS

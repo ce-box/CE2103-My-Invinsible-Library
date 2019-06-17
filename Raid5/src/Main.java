@@ -80,13 +80,16 @@ public class Main {
 //        String infromacion=Base64.encode(data);
         RaidController controlador=new RaidController();
         //controlador.Write(encodedImage,"1#");
-        controlador.recuperrar("1#");
+        //controlador.recuperrar("2#");
         //controlador.recuperrar("1");
         //controlador.delete("2#");
+        System.out.println( controlador.raid5.DameUnDiscoQueNoEstaVacio());
         BufferedImage image2 = ImageIO.read(new File("/home/reds/Descargas/Tux.png"));
         ByteArrayOutputStream baos2 = new ByteArrayOutputStream();
         ImageIO.write(image2, "png", baos2);
         String encodedImage2 = Base64.encode(baos2.toByteArray());
+        //System.out.println("El id es"+ controlador.raid5.dameIdDelaImagen("/home/reds/Documentos/Datos2/CE2103-My-Invinsible-Library/Raid5/src/Disco3/1#-3.png"));
+        controlador.RecuperacionTotal();
         //controlador.Write(encodedImage2,"2#");
 
         //controlador.raid5.DameDireccionDelArchivo("Tux-INFO.txt");
