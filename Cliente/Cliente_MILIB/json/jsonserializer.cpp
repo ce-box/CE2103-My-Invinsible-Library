@@ -1,5 +1,20 @@
 #include "jsonserializer.h"
 
+// Serializer the information to START in JSON format
+QString JsonSerializer::startJSON(){
+
+    // Step 1: Creates an JsonObject w/ username
+    QJsonObject jsonObj;
+    jsonObj.insert("username",username);
+
+    // Step 2: Convert the JsonDoc into QString
+    QJsonDocument jsonDoc(jsonObj);
+    QByteArray jsonB = jsonDoc.toJson();
+    QString jsonQStr = QString(jsonB);
+
+    return jsonQStr;
+}
+
 // Serializer the information to INSERT in JSON format
 QString JsonSerializer::insertJSON(Lista<QString> *slotsList, Lista<QString> *valuesList,QString img64){
 
@@ -15,6 +30,7 @@ QString JsonSerializer::insertJSON(Lista<QString> *slotsList, Lista<QString> *va
 
     // Step 2: Add those JsonArray  and create a JSON Object
     QJsonObject jsonObj;
+    jsonObj.insert("username",username);
     jsonObj.insert("slots",slot);
     jsonObj.insert("slotsValues",slotValues);
     jsonObj.insert("img64",img64);
@@ -53,6 +69,7 @@ QString JsonSerializer::selectJSON(Lista<QString> *slotsList,
 
     // Step 2: Add those JsonArray  and create a JSON Object
     QJsonObject jsonObj;
+    jsonObj.insert("username",username);
     jsonObj.insert("slots",slot);
     jsonObj.insert("where",where);
     jsonObj.insert("whereValuesA",whereValuesA);
@@ -64,6 +81,23 @@ QString JsonSerializer::selectJSON(Lista<QString> *slotsList,
     QString jsonQStr = QString(jsonB);
 
     return jsonQStr;
+}
+
+// Serializar solicitud de imagen
+QString JsonSerializer::selectImgJSON(QString ID){
+
+    // Step 1. Creates an JSON Object
+    QJsonObject jsonObj;
+    jsonObj.insert("username",username);
+    jsonObj.insert("ID",ID);
+
+    // Step 2: Convert the JsonDoc into QString
+    QJsonDocument jsonDoc(jsonObj);
+    QByteArray jsonB = jsonDoc.toJson();
+    QString jsonQStr = QString(jsonB);
+
+    return jsonQStr;
+
 }
 
 // Serializer the information to SELECT in JSON format
@@ -92,6 +126,7 @@ QString JsonSerializer::updateJSON(Lista<QString> *slotsList,
 
     // Step 2: Add those JsonArray  and create a JSON Object
     QJsonObject jsonObj;
+    jsonObj.insert("username",username);
     jsonObj.insert("slots",slot);
     jsonObj.insert("slotsValues",slotValues);
     jsonObj.insert("where",where);
@@ -121,6 +156,7 @@ QString JsonSerializer::deleteJSON(Lista<QString> *whereList,
 
     // Step 2: Add those JsonArray  and create a JSON Object
     QJsonObject jsonObj;
+    jsonObj.insert("username",username);
     jsonObj.insert("where",where);
     jsonObj.insert("whereValues",whereValues);
 

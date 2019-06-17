@@ -1,6 +1,8 @@
 #ifndef JSONSERIALIZER_H
 #define JSONSERIALIZER_H
 
+#define username "Esteban"
+
 // Libraries
 #include <QtCore/QJsonArray>
 #include <QtCore/QJsonDocument>
@@ -14,6 +16,15 @@
 class JsonSerializer
 {
 public:
+
+    /**
+     * @brief startJSON
+     * @param slotsList
+     * @param valuesList
+     * @return
+     */
+    static QString startJSON();
+
 
     /**
      * @brief insertJSON
@@ -34,6 +45,13 @@ public:
                               Lista<QString> *whereList = new Lista<QString>,
                               Lista<QString> *whereValuesAList = new Lista<QString>,
                               Lista<QString> *whereValuesBList = new Lista<QString>);
+
+    /**
+     * @brief selectImgJSON
+     * @param ID
+     * @return
+     */
+    static QString selectImgJSON(QString ID);
 
     /**
      * @brief updateJSON

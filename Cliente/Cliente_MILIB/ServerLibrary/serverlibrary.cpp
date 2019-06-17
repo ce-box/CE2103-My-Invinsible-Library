@@ -50,6 +50,7 @@ void ServerLibrary::getServerInfo(){
 //----------------------------------------------------------------------
 //                      CONNECTION METHODS
 //----------------------------------------------------------------------
+#include <json/jsonserializer.h>
 
 // Interface that connects GUI with RAID and METADATA DATABASE
 
@@ -68,7 +69,7 @@ void ServerLibrary::getServerInfo(){
 // START
 void ServerLibrary::START(){
     Client* client = new Client(this->IP,this->Port,this->defaultUrl);
-    client->POST("/start");
+    client->POST("/start",JsonSerializer::startJSON());
     delete(client);
 }
 
@@ -82,11 +83,21 @@ QString ServerLibrary::INSERT(QString MetaJson){
     return response;
 }
 
-// SELECT
+// SELECT METADATA
 QString ServerLibrary::SELECT(QString MetaJson){
 
     Client* client = new Client(this->IP,this->Port,this->defaultUrl);
     QString response = client->GET("/select",MetaJson);
+
+    delete(client);
+    return response;
+}
+
+// SELECT IMG
+QString ServerLibrary::SELECT_IMG(QString MetaJson){
+
+    Client* client = new Client(this->IP,this->Port,this->defaultUrl);
+    QString response = client->GET("/selectImg",MetaJson);
 
     delete(client);
     return response;
@@ -116,7 +127,7 @@ QString ServerLibrary::DELETE(QString MetaJson){
 void ServerLibrary::COMMIT(){
 
     Client* client = new Client(this->IP,this->Port,this->defaultUrl);
-    client->PUT("/commit");
+    client->PUT("/commit",JsonSerializer::startJSON());
 
     delete(client);
 }
@@ -125,7 +136,7 @@ void ServerLibrary::COMMIT(){
 void ServerLibrary::BACK(){
 
     Client* client = new Client(this->IP,this->Port,this->defaultUrl);
-    client->PUT("/back");
+    client->PUT("/back",JsonSerializer::startJSON());
 
     delete(client);
 }
