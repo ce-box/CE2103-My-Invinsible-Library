@@ -35,7 +35,7 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = Cliente_MILIB1.0.0
-DISTDIR = /home/esteban/Documentos/TEC/1S\ 2019/Algoritmos\ y\ estructuras\ de\ datos\ II/4.\ Proyectos/Proyecto\ #3/Source/MyInvensibleLibrary/Cliente/Cliente-Debug/.tmp/Cliente_MILIB1.0.0
+DISTDIR = /home/esteban/Documentos/TEC/Algoritmos\ y\ estructuras\ de\ datos/MyInvinsibleLibrary/Cliente/build-Cliente_MILIB-Desktop-Debug/.tmp/Cliente_MILIB1.0.0
 LINK          = g++
 LFLAGS        = 
 LIBS          = $(SUBLIBS) -lQt5Widgets -lQt5Gui -lQt5Network -lQt5Core -lGL -lpthread 
@@ -52,15 +52,21 @@ OBJECTS_DIR   = ./
 
 SOURCES       = ../Cliente_MILIB/main.cpp \
 		../Cliente_MILIB/mainwindow.cpp \
+		../Cliente_MILIB/ventanaimagen.cpp \
+		../Cliente_MILIB/lectorsintaxis.cpp \
 		../Cliente_MILIB/ServerLibrary/client.cpp \
 		../Cliente_MILIB/ServerLibrary/serverlibrary.cpp \
-		../Cliente_MILIB/json/jsonserializer.cpp moc_mainwindow.cpp
+		../Cliente_MILIB/json/jsonserializer.cpp moc_mainwindow.cpp \
+		moc_ventanaimagen.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
+		ventanaimagen.o \
+		lectorsintaxis.o \
 		client.o \
 		serverlibrary.o \
 		jsonserializer.o \
-		moc_mainwindow.o
+		moc_mainwindow.o \
+		moc_ventanaimagen.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
@@ -136,6 +142,8 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
 		../Cliente_MILIB/Cliente_MILIB.pro ../Cliente_MILIB/mainwindow.h \
+		../Cliente_MILIB/ventanaimagen.h \
+		../Cliente_MILIB/lectorsintaxis.h \
 		../Cliente_MILIB/ServerLibrary/client.h \
 		../Cliente_MILIB/ServerLibrary/serverlibrary.h \
 		../Cliente_MILIB/json/jsonserializer.h \
@@ -144,6 +152,8 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		../Cliente_MILIB/Data_Structures/lista_def.h \
 		../Cliente_MILIB/Data_Structures/lista.hpp ../Cliente_MILIB/main.cpp \
 		../Cliente_MILIB/mainwindow.cpp \
+		../Cliente_MILIB/ventanaimagen.cpp \
+		../Cliente_MILIB/lectorsintaxis.cpp \
 		../Cliente_MILIB/ServerLibrary/client.cpp \
 		../Cliente_MILIB/ServerLibrary/serverlibrary.cpp \
 		../Cliente_MILIB/json/jsonserializer.cpp
@@ -155,7 +165,7 @@ TARGET        = Cliente_MILIB
 first: all
 ####### Build rules
 
-$(TARGET): ui_mainwindow.h $(OBJECTS)  
+$(TARGET): ui_mainwindow.h ui_ventanaimagen.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: ../Cliente_MILIB/Cliente_MILIB.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
@@ -332,9 +342,9 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../Cliente_MILIB/mainwindow.h ../Cliente_MILIB/ServerLibrary/client.h ../Cliente_MILIB/ServerLibrary/serverlibrary.h ../Cliente_MILIB/json/jsonserializer.h ../Cliente_MILIB/Data_Structures/nodo.hpp ../Cliente_MILIB/Data_Structures/nodo_def.h ../Cliente_MILIB/Data_Structures/lista_def.h ../Cliente_MILIB/Data_Structures/lista.hpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../Cliente_MILIB/main.cpp ../Cliente_MILIB/mainwindow.cpp ../Cliente_MILIB/ServerLibrary/client.cpp ../Cliente_MILIB/ServerLibrary/serverlibrary.cpp ../Cliente_MILIB/json/jsonserializer.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../Cliente_MILIB/mainwindow.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../Cliente_MILIB/mainwindow.h ../Cliente_MILIB/ventanaimagen.h ../Cliente_MILIB/lectorsintaxis.h ../Cliente_MILIB/ServerLibrary/client.h ../Cliente_MILIB/ServerLibrary/serverlibrary.h ../Cliente_MILIB/json/jsonserializer.h ../Cliente_MILIB/Data_Structures/nodo.hpp ../Cliente_MILIB/Data_Structures/nodo_def.h ../Cliente_MILIB/Data_Structures/lista_def.h ../Cliente_MILIB/Data_Structures/lista.hpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../Cliente_MILIB/main.cpp ../Cliente_MILIB/mainwindow.cpp ../Cliente_MILIB/ventanaimagen.cpp ../Cliente_MILIB/lectorsintaxis.cpp ../Cliente_MILIB/ServerLibrary/client.cpp ../Cliente_MILIB/ServerLibrary/serverlibrary.cpp ../Cliente_MILIB/json/jsonserializer.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../Cliente_MILIB/mainwindow.ui ../Cliente_MILIB/ventanaimagen.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -366,22 +376,40 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 	g++ -pipe -g -Wall -W -dM -E -o moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_mainwindow.cpp
+compiler_moc_header_make_all: moc_mainwindow.cpp moc_ventanaimagen.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp
-moc_mainwindow.cpp: ../Cliente_MILIB/mainwindow.h \
+	-$(DEL_FILE) moc_mainwindow.cpp moc_ventanaimagen.cpp
+moc_mainwindow.cpp: ../Cliente_MILIB/ventanaimagen.h \
+		../Cliente_MILIB/lectorsintaxis.h \
+		../Cliente_MILIB/ServerLibrary/serverlibrary.h \
+		../Cliente_MILIB/ServerLibrary/client.h \
+		../Cliente_MILIB/Data_Structures/lista.hpp \
+		../Cliente_MILIB/Data_Structures/nodo.hpp \
+		../Cliente_MILIB/Data_Structures/nodo_def.h \
+		../Cliente_MILIB/Data_Structures/lista_def.h \
+		../Cliente_MILIB/json/jsonserializer.h \
+		../Cliente_MILIB/mainwindow.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I'/home/esteban/Documentos/TEC/1S 2019/Algoritmos y estructuras de datos II/4. Proyectos/Proyecto #3/Source/MyInvensibleLibrary/Cliente/Cliente_MILIB' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../Cliente_MILIB/mainwindow.h -o moc_mainwindow.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I'/home/esteban/Documentos/TEC/Algoritmos y estructuras de datos/MyInvinsibleLibrary/Cliente/Cliente_MILIB' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/6 -I/usr/include/x86_64-linux-gnu/c++/6 -I/usr/include/c++/6/backward -I/usr/lib/gcc/x86_64-linux-gnu/6/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../Cliente_MILIB/mainwindow.h -o moc_mainwindow.cpp
+
+moc_ventanaimagen.cpp: ../Cliente_MILIB/ventanaimagen.h \
+		moc_predefs.h \
+		/usr/lib/qt5/bin/moc
+	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I'/home/esteban/Documentos/TEC/Algoritmos y estructuras de datos/MyInvinsibleLibrary/Cliente/Cliente_MILIB' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/6 -I/usr/include/x86_64-linux-gnu/c++/6 -I/usr/include/c++/6/backward -I/usr/lib/gcc/x86_64-linux-gnu/6/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../Cliente_MILIB/ventanaimagen.h -o moc_ventanaimagen.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h
+compiler_uic_make_all: ui_mainwindow.h ui_ventanaimagen.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h
+	-$(DEL_FILE) ui_mainwindow.h ui_ventanaimagen.h
 ui_mainwindow.h: ../Cliente_MILIB/mainwindow.ui \
 		/usr/lib/qt5/bin/uic
 	/usr/lib/qt5/bin/uic ../Cliente_MILIB/mainwindow.ui -o ui_mainwindow.h
+
+ui_ventanaimagen.h: ../Cliente_MILIB/ventanaimagen.ui \
+		/usr/lib/qt5/bin/uic
+	/usr/lib/qt5/bin/uic ../Cliente_MILIB/ventanaimagen.ui -o ui_ventanaimagen.h
 
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
@@ -394,18 +422,36 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_ui
 ####### Compile
 
 main.o: ../Cliente_MILIB/main.cpp ../Cliente_MILIB/mainwindow.h \
-		../Cliente_MILIB/ServerLibrary/client.h \
+		../Cliente_MILIB/ventanaimagen.h \
+		../Cliente_MILIB/lectorsintaxis.h \
 		../Cliente_MILIB/ServerLibrary/serverlibrary.h \
-		../Cliente_MILIB/json/jsonserializer.h \
+		../Cliente_MILIB/ServerLibrary/client.h \
 		../Cliente_MILIB/Data_Structures/lista.hpp \
 		../Cliente_MILIB/Data_Structures/nodo.hpp \
 		../Cliente_MILIB/Data_Structures/nodo_def.h \
-		../Cliente_MILIB/Data_Structures/lista_def.h
+		../Cliente_MILIB/Data_Structures/lista_def.h \
+		../Cliente_MILIB/json/jsonserializer.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../Cliente_MILIB/main.cpp
 
 mainwindow.o: ../Cliente_MILIB/mainwindow.cpp ../Cliente_MILIB/mainwindow.h \
+		../Cliente_MILIB/ventanaimagen.h \
+		../Cliente_MILIB/lectorsintaxis.h \
+		../Cliente_MILIB/ServerLibrary/serverlibrary.h \
+		../Cliente_MILIB/ServerLibrary/client.h \
+		../Cliente_MILIB/Data_Structures/lista.hpp \
+		../Cliente_MILIB/Data_Structures/nodo.hpp \
+		../Cliente_MILIB/Data_Structures/nodo_def.h \
+		../Cliente_MILIB/Data_Structures/lista_def.h \
+		../Cliente_MILIB/json/jsonserializer.h \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../Cliente_MILIB/mainwindow.cpp
+
+ventanaimagen.o: ../Cliente_MILIB/ventanaimagen.cpp ../Cliente_MILIB/ventanaimagen.h \
+		ui_ventanaimagen.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ventanaimagen.o ../Cliente_MILIB/ventanaimagen.cpp
+
+lectorsintaxis.o: ../Cliente_MILIB/lectorsintaxis.cpp ../Cliente_MILIB/lectorsintaxis.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o lectorsintaxis.o ../Cliente_MILIB/lectorsintaxis.cpp
 
 client.o: ../Cliente_MILIB/ServerLibrary/client.cpp ../Cliente_MILIB/ServerLibrary/client.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o client.o ../Cliente_MILIB/ServerLibrary/client.cpp
@@ -423,6 +469,9 @@ jsonserializer.o: ../Cliente_MILIB/json/jsonserializer.cpp ../Cliente_MILIB/json
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
+
+moc_ventanaimagen.o: moc_ventanaimagen.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_ventanaimagen.o moc_ventanaimagen.cpp
 
 ####### Install
 

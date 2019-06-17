@@ -43,6 +43,14 @@ public:
     QString SELECT(QString MetaJson);
 
     /**
+     * @brief Method in charge of returning a JSON with the requested image from
+     * the client, under the criterion of the parameters of the metadata
+     * @param MetaJson[in] : Receive a json with the information of the requested image
+     * @return [out] : Returns the requested image and metadata in JSON format
+     */
+    QString SELECT_IMG(QString MetaJson);
+
+    /**
      * @brief Update the metadata of an image or several images
      * @param MetaJson[in] : Receive a json with the information of the requested image
      * @return void

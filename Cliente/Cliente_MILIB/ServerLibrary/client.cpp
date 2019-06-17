@@ -12,7 +12,7 @@ QString Client::POST(const QString &path, const QString &jsonDoc){
     request.setRawHeader("Content-Type", "application/json");
 
     qDebug() << "[POST] Client POST request to: " << url.toString();
-    qDebug() << "[POST] Data sent: " <<jsonDoc;
+    //qDebug() << "[POST] Data sent: " <<jsonDoc;
 
     //manager->post(request,jsonDoc.toUtf8());
 
@@ -51,7 +51,7 @@ QString Client::GET(const QString &path, const QString &jsonDoc){
     loop.exec();
     QString recv = (QString)reply->readAll();
 
-    qDebug()<<"[GET] Data received: "<< recv;
+    //qDebug()<<"[GET] Data received: "<< recv;
 
     return recv;
 }

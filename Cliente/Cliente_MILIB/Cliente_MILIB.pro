@@ -4,7 +4,8 @@
 #
 #-------------------------------------------------
 
-QT       += core gui network
+QT       += core gui
+QT += network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -26,19 +27,24 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-        ServerLibrary/client.cpp \
-        ServerLibrary/serverlibrary.cpp \
-        json/jsonserializer.cpp
+    ventanaimagen.cpp \
+    lectorsintaxis.cpp \
+    ServerLibrary/client.cpp \
+    ServerLibrary/serverlibrary.cpp \
+    json/jsonserializer.cpp
 
 HEADERS += \
         mainwindow.h \
-        ServerLibrary/client.h \
-        ServerLibrary/serverlibrary.h \
-        json/jsonserializer.h \
-        Data_Structures/nodo.hpp \
-        Data_Structures/nodo_def.h \
-        Data_Structures/lista_def.h \
-        Data_Structures/lista.hpp
+    ventanaimagen.h \
+    lectorsintaxis.h \
+    ServerLibrary/client.h \
+    ServerLibrary/serverlibrary.h \
+    json/jsonserializer.h \
+    Data_Structures/nodo.hpp \
+    Data_Structures/nodo_def.h \
+    Data_Structures/lista_def.h \
+    Data_Structures/lista.hpp
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    ventanaimagen.ui

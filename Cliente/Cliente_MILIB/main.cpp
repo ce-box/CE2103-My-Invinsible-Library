@@ -195,35 +195,8 @@ void deleteTest(ServerLibrary* server){
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-
-    ServerLibrary* server = ServerLibrary::getServer();
-    server->setServer("/Main_Server_war_exploded/api/server","192.168.100.20");
-    server->getServerInfo();
-
-    // Primero se debe iniciar el server
-    server->START();
-
-    // Prueba del INSERT -> Funcionan todas las condiciones
-    insertTest1(server);
-    insertTest2(server);
-
-    server->COMMIT();
-
-    // Pruebas del SELECT -> Funcionan todas las condiciones
-    //selectTest1(server);
-    //selectTest2(server);
-    //selectTest3(server);
-    //selectTest4(server);
-    //selectTest5(server);
-
-    // Pruebas del UPDATE -> Funcionan todas las condiciones
-    //updateTest(server);
-
-    //server->COMMIT();
-
-    // Pruebas del DELETE
-    //deleteTest(server);
-    //server->COMMIT();
+    MainWindow w;
+    w.show();
 
     return a.exec();
 }
