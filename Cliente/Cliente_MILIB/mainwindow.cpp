@@ -96,7 +96,7 @@ void MainWindow::visualizarImagen(int numeroFila){
 
     vector<string> imagenes;
     boost::split(imagenes, imagenesSeleccionadas, boost::is_any_of(","));
-    string data64 = imagenes[numeroFila];
+    string data64 = imagenes[0]; // Este era mi error!! :v
     QString QTdata = QString::fromStdString(data64);
     QByteArray dataRecibida(QTdata.toUtf8());
     QPixmap imagen;
