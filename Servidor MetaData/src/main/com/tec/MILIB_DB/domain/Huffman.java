@@ -61,8 +61,7 @@ public class Huffman {
 
 
     private static Node GlobalRoot;
-    private static String file_path="/home/esteban/Documentos/TEC/1S 2019/Algoritmos y estructuras de datos II/4. Proyectos/" +
-            "Proyecto #3/Source/MyInvensibleLibrary/Servidor MetaData/XML_Metadata/input.xml";
+    private static String file_path="/home/juan/Documentos/Proyecto3/Servidor MetaData/XML_Metadata/input.xml";
     private static String path = file_path.substring(0, file_path.length() - 9);
     private static String GlobalDecoded="";
 
@@ -272,10 +271,10 @@ public class Huffman {
         return sb.toString();
     }
 
-    public static void EncodeFile(String dir){
+    public static void EncodeFile(){
         byte[] encoded = new byte[0];
         try {
-            encoded = Files.readAllBytes(Paths.get(dir));
+            encoded = Files.readAllBytes(Paths.get(file_path));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -297,6 +296,14 @@ public class Huffman {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        try (PrintWriter out = new PrintWriter(file_path)) {
+            out.println("");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
     static void GetTreeXML(Node root) {
@@ -332,7 +339,7 @@ public class Huffman {
         }
     }
 
-    public static void DecodeFile(String dir){
+    public static void DecodeFile(){
         Node root= new Node(' ',0);
         GetTreeXML(root);
 
@@ -352,19 +359,18 @@ public class Huffman {
         }
         //System.out.println(GlobalDecoded);
 
-        try (PrintWriter out = new PrintWriter(dir)) {
+        try (PrintWriter out = new PrintWriter(file_path)) {
             out.println(GlobalDecoded);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-
         }
     }
 
     public static void main(String[] args) {
 
-        //EncodeFile("/home/esteban/Documentos/TEC/1S 2019/Algoritmos y estructuras de datos II/4. Proyectos/Proyecto #3/Source/MyInvensibleLibrary/Servidor MetaData/XML_Metadata/input.xml");
+        //EncodeFile();
 
-        //DecodeFile("/home/esteban/Documentos/TEC/1S 2019/Algoritmos y estructuras de datos II/4. Proyectos/Proyecto #3/Source/MyInvensibleLibrary/Servidor MetaData/XML_Metadata/input.xml");
+        DecodeFile( );
     }
 
 }

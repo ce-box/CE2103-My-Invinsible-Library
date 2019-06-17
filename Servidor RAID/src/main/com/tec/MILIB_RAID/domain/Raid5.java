@@ -15,8 +15,7 @@ import java.util.ArrayList;
 public class Raid5 {
     private static int turno=0;
     private Path currentRelativePath = Paths.get("");
-    private String s = "/home/esteban/Documentos/TEC/1S 2019/Algoritmos y estructuras de datos II/4. Proyectos/" +
-            "Proyecto #3/Source/MyInvensibleLibrary/Servidor RAID";//currentRelativePath.toAbsolutePath().toString();
+    private String s = "/home/juan/Documentos/Proyecto3/Servidor RAID";//currentRelativePath.toAbsolutePath().toString();
     public File Disco1 = new File(s+"/src"+"/Disco1");
     public File Disco2 = new File(s+"/src"+"/Disco2");
     public File Disco3 = new File(s+"/src"+"/Disco3");

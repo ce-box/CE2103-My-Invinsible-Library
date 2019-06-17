@@ -94,6 +94,7 @@ public class Metadata {
      * Carga el ID global guardado [BACK]
      */
     public  void Start(){
+        Huffman.DecodeFile();
         Aux=new ArrayList<>();
         Aux.add("ID"); // ID
         Aux.add("name"); // name
@@ -116,12 +117,14 @@ public class Metadata {
         Element classElement = document.getRootElement();
 
         IDGlobal=Integer.parseInt(classElement.getAttributeValue("ID"));
+        Huffman.EncodeFile();
     }
 
     /**
      * Guarda el ID global [COMMIT]
      */
     public  void Close(){
+        Huffman.DecodeFile();
         Element classElement = document.getRootElement();
 
         System.out.println("###"+IDGlobal);
@@ -136,6 +139,7 @@ public class Metadata {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        Huffman.EncodeFile();
     }
 
     /**

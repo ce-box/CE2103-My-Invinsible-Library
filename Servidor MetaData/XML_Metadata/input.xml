@@ -11,20 +11,12 @@
   </image1>
   <image2>
     <ID>2</ID>
-    <name>MILIB LOgo.png</name>
-    <author>Esteban</author>
-    <date>2019</date>
-    <size>0.094465</size>
-    <description>Logo de MILIB</description>
-    <gallery>MILIB</gallery>
-  </image2>
-  <image3>
-    <ID>3</ID>
-    <name>Scrabble.png</name>
-    <author>Erick</author>
-    <date>2019</date>
-    <size>0.101869</size>
+    <name>ejemplo.png</name>
+    <author>Brock</author>
+    <date>2018</date>
+    <size>0.051966</size>
     <description>null</description>
-    <gallery>Proyectos</gallery>
-  </image3>
+    <gallery>Gladiators</gallery>
+  </image2>
 </class>
+
