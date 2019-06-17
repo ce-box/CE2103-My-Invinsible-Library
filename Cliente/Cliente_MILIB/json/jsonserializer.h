@@ -47,6 +47,13 @@ public:
                               Lista<QString> *whereValuesBList = new Lista<QString>);
 
     /**
+     * @brief selectImgJSON
+     * @param ID
+     * @return
+     */
+    static QString selectImgJSON(QString ID);
+
+    /**
      * @brief updateJSON
      * @param slotsList
      * @param valuesList

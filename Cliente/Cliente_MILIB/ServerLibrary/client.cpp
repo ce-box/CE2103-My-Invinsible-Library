@@ -51,7 +51,7 @@ QString Client::GET(const QString &path, const QString &jsonDoc){
     loop.exec();
     QString recv = (QString)reply->readAll();
 
-    qDebug()<<"[GET] Data received: "<< recv;
+    //qDebug()<<"[GET] Data received: "<< recv;
 
     return recv;
 }

@@ -83,11 +83,21 @@ QString ServerLibrary::INSERT(QString MetaJson){
     return response;
 }
 
-// SELECT
+// SELECT METADATA
 QString ServerLibrary::SELECT(QString MetaJson){
 
     Client* client = new Client(this->IP,this->Port,this->defaultUrl);
     QString response = client->GET("/select",MetaJson);
+
+    delete(client);
+    return response;
+}
+
+// SELECT IMG
+QString ServerLibrary::SELECT_IMG(QString MetaJson){
+
+    Client* client = new Client(this->IP,this->Port,this->defaultUrl);
+    QString response = client->GET("/selectImg",MetaJson);
 
     delete(client);
     return response;

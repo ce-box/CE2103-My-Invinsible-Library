@@ -58,6 +58,7 @@ private:
     QString galeriaIngresada;
     QString sizeImagen;
     std::string imagenesSeleccionadas;
+    std::string IdSeleccionados;
 };
 
 #endif // MAINWINDOW_H

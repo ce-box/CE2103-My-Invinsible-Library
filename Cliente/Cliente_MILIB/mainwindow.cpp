@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "qdebug.h"
 using namespace std;
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -27,7 +28,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->rollbackPushButton, SIGNAL (clicked()), this, SLOT (rollback()));
 
     ServerLibrary* server = ServerLibrary::getServer();
-    server->setServer("/Main_Server_war_exploded/api/server", "192.168.100.20", "8081");
+    server->setServer("/Main_Server_war_exploded/api/server", "192.168.0.21", "8081");
     server->START();
 }
 
@@ -75,8 +76,24 @@ void MainWindow::obtenerDatoTabla(){
     visualizarImagen(numeroFilaSeleccionada);
 }
 
-
+// Aquí se debe de hacer el cambio, debe recibir el ID como parámetro
 void MainWindow::visualizarImagen(int numeroFila){
+
+    vector<string> imgId;
+    boost::split(imgId,IdSeleccionados,boost::is_any_of(","));
+    string id = imgId[numeroFila];
+    QString ID = QString::fromUtf8(id.c_str());
+
+    // Ocupo que tome el id y lo pase por parámetro en -- selectImgJSON(QString Id)
+    ServerLibrary* server = ServerLibrary::getServer();
+    QString respuestaServidor = server->SELECT_IMG(JsonSerializer::selectImgJSON(ID));
+
+    QJsonDocument jsonDoc = QJsonDocument::fromJson(respuestaServidor.toUtf8());
+    QJsonObject jsonObject = jsonDoc.object();
+
+    // Imagenes seleccionadas se debe accionar cuando se elige
+    imagenesSeleccionadas = jsonObject.value("imgStack").toString().toStdString();
+
     vector<string> imagenes;
     boost::split(imagenes, imagenesSeleccionadas, boost::is_any_of(","));
     string data64 = imagenes[numeroFila];
@@ -84,6 +101,7 @@ void MainWindow::visualizarImagen(int numeroFila){
     QByteArray dataRecibida(QTdata.toUtf8());
     QPixmap imagen;
     imagen.loadFromData(QByteArray::fromBase64(dataRecibida));
+
 
     VentanaImagen ventImagen;
     ventImagen.setModal(true);
@@ -184,7 +202,12 @@ void MainWindow::instruccionSelect(vector<string> vectorInstruccion){
     string status = jsonObject.value("status").toString().toStdString();
     //if(status != "Done")
     string datosSeleccionados = jsonObject.value("MetadataStack").toString().toStdString();
-    imagenesSeleccionadas = jsonObject.value("imgStack").toString().toStdString();
+    // Imagenes seleccionadas se debe accionar cuando se elige
+    //imagenesSeleccionadas = jsonObject.value("imgStack").toString().toStdString();
+
+    // Este es el String que contendrá los Id seleccionados
+    IdSeleccionados = jsonObject.value("IdStack").toString().toStdString();
+    qDebug() << "Ids >>" << QString::fromStdString(IdSeleccionados);
     insertarEnTabla(datosSeleccionados);
 }
 
@@ -333,7 +356,7 @@ MainWindow::~MainWindow(){
 }
 
 /*INSERT INTO METADATA(name,author,date,size)
-  VALUES("pikachuBailando.png", "Ash Ketchup", "2019", "2MB"); */
+VALUES("pikachuBailando.png", "Ash Ketchup", "2019", "2MB"); */
 
 /*
 SELECT name, author FROM METADATA

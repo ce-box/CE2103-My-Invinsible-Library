@@ -83,6 +83,23 @@ QString JsonSerializer::selectJSON(Lista<QString> *slotsList,
     return jsonQStr;
 }
 
+// Serializar solicitud de imagen
+QString JsonSerializer::selectImgJSON(QString ID){
+
+    // Step 1. Creates an JSON Object
+    QJsonObject jsonObj;
+    jsonObj.insert("username",username);
+    jsonObj.insert("ID",ID);
+
+    // Step 2: Convert the JsonDoc into QString
+    QJsonDocument jsonDoc(jsonObj);
+    QByteArray jsonB = jsonDoc.toJson();
+    QString jsonQStr = QString(jsonB);
+
+    return jsonQStr;
+
+}
+
 // Serializer the information to SELECT in JSON format
 QString JsonSerializer::updateJSON(Lista<QString> *slotsList,
                                    Lista<QString> *valuesList,
