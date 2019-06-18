@@ -8,7 +8,7 @@ import java.net.URL;
 import java.net.URLConnection;
 
 /**
- *
+ * Class that connects MAIN SERVER with MILIB SERVER
  */
 public class MilibConsumer {
 

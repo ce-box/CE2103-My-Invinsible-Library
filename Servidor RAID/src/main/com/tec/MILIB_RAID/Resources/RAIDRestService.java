@@ -119,20 +119,6 @@ public class RAIDRestService {
      * @return Returns the requested image and metadata in JSON format
      * @throws JSONException
      */
-    /*@POST
-    @Path("/seek")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response SEEK() throws JSONException, IOException {
-
-        JSONObject json = new JSONObject();
-        String img64 = Base64.getEncoder().encodeToString("image1".getBytes());
-        json.put("img64", "a");
-        System.out.println("[SEEK] Data sent: " + json.toString());
-
-        // Return HTTP response 200 in case of success
-        return Response.status(200).entity(json.toString()).build();
-    }*/
-
     @POST
     @Path("/select")
     @Consumes(MediaType.APPLICATION_JSON)

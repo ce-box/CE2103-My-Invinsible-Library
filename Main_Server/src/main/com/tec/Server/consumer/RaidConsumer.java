@@ -8,7 +8,9 @@ import java.io.OutputStreamWriter;
 import java.net.URL;
 import java.net.URLConnection;
 
-
+/**
+ * Class that connects MAIN SERVER with RAID SERVER
+ */
 public class RaidConsumer {
 
     // Network configuration: IP + URL
@@ -19,6 +21,10 @@ public class RaidConsumer {
                     CLIENT MANAGER
        --------------------------------------------*/
 
+    /**
+     * Insert an image on disk
+     * @param json input data
+     */
     public static void writeClient(String json){
         try {
             URL url = new URL(db_default_Url + "/write");
@@ -50,6 +56,10 @@ public class RaidConsumer {
         }
     }
 
+    /**
+     * SELECT an image on disk
+     * @param json input data
+     */
     public static String seekClient(String json){
         try {
             URL url = new URL(db_default_Url + "/select");
@@ -85,7 +95,10 @@ public class RaidConsumer {
         return "";
     }
 
-
+    /**
+     * Delete an image on disk
+     * @param json input data
+     */
     public static String deleteClient(String json){
         try {
             URL url = new URL(db_default_Url + "/delete");
@@ -121,6 +134,10 @@ public class RaidConsumer {
         return "";
     }
 
+    /**
+     * Commits the data on disk
+     * @param json input data
+     */
     public static void commitClient(String json){
         try {
             URL url = new URL(db_default_Url + "/commit");
@@ -152,6 +169,10 @@ public class RaidConsumer {
         }
     }
 
+    /**
+     * Reset the data on disk
+     * @param json input data
+     */
     public static void backClient(String json){
         try {
             URL url = new URL(db_default_Url + "/back");

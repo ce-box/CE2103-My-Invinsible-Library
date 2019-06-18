@@ -5,7 +5,7 @@ import org.json.JSONObject;
 
 public class jsonParser {
     /**
-     *
+     * Selerialize json to Insert
      * @param json
      * @param ID
      * @return
@@ -28,7 +28,7 @@ public class jsonParser {
     }
 
     /**
-     *
+     * Serialize Json to select
      * @param json
      * @return
      * @throws JSONException
@@ -48,6 +48,13 @@ public class jsonParser {
         return jsonOut.toString();
     }
 
+    /**
+     * Serialize json to delete
+     * @param json
+     * @param ID
+     * @return
+     * @throws JSONException
+     */
     public static String deleteRaid(String json,String ID) throws JSONException{
 
         // Get img from input JSON
@@ -62,7 +69,13 @@ public class jsonParser {
         return jsonOut.toString();
     }
 
-
+    /**
+     * Serialize response to IDE
+     * @param json
+     * @param idStack
+     * @return
+     * @throws JSONException
+     */
     public static String raidtoIDE(String json, String idStack) throws JSONException {
 
         // Join jsons
