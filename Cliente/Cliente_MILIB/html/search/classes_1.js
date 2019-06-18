@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['mainwindow',['MainWindow',['../classMainWindow.html',1,'']]]
+  ['jsonserializer',['JsonSerializer',['../classJsonSerializer.html',1,'']]]
 ];

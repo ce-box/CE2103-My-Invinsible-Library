@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['select',['SELECT',['../classServerLibrary.html#a3d7938bc8e58e7f37ec92ccdf9c7e703',1,'ServerLibrary']]]
+  ['lista',['Lista',['../classLista.html#adce924e21607848663132290be1a959d',1,'Lista']]]
 ];

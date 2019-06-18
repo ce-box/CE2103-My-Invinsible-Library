@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['serverlibrary',['ServerLibrary',['../classServerLibrary.html',1,'']]]
+  ['lectorsintaxis',['LectorSintaxis',['../classLectorSintaxis.html',1,'']]],
+  ['lista',['Lista',['../classLista.html',1,'']]]
 ];
