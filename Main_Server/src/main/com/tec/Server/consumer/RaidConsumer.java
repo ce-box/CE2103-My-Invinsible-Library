@@ -121,7 +121,7 @@ public class RaidConsumer {
         return "";
     }
 
-    public static void commitClient(){
+    public static void commitClient(String json){
         try {
             URL url = new URL(db_default_Url + "/commit");
             URLConnection connection = url.openConnection();
@@ -130,7 +130,7 @@ public class RaidConsumer {
             connection.setConnectTimeout(5000);
             connection.setReadTimeout(5000);
             OutputStreamWriter out = new OutputStreamWriter(connection.getOutputStream());
-            out.write("");
+            out.write(json);
             out.close();
 
             // Step 3: Receive the Data sent from Server
@@ -152,7 +152,7 @@ public class RaidConsumer {
         }
     }
 
-    public static void backClient(){
+    public static void backClient(String json){
         try {
             URL url = new URL(db_default_Url + "/back");
             URLConnection connection = url.openConnection();
@@ -161,7 +161,7 @@ public class RaidConsumer {
             connection.setConnectTimeout(5000);
             connection.setReadTimeout(5000);
             OutputStreamWriter out = new OutputStreamWriter(connection.getOutputStream());
-            out.write("");
+            out.write(json);
             out.close();
 
             // Step 3: Receive the Data sent from Server

@@ -207,7 +207,7 @@ public class MainRestService {
         String recvData = inputToString(incomingData);
 
         MilibConsumer.commitClient(recvData);
-        RaidConsumer.commitClient();
+        RaidConsumer.commitClient(recvData);
 
         // Return HTTP response 200 in case of success
         return Response.status(200).build();
@@ -227,7 +227,7 @@ public class MainRestService {
         String recvData = inputToString(incomingData);
 
         MilibConsumer.backClient(recvData);
-        RaidConsumer.backClient();
+        RaidConsumer.backClient(recvData);
 
         // Return HTTP response 200 in case of success
         return Response.status(200).build();
