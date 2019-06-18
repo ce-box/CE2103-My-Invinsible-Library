@@ -12,7 +12,7 @@ import java.net.URLConnection;
 public class RaidConsumer {
 
     // Network configuration: IP + URL
-    private static String db_ip = "192.168.100.9";
+    private static String db_ip = "192.168.0.21";
     private static String db_default_Url = " http://"+db_ip+":9080/MILIB_RAID_war_exploded/api/raid";
 
     /* --------------------------------------------
@@ -121,7 +121,7 @@ public class RaidConsumer {
         return "";
     }
 
-    public static void commitClient(){
+    public static void commitClient(String json){
         try {
             URL url = new URL(db_default_Url + "/commit");
             URLConnection connection = url.openConnection();
@@ -130,7 +130,7 @@ public class RaidConsumer {
             connection.setConnectTimeout(5000);
             connection.setReadTimeout(5000);
             OutputStreamWriter out = new OutputStreamWriter(connection.getOutputStream());
-            out.write("");
+            out.write(json);
             out.close();
 
             // Step 3: Receive the Data sent from Server
@@ -152,7 +152,7 @@ public class RaidConsumer {
         }
     }
 
-    public static void backClient(){
+    public static void backClient(String json){
         try {
             URL url = new URL(db_default_Url + "/back");
             URLConnection connection = url.openConnection();
@@ -161,7 +161,7 @@ public class RaidConsumer {
             connection.setConnectTimeout(5000);
             connection.setReadTimeout(5000);
             OutputStreamWriter out = new OutputStreamWriter(connection.getOutputStream());
-            out.write("");
+            out.write(json);
             out.close();
 
             // Step 3: Receive the Data sent from Server

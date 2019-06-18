@@ -78,7 +78,7 @@ public class RAIDRestService {
     @Path("/write")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response WRITE(InputStream incomingData) throws JSONException, IOException {
+    public Response WRITE(InputStream incomingData) throws JSONException, IOException, ClassNotFoundException {
 
         // Convert the input in to an String
         String recvData = inputToString(incomingData);
@@ -88,17 +88,19 @@ public class RAIDRestService {
 
         // In this part the write in disk actions are performed
 
-        String ID = "",img64 = "";
+        String ID = "",img64 = "",user = "";
         JSONObject jsonObject = new JSONObject(recvData);
 
         // Deserealize and shows the data into console
         ID = jsonObject.getString("ID");
         img64 = jsonObject.getString("img64");
+        user = jsonObject.getString("username");
 
         System.out.println("[WRITE] ID: "+ ID);
         System.out.println("[WRITE] img64: "+ img64);
+        System.out.println("[WRITE] User: "+ user);
 
-        raid.Write(img64,ID+"#");
+        raid.WriteCommit(img64,ID+"#",user);
 
         JSONObject json = new JSONObject();
         json.put("Status","OK");
@@ -135,7 +137,7 @@ public class RAIDRestService {
     @Path("/select")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response SEEK(InputStream incomingData) throws JSONException, IOException {
+    public Response SEEK(InputStream incomingData) throws JSONException, IOException, ClassNotFoundException {
 
         String recvData = inputToString(incomingData);
 
@@ -147,7 +149,7 @@ public class RAIDRestService {
         System.out.println("[SEEK] User:" + user);
         System.out.println("[SEEK] ID: " + ID);
 
-        String img64 = raid.seek(ID+"#");
+        String img64 = raid.seekCommit(ID+"#",user);
 
         JSONObject json = new JSONObject();
         json.put("imgStack", img64);
@@ -167,7 +169,7 @@ public class RAIDRestService {
     @POST
     @Path("/delete")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response DELETE(InputStream incomingData) throws JSONException{
+    public Response DELETE(InputStream incomingData) throws JSONException, IOException, ClassNotFoundException {
 
         // Convert the input in String
         String recvData = inputToString(incomingData);
@@ -178,12 +180,13 @@ public class RAIDRestService {
         JSONObject input = new JSONObject(recvData);
         String user = input.getString("username");
         String ID = input.getString("ID");
+
         System.out.println("[DELETE] User:" + user);
         System.out.println("[DELETE] ID: " + ID);
 
         // In this part the deletion is effected
 
-        raid.delete(ID+"#");
+        raid.deleteCommmit(ID+"#",user);
 
         // If deletion done, the send Status: OK else Status: FAIL
         JSONObject json = new JSONObject();
@@ -206,15 +209,26 @@ public class RAIDRestService {
      */
     @POST
     @Path("/commit")
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
-    public Response COMMIT() throws IOException {
+    public Response COMMIT(InputStream incomingData) throws IOException, JSONException, ClassNotFoundException {
 
         //Commit stuff here
+        // Convert the input in String
+        String recvData = inputToString(incomingData);
+
+        // Show in console the received data
+        System.out.println("[COMMIT] Data Received: "+ recvData);
+
+        JSONObject input = new JSONObject(recvData);
+        String user = input.getString("username");
+        System.out.println("[COMMIT] User:" + user);
+
+        raid.commit(user);
 
         System.out.println("[COMMIT] Commit Request");
         String ans = " RAID Commit Successful!";
 
-        raid.commit();
         return Response.status(200).entity(ans).build();
     }
 
@@ -225,14 +239,26 @@ public class RAIDRestService {
      */
     @POST
     @Path("/back")
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
-    public Response BACK(){
+    public Response BACK(InputStream incomingData) throws JSONException {
+
+        // Convert the input in String
+        String recvData = inputToString(incomingData);
+
+        // Show in console the received data
+        System.out.println("[BACK] Data Received: "+ recvData);
+
+        JSONObject input = new JSONObject(recvData);
+        String user = input.getString("username");
+        System.out.println("[BACK] User:" + user);
+
+        raid.rollback(user);
 
         //Commit stuff here
         System.out.println("[BACK] Rollback Request");
         String ans = "RAID Rollback Success!";
 
-        // raid.rollBack();
         return Response.status(200).entity(ans).build();
     }
 }

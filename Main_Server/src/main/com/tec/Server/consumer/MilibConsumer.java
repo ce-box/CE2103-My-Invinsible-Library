@@ -23,7 +23,7 @@ public class MilibConsumer {
     }
 
     // Network configuration: IP + URL
-    private static String db_ip = "192.168.100.9";
+    private static String db_ip = "192.168.0.21";
     private static String db_default_Url = " http://"+db_ip+":8080/MILIB_Servidor_war_exploded/api/database";
 
     /* --------------------------------------------

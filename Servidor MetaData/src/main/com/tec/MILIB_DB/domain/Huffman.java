@@ -61,7 +61,8 @@ public class Huffman {
 
 
     private static Node GlobalRoot;
-    private static String file_path="/home/juan/Documentos/Proyecto3/Servidor MetaData/XML_Metadata/input.xml";
+    private static String file_path="/home/esteban/Documentos/TEC/1S 2019/Algoritmos y estructuras de datos II/4. Proyectos/Proyecto #3/" +
+            "Source/MyInvensibleLibrary/Servidor MetaData/XML_Metadata/input.xml";
     private static String path = file_path.substring(0, file_path.length() - 9);
     private static String GlobalDecoded="";
 
