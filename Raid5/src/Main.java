@@ -20,9 +20,9 @@ public class Main {
         ImageIO.write(image2, "png", baos2);
         String encodedImage2 = Base64.encode(baos2.toByteArray());
         //controlador.delete("2#");
-         controlador.WriteCommit(encodedImage2,"2#","Sahid");
-         controlador.rollback("Sahid");
-         controlador.WriteCommit(encodedImage2,"3#","Sahid");
+         //controlador.WriteCommit(encodedImage2,"2#","Sahid");
+         //controlador.rollback("Sahid");
+        // controlador.WriteCommit(encodedImage2,"3#","Sahid");
         //controlador.rollback("Sahid");
          //controlador.WriteCommit(encodedImage2,"4#","Sahid");
          controlador.deleteCommmit("3#","Sahid");

@@ -13,15 +13,27 @@ import java.util.List;
 public class RaidController
 {
 
-   // private  List<String> listaId = new ArrayList<String>();
-   // private  List<String> listaImagenes = new ArrayList<String>();
+    // private  List<String> listaId = new ArrayList<String>();
+    // private  List<String> listaImagenes = new ArrayList<String>();
 
     private HashMap<String, List[]> map = new HashMap<>();
     public   Raid5 raid5=new Raid5();
 
     //###################################################################################################################
 
-    public void WriteCommit(String imagen,String id,String user){
+    public void WriteCommit(String imagen,String id,String user) throws IOException, ClassNotFoundException {
+        try {
+
+            //this.RecuperacionTotal();
+            this.RecuperacionTotal();
+
+
+        }
+
+        catch(Exception e) {
+            System.out.println("FALLO LA RECUPERACION DEL METODO WRITE");
+        }
+
         //List[] Listas=new List[2];
         if(map.containsKey(user)){
             List  [] Listas=map.get(user);
@@ -48,7 +60,7 @@ public class RaidController
 
     }
 
-//##################################################################################################3333
+    //##################################################################################################3333
     public  void recuperrar(String id) throws IOException, ClassNotFoundException {
 
 
@@ -70,7 +82,7 @@ public class RaidController
             ByteArrayInputStream bis = new ByteArrayInputStream(ParteRecuperado);
             BufferedImage recuperado = ImageIO.read(bis);
 
-           // System.out.println("La que  es la 1");
+            // System.out.println("La que  es la 1");
             BufferedImage bImage2 = raid5.DameImagenEspecifica(Imagen2);
             BufferedImage bImage3 = raid5.DameImagenEspecifica(Imagen3);
             ImageIO.write(recuperado, "png", new File(Imagen1) );
@@ -112,7 +124,7 @@ public class RaidController
             ImageIO.write(joined, "png", baos);
             raid5.borrar(id);
             this.Write(Base64.encode(baos.toByteArray()),id);
-           // System.out.println("La que  es la 2");
+            // System.out.println("La que  es la 2");
             ImageIO.write(recuperado, "png", new File(Imagen2) );
         }
         if(!raid5.buscar(Imagen3)){
@@ -128,7 +140,7 @@ public class RaidController
             ByteArrayInputStream bis = new ByteArrayInputStream(ParteRecuperado);
             BufferedImage recuperado = ImageIO.read(bis);
 
-           // System.out.println("La que  es la 1");
+            // System.out.println("La que  es la 1");
             BufferedImage bImage1 = raid5.DameImagenEspecifica(Imagen1);
             BufferedImage bImage2 = raid5.DameImagenEspecifica(Imagen2);
             ImageIO.write(recuperado, "png", new File(Imagen3) );
@@ -229,51 +241,126 @@ public class RaidController
     }
 
     //###################################################################################################################
-
-    public String seek(String id) throws IOException, ClassNotFoundException {
+    public String seekCommit(String idBuscar,String user) throws IOException, ClassNotFoundException {
         try {
+
+            //this.RecuperacionTotal();
             this.RecuperacionTotal();
-            return raid5.obtenerImagen(id);
+
+
         }
 
         catch(Exception e) {
             System.out.println("FALLO LA RECUPERACION DEL METODO SEEK");
+        }
+        //this.RecuperacionTotal();
+        try {
+            List  [] Listas=map.get(user);
+            List<String> listaId = Listas[0];
+            List<String> listaImagenes = Listas[1];
+            this.RecuperacionTotal();
+            //#####################3
+            Iterator<String> idActual = listaId.iterator();
+            Iterator<String> imagenActual = listaImagenes.iterator();
+            int contador=0;
+            boolean LaImagenEstaDentro=false;
+            System.out.println("YA SE BUSCO ALGO SIN COMMIT");
+            while(idActual.hasNext()){
+                String id=idActual.next();
+                String imagen=imagenActual.next();
+                if(idBuscar.equals(id)){
+                    return listaImagenes.get(contador);
+                    //listaId.set(contador,id);
+                }
+                contador++;
+            }
+
+            //System.out.println("LA IMAGEN ENCONTRADA NO EXISTE PARA EL USER O EN EL RAID");
+            return raid5.obtenerImagen(idBuscar);
+
+
+        }
+
+        catch(Exception e) {
+            System.out.println("FALLO LA RECUPERACION DEL METODO SEEK");
+            return raid5.obtenerImagen(idBuscar);
+
+
+        }
+
+    }
+    public String seek(String id) throws IOException, ClassNotFoundException {
+        try {
+
+            //this.RecuperacionTotal();
+            return raid5.obtenerImagen(id);
+
+
+        }
+
+        catch(Exception e) {
+            //System.out.println("FALLO LA RECUPERACION DEL METODO SEEK");
             return raid5.obtenerImagen(id);
 
         }
 
     }
-    public void deleteCommmit(String idParaEliminar,String user){
-        //##################333
-        List  [] Listas=map.get(user);
-        List<String> listaId = Listas[0];
-        List<String> listaImagenes = Listas[1];
-        //#####################3
-        Iterator<String> idActual = listaId.iterator();
-        Iterator<String> imagenActual = listaImagenes.iterator();
-        int contador=0;
-        boolean LaImagenEstaDentro=false;
-        System.out.println("YA SE BORRO ALGO SIN COMMIT");
-        //System.out.println("ESTE ES EL ARRAY DE ID "+Arrays.toString(listaId.toArray()));
-        //System.out.println("ESTE ES EL  SIZE DEL ARRAY DE IMAGENES "+listaImagenes.size());
+    public void deleteCommmit(String idParaEliminar,String user) throws IOException, ClassNotFoundException {
+        try {
 
-        while(idActual.hasNext()){
-            String id=idActual.next();
-            String imagen=imagenActual.next();
-            if(idParaEliminar.equals(id)){
-                listaImagenes.set(contador,"0");
-                listaId.set(contador,id);
+            //this.RecuperacionTotal();
+            this.RecuperacionTotal();
+
+
+        }
+
+        catch(Exception e) {
+            System.out.println("FALLO LA RECUPERACION DEL METODO DELETE");
+        }
+        try {
+            //##################333
+            List[] Listas = map.get(user);
+            List<String> listaId = Listas[0];
+            List<String> listaImagenes = Listas[1];
+            //#####################3
+            Iterator<String> idActual = listaId.iterator();
+            Iterator<String> imagenActual = listaImagenes.iterator();
+            int contador = 0;
+            boolean LaImagenEstaDentro = false;
+            System.out.println("YA SE BORRO ALGO SIN COMMIT");
+            //System.out.println("ESTE ES EL ARRAY DE ID "+Arrays.toString(listaId.toArray()));
+            //System.out.println("ESTE ES EL  SIZE DEL ARRAY DE IMAGENES "+listaImagenes.size());
+
+            while (idActual.hasNext()) {
+                String id = idActual.next();
+                String imagen = imagenActual.next();
+                if (idParaEliminar.equals(id)) {
+                    listaImagenes.set(contador, "0");
+                    listaId.set(contador, id);
+                }
+                contador++;
             }
-            contador++;
-        }
-        if(!LaImagenEstaDentro){
-            listaImagenes.add("0");
-            listaId.add(idParaEliminar);
-        }
+            if (!LaImagenEstaDentro) {
+                listaImagenes.add("0");
+                listaId.add(idParaEliminar);
+            }
 
-        Listas[0]=listaId;
-        Listas[1]=listaImagenes;
-        map.put("user",Listas);
+            Listas[0] = listaId;
+            Listas[1] = listaImagenes;
+            map.put("user", Listas);
+        }
+        catch(Exception e) {
+            List<String> listaId = new ArrayList<String>();
+            List<String> listaImagenes = new ArrayList<String>();
+            List[] Listas = {listaId, listaImagenes};
+            Listas[0].add(idParaEliminar);
+            Listas[1].add("0");
+            map.put(user, Listas);
+            System.out.println("YA SE BORRO ALGO SIN COMMIT");
+            //System.out.println("ESTE ES EL ARRAY DE ID " + Arrays.toString(listaId.toArray()));
+            //System.out.println("ESTE ES EL  SIZE DEL ARRAY DE IMAGENES " + listaImagenes.size());
+           // System.out.println("FALLO LA RECUPERACION DEL METODO DELETE");
+        }
 
 
     }
@@ -282,12 +369,12 @@ public class RaidController
 
     public void delete(String idParaEliminar) throws IOException, ClassNotFoundException {
         try {
-            this.RecuperacionTotal();
+            //this.RecuperacionTotal();
             this.raid5.borrar(idParaEliminar);
             //  Block of code to try
         }
         catch(Exception e) {
-            System.out.println("FALLO LA RECUPERACION DEL METODO DELETE");
+            //System.out.println("FALLO LA RECUPERACION DEL METODO DELETE");
             this.raid5.borrar(idParaEliminar);
         }
     }
@@ -296,7 +383,7 @@ public class RaidController
 
     public void Write(String imagenBase64,String id) throws IOException, ClassNotFoundException {
         try {
-            this.RecuperacionTotal();
+            //
 
             //  Block of code to try
         }
@@ -321,15 +408,15 @@ public class RaidController
         ImageIO.write(terceraParte, "png", contenedor3);
         byte[][]arraysOrdenados=cualEsmasGrande(contenedor1.toByteArray(),contenedor2.toByteArray(),contenedor3.toByteArray());
         byte [] paridad=calcularParidad(arraysOrdenados[0],arraysOrdenados[1],arraysOrdenados[2]);
-       // System.out.println("el size de paridad es"+paridad.length);
+        // System.out.println("el size de paridad es"+paridad.length);
         this.raid5.GuardarInfromacion(partesDeLaImagen,id,Base64.encode(paridad));
 
 
-}
+    }
 
 //###################################################################################################################
 
-public String[] serializacion(String imagen){
+    public String[] serializacion(String imagen){
         int size=imagen.length();
         String[] Respuesta = new String[4];
         String binario1=imagen.substring(0,size/3);
@@ -346,30 +433,36 @@ public String[] serializacion(String imagen){
         Respuesta[3]=paridadString;
         return Respuesta;
 
-}
-//###################################################################################################################
+    }
+    //###################################################################################################################
     public void commit(String user) throws IOException, ClassNotFoundException {
-        List  [] Listas=map.get(user);
-        List<String> listaId = Listas[0];
-        List<String> listaImagenes = Listas[1];
-        //###############################################33
-        Iterator<String> idActual = listaId.iterator();
-        Iterator<String> imagenActual = listaImagenes.iterator();
+        try {
+            List  [] Listas=map.get(user);
+            List<String> listaId = Listas[0];
+            List<String> listaImagenes = Listas[1];
+            //###############################################33
+            Iterator<String> idActual = listaId.iterator();
+            Iterator<String> imagenActual = listaImagenes.iterator();
 
-        while(idActual.hasNext()){
-            //System.out.println("entro al commit");
+            while(idActual.hasNext()){
+                //System.out.println("entro al commit");
 
-            String id=idActual.next();
-            String imagen=imagenActual.next();
+                String id=idActual.next();
+                String imagen=imagenActual.next();
 
-            //this.Write(imagen,id);
-            if(imagen.equals("0")){
-               this.delete(id);
-            }
-            else{
-                this.Write(imagen,id);
+                //this.Write(imagen,id);
+                if(imagen.equals("0")){
+                    this.delete(id);
+                }
+                else{
+                    this.Write(imagen,id);
+                }
             }
         }
+        catch(Exception e) {
+            System.out.println("NO HAY NADA PARA HACER COMMIT");
+        }
+
 
 
     }
@@ -403,7 +496,7 @@ public String[] serializacion(String imagen){
                 Funciono=false;
             }
         }
-       // System.out.println("EL VALOR DE LA PRUEBA ES "+Funciono);
+        // System.out.println("EL VALOR DE LA PRUEBA ES "+Funciono);
     }
 
     //###################################################################################################################
@@ -426,7 +519,7 @@ public String[] serializacion(String imagen){
         }
         //AQUI LO QUE HACEMOS ES PONER LOS CAMPOS RESTANTES CON LOS DEL PRIMER ARRAY
         for (int i=bloque1.length-1;i>=sizeInicial;i--) {
-           // System.out.println("No son del mismo size");
+            // System.out.println("No son del mismo size");
             arraycompleto[i] = 0 ;
         }
         return arraycompleto;

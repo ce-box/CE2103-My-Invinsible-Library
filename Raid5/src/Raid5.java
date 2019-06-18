@@ -80,7 +80,7 @@ public class Raid5 {
     //#######################################################################################################
     public void borrar(String id){
         //String input = "Android gave new life to Java";
-       // boolean isFound = input.indexOf("id") !=-1? true: false;
+        // boolean isFound = input.indexOf("id") !=-1? true: false;
         for (int i = 0; i <Discos.length ; i++) {
             File[] contents = this.Discos[i].listFiles();
             for (int j = 0; j < contents.length ; j++) {
@@ -148,7 +148,7 @@ public class Raid5 {
         ValoresIngresados.add(numero1);
         ValoresIngresados.add(numero2);
         ValoresIngresados.add(numero3);
-       // System.out.println("El array contiene esto");
+        // System.out.println("El array contiene esto");
         int valorAdevolver=0;
         for (int i = 0; i <3 ; i++) {
             if(ValoresIngresados.contains(sizes.get(i))){
@@ -161,7 +161,7 @@ public class Raid5 {
 
         }
         if(valorAdevolver==0){
-             valorAdevolver=this.ObtenerElNumeroMasGrande(numero1,numero2,numero3);
+            valorAdevolver=this.ObtenerElNumeroMasGrande(numero1,numero2,numero3);
 
         }
         return valorAdevolver;
@@ -240,11 +240,11 @@ public class Raid5 {
                 boolean parte3 = archivo.indexOf(id + "-3") != -1 ? true : false;
                 if (parte1) {
                     File file = new File(archivo);
-                     ImagenCortada1 = ImageIO.read(file);
+                    ImagenCortada1 = ImageIO.read(file);
                 }
                 if (parte2) {
                     File file = new File(archivo);
-                     ImagenCortada2 = ImageIO.read(file);
+                    ImagenCortada2 = ImageIO.read(file);
                 }
                 if (parte3) {
                     File file = new File(archivo);
@@ -341,37 +341,37 @@ public class Raid5 {
             return false;
         }
     }
-//#####################################################################################################################
-public BufferedImage DameImagenEspecifica(String id) throws IOException {
-    for (int i = 0; i <Discos.length ; i++) {
-        File[] contents = this.Discos[i].listFiles();
-        for (int j = 0; j < contents.length ; j++) {
-            String archivo=contents[j].toString();
-            //System.out.println(archivo.toString());
-            boolean isFound = archivo.contains(id) ? true: false;
-            if(isFound){
-                File file = new File(archivo);
-                BufferedImage ImagenEncontrada =ImageIO.read(file);
-                return ImagenEncontrada;
+    //#####################################################################################################################
+    public BufferedImage DameImagenEspecifica(String id) throws IOException {
+        for (int i = 0; i <Discos.length ; i++) {
+            File[] contents = this.Discos[i].listFiles();
+            for (int j = 0; j < contents.length ; j++) {
+                String archivo=contents[j].toString();
+                //System.out.println(archivo.toString());
+                boolean isFound = archivo.contains(id) ? true: false;
+                if(isFound){
+                    File file = new File(archivo);
+                    BufferedImage ImagenEncontrada =ImageIO.read(file);
+                    return ImagenEncontrada;
+                }
             }
         }
+        return null;
     }
-    return null;
-}
-//#####################################################################################################################
+    //#####################################################################################################################
     public ArrayList<String> DameIdsParaRecuperar(){
         ArrayList<String> IdsParaRecuperar = new ArrayList<String>();
         int NumeroDeDiscoRandom=DameUnDiscoQueNoEstaVacio();
-         File DiscoParaConseguirId=Discos[NumeroDeDiscoRandom];
-         File DiscoParaConseguirId2=Discos[NumeroDeDiscoRandom-1];
+        File DiscoParaConseguirId=Discos[NumeroDeDiscoRandom];
+        File DiscoParaConseguirId2=Discos[NumeroDeDiscoRandom-1];
         for (int i = 0; i <DiscoParaConseguirId.listFiles().length ; i++) {
             String id=dameIdDelaImagen(DiscoParaConseguirId.list()[i]);
             //System.out.println("El id es"+ id);
-             boolean LaimagenEsta=buscarSiUnaImagenEstaCompleta(id);
-             if(!LaimagenEsta){
-                 IdsParaRecuperar.add(id);
-                 //System.out.println("Esta imagen no esta completa"+ id);
-             }
+            boolean LaimagenEsta=buscarSiUnaImagenEstaCompleta(id);
+            if(!LaimagenEsta){
+                IdsParaRecuperar.add(id);
+                //System.out.println("Esta imagen no esta completa"+ id);
+            }
         }
         for (int i = 0; i <DiscoParaConseguirId2.listFiles().length ; i++) {
             String id=dameIdDelaImagen(DiscoParaConseguirId2.list()[i]);
@@ -388,7 +388,7 @@ public BufferedImage DameImagenEspecifica(String id) throws IOException {
 
     public int DameUnDiscoQueNoEstaVacio(){
         Random r = new Random();
-        int discoRandom=r.ints(1, (3 + 1)).findFirst().getAsInt();
+        int discoRandom=r.ints(1, (3 )).findFirst().getAsInt();
         if(Discos[discoRandom].listFiles().length!=0){
             //System.out.println("El numero es "+ discoRandom);
             return discoRandom;
@@ -469,8 +469,8 @@ public BufferedImage DameImagenEspecifica(String id) throws IOException {
             else{
                 crearImagen(Discos[turno].getAbsolutePath(),partesDeLaImagen[i],id+"-"+parte);
             }
-           parte=parte+1;
-           turno++;
+            parte=parte+1;
+            turno++;
         }
         System.out.println("SE GUARDO LA IMAGE "+id+" CORRECTAMENTE");
 
