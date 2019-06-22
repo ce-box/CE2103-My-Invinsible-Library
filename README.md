@@ -25,7 +25,7 @@ El sistema desarrollado cuenta con: **ServerLibrary**: Permite a múltiples clie
 
 ## Vista Previa.
 <p align="center">
-    <img src="https://res.cloudinary.com/estalvgs1999/image/upload/v1560636301/CE2103/MILIB_acjobj.png">
+    <img src="https://res.cloudinary.com/estalvgs1999/image/upload/v1560636301/CE2103/MILIB_acjobj.png" width = 500 heigth = 500>
 </p>
 
 ## Requisitos.
@@ -73,6 +73,8 @@ Prerequisitos: Debe tener instalado Git en su consola.
 * **Erick Barrantes Cerdas** - *Desarrollador* - @ErickCR12
 * **Sahid Rojas** - *Desarrollador* - @reds98
 
+<p align="center"> Proyecto desarrollado en el <b>Instituto Tecnológico de Costa Rica</b> | 2019 🄯</p>
+
 ## Licencia.
 
 Este proyecto está bajo la Licencia (GNU GENERAL PUBLIC LICENSE) - mira el archivo 
@@ -81,5 +83,5 @@ Este proyecto está bajo la Licencia (GNU GENERAL PUBLIC LICENSE) - mira el arch
 ***
 
 <p align="center">
-<img src="https://res.cloudinary.com/dfionqbqe/image/upload/v1554439121/Tec%20logo.png" width="200"/>
+<img src="https://res.cloudinary.com/estalvgs1999/image/upload/v1559695781/CE2103/MILIB_logo_jd6toi.png" width="200"/>
 </p>
